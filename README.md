@@ -25,7 +25,10 @@ To contribute, clone the repo and run
   - Rewrite in Rust
   - Rewrite in Haskell
 
-  | Username | Year | Favorite food |
-  |----------|------|---------------|
-  |stefancherubin|2019|wings|
+|  Username      | Year | Favorite food    |
+|----------------|------|------------------|
+| kristelfung    | 2022 |     Sushi        |
+| themichaelyang | 2020 | all of the above |
+| Leshyabracaglia  | 2020  |Cheeseburger |
+|stefancherubin|2019|wings|
   

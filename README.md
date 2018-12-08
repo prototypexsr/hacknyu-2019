@@ -26,7 +26,9 @@ To contribute, clone the repo and run
   - Rewrite in Haskell
 
 ## Contributors 
-
-| Username | Year | Favorite food |
-|----------|------|---------------|
-| MdAbedin | 2022 | chocolate     |
+|  Username      | Year | Favorite food    |
+|----------------|------|------------------|
+| kristelfung    | 2022 |     Sushi        |
+| themichaelyang | 2020 | all of the above |
+| Leshyabracaglia| 2020 |  Cheeseburger    |
+| MdAbedin       | 2022 |   chocolate      |

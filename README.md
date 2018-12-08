@@ -30,5 +30,6 @@ To contribute, clone the repo and run
 | kristelfung    | 2022 |     Sushi        |
 | themichaelyang | 2020 | all of the above |
 | Leshyabracaglia  | 2020  |Cheeseburger |
+| eisenhuang | 2019 | Sushi |
 |stefancherubin|2019|wings|
   

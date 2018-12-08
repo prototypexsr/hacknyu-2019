@@ -24,3 +24,7 @@ To contribute, clone the repo and run
   - Add god mode (organizer view)
   - Rewrite in Rust
   - Rewrite in Haskell
+
+  | Username | Year | Favorite food |
+  |stefancherubin|--grad-|------wings------|
+  

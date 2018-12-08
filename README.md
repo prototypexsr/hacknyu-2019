@@ -27,5 +27,5 @@ To contribute, clone the repo and run
 
   | Username | Year | Favorite food |
   |----------|------|---------------|
-  |stefancherubin|19|------wings----|
+  |stefancherubin|2019|wings|
   

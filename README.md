@@ -26,5 +26,6 @@ To contribute, clone the repo and run
   - Rewrite in Haskell
 
   | Username | Year | Favorite food |
-  |stefancherubin|--grad-|------wings------|
+  |----------|------|---------------|
+  |stefancherubin|19|------wings----|
   

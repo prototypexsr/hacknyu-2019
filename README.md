@@ -24,6 +24,8 @@ To contribute, clone the repo and run
   - Add god mode (organizer view)
   - Rewrite in Rust
   - Rewrite in Haskell
+  
+## Contributors
 
 |  Username      | Year | Favorite food    |
 |----------------|------|------------------|

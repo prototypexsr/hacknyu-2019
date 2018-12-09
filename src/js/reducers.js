@@ -1,6 +1,9 @@
-import combineReducers from "redux/lib/combineReducers";
+import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
-import core from "./modules/core";
+import core from "./modules/core/index";
+
+console.log("CORE:");
+console.log(core);
 
 export default history =>
   combineReducers({

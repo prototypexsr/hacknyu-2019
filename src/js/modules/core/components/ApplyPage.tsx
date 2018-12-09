@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Styles } from "react-jss";
-import { State, Theme } from "../../types";
+import { ReduxState, Theme } from "../../types";
 import injectSheet from "react-jss/lib/injectSheet";
 import { FormEvent } from "react";
 import { Form, Field } from "react-final-form";
@@ -186,7 +186,7 @@ class ApplyPage extends React.Component<Props> {
     );
   }
 }
-const mapStateToProps = (state: State) => ({
+const mapStateToProps = (state: ReduxState) => ({
   user: state.core.user
 });
 

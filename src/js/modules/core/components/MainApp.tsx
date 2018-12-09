@@ -4,7 +4,7 @@ import injectSheet, { Styles } from "react-jss";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { State, Theme } from "../../types";
+import { ReduxState, Theme } from "../../types";
 // @ts-ignore
 import { addUser, deleteUser, refreshWindowDimensions } from "../coreActions";
 import Header from "./Header";
@@ -70,8 +70,8 @@ class MainApp extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = (state: State) => ({
-  error: state.core.error,
+const mapStateToProps = (state: ReduxState) => ({
+  error: state.core.appError,
   user: state.core.user
 });
 

@@ -1,6 +1,6 @@
 import * as React from "react";
 import injectSheet, { Styles } from "react-jss";
-import { State, Theme } from "../../types";
+import { ReduxState, Theme } from "../../types";
 import SubwayLine from "./SubwayLine";
 import ApplyButton from "./ApplyButton";
 import TrackInfo from "./TrackInfo";
@@ -142,7 +142,8 @@ class HomePage extends React.Component<HomePageProps, HomePageState> {
                   activeBlocks={this.state.activeBlocks}
                   infoBlock={{
                     id: 0,
-                    text: "January 23rd: Sign Up",
+                    date: "January 1st",
+                    text: "Sign Up",
                     color: trackColors.red
                   }}
                 >
@@ -156,7 +157,8 @@ class HomePage extends React.Component<HomePageProps, HomePageState> {
                   activeBlocks={this.state.activeBlocks}
                   infoBlock={{
                     id: 1,
-                    text: "February 29th: Get admissions result",
+                    date: "January 14th",
+                    text: "Get admissions result",
                     color: trackColors.orange
                   }}
                 >
@@ -175,7 +177,8 @@ class HomePage extends React.Component<HomePageProps, HomePageState> {
                   activeBlocks={this.state.activeBlocks}
                   infoBlock={{
                     id: 2,
-                    text: "March 23rd: Go to hackathon!",
+                    date: "February 15th",
+                    text: "Go to hackathon!",
                     color: trackColors.green
                   }}
                 >

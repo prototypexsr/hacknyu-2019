@@ -1,7 +1,6 @@
-import "babel-polyfill";
 import React from "react";
 import ReactDOM from "react-dom";
-import { RoutingApp } from "./modules";
+import RoutingApp from "./modules/RoutingApp";
 import { AppContainer } from "react-hot-loader";
 import injectTapEventPlugin from "react-tap-event-plugin";
 
@@ -12,10 +11,10 @@ try {
   /* hot reloading, no issue  */
 }
 
-import { VERSION } from "./versionInfo";
+import VersionInfo  from "./versionInfo";
 
 
-console.log("appVersion ->", VERSION);
+console.log("appVersion ->", VersionInfo.VERSION);
 
 ReactDOM.render(
   <AppContainer>

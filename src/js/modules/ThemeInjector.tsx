@@ -8,7 +8,12 @@ interface Props {
   children: any;
 }
 
-export const trackColors = {red: "red", orange: "orange", green: "#4ba343", blue: "#007fcc"};
+export const trackColors = {
+  red: "#ff1616",
+  orange: "#ffaf1a",
+  green: "#4ba343",
+  blue: "#007fcc"
+};
 
 const theme: Theme = {
   backgroundColor: "#e3f2fd",
@@ -25,9 +30,7 @@ const theme: Theme = {
 };
 
 const ThemeInjector: React.SFC<Props> = ({ children }) => {
-  return (
-    <ThemeProvider theme={theme}>{children}</ThemeProvider>
-  );
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };
 
 // @ts-ignore

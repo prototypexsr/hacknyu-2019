@@ -1,13 +1,16 @@
 import {User} from "firebase";
 
-export interface State {
+export interface ReduxState {
   core: CoreState
 }
 export interface CoreState {
   viewportWidth: number
   viewportHeight: number
   user: User,
-  error: string
+  appError: string;
+  loginError: string;
+  logoutError: string;
+  registerError: string;
 }
 
 export interface Theme {

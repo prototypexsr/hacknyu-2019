@@ -33,5 +33,5 @@ To contribute, clone the repo and run
 | themichaelyang | 2020 | all of the above |
 | Leshyabracaglia  | 2020  |Cheeseburger |
 | eisenhuang | 2019 | Sushi |
-|stefancherubin|2019|wings|
-
+| yitongw2 | 2020 | Hot pot |
+| stefancherubin | 2019 | Wings |

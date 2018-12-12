@@ -1,12 +1,10 @@
 import * as React from "react";
 import injectSheet, { Styles } from "react-jss";
-import { State, Theme } from "../../types";
+import { Theme } from "../../types";
 import SubwayLine from "./SubwayLine";
 import ApplyButton from "./ApplyButton";
 import TrackInfo from "./TrackInfo";
-import Timeline from "./Timeline";
-import { connect } from "react-redux";
-import { compose } from "redux";
+import Waypoint from "react-waypoint";
 import AboutSection from "./AboutSection";
 import Section from "./Section";
 // @ts-ignore
@@ -68,7 +66,7 @@ const styles = (theme: Theme): Styles => ({
     position: "relative",
     fontSize: "10px",
     color: theme.secondBackground,
-    top: "60vh"
+    top: "10vh"
   }
 });
 
@@ -106,8 +104,14 @@ class HomePage extends React.Component<HomePageProps, HomePageState> {
     }
   };
 
-  handleTopEnter = ({ element, data, direction }: StepData) => {
-    if (direction === "up") {
+  handleTopEnter = ({
+    previousPosition,
+    currentPosition
+  }: {
+    previousPosition: string;
+    currentPosition: string;
+  }) => {
+    if (currentPosition === "inside" && previousPosition === "above") {
       this.setState({ activeBlocks: -1 });
     }
   };
@@ -125,11 +129,7 @@ class HomePage extends React.Component<HomePageProps, HomePageState> {
           <SubwayLine delay="-2.4s" color={trackColors.orange} />
         </div>
         <div className={classes.hiddenTrip}>
-          <Scrollama onStepEnter={this.handleTopEnter}>
-            <Step data={0}>
-              <div> </div>
-            </Step>
-          </Scrollama>
+          <Waypoint onEnter={this.handleTopEnter} />
         </div>
         <div className={classes.info}>
           <Scrollama
@@ -142,7 +142,8 @@ class HomePage extends React.Component<HomePageProps, HomePageState> {
                   activeBlocks={this.state.activeBlocks}
                   infoBlock={{
                     id: 0,
-                    text: "January 23rd: Sign Up",
+                    date: "January 1st",
+                    text: "Sign Up",
                     color: trackColors.red
                   }}
                 >
@@ -156,7 +157,8 @@ class HomePage extends React.Component<HomePageProps, HomePageState> {
                   activeBlocks={this.state.activeBlocks}
                   infoBlock={{
                     id: 1,
-                    text: "February 29th: Get admissions result",
+                    date: "January 14th",
+                    text: "Get admissions result",
                     color: trackColors.orange
                   }}
                 >
@@ -175,7 +177,8 @@ class HomePage extends React.Component<HomePageProps, HomePageState> {
                   activeBlocks={this.state.activeBlocks}
                   infoBlock={{
                     id: 2,
-                    text: "March 23rd: Go to hackathon!",
+                    date: "February 15th",
+                    text: "Go to hackathon!",
                     color: trackColors.green
                   }}
                 >

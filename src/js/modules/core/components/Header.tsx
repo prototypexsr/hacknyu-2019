@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import injectSheet, { Styles } from "react-jss";
 import { Link } from "react-router-dom";
 // @ts-ignore
-import { login, logout } from "../coreActions";
+import { loginWithGoogle, logout } from "../coreActions";
 import { User } from "firebase";
 import { Theme } from "../../types";
 
@@ -87,14 +87,12 @@ interface Props {
   error: string;
   viewportWidth: number;
   logout: () => any;
-  login: () => any;
 }
 
 const Header: React.SFC<Props> = ({
   classes,
   user,
   logout,
-  login,
   viewportWidth
 }) => {
   return (
@@ -111,9 +109,9 @@ const Header: React.SFC<Props> = ({
         {!user && (
           <h1 className={classes.signUp}>
             <span className={classes.bullet}>
-              <a href="#" onClick={login}>
-                <div className={classes.link}>Sign Up</div>
-              </a>
+              <Link to='/register'>
+                <div className={classes.link}>Register</div>
+              </Link>
               {viewportWidth > 800 && <div className={classes.dot}>&bull;</div>}
             </span>
           </h1>
@@ -163,9 +161,6 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  login: () => {
-    dispatch(login());
-  },
   logout: () => {
     dispatch(logout());
   }

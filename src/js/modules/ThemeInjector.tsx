@@ -2,6 +2,7 @@ import * as React from "react";
 import { ThemeProvider } from "theming";
 import { Theme } from "./types";
 import { withRouter } from "react-router";
+import {Location} from "history";
 
 interface Props {
   location: Location;
@@ -29,9 +30,12 @@ const theme: Theme = {
   ...trackColors
 };
 
-const ThemeInjector: React.SFC<Props> = ({ children }) => {
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
-};
+class ThemeInjector extends React.Component<Props> {
+  render() {
+    let {children} = this.props;
+    return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+  }
+}
 
 // @ts-ignore
 export default withRouter(ThemeInjector);

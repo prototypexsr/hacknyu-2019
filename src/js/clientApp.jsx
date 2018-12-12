@@ -1,3 +1,4 @@
+import "@babel/polyfill"; 
 import React from "react";
 import ReactDOM from "react-dom";
 import RoutingApp from "./modules/RoutingApp";
@@ -10,11 +11,6 @@ try {
 } catch (err) {
   /* hot reloading, no issue  */
 }
-
-import VersionInfo  from "./versionInfo";
-
-
-console.log("appVersion ->", VersionInfo.VERSION);
 
 ReactDOM.render(
   <AppContainer>

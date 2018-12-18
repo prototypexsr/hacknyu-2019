@@ -4,14 +4,20 @@ import { User } from "firebase";
 export interface ReduxState {
     core: CoreState;
 }
+
+export interface Errors {
+  loginError: string;
+  logoutError: string;
+  registerError: string;
+  passwordEmailError: string;
+  updatePasswordError: string;
+}
+
 export interface CoreState {
     viewportWidth: number;
     viewportHeight: number;
     user: User;
-    appError: string;
-    loginError: string;
-    logoutError: string;
-    registerError: string;
+    errors: Errors
 }
 
 export interface Theme {
@@ -47,3 +53,11 @@ export type JssFunction<Props> = (props: Props) => JssValue;
 
 export type JssRules = { [s: string]: JssValue | JssFunction | JssRules }
 
+<<<<<<< HEAD
+=======
+export interface GlobalError {
+    code: string;
+    message: string
+}
+
+>>>>>>> got animations working

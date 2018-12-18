@@ -54,7 +54,10 @@ const reducer = (state = { ...initialState }, action) => {
     case LOGIN_FULFILLED:
       return { ...state, user: action.payload };
     case LOGIN_REJECTED:
-      return { ...state, loginError: action.payload };
+      return {
+        ...state,
+        errors: { ...state.errors, loginError: action.payload }
+      };
     case LOGOUT_FULFILLED:
       return { ...state, user: undefined };
     case LOGOUT_REJECTED:

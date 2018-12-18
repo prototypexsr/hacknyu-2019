@@ -1,13 +1,17 @@
 import * as React from "react";
 import { Styles } from "react-jss";
 import injectSheet from "react-jss/lib/injectSheet";
-import Error from "./Error";
+import AnimatedError from "./AnimatedError";
+import { Errors, GlobalError } from "../../types";
+import { compose } from "redux";
+import { connect } from "react-redux";
 
 interface ErrorsListStyles<T> extends Styles {
   ErrorsList: T;
 }
 
 interface Props {
+  errors: Errors
   classes: ErrorsListStyles<string>;
 }
 
@@ -19,19 +23,21 @@ const styles: ErrorsListStyles<object> = {
   }
 };
 
-const ErrorsList: React.SFC<Props> = ({ classes }) => {
-  const errors = [
-    { code: "blah", message: "something went wrong!" },
-    { code: "blah", message: "something went wrong! 2" },
-    { code: "blah", message: "something went wrong! 3" }
-  ];
+const ErrorsList: React.SFC<Props> = ({ errors, classes }) => {
   return (
     <div className={classes.ErrorsList}>
-      {errors.map((error, index) => (
-        <Error error={error} index={index} />
+      {Object.values(errors).map((error, index) => (
+        <AnimatedError error={error} index={index} />
       ))}
     </div>
   );
 };
 
-export default injectSheet(styles)(ErrorsList);
+const mapStateToProps = state => ({
+  errors: state.core.errors
+});
+
+export default compose(
+  injectSheet(styles),
+  connect(mapStateToProps)
+)(ErrorsList);

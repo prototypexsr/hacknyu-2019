@@ -21,6 +21,7 @@ export const CLEAR_EMAIL_STATE = "core/CLEAR_EMAIL_STATE";
 export const CLEAR_ERROR = "core/CLEAR_ERROR";
 export const CLEAR_NOTIFICATION = "core/CLEAR_NOTIFICATION";
 
+export const ADD_USER = "core/ADD_USER";
 export const DELETE_USER = "core/DELETE_USER";
 
 export const refreshWindowDimensions = () => ({
@@ -47,7 +48,7 @@ export const logout = () => dispatch => {
 
 // Directly add user for rehydrating from localStorage
 export const addUser = user => ({
-  type: LOGIN_FULFILLED,
+  type: ADD_USER,
   payload: user
 });
 

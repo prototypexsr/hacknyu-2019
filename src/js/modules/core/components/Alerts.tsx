@@ -7,28 +7,28 @@ import { connect } from "react-redux";
 import AnimatedNotification from "./AnimatedNotification";
 import { clearError, clearNotification } from "../coreActions"
 
-interface NotificationsListStyles<T> extends Styles {
-  NotificationsList: T;
+interface AlertsStyles<T> extends Styles {
+  Alerts: T;
 }
 
 interface Props {
   errors: Errors;
-  classes: NotificationsListStyles<string>;
+  classes: AlertsStyles<string>;
   clearError: (type: string) => any;
   clearNotification: (type: string) => any;
 }
 
-const styles: NotificationsListStyles<JssRules> = {
-  NotificationsList: {
+const styles: AlertsStyles<JssRules> = {
+  Alerts: {
     position: "fixed",
     top: "2vh",
     left: "2vw"
   }
 };
 
-const NotificationsList: React.SFC<Props> = ({ clearError, clearNotification, notifications, errors, classes }) => {
+const Alerts: React.SFC<Props> = ({ clearError, clearNotification, notifications, errors, classes }) => {
   return (
-    <div className={classes.NotificationsList}>
+    <div className={classes.Alerts}>
       {Object.entries(errors).map(([type, message], index) => (
         <AnimatedNotification
           isError={true}
@@ -63,4 +63,4 @@ const mapDispatchToProps = dispatch =>
 export default compose(
   injectSheet(styles),
   connect(mapStateToProps, mapDispatchToProps)
-)(NotificationsList);
+)(Alerts);

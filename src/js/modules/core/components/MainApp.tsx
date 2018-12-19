@@ -11,7 +11,8 @@ import Header from "./Header";
 import { User } from "firebase";
 import UserInfo from "./UserInfo";
 import { auth } from "../../../firebase";
-import ErrorsList from "./NotificationsList";
+import Alerts from "./Alerts";
+
 
 interface MainAppStyles<T> extends Styles {
   MainApp: T
@@ -69,7 +70,7 @@ class MainApp extends React.Component<Props> {
     let { classes, error, children, user } = this.props;
     return (
       <div className={classes.MainApp}>
-        <ErrorsList />
+        <Alerts />
         <Header />
         {user && <UserInfo user={user} />}
         {error && <h2 className={classes.error}> {error} </h2>}

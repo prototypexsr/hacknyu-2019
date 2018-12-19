@@ -1,7 +1,9 @@
 import {
+  ADD_USER,
   CLEAR_EMAIL_STATE,
   CLEAR_ERROR,
-  CLEAR_NOTIFICATION, DELETE_USER,
+  CLEAR_NOTIFICATION,
+  DELETE_USER,
   LOCATION_CHANGE,
   LOGIN_FULFILLED,
   LOGIN_REJECTED,
@@ -118,11 +120,16 @@ const reducer = (state = { ...initialState }, action) => {
         ...state,
         errors: { ...state.errors, updatePassword: action.payload.message }
       };
+    case ADD_USER:
+      return {
+        ...state,
+        user: action.payload
+      };
     case DELETE_USER:
       return {
         ...state,
         user: undefined
-      }
+      };
     case CLEAR_EMAIL_STATE:
       return { ...state, passwordEmailSent: false };
     case CLEAR_ERROR:

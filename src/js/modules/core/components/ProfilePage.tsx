@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { Theme } from "../../types";
 import Button from "./Button";
 import PasswordForm from "./ChangePasswordForm";
+import { Link } from "react-router-dom";
 
 interface ProfilePageStyles extends Styles {
   ProfilePage: object;
@@ -68,6 +69,14 @@ class ProfilePage extends React.Component<Props, State> {
   };
   render() {
     let { user, classes } = this.props;
+    // Just in case this page renders even after a user signs out
+    if (!user) {
+      return (
+        <div className={classes.ProfilePage}>
+          Please <Link to="/login"> log in </Link> to see your profile page
+        </div>
+      );
+    }
     return (
       <div className={classes.ProfilePage}>
         <h1 className={classes.name}> {user.displayName} </h1>

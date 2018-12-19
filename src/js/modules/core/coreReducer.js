@@ -68,7 +68,7 @@ const reducer = (state = { ...initialState }, action) => {
     case LOGIN_REJECTED:
       return {
         ...state,
-        errors: { ...state.errors, login: action.payload }
+        errors: { ...state.errors, login: action.payload.message }
       };
     case LOGOUT_FULFILLED:
       return {
@@ -82,12 +82,12 @@ const reducer = (state = { ...initialState }, action) => {
     case LOGOUT_REJECTED:
       return {
         ...state,
-        errors: { ...state.errors, logout: action.payload }
+        errors: { ...state.errors, logout: action.payload.message }
       };
     case REGISTER_REJECTED:
       return {
         ...state,
-        errors: { ...state.errors, register: action.payload }
+        errors: { ...state.errors, register: action.payload.message }
       };
     case REGISTER_FULFILLED:
       return {
@@ -103,7 +103,7 @@ const reducer = (state = { ...initialState }, action) => {
     case PASSWORD_EMAIL_REJECTED:
       return {
         ...state,
-        errors: { ...state.errors, passwordEmail: action.payload }
+        errors: { ...state.errors, passwordEmail: action.payload.message }
       };
     case UPDATE_PASSWORD_FULFILLED:
       return {
@@ -116,7 +116,7 @@ const reducer = (state = { ...initialState }, action) => {
     case UPDATE_PASSWORD_REJECTED:
       return {
         ...state,
-        errors: { ...state.errors, updatePassword: action.payload }
+        errors: { ...state.errors, updatePassword: action.payload.message }
       };
     case DELETE_USER:
       return {

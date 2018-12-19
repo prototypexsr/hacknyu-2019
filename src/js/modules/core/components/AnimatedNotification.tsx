@@ -16,8 +16,7 @@ interface Props {
   message: string;
   isError: boolean;
   type: string;
-  clearError: (errorType: string) => any;
-  clearNotification: (notificationType: string) => any;
+  clear: (type: string) => any
 }
 
 interface State {
@@ -33,7 +32,7 @@ class AnimatedNotification extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    const { clearError, clearNotification, type, isError } = this.props;
+    const { clear, type } = this.props;
     const {
       ANIMATION_BUFFER,
       DISPLAY_TIME,
@@ -44,13 +43,7 @@ class AnimatedNotification extends React.Component<Props, State> {
       .then(() => delay(DISPLAY_TIME))
       .then(() => this.setState({ componentState: States.Unmounting }))
       .then(() => delay(ANIMATION_TIME))
-      .then(() => {
-        if (isError) {
-          clearError(type);
-        } else {
-          clearNotification(type);
-        }
-      });
+      .then(() => clear(type));
   }
 
   render() {
@@ -66,10 +59,5 @@ class AnimatedNotification extends React.Component<Props, State> {
     );
   }
 }
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ clearError, clearNotification }, dispatch);
 
-export default connect(
-  undefined,
-  mapDispatchToProps
-)(AnimatedNotification);
+export default AnimatedNotification;

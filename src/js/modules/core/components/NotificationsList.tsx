@@ -2,9 +2,10 @@ import * as React from "react";
 import { Styles } from "react-jss";
 import injectSheet from "react-jss/lib/injectSheet";
 import { Errors, JssRules } from "../../types";
-import { compose } from "redux";
+import { bindActionCreators, compose } from "redux";
 import { connect } from "react-redux";
 import AnimatedNotification from "./AnimatedNotification";
+import { clearError, clearNotification } from "../coreActions"
 
 interface NotificationsListStyles<T> extends Styles {
   NotificationsList: T;
@@ -13,6 +14,8 @@ interface NotificationsListStyles<T> extends Styles {
 interface Props {
   errors: Errors;
   classes: NotificationsListStyles<string>;
+  clearError: (type: string) => any;
+  clearNotification: (type: string) => any;
 }
 
 const styles: NotificationsListStyles<JssRules> = {
@@ -23,13 +26,14 @@ const styles: NotificationsListStyles<JssRules> = {
   }
 };
 
-const NotificationsList: React.SFC<Props> = ({ notifications, errors, classes }) => {
+const NotificationsList: React.SFC<Props> = ({ clearError, clearNotification, notifications, errors, classes }) => {
   return (
     <div className={classes.NotificationsList}>
       {Object.entries(errors).map(([type, message], index) => (
         <AnimatedNotification
           isError={true}
           type={type}
+          clear={clearError}
           message={message}
           key={index}
         />
@@ -39,6 +43,7 @@ const NotificationsList: React.SFC<Props> = ({ notifications, errors, classes })
           isError={false}
           type={type}
           message={message}
+          clear={clearNotification}
           key={index}
         />
       ))}
@@ -51,7 +56,11 @@ const mapStateToProps = state => ({
   notifications: state.core.notifications
 });
 
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ clearError, clearNotification }, dispatch);
+
+
 export default compose(
   injectSheet(styles),
-  connect(mapStateToProps)
+  connect(mapStateToProps, mapDispatchToProps)
 )(NotificationsList);

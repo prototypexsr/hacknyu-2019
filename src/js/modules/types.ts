@@ -32,8 +32,11 @@ export interface Theme {
     formBackground: string;
     submitButton: string;
     submitButtonHover: string;
+    errorBorder: string;
     errorText: string;
     errorBackground: string;
+    notificationBackground: string;
+    notificationBorder: string;
     red: string;
     green: string;
     blue: string;

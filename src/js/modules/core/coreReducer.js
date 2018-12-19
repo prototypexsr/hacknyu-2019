@@ -1,5 +1,8 @@
 import {
   CLEAR_EMAIL_STATE,
+  CLEAR_ERROR,
+  CLEAR_NOTIFICATION, DELETE_USER,
+  LOCATION_CHANGE,
   LOGIN_FULFILLED,
   LOGIN_REJECTED,
   LOGOUT_FULFILLED,
@@ -9,6 +12,7 @@ import {
   REFRESH_WINDOW_DIMENSIONS,
   REGISTER_FULFILLED,
   REGISTER_REJECTED,
+  UPDATE_PASSWORD_FULFILLED,
   UPDATE_PASSWORD_REJECTED
 } from "./coreActions";
 
@@ -35,6 +39,7 @@ const initialState = {
   viewportHeight: getViewportHeight(),
   user: {},
   errors: {},
+  notifications: {},
   passwordEmailSent: false
 };
 
@@ -52,40 +57,88 @@ const reducer = (state = { ...initialState }, action) => {
         return Object.assign({ ...state }, { viewportWidth, viewportHeight });
       } else return state; //otherwise do not mutate
     case LOGIN_FULFILLED:
-      return { ...state, user: action.payload };
+      return {
+        ...state,
+        user: action.payload,
+        notifications: {
+          ...state.notifications,
+          login: "Successfully logged in"
+        }
+      };
     case LOGIN_REJECTED:
       return {
         ...state,
-        errors: { ...state.errors, loginError: action.payload }
+        errors: { ...state.errors, login: action.payload }
       };
     case LOGOUT_FULFILLED:
-      return { ...state, user: undefined };
+      return {
+        ...state,
+        user: undefined,
+        notifications: {
+          ...state.notifications,
+          logout: "Successfully logged out"
+        }
+      };
     case LOGOUT_REJECTED:
       return {
         ...state,
-        errors: { ...state.errors, logoutError: action.payload }
+        errors: { ...state.errors, logout: action.payload }
       };
     case REGISTER_REJECTED:
       return {
         ...state,
-        errors: { ...state.errors, registerError: action.payload }
+        errors: { ...state.errors, register: action.payload }
       };
     case REGISTER_FULFILLED:
-      return { ...state, user: action.payload };
+      return {
+        ...state,
+        user: action.payload,
+        notifications: {
+          ...state.notifications,
+          register: "New user registered!"
+        }
+      };
     case PASSWORD_EMAIL_FULFILLED:
       return { ...state, passwordEmailSent: true };
     case PASSWORD_EMAIL_REJECTED:
       return {
         ...state,
-        errors: { ...state.errors, passwordEmailError: action.payload }
+        errors: { ...state.errors, passwordEmail: action.payload }
+      };
+    case UPDATE_PASSWORD_FULFILLED:
+      return {
+        ...state,
+        notifications: {
+          ...state.notifications,
+          updatePassword: "Password successfully updated"
+        }
       };
     case UPDATE_PASSWORD_REJECTED:
       return {
         ...state,
-        errors: { ...state.errors, updatePasswordError: action.payload }
+        errors: { ...state.errors, updatePassword: action.payload }
       };
+    case DELETE_USER:
+      return {
+        ...state,
+        user: undefined
+      }
     case CLEAR_EMAIL_STATE:
       return { ...state, passwordEmailSent: false };
+    case CLEAR_ERROR:
+      const newErrors = { ...state.errors };
+      delete newErrors[action.payload];
+      return {
+        ...state,
+        errors: newErrors
+      };
+    case CLEAR_NOTIFICATION:
+      const newNotifications = { ...state.errors };
+      delete newNotifications[action.payload];
+      return {
+        ...state,
+        notifications: newNotifications
+      };
     default:
       break;
   }

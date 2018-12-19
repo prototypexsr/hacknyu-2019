@@ -18,6 +18,11 @@ export const UPDATE_PASSWORD_REJECTED = "core/UPDATE_PASSWORD_REJECTED";
 
 export const CLEAR_EMAIL_STATE = "core/CLEAR_EMAIL_STATE";
 
+export const CLEAR_ERROR = "core/CLEAR_ERROR";
+export const CLEAR_NOTIFICATION = "core/CLEAR_NOTIFICATION";
+
+export const DELETE_USER = "core/DELETE_USER";
+
 export const refreshWindowDimensions = () => ({
   type: REFRESH_WINDOW_DIMENSIONS,
   payload: {}
@@ -47,7 +52,7 @@ export const addUser = user => ({
 });
 
 export const deleteUser = () => ({
-  type: LOGOUT_FULFILLED
+  type: DELETE_USER
 });
 
 export const loginWithPassword = ({ password, email }) => dispatch => {
@@ -136,4 +141,14 @@ export const updatePassword = password => dispatch => {
 
 export const clearEmailState = () => ({
   type: CLEAR_EMAIL_STATE
+});
+
+export const clearError = errorType => ({
+  type: CLEAR_ERROR,
+  payload: errorType
+});
+
+export const clearNotification = errorType => ({
+  type: CLEAR_NOTIFICATION,
+  payload: errorType
 });

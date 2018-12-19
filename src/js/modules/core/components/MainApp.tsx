@@ -11,7 +11,7 @@ import Header from "./Header";
 import { User } from "firebase";
 import UserInfo from "./UserInfo";
 import { auth } from "../../../firebase";
-import ErrorsList from "./ErrorsList";
+import ErrorsList from "./NotificationsList";
 
 interface MainAppStyles<T> extends Styles {
   MainApp: T

@@ -32,6 +32,9 @@ const theme: Theme = {
   inputPadding: "7px 10px",
   errorText: "#444444",
   errorBackground: "#ffc0c0",
+  errorBorder: "red",
+  notificationBackground: "#fefefe",
+  notificationBorder: "#000000",
   ...trackColors
 };
 

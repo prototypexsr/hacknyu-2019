@@ -44,7 +44,6 @@ interface Props {
   loginWithPassword: (
     { email, password }: { email: string; password: string }
   ) => any;
-  resetPassword: () => any;
 }
 
 interface FormValues {
@@ -73,6 +72,12 @@ const LoginPage: React.SFC<Props> = ({
         onSubmit={handleSubmit}
         validate={values => {
           let errors: { email?: string; password?: string } = {};
+          if (!("email" in values) || values.email.length === 0) {
+            errors.email = "Email is required";
+          }
+          if (!("password" in values) || values.password.length === 0) {
+            errors.password = "Password is required";
+          }
           //@ts-ignore
           if (values.email && !emailRegex.test(values.email)) {
             errors.email = "Invalid email";
@@ -128,9 +133,6 @@ const mapDispatchToProps = (dispatch: any) => ({
   },
   loginWithPassword: ({ email, password }: FormValues) => {
     dispatch(loginWithPassword({ email, password }));
-  },
-  resetPassword: () => {
-    dispatch(resetPassword());
   }
 });
 

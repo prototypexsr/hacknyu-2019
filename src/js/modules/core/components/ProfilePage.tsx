@@ -7,7 +7,7 @@ import { push } from "connected-react-router";
 import { connect } from "react-redux";
 import { Theme } from "../../types";
 import Button from "./Button";
-import PasswordForm from "./ChangePasswordForm";
+import PasswordForm from "./UpdatePasswordForm";
 import { Link } from "react-router-dom";
 
 interface ProfilePageStyles extends Styles {

@@ -10,14 +10,16 @@ import {
   LOGIN_REJECTED,
   LOGOUT_FULFILLED,
   LOGOUT_REJECTED,
-  PASSWORD_EMAIL_FULFILLED,
-  PASSWORD_EMAIL_REJECTED,
+  RESET_PASSWORD_FULFILLED,
+  RESET_PASSWORD_REJECTED,
   REFRESH_WINDOW_DIMENSIONS,
   REGISTER_FULFILLED,
   REGISTER_PENDING,
   REGISTER_REJECTED,
   UPDATE_PASSWORD_FULFILLED,
-  UPDATE_PASSWORD_REJECTED
+  UPDATE_PASSWORD_REJECTED,
+  UPDATE_PASSWORD_PENDING,
+  RESET_PASSWORD_PENDING
 } from "./coreActions";
 
 // getWindowWidth & getWindowHeight was
@@ -46,6 +48,8 @@ const initialState = {
   notifications: {},
   loginForm: { isSubmitting: false },
   registerForm: { isSubmitting: false },
+  resetPasswordForm: { isSubmitting: false },
+  updatePasswordForm: { isSubmitting: false },
   passwordEmailSent: false
 };
 
@@ -118,12 +122,30 @@ const reducer = (state = { ...initialState }, action) => {
           register: "New user registered!"
         }
       };
-    case PASSWORD_EMAIL_FULFILLED:
-      return { ...state, passwordEmailSent: true };
-    case PASSWORD_EMAIL_REJECTED:
+    case RESET_PASSWORD_PENDING:
       return {
         ...state,
-        errors: { ...state.errors, passwordEmail: action.payload.message }
+        resetPasswordForm: { isSubmitting: true }
+      };
+    case RESET_PASSWORD_FULFILLED:
+      return {
+        ...state,
+        passwordEmailSent: true,
+        resetPasswordForm: { isSubmitting: false }
+      };
+    case RESET_PASSWORD_REJECTED:
+      return {
+        ...state,
+        errors: {
+          ...state.errors,
+          passwordEmail: action.payload.message,
+          resetPasswordForm: { isSubmitting: false }
+        }
+      };
+    case UPDATE_PASSWORD_PENDING:
+      return {
+        ...state,
+        updatePasswordForm: { isSubmitting: true }
       };
     case UPDATE_PASSWORD_FULFILLED:
       return {
@@ -131,12 +153,14 @@ const reducer = (state = { ...initialState }, action) => {
         notifications: {
           ...state.notifications,
           updatePassword: "Password successfully updated"
-        }
+        },
+        updatePasswordForm: { isSubmitting: false }
       };
     case UPDATE_PASSWORD_REJECTED:
       return {
         ...state,
-        errors: { ...state.errors, updatePassword: action.payload.message }
+        errors: { ...state.errors, updatePassword: action.payload.message },
+        updatePasswordForm: { isSubmitting: false }
       };
     case ADD_USER:
       return {

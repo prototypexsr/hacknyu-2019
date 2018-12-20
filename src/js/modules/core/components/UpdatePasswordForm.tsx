@@ -8,30 +8,34 @@ import { connect } from "react-redux";
 import injectSheet from "react-jss/lib/injectSheet";
 
 interface Props {
-  classes: PasswordFormStyles<string>;
+  classes: UpdatePasswordFormStyles<string>;
   updatePassword: (password: string) => any;
 }
 
-interface PasswordFormStyles<T> {
-  PasswordForm: T;
+interface UpdatePasswordFormStyles<T> {
+  UpdatePasswordForm: T;
 }
 
-const styles: PasswordFormStyles<object> = {
-  PasswordForm: {
+const styles: UpdatePasswordFormStyles<object> = {
+  UpdatePasswordForm: {
     display: "flex",
     flexDirection: "column",
     padding: "40px"
   }
 };
 
-const ChangePasswordForm: React.SFC<Props> = ({ classes, updatePassword }) => {
+const UpdatePasswordForm: React.SFC<Props> = ({
+  classes,
+  updatePassword,
+  isSubmitting
+}) => {
   const handleSubmit = values => {
     updatePassword(values.password);
   };
 
   return (
     <Form
-      className={classes.PasswordForm}
+      className={classes.UpdatePasswordForm}
       onSubmit={handleSubmit}
       validate={({ password, passwordConfirmation }) => {
         let errors: { password?: string } = {};
@@ -64,7 +68,7 @@ const ChangePasswordForm: React.SFC<Props> = ({ classes, updatePassword }) => {
               />
             )}
           </Field>
-          <Button type="submit" disabled={invalid}>
+          <Button type="submit" disabled={invalid || isSubmitting}>
             Update
           </Button>
         </form>
@@ -73,13 +77,17 @@ const ChangePasswordForm: React.SFC<Props> = ({ classes, updatePassword }) => {
   );
 };
 
+const mapStateToProps = state => ({
+  isSubmitting: state.core.updatePasswordForm.isSubmitting
+});
+
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ updatePassword }, dispatch);
 
 export default compose(
   connect(
-    undefined,
+    mapStateToProps,
     mapDispatchToProps
   ),
   injectSheet(styles)
-)(ChangePasswordForm);
+)(UpdatePasswordForm);

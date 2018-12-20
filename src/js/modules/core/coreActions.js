@@ -14,9 +14,11 @@ export const REGISTER_REJECTED = "core/REGISTER_REJECTED";
 export const LOGOUT_FULFILLED = "core/LOGOUT_FULFILLED";
 export const LOGOUT_REJECTED = "core/LOGOUT_REJECTED";
 
-export const PASSWORD_EMAIL_FULFILLED = "core/PASSWORD_EMAIL_FULFILLED";
-export const PASSWORD_EMAIL_REJECTED = "core/PASSWORD_EMAIL_REJECTED";
+export const RESET_PASSWORD_PENDING = "core/RESET_PASSWORD_PENDING";
+export const RESET_PASSWORD_FULFILLED = "core/RESET_PASSWORD_FULFILLED";
+export const RESET_PASSWORD_REJECTED = "core/RESET_PASSWORD_REJECTED";
 
+export const UPDATE_PASSWORD_PENDING = "core/UPDATE_PASSWORD_PENDING";
 export const UPDATE_PASSWORD_FULFILLED = "core/UPDATE_PASSWORD_FULFILLED";
 export const UPDATE_PASSWORD_REJECTED = "core/UPDATE_PASSWORD_REJECTED";
 
@@ -81,6 +83,7 @@ export const loginWithPassword = ({ password, email }) => dispatch => {
 };
 
 export const loginWithGoogle = () => dispatch => {
+  dispatch({ type: LOGIN_PENDING });
   auth
     .signInWithPopup(provider)
     .then(result => {
@@ -120,23 +123,25 @@ export const register = ({ email, password }) => dispatch => {
 };
 
 export const resetPassword = email => dispatch => {
+  dispatch({ type: RESET_PASSWORD_PENDING });
   auth
     .sendPasswordResetEmail(email)
     .then(result => {
       dispatch({
-        type: PASSWORD_EMAIL_FULFILLED,
+        type: RESET_PASSWORD_FULFILLED,
         payload: result
       });
     })
     .catch(err => {
       dispatch({
-        type: PASSWORD_EMAIL_REJECTED,
+        type: RESET_PASSWORD_REJECTED,
         payload: err
       });
     });
 };
 
 export const updatePassword = password => dispatch => {
+  dispatch({ type: UPDATE_PASSWORD_PENDING });
   auth.currentUser
     .updatePassword(password)
     .then(() => {

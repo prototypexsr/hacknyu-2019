@@ -25,13 +25,15 @@ interface Props {
   resetPassword: (s: string) => any;
   passwordEmailSent: boolean;
   clearEmailState: () => any;
+  isSubmitting: boolean;
 }
 
 const ResetPasswordPage: React.SFC<Props> = ({
   classes,
   resetPassword,
   passwordEmailSent,
-  clearEmailState
+  clearEmailState,
+  isSubmitting
 }) => {
   const handleSubmit = (values: object) => {
     resetPassword(values.email);
@@ -42,7 +44,7 @@ const ResetPasswordPage: React.SFC<Props> = ({
       <div className={classes.ResetPasswordPage}>
         <h1> Reset Password </h1>
         <div>
-          You already reset your password.{" "}
+          You already reset your password.
           <a href="#" onClick={clearEmailState}>
             Reset again?
           </a>
@@ -76,7 +78,7 @@ const ResetPasswordPage: React.SFC<Props> = ({
                 />
               )}
             </Field>
-            <Button disabled={invalid} type="submit">
+            <Button disabled={invalid || isSubmitting} type="submit">
               Reset Password
             </Button>
           </form>
@@ -90,7 +92,8 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators({ resetPassword, clearEmailState }, dispatch);
 
 const mapStateToProps = state => ({
-  passwordEmailSent: state.core.passwordEmailSent
+  passwordEmailSent: state.core.passwordEmailSent,
+  isSubmitting: state.core.resetPasswordForm.isSubmitting
 });
 
 export default compose(

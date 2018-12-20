@@ -6,6 +6,7 @@ import {
   DELETE_USER,
   LOCATION_CHANGE,
   LOGIN_FULFILLED,
+  LOGIN_PENDING,
   LOGIN_REJECTED,
   LOGOUT_FULFILLED,
   LOGOUT_REJECTED,
@@ -13,6 +14,7 @@ import {
   PASSWORD_EMAIL_REJECTED,
   REFRESH_WINDOW_DIMENSIONS,
   REGISTER_FULFILLED,
+  REGISTER_PENDING,
   REGISTER_REJECTED,
   UPDATE_PASSWORD_FULFILLED,
   UPDATE_PASSWORD_REJECTED
@@ -42,6 +44,8 @@ const initialState = {
   user: {},
   errors: {},
   notifications: {},
+  loginForm: { isSubmitting: false },
+  registerForm: { isSubmitting: false },
   passwordEmailSent: false
 };
 
@@ -58,10 +62,16 @@ const reducer = (state = { ...initialState }, action) => {
         // override width/height which will refresh app view
         return Object.assign({ ...state }, { viewportWidth, viewportHeight });
       } else return state; //otherwise do not mutate
+    case LOGIN_PENDING:
+      return {
+        ...state,
+        loginForm: { isSubmitting: true }
+      };
     case LOGIN_FULFILLED:
       return {
         ...state,
         user: action.payload,
+        loginForm: { isSubmitting: false },
         notifications: {
           ...state.notifications,
           login: "Successfully logged in"
@@ -70,6 +80,7 @@ const reducer = (state = { ...initialState }, action) => {
     case LOGIN_REJECTED:
       return {
         ...state,
+        loginForm: { isSubmitting: false },
         errors: { ...state.errors, login: action.payload.message }
       };
     case LOGOUT_FULFILLED:
@@ -86,15 +97,22 @@ const reducer = (state = { ...initialState }, action) => {
         ...state,
         errors: { ...state.errors, logout: action.payload.message }
       };
+    case REGISTER_PENDING:
+      return {
+        ...state,
+        registerForm: { isSubmitting: true }
+      };
     case REGISTER_REJECTED:
       return {
         ...state,
+        registerForm: { isSubmitting: false },
         errors: { ...state.errors, register: action.payload.message }
       };
     case REGISTER_FULFILLED:
       return {
         ...state,
         user: action.payload,
+        registerForm: { isSubmitting: false },
         notifications: {
           ...state.notifications,
           register: "New user registered!"

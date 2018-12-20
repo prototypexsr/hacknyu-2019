@@ -1,9 +1,13 @@
 import { auth, provider } from "../../firebase";
 import { push } from "connected-react-router";
+import { delay } from "../utils";
 export const REFRESH_WINDOW_DIMENSIONS = "core/REFRESH_WINDOW_DIMENSIONS";
+
+export const LOGIN_PENDING = "core/LOGIN_PENDING";
 export const LOGIN_FULFILLED = "core/LOGIN_FULFILLED";
 export const LOGIN_REJECTED = "core/LOGIN_REJECTED";
 
+export const REGISTER_PENDING = "core/REGISTER_PENDING";
 export const REGISTER_FULFILLED = "core/REGISTER_FULFILLED";
 export const REGISTER_REJECTED = "core/REGISTER_REJECTED";
 
@@ -57,6 +61,7 @@ export const deleteUser = () => ({
 });
 
 export const loginWithPassword = ({ password, email }) => dispatch => {
+  dispatch({ type: LOGIN_PENDING });
   auth
     .signInWithEmailAndPassword(email, password)
     .then(result => {
@@ -95,6 +100,7 @@ export const loginWithGoogle = () => dispatch => {
 };
 
 export const register = ({ email, password }) => dispatch => {
+  dispatch({ type: REGISTER_PENDING });
   auth
     .createUserWithEmailAndPassword(email, password)
     .then(result => {

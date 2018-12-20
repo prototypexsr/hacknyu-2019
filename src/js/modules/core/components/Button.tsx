@@ -25,6 +25,9 @@ const styles = (theme: Theme): ButtonStyles<JssRules> => ({
     transition: "background-color 0.4s",
     "&:hover": {
       backgroundColor: theme.submitButtonHover
+    },
+    '&:disabled': {
+      backgroundColor: theme.submitButtonHover
     }
   }
 });

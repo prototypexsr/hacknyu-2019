@@ -45,7 +45,8 @@ const styles = (theme: Theme): InputStyles<JssRules> => ({
   },
   error: {
     color: "red",
-    fontSize: "1rem"
+    fontSize: "1rem",
+    maxWidth: "200px"
   },
   textField: {
     marginLeft: "5px",
@@ -57,7 +58,7 @@ const styles = (theme: Theme): InputStyles<JssRules> => ({
     display: "flex",
     flexDirection: "column",
     fontSize: "1.4rem",
-    padding: "5px"
+    padding: "5px",
   },
   inputArea: {
     display: "flex"

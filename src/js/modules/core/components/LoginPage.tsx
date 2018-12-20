@@ -72,10 +72,10 @@ const LoginPage: React.SFC<Props> = ({
         onSubmit={handleSubmit}
         validate={values => {
           let errors: { email?: string; password?: string } = {};
-          if (!("email" in values) || values.email.length === 0) {
+          if (values.email && values.email.length === 0) {
             errors.email = "Email is required";
           }
-          if (!("password" in values) || values.password.length === 0) {
+          if (values.password && values.password.length === 0) {
             errors.password = "Password is required";
           }
           //@ts-ignore

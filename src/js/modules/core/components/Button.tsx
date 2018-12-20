@@ -1,9 +1,14 @@
 import * as React from "react";
 import { Theme } from "../../types";
-import injectSheet from "react-jss/lib/injectSheet";
+import { JssRules, Theme } from "../../types";
+import injectSheet, { Styles } from "react-jss/lib/injectSheet";
 import { ReactNode } from "react";
 
-const styles = (theme: Theme) => ({
+interface ButtonStyles<T> extends Styles {
+  button: T;
+}
+
+const styles = (theme: Theme): ButtonStyles<JssRules> => ({
   button: {
     //@ts-ignore
     width: (props: Props) => props.width,
@@ -25,14 +30,15 @@ const styles = (theme: Theme) => ({
 });
 
 interface Props {
-  classes: { [s: string]: string };
+  classes: ButtonStyles<string>;
   children: ReactNode;
   type?: string;
   width?: string;
   onClick: () => any;
 }
 
-const Button: React.SFC<Props> = ({ classes, children, ...props }) => {
+const Button: React.SFC<Props & React.HTMLAttributes> = props => {
+  const { classes, children } = props;
   return (
     <button {...props} className={classes.button}>
       {children}

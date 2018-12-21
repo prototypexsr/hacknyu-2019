@@ -9,7 +9,15 @@ interface Props {
   classes: { [s: string]: string }
   user: User
 }
-const styles = (theme: Theme): Styles => ({
+
+interface UserInfoStyles {
+  UserInfo: object;
+  greeting: object;
+  "@media (max-width: 800px)": object;
+}
+
+
+const styles = (theme: Theme): UserInfoStyles => ({
   UserInfo: {
     backgroundColor: theme.highlightColor,
     display: "flex",

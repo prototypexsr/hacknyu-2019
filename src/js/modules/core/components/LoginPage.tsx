@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Theme } from "../../types";
-import { Styles } from "react-jss";
 import injectSheet from "react-jss/lib/injectSheet";
 import { Field, Form } from "react-final-form";
 import Button from "./Button";
@@ -12,7 +11,7 @@ import { emailRegex } from "../../constants";
 import Input from "./Input";
 import { Link } from "react-router-dom";
 
-const styles = (theme: Theme): Styles => ({
+const styles = (theme: Theme): object => ({
   LoginPage: {
     padding: "30px",
     display: "flex",
@@ -30,7 +29,11 @@ const styles = (theme: Theme): Styles => ({
     alignItems: "flex-end"
   },
   registerLink: {
-    padding: "20px",
+    padding: "20px 20px 0px 20px",
+    fontSize: "1.2em"
+  },
+  resetPasswordLink: {
+    padding: "5px 20px 20px 20px",
     fontSize: "1.2em"
   }
 });
@@ -41,6 +44,7 @@ interface Props {
   loginWithPassword: (
     { email, password }: { email: string; password: string }
   ) => any;
+  resetPassword: () => any;
 }
 
 interface FormValues {
@@ -51,7 +55,7 @@ interface FormValues {
 const LoginPage: React.SFC<Props> = ({
   classes,
   loginWithGoogle,
-  loginWithPassword
+  loginWithPassword,
 }) => {
   const handleSubmit = (values: FormValues) => {
     loginWithPassword(values);
@@ -108,6 +112,9 @@ const LoginPage: React.SFC<Props> = ({
             <Link to="/register" className={classes.registerLink}>
             Don't have an account? Register
             </Link>
+            <Link to="/reset_password" className={classes.resetPasswordLink}>
+              Forgot your password? Reset it
+            </Link>
           </form>
         )}
       />
@@ -121,6 +128,9 @@ const mapDispatchToProps = (dispatch: any) => ({
   },
   loginWithPassword: ({ email, password }: FormValues) => {
     dispatch(loginWithPassword({ email, password }));
+  },
+  resetPassword: () => {
+    dispatch(resetPassword());
   }
 });
 

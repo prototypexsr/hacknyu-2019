@@ -89,12 +89,7 @@ interface Props {
   logout: () => any;
 }
 
-const Header: React.SFC<Props> = ({
-  classes,
-  user,
-  logout,
-  viewportWidth
-}) => {
+const Header: React.SFC<Props> = ({ classes, user, logout, viewportWidth }) => {
   return (
     <div className={classes.Header}>
       <div className={classes.locations}>
@@ -109,7 +104,7 @@ const Header: React.SFC<Props> = ({
         {!user && (
           <h1 className={classes.signUp}>
             <span className={classes.bullet}>
-              <Link to='/register'>
+              <Link to="/register">
                 <div className={classes.link}>Register</div>
               </Link>
               {viewportWidth > 800 && <div className={classes.dot}>&bull;</div>}
@@ -124,31 +119,41 @@ const Header: React.SFC<Props> = ({
             {viewportWidth > 800 && <div className={classes.dot}>&bull;</div>}
           </span>
         </h1>
-        {user ? (
-          <h1>
-            <a href="#" className={classes.link} onClick={logout}>
-              Log Out
-            </a>
-          </h1>
-        ) : (
-          [
-            <h1 key={0}>
-              <span className={classes.bullet}>
-                <Link to="/login" className={classes.link}>
-                  Login
+        {user
+          ? [
+              <h1>
+                <span className={classes.bullet}>
+                  <a href="#" className={classes.link} onClick={logout}>
+                    Log Out
+                  </a>
+                  {viewportWidth > 800 && (
+                    <div className={classes.dot}>&bull;</div>
+                  )}
+                </span>
+              </h1>,
+              <h1>
+                <Link to="/my_profile" className={classes.link}>
+                  My Profile
                 </Link>
-                {viewportWidth > 800 && (
-                  <div className={classes.dot}>&bull;</div>
-                )}
-              </span>
-            </h1>,
-            <h1 key={1}>
-              <Link to="/register" className={classes.link}>
-                Register
-              </Link>
-            </h1>
-          ]
-        )}
+              </h1>
+            ]
+          : [
+              <h1 key={0}>
+                <span className={classes.bullet}>
+                  <Link to="/login" className={classes.link}>
+                    Login
+                  </Link>
+                  {viewportWidth > 800 && (
+                    <div className={classes.dot}>&bull;</div>
+                  )}
+                </span>
+              </h1>,
+              <h1 key={1}>
+                <Link to="/register" className={classes.link}>
+                  Register
+                </Link>
+              </h1>
+            ]}
       </div>
     </div>
   );
@@ -167,5 +172,8 @@ const mapDispatchToProps = (dispatch: any) => ({
 });
 
 export default injectSheet(styles)(
-  connect(mapStateToProps, mapDispatchToProps)(Header)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Header)
 );

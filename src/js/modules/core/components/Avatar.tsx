@@ -2,7 +2,11 @@ import * as React from "react";
 import injectSheet, { Styles } from "react-jss";
 import { User } from "firebase";
 
-const styles: Styles = {
+interface AvatarStyles extends Styles {
+  Avatar: object;
+}
+
+const styles: AvatarStyles = {
   Avatar: {
     width: "50px",
     height: "50px",

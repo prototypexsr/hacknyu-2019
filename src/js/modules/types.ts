@@ -1,12 +1,13 @@
-import {User} from "firebase";
+import { User } from "firebase";
+// Misc types
 
 export interface ReduxState {
-  core: CoreState
+  core: CoreState;
 }
 export interface CoreState {
-  viewportWidth: number
-  viewportHeight: number
-  user: User,
+  viewportWidth: number;
+  viewportHeight: number;
+  user: User;
   appError: string;
   loginError: string;
   logoutError: string;
@@ -24,8 +25,22 @@ export interface Theme {
   highlightColorHover: string;
   formBackground: string;
   submitButton: string;
+  submitButtonHover: string;
   red: string;
   green: string;
   blue: string;
   orange: string;
 }
+export type JssValue =
+  | string
+  | number
+  | Array<string | number | Array<string | number> | "!important">
+  | null
+  | false;
+
+// Basically calculated props. Returns a JssValue (which I stole from the
+// JSS typings, idk why JSS doesn't export it)
+export type JssFunction<Props> = (props: Props) => JssValue;
+
+
+export type JssRules = { [s: string]: JssValue | JssFunction | JssRules }

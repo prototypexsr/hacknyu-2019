@@ -29,9 +29,11 @@ To contribute, clone the repo and run
 
 |  Username      | Year | Favorite food    |
 |----------------|------|------------------|
-| kristelfung    | 2022 |     Sushi        |
+| kristelfung    | 2022 | Sushi            |
 | themichaelyang | 2020 | all of the above |
-| Leshyabracaglia  | 2020  |Cheeseburger |
-| eisenhuang | 2019 | Sushi |
-| yitongw2 | 2020 | Hot pot |
-| stefancherubin | 2019 | Wings |
+| NicholasLYang  | 2021 | Kimchi-jjigae    |
+| Leshyabracaglia| 2020 | Cheeseburger     |
+| MdAbedin       | 2022 | chocolate        |
+| eisenhuang     | 2019 | Sushi            |
+| yitongw2       | 2020 | Hot pot          |
+| stefancherubin | 2019 | Wings            |

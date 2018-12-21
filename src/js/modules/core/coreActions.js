@@ -10,6 +10,14 @@ export const REGISTER_REJECTED = "core/REGISTER_REJECTED";
 export const LOGOUT_FULFILLED = "core/LOGOUT_FULFILLED";
 export const LOGOUT_REJECTED = "core/LOGOUT_REJECTED";
 
+export const PASSWORD_EMAIL_FULFILLED = "core/PASSWORD_EMAIL_FULFILLED";
+export const PASSWORD_EMAIL_REJECTED = "core/PASSWORD_EMAIL_REJECTED";
+
+export const UPDATE_PASSWORD_FULFILLED = "core/UPDATE_PASSWORD_FULFILLED";
+export const UPDATE_PASSWORD_REJECTED = "core/UPDATE_PASSWORD_REJECTED";
+
+export const CLEAR_EMAIL_STATE = "core/CLEAR_EMAIL_STATE";
+
 export const refreshWindowDimensions = () => ({
   type: REFRESH_WINDOW_DIMENSIONS,
   payload: {}
@@ -39,8 +47,8 @@ export const addUser = user => ({
 });
 
 export const deleteUser = () => ({
-  type: LOGOUT_FULFILLED,
-})
+  type: LOGOUT_FULFILLED
+});
 
 export const loginWithPassword = ({ password, email }) => dispatch => {
   auth
@@ -57,7 +65,7 @@ export const loginWithPassword = ({ password, email }) => dispatch => {
       dispatch({
         type: LOGIN_REJECTED,
         payload: err
-      })
+      });
     });
 };
 
@@ -98,3 +106,34 @@ export const register = ({ email, password }) => dispatch => {
       });
     });
 };
+
+export const resetPassword = email => dispatch => {
+  auth
+    .sendPasswordResetEmail(email)
+    .then(result => {
+      dispatch({
+        type: PASSWORD_EMAIL_FULFILLED,
+        payload: result
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: PASSWORD_EMAIL_REJECTED,
+        payload: err
+      });
+    });
+};
+
+export const updatePassword = password => dispatch => {
+  auth.currentUser
+    .updatePassword(password)
+    .then(() => {
+      dispatch({ type: UPDATE_PASSWORD_FULFILLED });
+      dispatch(push("/"));
+    })
+    .catch(err => dispatch({ type: UPDATE_PASSWORD_REJECTED, payload: err }));
+};
+
+export const clearEmailState = () => ({
+  type: CLEAR_EMAIL_STATE
+});

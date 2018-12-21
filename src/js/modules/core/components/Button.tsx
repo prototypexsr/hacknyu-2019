@@ -16,7 +16,11 @@ const styles = (theme: Theme) => ({
     fontVariant: "small-caps",
     padding: "10px",
     border: "none",
-    fontSize: "1.2em"
+    fontSize: "1.2em",
+    transition: "background-color 0.4s",
+    '&:hover': {
+      backgroundColor: theme.submitButtonHover
+    }
   },
 })
 

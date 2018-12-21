@@ -18,7 +18,7 @@ const styles = (theme: Theme): Styles => ({
     // @ts-ignore
     transform: props =>
       props.activeBlocks >= props.id ? "none" : "translateX(30vw)",
-    transition: "transform 3s, top 3s, position 8s",
+    transition: "transform 2s, position 5s",
     marginTop: "2vh",
     right: "7vw",
     width: "300px",

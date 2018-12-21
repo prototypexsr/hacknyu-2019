@@ -26,7 +26,8 @@ const theme: Theme = {
   highlightColor: "#db5461",
   highlightColorHover: "#b4505a",
   formBackground: "#fafafa",
-  submitButton: "#46a2b0",
+  submitButton: "#46a9b7",
+  submitButtonHover: "#4497a5",
   ...trackColors
 };
 

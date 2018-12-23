@@ -1,11 +1,12 @@
 import * as React from "react";
-import injectSheet, { Styles } from "react-jss/lib/injectSheet";
+import injectSheet from "react-jss/lib/injectSheet";
+import { Styles } from "react-jss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReact } from "@fortawesome/free-brands-svg-icons/faReact";
-import { Theme } from "../../types";
+import { Theme, JssRules } from "../../types";
 import { faAws } from "@fortawesome/free-brands-svg-icons/faAws";
 
-const styles = (theme: Theme): Styles => ({
+/* const styles = (theme: Theme): Styles => ({
     icons: {
       display: "flex",
       width: "100px",
@@ -15,17 +16,36 @@ const styles = (theme: Theme): Styles => ({
       maxWidth: "500px"
     }
   });
+ */
+interface APIList {
+  APIs: string;
+}
 
-  interface Props {
-    classes: { [s: string]: string };
+interface APIStyles<T> extends Styles {
+  APIList: T
+}
+
+const styles: APIStyles<JssRules> = {
+  APIList:{
+    icons: {
+      display: "flex",
+      width: "100px",
+      justifyContent: "space-around"
+    },
+    text: {
+      maxWidth: "500px"
+    }
   }
+
+}
   
-  const APIList: React.SFC<Props> = ({ classes }) => {
+  
+  const APIList: React.SFC<APIList> = ({ APIs }) => {
     return (
-      <div className={classes.API}>
-        <h1 className={classes.title}> API List </h1>
-        <div className={classes.content}>
-          <p className={classes.intro}>
+      <div>
+        <h1> API List </h1>
+        <div>
+          <p>
             HackNYU has several APIs available from NYU. You can take a look at them below:
           </p>
          <ul>

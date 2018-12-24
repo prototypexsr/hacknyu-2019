@@ -59,6 +59,20 @@ const styles = (theme: Theme): LoginPageStyles<JssRules> => ({
   }
 });
 
+const validateLogin = values => {
+  let errors: { email?: string; password?: string } = {};
+  if (values.email && values.email.length === 0) {
+    errors.email = "Email is required";
+  }
+  if (values.password && values.password.length === 0) {
+    errors.password = "Password is required";
+  }
+  if (values.email && !emailRegex.test(values.email)) {
+    errors.email = "Invalid email";
+  }
+  return errors;
+};
+
 const LoginPage: React.SFC<Props> = ({
   classes,
   isSubmitting,
@@ -77,20 +91,7 @@ const LoginPage: React.SFC<Props> = ({
       <h1> Login </h1>
       <Form
         onSubmit={handleSubmit}
-        validate={values => {
-          let errors: { email?: string; password?: string } = {};
-          if (values.email && values.email.length === 0) {
-            errors.email = "Email is required";
-          }
-          if (values.password && values.password.length === 0) {
-            errors.password = "Password is required";
-          }
-          //@ts-ignore
-          if (values.email && !emailRegex.test(values.email)) {
-            errors.email = "Invalid email";
-          }
-          return errors;
-        }}
+        validate={validateLogin}
         render={({ handleSubmit, invalid }) => (
           <form className={classes.form} onSubmit={handleSubmit}>
             <Field name="email">

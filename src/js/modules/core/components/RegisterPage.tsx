@@ -54,7 +54,6 @@ const RegisterPage: React.SFC<Props> = ({
   const handleSubmit = (values: FormValues) => {
     register(values);
   };
-  console.log(isSubmitting);
   return (
     <div className={classes.RegisterPage}>
       <h1> Register </h1>

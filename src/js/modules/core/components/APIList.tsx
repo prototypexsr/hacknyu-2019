@@ -6,42 +6,22 @@ import { faReact } from "@fortawesome/free-brands-svg-icons/faReact";
 import { Theme, JssRules } from "../../types";
 import { faAws } from "@fortawesome/free-brands-svg-icons/faAws";
 
-/* const styles = (theme: Theme): Styles => ({
-    icons: {
-      display: "flex",
-      width: "100px",
-      justifyContent: "space-around"
-    },
-    text: {
-      maxWidth: "500px"
-    }
-  });
- */
-interface APIList {
-  APIs: string;
-}
-
-interface APIStyles<T> extends Styles {
+interface APIListStyles<T> extends Styles {
   APIList: T
 }
 
-const styles: APIStyles<JssRules> = {
-  APIList:{
-    icons: {
-      display: "flex",
-      width: "100px",
-      justifyContent: "space-around"
-    },
-    text: {
-      maxWidth: "500px"
-    }
+const styles: APIListStyles<JssRules> = {
+  APIList:{ 
+    display: "flex", 
+    width: "100px", 
+    justifyContent: "space-around", 
+    maxWidth: "500px"
   }
-
-}
+};
   
-  
-  const APIList: React.SFC<APIList> = ({ APIs }) => {
-    return (
+  class APIList extends React.Component<JssRules> {
+    render (){
+      return(
       <div>
         <h1> API List </h1>
         <div>
@@ -62,7 +42,8 @@ const styles: APIStyles<JssRules> = {
         </ul>
         </div>
       </div>
-    );
-  };
+      )
+    }
+  }
   
   export default injectSheet(styles)(APIList);

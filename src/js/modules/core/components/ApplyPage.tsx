@@ -38,7 +38,7 @@ const styles = (theme: Theme): object => ({
   ApplyPage: {
     display: "flex",
     width: "80%",
-    maxWidth: "800px",
+    maxWidth: "1050px",
     flexDirection: "column",
     padding: "20px",
     alignItems: "center",
@@ -310,6 +310,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       </Field>
                     </label>
                     <label>
+                      {/* TODO: Possibly make Major field an auto complete field similar to school name */}
                       Major:
                     <Field
                       className={classes.input}
@@ -369,6 +370,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       />
                     </label>
                     <label>
+                       {/* TODO: Implement File Upload functionality */}
                       Upload Your Resume Here:
                       <Field
                       className={classes.input}

@@ -1,11 +1,11 @@
 import * as React from "react";
-import { Theme } from "../../types";
-import injectSheet from "react-jss/lib/injectSheet";
 
 import Autocomplete from "react-autocomplete";
 
-interface InputState<T> {
-  value: T;
+interface Props {
+  schools: string[],
+  classes: { [s: string]: string },
+  input: object
 }
 
 const menuStyle = {

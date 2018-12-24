@@ -96,12 +96,6 @@ const styles = (theme: Theme): object => ({
   }
 });
 
-const Condition = ({ when, is, children }) => (
-  <Field name={when} subscription={{ value: true }}>
-    {({ input: { value } }) => (value === is ? children : null)}
-  </Field>
-);
-
 class ApplyPage extends React.Component<Props, ApplyPageState> {
   unmounted: boolean;
 

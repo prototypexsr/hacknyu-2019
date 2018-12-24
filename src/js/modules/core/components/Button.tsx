@@ -1,7 +1,7 @@
-import * as React from "react"
-import {Theme} from "../../types";
+import * as React from "react";
+import { Theme } from "../../types";
 import injectSheet from "react-jss/lib/injectSheet";
-import {ReactNode} from "react";
+import { ReactNode } from "react";
 
 const styles = (theme: Theme) => ({
   button: {
@@ -18,15 +18,15 @@ const styles = (theme: Theme) => ({
     border: "none",
     fontSize: "1.2em",
     transition: "background-color 0.4s",
-    '&:hover': {
+    "&:hover": {
       backgroundColor: theme.submitButtonHover
     }
-  },
-})
+  }
+});
 
 interface Props {
-  classes: { [s: string]: string },
-  children: ReactNode,
+  classes: { [s: string]: string };
+  children: ReactNode;
   type?: string;
   width?: string;
   onClick: () => any;
@@ -34,9 +34,11 @@ interface Props {
 
 const Button: React.SFC<Props> = ({ classes, children, ...props }) => {
   return (
-    <button {...props} className={classes.button}> {children} </button>
-  )
-}
+    <button {...props} className={classes.button}>
+      {children}
+    </button>
+  );
+};
 
 //@ts-ignore
 export default injectSheet(styles)(Button);

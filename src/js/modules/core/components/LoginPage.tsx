@@ -55,7 +55,7 @@ interface FormValues {
 const LoginPage: React.SFC<Props> = ({
   classes,
   loginWithGoogle,
-  loginWithPassword,
+  loginWithPassword
 }) => {
   const handleSubmit = (values: FormValues) => {
     loginWithPassword(values);
@@ -110,7 +110,7 @@ const LoginPage: React.SFC<Props> = ({
               Login w/ Google
             </Button>
             <Link to="/register" className={classes.registerLink}>
-            Don't have an account? Register
+              Don't have an account? Register
             </Link>
             <Link to="/reset_password" className={classes.resetPasswordLink}>
               Forgot your password? Reset it
@@ -134,6 +134,10 @@ const mapDispatchToProps = (dispatch: any) => ({
   }
 });
 
-export default compose(injectSheet(styles), connect(null, mapDispatchToProps))(
-  LoginPage
-);
+export default compose(
+  injectSheet(styles),
+  connect(
+    null,
+    mapDispatchToProps
+  )
+)(LoginPage);

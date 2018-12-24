@@ -5,15 +5,39 @@ import { push } from "connected-react-router";
 import { Form, Field } from "react-final-form";
 import { bindActionCreators, compose } from "redux";
 import { connect } from "react-redux";
+
+import Autocomplete from "react-autocomplete";
 import { User } from "firebase";
 
+import { schools } from "./schools";
 import { db } from "../../../firebase";
+import SchoolInput from "./SchoolInput";
+
+interface Props {
+  classes: { [s: string]: string };
+  user: User;
+  push: (route: string) => any;
+}
+
+interface FormData {
+  firstName: string;
+  lastName: string;
+  birthDate: string;
+  phoneNumber: string;
+  school: string;
+  gender: string;
+}
+
+interface ApplyPageState {
+  formData: FormData | null;
+  isSubmitting: boolean;
+  isLoading: boolean;
+}
 
 const styles = (theme: Theme): object => ({
   ApplyPage: {
     display: "flex",
     width: "80%",
-    height: "100%",
     maxWidth: "800px",
     flexDirection: "column",
     padding: "20px",
@@ -37,9 +61,13 @@ const styles = (theme: Theme): object => ({
     flexDirection: "column"
   },
   input: {
+    fontFamily: theme.fontFamily,
     marginLeft: "5px",
-    padding: "5px",
-    fontSize: "1em"
+    padding: theme.inputPadding,
+    minHeight: "36px",
+    fontSize: "1em",
+    position: "relative",
+    width: "400px"
   },
   submit: {
     width: "150px",
@@ -62,29 +90,11 @@ const styles = (theme: Theme): object => ({
     fontSize: "1em",
     border: "none",
     color: theme.secondFont
+  },
+  autocompleteItem: {
+    padding: theme.inputPadding
   }
 });
-
-interface Props {
-  classes: { [s: string]: string };
-  user: User;
-  push: (route: string) => any;
-}
-
-interface FormData {
-  firstName: string;
-  lastName: string;
-  birthDate: string;
-  phoneNumber: string;
-  school: string;
-  gender: string;
-}
-
-interface ApplyPageState {
-  formData: FormData | null;
-  isSubmitting: boolean;
-  isLoading: boolean;
-}
 
 class ApplyPage extends React.Component<Props, ApplyPageState> {
   unmounted: boolean;
@@ -133,7 +143,6 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
       .doc(user.uid)
       .get();
     const formData = snapshot.data() as FormData;
-
     return formData;
   }
 
@@ -146,7 +155,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
     return true;
   }
 
-  handleSubmit = (values) => {
+  handleSubmit = values => {
     const { user } = this.props;
     this.setState({ isSubmitting: true });
     db.collection("users")
@@ -216,11 +225,10 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                     <label>
                       School:
                       <Field
-                        className={classes.input}
                         name="school"
-                        label="School"
-                        component="input"
-                        placeholder="South Harmon Institute of Technology"
+                        component={SchoolInput}
+                        schools={schools}
+                        classes={classes}
                       />
                     </label>
                     <label>
@@ -254,6 +262,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
     );
   }
 }
+
 const mapStateToProps = (state: ReduxState) => ({
   user: state.core.user
 });

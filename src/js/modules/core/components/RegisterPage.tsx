@@ -9,7 +9,7 @@ import { emailRegex } from "../../constants";
 // @ts-ignore
 import { register } from "../coreActions";
 import Input from "./Input";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const styles = (theme: Theme): Styles => ({
   RegisterPage: {
@@ -31,9 +31,8 @@ const styles = (theme: Theme): Styles => ({
     flexDirection: "column",
     padding: "20px",
     alignItems: "flex-end"
-  },
+  }
 });
-
 
 interface Props {
   classes: { [s: string]: string };
@@ -148,6 +147,10 @@ const mapDispatchToProps = (dispatch: any) => ({
   }
 });
 
-export default compose(injectSheet(styles), connect(null, mapDispatchToProps))(
-  RegisterPage
-);
+export default compose(
+  injectSheet(styles),
+  connect(
+    null,
+    mapDispatchToProps
+  )
+)(RegisterPage);

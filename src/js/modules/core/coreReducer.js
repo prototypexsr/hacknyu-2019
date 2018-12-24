@@ -12,7 +12,6 @@ import {
   UPDATE_PASSWORD_REJECTED
 } from "./coreActions";
 
-
 // getWindowWidth & getWindowHeight was
 // adapted from http://stackoverflow.com/a/8876069/1291659
 const getViewportWidth = () => {
@@ -39,7 +38,6 @@ const initialState = {
   passwordEmailSent: false
 };
 
-
 const reducer = (state = { ...initialState }, action) => {
   switch (action.type) {
     case REFRESH_WINDOW_DIMENSIONS:
@@ -60,17 +58,29 @@ const reducer = (state = { ...initialState }, action) => {
     case LOGOUT_FULFILLED:
       return { ...state, user: undefined };
     case LOGOUT_REJECTED:
-      return { ...state, errors: {...state.errors, logoutError: action.payload } };
+      return {
+        ...state,
+        errors: { ...state.errors, logoutError: action.payload }
+      };
     case REGISTER_REJECTED:
-      return { ...state, errors: {...state.errors, registerError: action.payload } };
+      return {
+        ...state,
+        errors: { ...state.errors, registerError: action.payload }
+      };
     case REGISTER_FULFILLED:
       return { ...state, user: action.payload };
     case PASSWORD_EMAIL_FULFILLED:
       return { ...state, passwordEmailSent: true };
     case PASSWORD_EMAIL_REJECTED:
-      return { ...state, errors: {...state.errors, passwordEmailError: action.payload } };
+      return {
+        ...state,
+        errors: { ...state.errors, passwordEmailError: action.payload }
+      };
     case UPDATE_PASSWORD_REJECTED:
-      return { ...state, errors: {...state.errors, updatePasswordError: action.payload } };
+      return {
+        ...state,
+        errors: { ...state.errors, updatePasswordError: action.payload }
+      };
     case CLEAR_EMAIL_STATE:
       return { ...state, passwordEmailSent: false };
     default:

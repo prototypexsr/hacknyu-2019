@@ -35,7 +35,7 @@ const ResetPasswordPage: React.SFC<Props> = ({
 }) => {
   const handleSubmit = (values: object) => {
     resetPassword(values.email);
-  }
+  };
 
   if (passwordEmailSent) {
     return (

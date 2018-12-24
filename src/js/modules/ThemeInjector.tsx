@@ -2,7 +2,7 @@ import * as React from "react";
 import { ThemeProvider } from "theming";
 import { Theme } from "./types";
 import { withRouter } from "react-router";
-import {Location} from "history";
+import { Location } from "history";
 
 interface Props {
   location: Location;
@@ -28,12 +28,14 @@ const theme: Theme = {
   formBackground: "#fafafa",
   submitButton: "#46a9b7",
   submitButtonHover: "#4497a5",
+  fontFamily: "mr-eaves-xl-modern, sans-serif",
+  inputPadding: "7px 10px",
   ...trackColors
 };
 
 class ThemeInjector extends React.Component<Props> {
   render() {
-    let {children} = this.props;
+    let { children } = this.props;
     return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
   }
 }

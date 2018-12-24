@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 import { delay, getRandomInteger } from "../../utils";
 import { STOPS_COUNT } from "../../constants";
 import SubwayLine from "./SubwayLine";

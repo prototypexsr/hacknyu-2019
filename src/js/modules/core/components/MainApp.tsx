@@ -17,11 +17,12 @@ const styles = (theme: Theme): Styles => ({
     backgroundColor: theme.backgroundColor,
     color: theme.fontColor,
     transition: "background-color 2s, font-color 2s",
-    fontFamily: "mr-eaves-xl-modern, sans-serif",
+    fontFamily: theme.fontFamily,
     width: "100vw",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+    padding: "0"
   }
 });
 
@@ -87,5 +88,8 @@ const mapDispatchToProps = (dispatch: any) => ({
 export default compose(
   withRouter,
   injectSheet(styles),
-  connect(mapStateToProps, mapDispatchToProps)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
 )(MainApp);

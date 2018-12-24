@@ -1,7 +1,7 @@
 import * as React from "react";
 import injectSheet, { Styles } from "react-jss";
 import { JssRules, Theme } from "../../types";
-import AnimatedSubwayLine from "./AnimatedSubwayLine"
+import AnimatedSubwayLine from "./AnimatedSubwayLine";
 import ApplyButton from "./ApplyButton";
 import TrackInfo from "./TrackInfo";
 import Waypoint from "react-waypoint";
@@ -12,26 +12,25 @@ import { Scrollama, Step } from "react-scrollama";
 import { trackColors } from "../../ThemeInjector";
 
 interface HomePageStyles<T> extends Styles {
-  HomePage: T,
-  aboutSection: T,
-  activitiesSection: T,
-  tracksSection: T,
-  lines: T,
-  quote: T,
-  info: T,
-  timeline: T,
-  quoteAuthor: T,
-  hiddenTrip: T
+  HomePage: T;
+  aboutSection: T;
+  activitiesSection: T;
+  tracksSection: T;
+  lines: T;
+  quote: T;
+  info: T;
+  timeline: T;
+  quoteAuthor: T;
+  hiddenTrip: T;
 }
 
 interface Props {
-  classes: HomePageStyles<string>
+  classes: HomePageStyles<string>;
   viewportWidth: number;
 }
 interface State {
   activeBlocks: number;
 }
-
 
 interface StepData {
   element: HTMLElement;
@@ -53,7 +52,7 @@ const styles = (theme: Theme): HomePageStyles<JssRules> => ({
   activitiesSection: {
     background: `linear-gradient(${theme.secondBackground}, ${
       theme.thirdBackground
-      })`,
+    })`,
     color: theme.secondFont
   },
   tracksSection: {
@@ -102,7 +101,7 @@ class HomePage extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      activeBlocks: -1,
+      activeBlocks: -1
     };
   }
 

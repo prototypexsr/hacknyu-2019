@@ -36,7 +36,7 @@ const ChangePasswordForm: React.SFC<Props> = ({ classes, updatePassword }) => {
       validate={({ password, passwordConfirmation }) => {
         let errors: { password?: string } = {};
         if (password && password.length < 8) {
-          errors.password = "Password must be at least 8 characters"
+          errors.password = "Password must be at least 8 characters";
         }
         return errors;
       }}

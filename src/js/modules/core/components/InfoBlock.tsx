@@ -10,8 +10,7 @@ const styles = (theme: Theme): Styles => ({
     display: "flex",
     flexDirection: "column",
     // @ts-ignore
-    position: props =>
-      props.activeBlocks >= props.id ? "fixed" : "absolute",
+    position: props => (props.activeBlocks >= props.id ? "fixed" : "absolute"),
     // @ts-ignore
     top: props =>
       props.activeBlocks >= props.id ? `${100 + 180 * props.id}px` : "auto",
@@ -29,7 +28,7 @@ const styles = (theme: Theme): Styles => ({
     backgroundColor: props => props.color
   },
   text: {
-   // width: "100px"
+    // width: "100px"
   }
 });
 
@@ -44,8 +43,8 @@ interface Props {
 const InfoBlock: React.SFC<Props> = ({ classes, date, text }) => {
   return (
     <div className={classes.infoBlock}>
-      <div> <b> {date} </b> </div>
-      <div className={classes.text}> {text} </div>
+    <b> {date} </b>
+    <div className={classes.text}> {text} </div>
     </div>
   );
 };

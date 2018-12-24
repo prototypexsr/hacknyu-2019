@@ -5,11 +5,11 @@ import { STOPS_COUNT } from "../../constants";
 import { JssRules } from "../../types";
 
 interface SubwayStopStyles<T> extends Styles {
-  SubwayStop: T
+  SubwayStop: T;
 }
 
 interface Props {
-  classes: SubwayStopStyles<string>
+  classes: SubwayStopStyles<string>;
   currentStop: number;
   stopIndex: number;
   offset: number;
@@ -27,10 +27,11 @@ const styles: SubwayStopStyles<JssRules> = {
     left: props =>
       `${(props.stopIndex + 1) * (100 / STOPS_COUNT) - props.offset}vw`,
     transform: props =>
-      props.stopIndex < props.currentStop ? "scale(1, 1) translateY(-6px)" : "scale(0, 0) translateY(-6px)"
+      props.stopIndex < props.currentStop
+        ? "scale(1, 1) translateY(-6px)"
+        : "scale(0, 0) translateY(-6px)"
   }
 };
-
 
 const SubwayStop: React.SFC<Props> = ({ classes }) => {
   return <div className={classes.SubwayStop} />;

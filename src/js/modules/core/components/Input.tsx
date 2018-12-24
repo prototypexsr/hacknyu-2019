@@ -58,7 +58,7 @@ const styles = (theme: Theme): InputStyles<JssRules> => ({
     display: "flex",
     flexDirection: "column",
     fontSize: "1.4rem",
-    padding: "5px",
+    padding: "5px"
   },
   inputArea: {
     display: "flex"

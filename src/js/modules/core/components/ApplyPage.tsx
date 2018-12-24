@@ -38,7 +38,7 @@ const styles = (theme: Theme): object => ({
   ApplyPage: {
     display: "flex",
     width: "80%",
-    maxWidth: "800px",
+    maxWidth: "1050px",
     flexDirection: "column",
     padding: "20px",
     alignItems: "center",
@@ -95,6 +95,12 @@ const styles = (theme: Theme): object => ({
     padding: theme.inputPadding
   }
 });
+
+const Condition = ({ when, is, children }) => (
+  <Field name={when} subscription={{ value: true }}>
+    {({ input: { value } }) => (value === is ? children : null)}
+  </Field>
+);
 
 class ApplyPage extends React.Component<Props, ApplyPageState> {
   unmounted: boolean;
@@ -212,6 +218,47 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       />
                     </label>
                     <label>
+                      Gender:
+                      <Field
+                        className={classes.input}
+                        name="gender"
+                        component="select"
+                      >
+                        <option value="default"> Choose One </option>
+                        <option value="male"> Male </option>
+                        <option value="female"> Female </option>
+                        <option value="non-binary"> Non-binary </option>
+                        <option value="prefer-not"> Prefer not to say </option>
+                        <option value="other"> Other </option>
+                      </Field>
+                    </label>
+                    <label>
+                      What race/ethnicity do you most closely identify with?
+                      <Field
+                        className={classes.input}
+                        name="ethnicity"
+                        component="select"
+                      >
+                        <option value="default"> Choose One </option>
+                        <option value="American Indian Alaskan Native"> American Indian or Alaskan Native </option>
+                        <option value="Asian"> Asian / Pacific Islander </option>
+                        <option value="African American"> Black or African American </option>
+                        <option value="Hispanic Latinx"> Hispanic or Latinx </option>
+                        <option value="Multiple"> Multiple ethnicities </option>
+                        <option value="prefer-not"> Prefer not to say </option>
+                      </Field>
+                    </label>
+                    <Condition when="ethnicity" is="Multiple">
+                    <label>
+                      Please Specify:
+                      <Field
+                        className={classes.input}
+                        name="multiethnic"
+                        component="input"
+                      />
+                    </label>
+                    </Condition>
+                    <label>
                       Phone Number:
                       <Field
                         className={classes.input}
@@ -231,19 +278,134 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                         classes={classes}
                       />
                     </label>
+                    <Condition when="school" is="New York University">
                     <label>
-                      Gender:
+                      NYU School (if selected NYU):
                       <Field
-                        className={classes.input}
-                        name="gender"
-                        component="select"
+                      className={classes.input}
+                      name="NYU School"
+                      component="select"
                       >
-                        <option value="male"> Male </option>
-                        <option value="female"> Female </option>
-                        <option value="non-binary"> Non-binary </option>
-                        <option value="prefer-not"> Prefer not to say </option>
-                        <option value="other"> Other </option>
+                        <option value="default"> Choose One </option>
+                        <option value="Tandon"> Tandon School of Engineering </option>
+                        <option value="CAS"> College of Arts and Science </option>
+                        <option value="GSAS"> Graduate School of Arts and Science </option>
+                        <option value="Stern"> Leonard M. Stern School of Business </option>
+                        <option value="Nursing"> Roy Meyers College of Nursing </option>
+                        <option value="N/A"> N/A </option>
                       </Field>
+                    </label>
+                    </Condition>
+                    <label>
+                      Current Level of Study:
+                      <Field
+                      className={classes.input}
+                      name="Level"
+                      component="select"
+                      >
+                        <option value="default"> Choose One </option>
+                        <option value="Undergrad"> Undergraduate </option>
+                        <option value="Master's"> Graduate </option>
+                        <option value="PhD"> Doctoral </option>
+                      </Field>
+                    </label>
+                    <label>
+                      {/* TODO: Possibly make Major field an auto complete field similar to school name */}
+                      Major:
+                    <Field
+                      className={classes.input}
+                      name="Major"
+                      component="input"
+                      />
+                    </label>
+                    <label>
+                      Anticipated Graduation Year:
+                    <Field
+                      className={classes.input}
+                      name="gradyear"
+                      component="input"
+                      />
+                    </label>
+                    <label>
+                      Is this your first time at HackNYU?
+                      <Field
+                      className={classes.input}
+                      name="visited"
+                      component="select"
+                      >
+                        <option value="default"> Choose One </option>
+                        <option value="yes"> Yes </option>
+                        <option value="no"> No </option>
+                      </Field>
+                    </label>
+                    <Condition when="visited" is="no">
+                      <label>
+                      How many times have you participated at HackNYU so far?
+                      <Field
+                      className={classes.input}
+                      name="participations"
+                      component="select"
+                      >
+                        <option value="default"> Choose One </option>
+                        <option value="two"> 2 </option>
+                        <option value="three"> 3 </option>
+                        <option value="fourplus"> 4+ </option>
+                      </Field>
+                      </label>
+                      </Condition>
+                    <label>
+                      What Are Your Interests?
+                      <Field
+                      className={classes.input}
+                      name="Interests"
+                      component="input"
+                      />
+                    </label>
+                    <label>
+                      T-Shirt Size:
+                      <Field
+                      className={classes.input}
+                      name="Shirt"
+                      component="input"
+                      />
+                    </label>
+                    <label>
+                       {/* TODO: Implement File Upload functionality */}
+                      Upload Your Resume Here:
+                      <Field
+                      className={classes.input}
+                      name="Resume Upload"
+                      component="input"
+                      />
+                    </label>
+                    <label>
+                      Any Dietary Restrictions?
+                      <Field
+                      className={classes.input}
+                      name="DietaryRestrictions"
+                      placeholder="My restrictions are"
+                      component="input"
+                      />
+                    </label>
+                    <label>
+                      I have read and agree to the <a href="https://mlh.io/code-of-conduct">MLH Code of Conduct</a>
+                      <Field
+                      className={classes.input}
+                      name="MLHCoC"
+                      component="input"
+                      type="checkbox"
+                      />
+                    </label>
+                    <label>
+                      I authorize HackNYU to share my application/registration information for event administration, pre- and post-event infomrational emails,
+                      and occasional messages about hackathons in-line with the MLH Privacy Policy. I further agree to the Contest Terms and Conditions and the
+                      MLH Privacy Policy.
+                      <Field
+                      className={classes.input}
+                      name="MLHPrivacyPolicy"
+                      component="input"
+                      type="checkbox"
+                      />
                     </label>
                     <button
                       className={classes.submit}

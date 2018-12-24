@@ -56,6 +56,7 @@
     "@types/firebase": "^3.2.1",
     "@types/jss": "^9.5.7",
     "@types/react": "^16.4.16",
+    "@types/react-autocomplete": "^1.8.4",
     "@types/react-jss": "^8.6.0",
     "@types/react-redux": "^6.0.7",
     "@types/react-router-dom": "^4.3.1",

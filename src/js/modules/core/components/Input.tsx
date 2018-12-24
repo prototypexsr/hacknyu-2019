@@ -1,33 +1,7 @@
 import * as React from "react";
 import injectSheet, { Styles } from "react-jss/lib/injectSheet";
-import { Theme } from "../../types";
+import { JssRules, Theme } from "../../types";
 import { FieldState } from "final-form";
-
-const styles = (theme: Theme): Styles => ({
-  label: {
-    padding: "5px",
-    width: "100px"
-  },
-  error: {
-    color: "red",
-    fontSize: "1rem"
-  },
-  textField: {
-    marginLeft: "5px",
-    padding: "10px",
-    fontSize: "1rem",
-    border: "none"
-  },
-  Input: {
-    display: "flex",
-    flexDirection: "column",
-    fontSize: "1.4rem",
-    padding: "5px"
-  },
-  inputArea: {
-    display: "flex"
-  }
-});
 
 interface Props {
   classes: { [s: string]: string };
@@ -53,7 +27,42 @@ interface Props {
   type: string;
   placeholder: string;
   input: object;
+  [p: string]: any
 }
+
+interface InputStyles<T> {
+  label: T;
+  error: T;
+  textField: T;
+  Input: T;
+  inputArea: T;
+}
+
+const styles = (theme: Theme): InputStyles<JssRules> => ({
+  label: {
+    padding: "5px",
+    width: "100px"
+  },
+  error: {
+    color: "red",
+    fontSize: "1rem"
+  },
+  textField: {
+    marginLeft: "5px",
+    padding: "10px",
+    fontSize: "1rem",
+    border: "none"
+  },
+  Input: {
+    display: "flex",
+    flexDirection: "column",
+    fontSize: "1.4rem",
+    padding: "5px"
+  },
+  inputArea: {
+    display: "flex"
+  }
+});
 
 const Input: React.SFC<Props> = ({ classes, meta, input, label, ...props }) => {
   return (

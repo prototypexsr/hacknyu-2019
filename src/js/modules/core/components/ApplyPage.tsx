@@ -5,13 +5,12 @@ import { push } from "connected-react-router";
 import { Form, Field } from "react-final-form";
 import { bindActionCreators, compose } from "redux";
 import { connect } from "react-redux";
-
 import Autocomplete from "react-autocomplete";
 import { User } from "firebase";
-
 import { schools } from "./schools";
 import { db } from "../../../firebase";
 import SchoolInput from "./SchoolInput";
+import Condition from "./Condition";
 
 interface Props {
   classes: { [s: string]: string };
@@ -95,12 +94,6 @@ const styles = (theme: Theme): object => ({
     padding: theme.inputPadding
   }
 });
-
-const Condition = ({ when, is, children }) => (
-  <Field name={when} subscription={{ value: true }}>
-    {({ input: { value } }) => (value === is ? children : null)}
-  </Field>
-);
 
 class ApplyPage extends React.Component<Props, ApplyPageState> {
   unmounted: boolean;
@@ -224,7 +217,6 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                         name="gender"
                         component="select"
                       >
-                        <option value="default"> Choose One </option>
                         <option value="male"> Male </option>
                         <option value="female"> Female </option>
                         <option value="non-binary"> Non-binary </option>
@@ -239,21 +231,20 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                         name="ethnicity"
                         component="select"
                       >
-                        <option value="default"> Choose One </option>
-                        <option value="American Indian Alaskan Native"> American Indian or Alaskan Native </option>
-                        <option value="Asian"> Asian / Pacific Islander </option>
-                        <option value="African American"> Black or African American </option>
-                        <option value="Hispanic Latinx"> Hispanic or Latinx </option>
-                        <option value="Multiple"> Multiple ethnicities </option>
+                        <option value="american-indian-alaskan-native"> American Indian or Alaskan Native </option>
+                        <option value="asian"> Asian / Pacific Islander </option>
+                        <option value="african-american"> Black or African American </option>
+                        <option value="hispanic-latinx"> Hispanic or Latinx </option>
+                        <option value="multiple"> Multiple ethnicities </option>
                         <option value="prefer-not"> Prefer not to say </option>
                       </Field>
                     </label>
-                    <Condition when="ethnicity" is="Multiple">
+                    <Condition when="ethnicity" is="multiple">
                     <label>
                       Please Specify:
                       <Field
                         className={classes.input}
-                        name="multiethnic"
+                        name="multiEthnic"
                         component="input"
                       />
                     </label>
@@ -280,33 +271,54 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                     </label>
                     <Condition when="school" is="New York University">
                     <label>
-                      NYU School (if selected NYU):
+                      NYU School:
                       <Field
                       className={classes.input}
-                      name="NYU School"
+                      name="nyuSchool"
                       component="select"
                       >
-                        <option value="default"> Choose One </option>
-                        <option value="Tandon"> Tandon School of Engineering </option>
-                        <option value="CAS"> College of Arts and Science </option>
-                        <option value="GSAS"> Graduate School of Arts and Science </option>
-                        <option value="Stern"> Leonard M. Stern School of Business </option>
-                        <option value="Nursing"> Roy Meyers College of Nursing </option>
-                        <option value="N/A"> N/A </option>
+                        <option value="tandon"> Tandon School of Engineering </option>
+                        <option value="cas"> College of Arts and Science </option>
+                        <option value="gsas"> Graduate School of Arts and Science </option>
+                        <option value="stern"> Leonard M. Stern School of Business </option>
+                        <option value="nursing"> Rory Meyers College of Nursing </option>
+                        <option value="steinhardt"> Steinhardt School of Culture, Education, and Human Development  </option>
+                        <option value="tisch"> Tisch School of the Arts  </option>
+                        <option value="dentistry"> College of Dentistry  </option>
+                        <option value="sps"> School of Professional Studies  </option>
+                        <option value="silver"> Silver School of Social Work  </option>
+                        <option value="ls"> Liberal Studies  </option>
+                        <option value="gallatin"> Gallatin School of Individualized Study  </option>
+                        <option value="global-health"> College of Global Public Health  </option>
+                        <option value="abu-dhabi"> Abu Dhabi  </option>
+                        <option value="shanghai"> Shanghai  </option>
+                        <option value="other"> Other (please specify): </option>
                       </Field>
                     </label>
                     </Condition>
+                    <Condition when="nyuSchool" is="other">
                     <label>
-                      Current Level of Study:
+                    <Field
+                      className={classes.input}
+                      name="nyuSchoolOther"
+                      component="input"
+                      />
+                    </label>
+                    </Condition>
+                    <label>
+                      Current year of study:
                       <Field
                       className={classes.input}
-                      name="Level"
+                      name="year"
                       component="select"
                       >
-                        <option value="default"> Choose One </option>
-                        <option value="Undergrad"> Undergraduate </option>
-                        <option value="Master's"> Graduate </option>
-                        <option value="PhD"> Doctoral </option>
+                        <option value="high-school">High School </option>
+                        <option value="freshman"> First-year (Freshman) </option>
+                        <option value="sophomore"> Sophomore </option>
+                        <option value="junior"> Junior </option>
+                        <option value="senior"> Senior </option>
+                        <option value="graduate"> Graduate Student (Masters or Doctorate) </option>
+                        <option value="post-grad"> Post Graduate </option>
                       </Field>
                     </label>
                     <label>
@@ -314,15 +326,15 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       Major:
                     <Field
                       className={classes.input}
-                      name="Major"
+                      name="major"
                       component="input"
                       />
                     </label>
                     <label>
-                      Anticipated Graduation Year:
+                      Anticipated graduation year:
                     <Field
                       className={classes.input}
-                      name="gradyear"
+                      name="gradYear"
                       component="input"
                       />
                     </label>
@@ -333,7 +345,6 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       name="visited"
                       component="select"
                       >
-                        <option value="default"> Choose One </option>
                         <option value="yes"> Yes </option>
                         <option value="no"> No </option>
                       </Field>
@@ -346,43 +357,54 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       name="participations"
                       component="select"
                       >
-                        <option value="default"> Choose One </option>
                         <option value="two"> 2 </option>
                         <option value="three"> 3 </option>
-                        <option value="fourplus"> 4+ </option>
+                        <option value="four-plus"> 4 or more </option>
                       </Field>
                       </label>
                       </Condition>
                     <label>
-                      What Are Your Interests?
+                      Which track are you most interested in?
                       <Field
                       className={classes.input}
-                      name="Interests"
+                      name="interests"
+                      component="select"
+                      >
+                        <option value="assistive-tech"> Assistive Tech </option>
+                        <option value="ed-tech"> Educational Technology </option>
+                        <option value="fin-tech"> Financial Technology </option>
+                        <option value="healthcare"> Healthcare </option>
+                        <option value="sustain-social-impact"> Sustainabiltiy and Social Impact </option>
+                      </Field>
+                    </label>
+                    <label>
+                      Select your t-shirt size:
+                      <Field
+                      className={classes.input}
+                      name="shirt"
+                      component="select"
+                      >
+                        <option value="x-small"> XS </option>
+                        <option value="small"> S </option>
+                        <option value="medium"> M </option>
+                        <option value="large"> L </option>
+                        <option value="x-large"> XL </option>
+                        <option value="xx-large"> XXL </option>
+                      </Field>
+                    </label>
+                    <label>
+                      Resume:
+                      <Field
+                      className={classes.input}
+                      name="resumeUpload"
                       component="input"
                       />
                     </label>
                     <label>
-                      T-Shirt Size:
+                      Any dietary restrictions?
                       <Field
                       className={classes.input}
-                      name="Shirt"
-                      component="input"
-                      />
-                    </label>
-                    <label>
-                       {/* TODO: Implement File Upload functionality */}
-                      Upload Your Resume Here:
-                      <Field
-                      className={classes.input}
-                      name="Resume Upload"
-                      component="input"
-                      />
-                    </label>
-                    <label>
-                      Any Dietary Restrictions?
-                      <Field
-                      className={classes.input}
-                      name="DietaryRestrictions"
+                      name="dietaryRestrictions"
                       placeholder="My restrictions are"
                       component="input"
                       />
@@ -391,7 +413,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       I have read and agree to the <a href="https://mlh.io/code-of-conduct">MLH Code of Conduct</a>
                       <Field
                       className={classes.input}
-                      name="MLHCoC"
+                      name="codeOfConduct"
                       component="input"
                       type="checkbox"
                       />
@@ -402,7 +424,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       MLH Privacy Policy.
                       <Field
                       className={classes.input}
-                      name="MLHPrivacyPolicy"
+                      name="privacyPolicy"
                       component="input"
                       type="checkbox"
                       />

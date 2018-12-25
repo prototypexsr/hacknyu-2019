@@ -313,7 +313,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       component="select"
                       >
                         <option value="high-school">High School </option>
-                        <option value="freshman"> Firstyear (Freshman) </option>
+                        <option value="freshman"> First-year (Freshman) </option>
                         <option value="sophomore"> Sophomore </option>
                         <option value="junior"> Junior </option>
                         <option value="senior"> Senior </option>

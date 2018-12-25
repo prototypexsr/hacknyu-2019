@@ -318,7 +318,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                         <option value="junior"> Junior </option>
                         <option value="senior"> Senior </option>
                         <option value="graduate"> Graduate Student (Masters or Doctorate) </option>
-                        <option value="professional"> Professional </option>
+                        <option value="post-grad"> Post Graduate </option>
                       </Field>
                     </label>
                     <label>

@@ -119,41 +119,31 @@ const Header: React.SFC<Props> = ({ classes, user, logout, viewportWidth }) => {
             {viewportWidth > 800 && <div className={classes.dot}>&bull;</div>}
           </span>
         </h1>
-        {user
-          ? [
-              <h1>
-                <span className={classes.bullet}>
-                  <a href="#" className={classes.link} onClick={logout}>
-                    Log Out
-                  </a>
-                  {viewportWidth > 800 && (
-                    <div className={classes.dot}>&bull;</div>
-                  )}
-                </span>
-              </h1>,
-              <h1>
-                <Link to="/my_profile" className={classes.link}>
-                  My Profile
-                </Link>
-              </h1>
-            ]
-          : [
-              <h1 key={0}>
-                <span className={classes.bullet}>
-                  <Link to="/login" className={classes.link}>
-                    Login
-                  </Link>
-                  {viewportWidth > 800 && (
-                    <div className={classes.dot}>&bull;</div>
-                  )}
-                </span>
-              </h1>,
-              <h1 key={1}>
-                <Link to="/register" className={classes.link}>
-                  Register
-                </Link>
-              </h1>
-            ]}
+        {user ? (
+          [
+            <h1 key={0}>
+              <span className={classes.bullet}>
+                <a href="#" className={classes.link} onClick={logout}>
+                  Log Out
+                </a>
+                {viewportWidth > 800 && (
+                  <div className={classes.dot}>&bull;</div>
+                )}
+              </span>
+            </h1>,
+            <h1 key={1}>
+              <Link to="/my_profile" className={classes.link}>
+                My Profile
+              </Link>
+            </h1>
+          ]
+        ) : (
+          <h1>
+            <Link to="/login" className={classes.link}>
+              Login
+            </Link>
+          </h1>
+        )}
       </div>
     </div>
   );

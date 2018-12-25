@@ -22,7 +22,8 @@ interface Props {
 
 // Earth Water Fire Air
 const Avatar: React.SFC<Props> = ({ classes, user }) => {
-  return <img className={classes.Avatar} src={user.photoURL} />;
+  const url = user.photoURL || "/img/blank-profile.png";
+  return <img className={classes.Avatar} src={url} />;
 };
 
 export default injectSheet(styles)(Avatar);

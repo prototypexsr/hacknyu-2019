@@ -18,9 +18,9 @@ export const trackColors = {
 
 const theme: Theme = {
   backgroundColor: "#e3f2fd",
-  fontColor: "#363731",
   secondBackground: "#416788",
   thirdBackground: "#2b4570",
+  fontColor: "#363731",
   secondFont: "#fafafa",
   secondFontHover: "#f0f0f0",
   highlightColor: "#db5461",
@@ -30,6 +30,11 @@ const theme: Theme = {
   submitButtonHover: "#4497a5",
   fontFamily: "mr-eaves-xl-modern, sans-serif",
   inputPadding: "7px 10px",
+  errorText: "#444444",
+  errorBackground: "#ffc0c0",
+  errorBorder: "red",
+  notificationBackground: "#fefefe",
+  notificationBorder: "#000000",
   ...trackColors
 };
 

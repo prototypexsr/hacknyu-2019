@@ -45,7 +45,8 @@ const styles = (theme: Theme): InputStyles<JssRules> => ({
   },
   error: {
     color: "red",
-    fontSize: "1rem"
+    fontSize: "1rem",
+    maxWidth: "200px"
   },
   textField: {
     marginLeft: "5px",

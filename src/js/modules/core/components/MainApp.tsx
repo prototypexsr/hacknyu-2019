@@ -11,9 +11,27 @@ import Header from "./Header";
 import { User } from "firebase";
 import UserInfo from "./UserInfo";
 import { auth } from "../../../firebase";
+import Alerts from "./Alerts";
 
-const styles = (theme: Theme): Styles => ({
-  app: {
+
+interface MainAppStyles<T> extends Styles {
+  MainApp: T
+}
+
+interface Props {
+  classes: MainAppStyles<string>;
+  children: ReactNode;
+  error: string;
+  location: Location;
+  user: User;
+  addUser: (u: User) => any;
+  deleteUser: () => any;
+  onResizeWindow: () => any;
+}
+
+
+const styles = (theme: Theme): MainAppStyles<object> => ({
+  MainApp: {
     backgroundColor: theme.backgroundColor,
     color: theme.fontColor,
     transition: "background-color 2s, font-color 2s",
@@ -26,16 +44,6 @@ const styles = (theme: Theme): Styles => ({
   }
 });
 
-interface Props {
-  classes: { [s: string]: string };
-  children: ReactNode;
-  error: string;
-  location: Location;
-  user: User;
-  addUser: (u: User) => any;
-  deleteUser: () => any;
-  onResizeWindow: () => any;
-}
 
 class MainApp extends React.Component<Props> {
   constructor(props: Props) {
@@ -61,7 +69,8 @@ class MainApp extends React.Component<Props> {
   render() {
     let { classes, error, children, user } = this.props;
     return (
-      <div className={classes.app}>
+      <div className={classes.MainApp}>
+        <Alerts />
         <Header />
         {user && <UserInfo user={user} />}
         {error && <h2 className={classes.error}> {error} </h2>}

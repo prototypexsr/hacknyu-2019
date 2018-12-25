@@ -306,10 +306,10 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                     </label>
                     </Condition>
                     <label>
-                      Current Level of Study:
+                      Current year of study:
                       <Field
                       className={classes.input}
-                      name="Level"
+                      name="year"
                       component="select"
                       >
                         <option value="high-school">High School </option>
@@ -326,7 +326,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       Major:
                     <Field
                       className={classes.input}
-                      name="Major"
+                      name="major"
                       component="input"
                       />
                     </label>
@@ -334,7 +334,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       Anticipated graduation year:
                     <Field
                       className={classes.input}
-                      name="gradyear"
+                      name="gradYear"
                       component="input"
                       />
                     </label>
@@ -367,7 +367,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       Which track are you most interested in?
                       <Field
                       className={classes.input}
-                      name="Interests"
+                      name="interests"
                       component="select"
                       >
                         <option value="assistive-tech"> Assistive Tech </option>
@@ -381,7 +381,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       Select your t-shirt size:
                       <Field
                       className={classes.input}
-                      name="Shirt"
+                      name="shirt"
                       component="select"
                       >
                         <option value="x-small"> XS </option>
@@ -396,7 +396,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       Resume:
                       <Field
                       className={classes.input}
-                      name="Resume Upload"
+                      name="resumeUpload"
                       component="input"
                       />
                     </label>
@@ -404,7 +404,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       Any dietary restrictions?
                       <Field
                       className={classes.input}
-                      name="DietaryRestrictions"
+                      name="dietaryRestrictions"
                       placeholder="My restrictions are"
                       component="input"
                       />
@@ -413,7 +413,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       I have read and agree to the <a href="https://mlh.io/code-of-conduct">MLH Code of Conduct</a>
                       <Field
                       className={classes.input}
-                      name="MLHCoC"
+                      name="codeOfConduct"
                       component="input"
                       type="checkbox"
                       />
@@ -424,7 +424,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       MLH Privacy Policy.
                       <Field
                       className={classes.input}
-                      name="MLHPrivacyPolicy"
+                      name="privacyPolicy"
                       component="input"
                       type="checkbox"
                       />

@@ -29,16 +29,20 @@ const styles: APIListStyles<JssRules> = {
             HackNYU has several APIs available from NYU. You can take a look at them below:
           </p>
          <ul>
-             <li>Class Roster/Albert</li>
-             <li>Bus Locations</li>
-             <li>Course Catalog</li>
-             <li>Public Safety</li>
-             <li>Engage</li>
-             <li>Third-party APIs: Data.gov, NYC Public Data, GitHub REST API</li>
-             <li>Events</li>
-             <li>Faculty Bibliography</li>
-             <li>Library Share Space</li>
-             <li>Academic Calendar</li>
+             <li><a href="http://wp.nyu.edu/developers/2018/03/02/class-roster/">Class Roster/Albert</a></li>
+             <li> <a href="https://wp.nyu.edu/developers/2018/02/17/transloc-api/">Bus Locations</a></li>
+             <li> <a href="http://wp.nyu.edu/developers/2018/03/08/course-catalog/">Course Catalog</a></li>
+             <li><a href="http://wp.nyu.edu/developers/2018/03/16/public-safety-incident-data/">Public Safety</a></li>
+             <li><a href="http://wp.nyu.edu/developers/2018/03/15/engage/">Engage</a></li>
+             <li><ul>Third-party APIs:</ul> 
+                  <li><a href="http://wp.nyu.edu/developers/2018/05/21/datagov/">Data.gov</a></li>
+                  <li><a href="http://wp.nyu.edu/developers/2018/05/21/nyc-open-data/">NYC Public Data</a></li> 
+                  <li><a href="http://wp.nyu.edu/developers/2018/05/21/rest-api-v3-github/">GitHub REST API V3</a></li>
+             </li>
+             <li><a href="http://wp.nyu.edu/developers/2018/03/15/events-calendar/">Events</a></li>
+             <li><a href="http://wp.nyu.edu/developers/2018/03/15/nyu-faculty-bibliography-for-med-dental-and-nursing/">Faculty Bibliography</a></li>
+             <li><a href="http://wp.nyu.edu/developers/2018/03/08/library-shared-space/">Library Share Space</a></li>
+             <li><a href="http://wp.nyu.edu/developers/2018/03/08/academic-calendar/">Academic Calendar</a></li>
         </ul>
         </div>
       </div>

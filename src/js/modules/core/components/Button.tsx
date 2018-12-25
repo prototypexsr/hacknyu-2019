@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Theme } from "../../types";
 import { JssRules, Theme } from "../../types";
 import injectSheet, { Styles } from "react-jss/lib/injectSheet";
 import { ReactNode } from "react";

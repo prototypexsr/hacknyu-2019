@@ -5,3 +5,4 @@ node_modules
 builds/**
 .idea/
 *.map
+.firebase

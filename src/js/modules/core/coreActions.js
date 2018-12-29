@@ -1,4 +1,4 @@
-import { auth, provider } from "../../firebase";
+import { auth, provider, storage } from "../../firebase";
 import { push } from "connected-react-router";
 import { delay } from "../utils";
 export const REFRESH_WINDOW_DIMENSIONS = "core/REFRESH_WINDOW_DIMENSIONS";
@@ -29,6 +29,14 @@ export const CLEAR_NOTIFICATION = "core/CLEAR_NOTIFICATION";
 
 export const ADD_USER = "core/ADD_USER";
 export const DELETE_USER = "core/DELETE_USER";
+export const UPLOAD_PROFILE_PICTURE_PENDING =
+  "core/UPLOAD_PROFILE_PICTURE_PENDING";
+
+export const UPLOAD_PROFILE_PICTURE_REJECTED =
+  "core/UPLOAD_PROFILE_PICTURE_REJECTED";
+
+export const UPLOAD_PROFILE_PICTURE_FULFILLED =
+  "core/UPLOAD_PROFILE_PICTURE_FULFILLED";
 
 export const refreshWindowDimensions = () => ({
   type: REFRESH_WINDOW_DIMENSIONS,
@@ -164,3 +172,41 @@ export const clearNotification = errorType => ({
   type: CLEAR_NOTIFICATION,
   payload: errorType
 });
+
+export const uploadProfilePic = (file, uid) => dispatch => {
+  dispatch({ type: UPLOAD_PROFILE_PICTURE_PENDING });
+  const validFileTypes = new Set(["image/png", "image/jpg", "image/jpeg"]);
+
+  if (validFileTypes.has(file.type)) {
+    const ext = file.name.split(".").pop();
+    const storageRef = storage.ref();
+    const imageRef = storageRef.child(`users/${uid}/profile.${ext}`);
+    let photoURL;
+    imageRef
+      .put(file)
+      .then(() => imageRef.getDownloadURL())
+      .then(url => {
+        photoURL = url;
+        return auth.currentUser.updateProfile({
+          photoURL: url
+        });
+      })
+      .then(() => {
+        dispatch({
+          type: UPLOAD_PROFILE_PICTURE_FULFILLED,
+          payload: photoURL
+        });
+      })
+      .catch(err => {
+        dispatch({
+          type: UPLOAD_PROFILE_PICTURE_REJECTED,
+          payload: err
+        });
+      });
+  } else {
+    dispatch({
+      type: UPLOAD_PROFILE_PICTURE_REJECTED,
+      payload: "Invalid file type " + file.type.split("/").pop()
+    });
+  }
+};

@@ -6,3 +6,4 @@ builds/**
 .idea/
 *.map
 .firebase
+.DS_Store

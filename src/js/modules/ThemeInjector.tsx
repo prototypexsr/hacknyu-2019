@@ -35,6 +35,7 @@ const theme: Theme = {
   errorBorder: "red",
   notificationBackground: "#fefefe",
   notificationBorder: "#000000",
+  overlayColor: "#696969",
   ...trackColors
 };
 

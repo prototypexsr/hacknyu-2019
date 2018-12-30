@@ -26,6 +26,7 @@ const styles: SubwayLineStyles<JssRules> = {
     transition: "width 1s",
     margin: "10px 0px 10px 0px",
     borderRadius: "10%",
+    position: "relative",
     backgroundColor: props => props.color
   }
 };

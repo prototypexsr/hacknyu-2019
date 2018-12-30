@@ -18,6 +18,7 @@ export interface CoreState {
   viewportHeight: number;
   user: User;
   errors: Errors;
+  isLoading: boolean;
 }
 
 export interface Theme {

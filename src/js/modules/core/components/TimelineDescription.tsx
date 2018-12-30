@@ -26,8 +26,10 @@ const styles: TimelineDescriptionStyles<JssRules> = {
     left: props => props.left
   },
   '@media (max-width: 800px)': {
-    maxWidth: "45px",
-    fontSize: "1em",
+    TimelineDescription: {
+      maxWidth: "45px",
+      fontSize: "1em"
+    }
   }
 };
 

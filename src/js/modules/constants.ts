@@ -6,3 +6,7 @@ export const NOTIFICATION_TIME_INTERVALS = {
   DISPLAY_TIME: 4000,
   ANIMATION_TIME: 2000
 };
+
+export const UNRESTRICTED_ROUTES
+  = new Set(["/", "/about", "/login", "/register"]);
+

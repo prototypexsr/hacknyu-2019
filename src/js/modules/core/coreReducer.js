@@ -44,14 +44,15 @@ const getViewportHeight = () => {
 const initialState = {
   viewportWidth: getViewportWidth(),
   viewportHeight: getViewportHeight(),
-  user: {},
+  user: undefined,
   errors: {},
   notifications: {},
   loginForm: { isSubmitting: false },
   registerForm: { isSubmitting: false },
   resetPasswordForm: { isSubmitting: false },
   updatePasswordForm: { isSubmitting: false },
-  passwordEmailSent: false
+  passwordEmailSent: false,
+  isLoading: true
 };
 
 const reducer = (state = { ...initialState }, action) => {
@@ -166,12 +167,13 @@ const reducer = (state = { ...initialState }, action) => {
     case ADD_USER:
       return {
         ...state,
-        user: action.payload
+        user: action.payload,
+        isLoading: false
       };
     case DELETE_USER:
       return {
         ...state,
-        user: undefined
+        isLoading: false
       };
     case CLEAR_EMAIL_STATE:
       return { ...state, passwordEmailSent: false };

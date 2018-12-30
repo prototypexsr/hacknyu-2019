@@ -48,13 +48,6 @@ class ProfilePage extends React.Component<Props, State> {
     this.fileUploader = React.createRef();
   }
 
-  shouldComponentUpdate(nextProps: Props, nextState: object): boolean {
-    if (!nextProps.user) {
-      nextProps.push("/login");
-    }
-    return true;
-  }
-
   togglePasswordForm = () => {
     const { isPasswordFormVisible } = this.state;
     this.setState({ isPasswordFormVisible: !isPasswordFormVisible });
@@ -62,10 +55,7 @@ class ProfilePage extends React.Component<Props, State> {
 
   render() {
     let { user, classes } = this.props;
-    const defaults = {
-      displayName: "User McUserFace",
-      photoURL: "img/profile_pic.png"
-    };
+
     return (
       <div className={classes.ProfilePage}>
         <h1 className={classes.name}>

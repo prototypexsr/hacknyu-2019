@@ -1,6 +1,6 @@
 import { auth, provider, storage } from "../../firebase";
 import { push } from "connected-react-router";
-import { delay } from "../utils";
+import { UNRESTRICTED_ROUTES } from "../constants";
 export const REFRESH_WINDOW_DIMENSIONS = "core/REFRESH_WINDOW_DIMENSIONS";
 
 export const LOGIN_PENDING = "core/LOGIN_PENDING";
@@ -43,6 +43,27 @@ export const refreshWindowDimensions = () => ({
   payload: {}
 });
 
+export const loadInitialState = location => dispatch => {
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      dispatch({
+        type: ADD_USER,
+        payload: user
+      });
+    } else {
+      // If not in the routes that are unrestricted,
+      // redirect to login. I'm filtering by unrestricted
+      // because I'd prefer to accidentally redirect to login
+      // versus accidentally showing restricted pages
+      if (!UNRESTRICTED_ROUTES.has(location.pathname)) {
+        dispatch(push("/login"));
+      }
+      dispatch({
+        type: DELETE_USER
+      });
+    }
+  });
+};
 export const logout = () => dispatch => {
   auth
     .signOut()

@@ -171,14 +171,6 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
     return formData;
   }
 
-  // https://reactjs.org/docs/react-component.html#shouldcomponentupdate
-  // We should make this cleaner?
-  shouldComponentUpdate(nextProps: Props, nextState: object): boolean {
-    if (!nextProps.user) {
-      nextProps.push("/login");
-    }
-    return true;
-  }
 
   handleSubmit = values => {
     const { user } = this.props;

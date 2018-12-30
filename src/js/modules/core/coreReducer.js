@@ -20,7 +20,13 @@ import {
   UPDATE_PASSWORD_PENDING,
   RESET_PASSWORD_PENDING,
   UPLOAD_PROFILE_PICTURE_FULFILLED,
-  UPLOAD_PROFILE_PICTURE_REJECTED
+  UPLOAD_PROFILE_PICTURE_REJECTED,
+  SUBMIT_APP_PENDING,
+  SUBMIT_APP_FULFILLED,
+  SUBMIT_APP_REJECTED,
+  UPLOAD_RESUME_PENDING,
+  UPLOAD_RESUME_FULFILLED,
+  UPLOAD_RESUME_REJECTED
 } from "./coreActions";
 
 // getWindowWidth & getWindowHeight was
@@ -47,8 +53,10 @@ const initialState = {
   user: undefined,
   errors: {},
   notifications: {},
+  applyForm: { isSubmitting: false },
   loginForm: { isSubmitting: false },
   registerForm: { isSubmitting: false },
+  resumeForm: { isSubmitting: false },
   resetPasswordForm: { isSubmitting: false },
   updatePasswordForm: { isSubmitting: false },
   passwordEmailSent: false,
@@ -68,6 +76,42 @@ const reducer = (state = { ...initialState }, action) => {
         // override width/height which will refresh app view
         return Object.assign({ ...state }, { viewportWidth, viewportHeight });
       } else return state; //otherwise do not mutate
+    case UPLOAD_RESUME_PENDING:
+      return { ...state, resumeForm: { isSubmitting: true } };
+    case UPLOAD_RESUME_FULFILLED:
+      return {
+        ...state,
+        resumeForm: { isSubmitting: true },
+        notifications: {
+          ...state.notifications,
+          resume: action.payload
+        }
+      };
+    case UPLOAD_RESUME_REJECTED:
+      return {
+        ...state,
+        errors: { ...state.errors, resume: action.payload.message }
+      };
+    case SUBMIT_APP_PENDING:
+      return {
+        ...state,
+        applyForm: { isSubmitting: true }
+      };
+    case SUBMIT_APP_FULFILLED:
+      return {
+        ...state,
+        applyForm: { isSubmitting: false },
+        notifications: {
+          ...state.notifications,
+          apply: action.payload
+        }
+      };
+    case SUBMIT_APP_REJECTED:
+      return {
+        ...state,
+        applyForm: { isSubmitting: false },
+        errors: { ...state.errors, apply: action.payload.message }
+      };
     case LOGIN_PENDING:
       return {
         ...state,
@@ -95,7 +139,7 @@ const reducer = (state = { ...initialState }, action) => {
         user: undefined,
         notifications: {
           ...state.notifications,
-          logout: "Successfully logged out"
+          logout: action.payload
         }
       };
     case LOGOUT_REJECTED:

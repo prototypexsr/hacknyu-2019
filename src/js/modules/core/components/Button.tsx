@@ -20,7 +20,7 @@ const styles = (theme: Theme): ButtonStyles<JssRules> => ({
     fontVariant: "small-caps",
     padding: "10px",
     border: "none",
-    fontSize: "1.2em",
+    fontSize: "1.5rem",
     transition: "background-color 0.4s",
     "&:hover": {
       backgroundColor: theme.submitButtonHover

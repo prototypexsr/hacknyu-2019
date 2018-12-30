@@ -1,7 +1,13 @@
-import { auth, provider, storage } from "../../firebase";
+import { db, auth, provider, storage } from "../../firebase";
 import { push } from "connected-react-router";
+
 import { UNRESTRICTED_ROUTES } from "../constants";
+
 export const REFRESH_WINDOW_DIMENSIONS = "core/REFRESH_WINDOW_DIMENSIONS";
+
+export const SUBMIT_APP_PENDING = "core/SUBMIT_APP_PENDING";
+export const SUBMIT_APP_FULFILLED = "core/SUBMIT_APP_FULFILLED";
+export const SUBMIT_APP_REJECTED = "core/SUBMIT_APP_REJECTED";
 
 export const LOGIN_PENDING = "core/LOGIN_PENDING";
 export const LOGIN_FULFILLED = "core/LOGIN_FULFILLED";
@@ -26,6 +32,10 @@ export const CLEAR_EMAIL_STATE = "core/CLEAR_EMAIL_STATE";
 
 export const CLEAR_ERROR = "core/CLEAR_ERROR";
 export const CLEAR_NOTIFICATION = "core/CLEAR_NOTIFICATION";
+
+export const UPLOAD_RESUME_PENDING = "core/UPLOAD_RESUME_PENDING";
+export const UPLOAD_RESUME_FULFILLED = "core/UPLOAD_RESUME_FULFILLED";
+export const UPLOAD_RESUME_REJECTED = "core/UPLOAD_RESUME_REJECTED";
 
 export const ADD_USER = "core/ADD_USER";
 export const DELETE_USER = "core/DELETE_USER";
@@ -64,12 +74,105 @@ export const loadInitialState = location => dispatch => {
     }
   });
 };
+
+export const uploadResume = (uid, file) => dispatch => {
+  dispatch({
+    type: UPLOAD_RESUME_PENDING
+  });
+  if (file.type !== "application/pdf") {
+    dispatch({
+      type: UPLOAD_RESUME_REJECTED,
+      payload: { message: "Invalid file type, resume must be a PDF" }
+    });
+    return;
+  }
+
+  const storageRef = storage.ref();
+  const resumeRef = storageRef.child(`users/${uid}/resume.pdf`);
+  return resumeRef
+    .put(file)
+    .then(() => {
+        const resumeTimestamp = new Date().toLocaleString();
+        return db
+          .collection("users")
+          .doc(uid)
+          .update({ resumeTimestamp })
+          .then(() => resumeTimestamp)
+      }
+    )
+    .then((timestamp) => {
+        dispatch({
+          type: UPLOAD_RESUME_FULFILLED,
+          payload: "Resume successfully uploaded"
+        })
+
+        return timestamp;
+      }
+    )
+    .catch(err => dispatch({ type: UPLOAD_RESUME_REJECTED, payload: err }));
+};
+
+// incomplete is a list of all incompleted form items
+export const submitApp = (appValues, incomplete) => dispatch => {
+  let isComplete = incomplete.length === 0;
+
+  if (!auth.currentUser) {
+    dispatch({
+      type: SUBMIT_APP_REJECTED,
+      payload: "Not logged in, please log in to submit app"
+    });
+    dispatch(push("/login"));
+    return;
+  }
+  let msg;
+  const currentTime = new Date();
+  if (isComplete) {
+    appValues.submittedDate = currentTime.toISOString();
+    msg = `Application submitted at ${currentTime.toLocaleString()}. Feel free to resubmit at any time.`;
+  } else {
+    // this a bit of a hack, but it works great! splits the incomplete field names (which are camel case) to human friendly strs
+    const readify = list =>
+      list
+        .map(val =>
+          val
+            .split(/(?=[A-Z])/)
+            .join(" ")
+            .toLowerCase()
+        )
+        .join(", ");
+
+    msg = "Application saved but NOT complete. Missing: " + readify(incomplete);
+  }
+
+  const uid = auth.currentUser.uid;
+  dispatch({
+    type: SUBMIT_APP_PENDING
+  });
+  return db
+    .collection("users")
+    .doc(uid)
+    .set(appValues)
+    .then(() =>
+      dispatch({
+        type: SUBMIT_APP_FULFILLED,
+        payload: msg
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: SUBMIT_APP_REJECTED,
+        payload: err
+      })
+    );
+};
+
 export const logout = () => dispatch => {
   auth
     .signOut()
     .then(() => {
       dispatch({
-        type: LOGOUT_FULFILLED
+        type: LOGOUT_FULFILLED,
+        payload: "Successfully logged out"
       });
       dispatch(push("/"));
     })

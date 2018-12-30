@@ -55,13 +55,19 @@ class ProfilePage extends React.Component<Props, State> {
 
   render() {
     let { user, classes } = this.props;
-
+    const defaults = {
+      displayName: "Add your name to the application!",
+      photoURL: "/img/blank-profile.png"
+    };
     return (
       <div className={classes.ProfilePage}>
         <h1 className={classes.name}>
           {user.displayName || defaults.displayName}
         </h1>
-        <ProfilePic photoURL={user.photoURL || defaults.photoURL} uid={user.uid}/>
+        <ProfilePic
+          photoURL={user.photoURL || defaults.photoURL}
+          uid={user.uid}
+        />
         <Button onClick={this.togglePasswordForm}>Change Password</Button>
         {this.state.isPasswordFormVisible && <PasswordForm />}
       </div>

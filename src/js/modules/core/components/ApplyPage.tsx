@@ -6,7 +6,7 @@ import { Form, Field } from "react-final-form";
 import { bindActionCreators, compose } from "redux";
 import { connect } from "react-redux";
 import { User } from "firebase";
-import { schools } from "./schools";
+import { schools } from "../schools";
 import { db } from "../../../firebase";
 import SchoolInput from "./SchoolInput";
 import Condition from "./Condition";

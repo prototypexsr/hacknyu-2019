@@ -22,7 +22,7 @@ const styles: SubwayLineStyles<JssRules> = {
   SubwayLine: {
     height: "15px",
     width: props =>
-      `${props.lineStep * (100 / STOPS_COUNT) + props.lineOffset}vw`,
+      `${props.lineStep * (100 / STOPS_COUNT)}vw`,
     transition: "width 1s",
     margin: "10px 0px 10px 0px",
     borderRadius: "10%",

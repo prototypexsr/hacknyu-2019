@@ -1,5 +1,8 @@
 // src/firebase.js
-import * as firebase from 'firebase'
+import firebase from 'firebase/app'
+import "firebase/auth"
+import "firebase/firestore"
+
 const config = {
     apiKey: "AIzaSyCCGrSjWVuB5GqGLfgkfA2uQT1EjX1Sjgc",
     authDomain: "hacknyu-3e0c8.firebaseapp.com",

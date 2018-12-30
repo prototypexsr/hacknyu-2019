@@ -3,7 +3,7 @@ import { User } from "firebase";
 import { Styles } from "react-jss";
 import Avatar from "./Avatar";
 import injectSheet from "react-jss/lib/injectSheet";
-import { Theme } from "../../types";
+import { JssRules, Theme } from "../../types";
 import { Link } from "react-router-dom";
 
 interface Props {
@@ -11,13 +11,13 @@ interface Props {
   user: User;
 }
 
-interface UserInfoStyles {
-  UserInfo: object;
-  greeting: object;
-  "@media (max-width: 800px)": object;
+interface UserInfoStyles<T> extends Styles {
+  UserInfo: T;
+  greeting: T;
+  "@media (max-width: 800px)": T;
 }
 
-const styles = (theme: Theme): UserInfoStyles => ({
+const styles = (theme: Theme): UserInfoStyles<JssRules> => ({
   UserInfo: {
     backgroundColor: theme.highlightColor,
     display: "flex",
@@ -27,6 +27,7 @@ const styles = (theme: Theme): UserInfoStyles => ({
     alignItems: "center",
     padding: "10px 10px 10px 20px",
     position: "fixed",
+    zIndex: "100",
     top: "0",
     right: "0",
     boxShadow: "-1px 1px 12px -2px rgba(0,0,0,0.75)"

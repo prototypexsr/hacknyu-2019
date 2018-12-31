@@ -36,7 +36,7 @@ interface ApplyPageStyles<T> extends Styles {
   checkbox: T;
   autocompleteItem: T;
   mlhPolicy: T;
-  genderOptions: T;
+  multipleCheckbox: T;
   termsAndConditions: T;
 }
 
@@ -63,7 +63,14 @@ interface FormData {
   timesParticipated: string;
   track: string;
   tshirtSize: string;
-  dietaryRestrictions: string;
+  // dietaryRestrictions: string;
+  
+  isVeggie: boolean;
+  isVegan: boolean;
+  isKosher: boolean;
+  isHalal: boolean;
+  isGlutenFree: boolean;
+
   allergies: string;
   codeOfConduct: boolean;
   privacyPolicy: boolean;
@@ -89,8 +96,7 @@ const requiredFields = [
   "track",
   "tshirtSize",
   // "resumeUpload",
-  "dietaryRestrictions",
-  "gender",
+  // "dietaryRestrictions",
   "codeOfConduct",
   "privacyPolicy"
 ];
@@ -159,7 +165,7 @@ const styles = (theme: Theme): ApplyPageStyles<JssRules> => ({
     maxWidth: "500px",
     lineHeight: "1.8rem"
   },
-  genderOptions: {
+  multipleCheckbox: {
     padding: "40px"
   },
   termsAndConditions: {
@@ -309,7 +315,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       <option value="prefer-not"> Prefer not to say </option>
                       <option value="other"> Other </option>
                     </Field>
-                    <fieldset className={classes.genderOptions}>
+                    <fieldset className={classes.multipleCheckbox}>
                       <legend className={classes.inputLabel}>
                         (Optional) What races/ethnicities do you most closely
                         identify with? Check all that apply.
@@ -317,21 +323,16 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       <Checkbox name="isAmericanNative">
                         American Indian / Alaskan Native
                       </Checkbox>
-
                       <Checkbox name="isAsianPacificIslander">
                         Asian / Pacific Islander
                       </Checkbox>
-
                       <Checkbox name="isBlackAfricanAmerican">
                         Black / African American
                       </Checkbox>
-
                       <Checkbox name="isHispanic">Hispanic</Checkbox>
-
                       <Checkbox name="isWhiteCaucasian">
                         White / Caucasian
                       </Checkbox>
-
                       <Checkbox name="isOther">Other</Checkbox>
                     </fieldset>
                     <Field
@@ -505,30 +506,21 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                     />
 
                     {/* TODO: this should be a checkbox group*/}
-                    <Field
-                      className={classes.input}
-                      label="Any dietary restrictions?"
-                      name="dietaryRestrictions"
-                      component={Select}
-                    >
-                      <option value=""> Select an option </option>
-                      <option value="none"> None </option>
-                      <option value="vegan"> Vegan </option>
-                      <option value="vegetarian"> Vegetarian </option>
-                      <option value="lactose-intolerant">
-                        Lactose Intolerant
-                      </option>
-                      <option value="kosher"> Kosher </option>
-                      <option value="halal"> Halal </option>
-                      <option value="gluten-free"> Gluten Free </option>
-                      <option value="pesca-pescatarian">
-                        Pesca-pescatarian
-                      </option>
-                    </Field>
+
+                    <fieldset className={classes.multipleCheckbox}>
+                      <legend className={classes.inputLabel}>
+                        Any dietary restrictions? Check all that apply.
+                      </legend>
+                      <Checkbox name="isVeggie">Vegetarian</Checkbox>
+                      <Checkbox name="isVegan">Vegan</Checkbox>
+                      <Checkbox name="isKosher">Kosher</Checkbox>
+                      <Checkbox name="isHalal">Halal</Checkbox>
+                      <Checkbox name="isGlutenFree">Gluten Free</Checkbox>
+                    </fieldset>
 
                     <Field
                       className={classes.input}
-                      label="(Optional) Any allergies?"
+                      label="(Optional) Any other dietary restrictions or allergies?"
                       name="allergies"
                       component={Input}
                     />
@@ -574,6 +566,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                         </button>
                       )}
                     />
+
                     <button
                       className={classes.submit}
                       type="submit"

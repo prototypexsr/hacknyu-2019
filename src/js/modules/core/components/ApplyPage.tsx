@@ -75,7 +75,7 @@ interface FormData {
 interface ApplyPageState {
   formData: FormData | null;
   isLoading: boolean;
-  isSubmitted: boolean;
+  isSaveEnabled: boolean;
 }
 
 const requiredFields = [
@@ -179,7 +179,6 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
     this.state = {
       isLoading: true,
       formData: undefined,
-      isSubmitted: false
     };
   }
 
@@ -195,6 +194,16 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
     if (this.props.user !== prevProps.user) {
       this.setFormState();
     }
+  }
+
+  enableSave() {
+    const submissionTimestamp = this.state.formData.submissionTimestamp;
+
+    if (submissionTimestamp != ''){
+      return true;
+    }
+
+    return false;
   }
 
   setFormState = async () => {
@@ -262,6 +271,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
   render() {
     let { classes, isSubmitting, user } = this.props;
     let { isLoading, formData } = this.state;
+    let isSaveEnabled = this.enableSave();
 
     return (
       <div className={classes.ApplyPage}>
@@ -574,7 +584,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                         <button
                           className={classes.submit}
                           onClick={() => this.handleSubmit(form.getState().values, form)}
-                          disabled={pristine || isSubmitting || this.state.isSubmitted}
+                          disabled={pristine || isSubmitting || isSaveEnabled}
                         >
                           Save
                         </button>

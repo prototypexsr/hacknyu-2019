@@ -168,11 +168,11 @@ export const logout = () => dispatch => {
   auth
     .signOut()
     .then(() => {
+      dispatch(push("/"));
       dispatch({
         type: LOGOUT_FULFILLED,
         payload: "Successfully logged out"
       });
-      dispatch(push("/"));
     })
     .catch(err => {
       dispatch({

@@ -15,6 +15,7 @@ import Input from "./Input";
 import Select from "./Select";
 import UploadResumeButton from "./UploadResumeButton";
 import { db } from "../../../firebase";
+import { States } from "./AnimatedAlert";
 
 
 interface Props {
@@ -68,11 +69,13 @@ interface FormData {
   codeOfConduct: boolean;
   privacyPolicy: boolean;
   resumeTimestamp: string; // timestamp
+  submissionTimestamp: string;
 }
 
 interface ApplyPageState {
   formData: FormData | null;
   isLoading: boolean;
+  isSubmitted: boolean;
 }
 
 const requiredFields = [
@@ -175,7 +178,8 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
     this.unmounted = false;
     this.state = {
       isLoading: true,
-      formData: undefined
+      formData: undefined,
+      isSubmitted: false
     };
   }
 
@@ -242,6 +246,8 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
     // This will reinit the form to submitted values (fixing pristine issue)
     this.props.submitApp(newValues, incomplete)
       .then(() => form.initialize(values));
+
+    this.setState({isSubmitted: this.state.formData.submissionTimestamp != '' ? true : false});
   };
 
   validateForm = (values: FormData): object => {
@@ -568,7 +574,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                         <button
                           className={classes.submit}
                           onClick={() => this.handleSubmit(form.getState().values, form)}
-                          disabled={pristine || isSubmitting}
+                          disabled={pristine || isSubmitting || this.state.isSubmitted}
                         >
                           Save
                         </button>

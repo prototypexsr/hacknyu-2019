@@ -1,6 +1,6 @@
 import * as React from "react";
 import injectSheet, { Styles } from "react-jss/lib/injectSheet";
-import { Theme } from "../../types";
+import { JssRules, Theme } from "../../types";
 import { Field, Form } from "react-final-form";
 import Button from "./Button";
 import { connect } from "react-redux";
@@ -11,14 +11,19 @@ import { register } from "../coreActions";
 import Input from "./Input";
 import { Link } from "react-router-dom";
 
-const styles = (theme: Theme): Styles => ({
+interface RegisterPageStyles<T> extends Styles {
+  RegisterPage: T;
+  loginLink: T;
+  form: T;
+};
+
+const styles = (theme: Theme): RegisterPageStyles<JssRules> => ({
   RegisterPage: {
     padding: "30px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    height: "100%",
-    width: "75%",
+    width: "75vw",
     color: theme.fontColor,
     backgroundColor: theme.formBackground
   },

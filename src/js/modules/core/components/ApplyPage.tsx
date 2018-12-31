@@ -98,7 +98,7 @@ const requiredFields = [
 const styles = (theme: Theme): ApplyPageStyles<JssRules> => ({
   ApplyPage: {
     display: "flex",
-    width: "80%",
+    width: "80vw",
     maxWidth: "1050px",
     flexDirection: "column",
     padding: "20px",
@@ -110,9 +110,9 @@ const styles = (theme: Theme): ApplyPageStyles<JssRules> => ({
   },
   form: {
     display: "flex",
+    width: "100%",
     flexDirection: "column",
     alignItems: "flex-start",
-    width: "100%",
     lineHeight: "1.3em",
     fontSize: "1.3rem"
   },
@@ -501,7 +501,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
 
                     <UploadResumeButton
                       uid={user.uid}
-                      resumeTimestamp={this.state.formData.resumeTimestamp}
+                      resumeTimestamp={formData && formData.resumeTimestamp}
                     />
 
                     {/* TODO: this should be a checkbox group*/}

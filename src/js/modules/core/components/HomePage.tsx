@@ -63,7 +63,7 @@ const styles = (theme: Theme): HomePageStyles<JssRules> => ({
     alignItems: "flex-start",
     justifyContent: "center",
     padding: "20px 0 0 0",
-    width: "100%"
+    width: "100vw"
   },
   info: {
     display: "flex",

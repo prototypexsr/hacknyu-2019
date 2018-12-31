@@ -38,8 +38,8 @@ const styles = (theme: Theme): LoginPageStyles<JssRules> => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    height: "100%",
-    width: "75%",
+    height: "100vh",
+    width: "75vw",
     color: theme.fontColor,
     backgroundColor: theme.formBackground
   },

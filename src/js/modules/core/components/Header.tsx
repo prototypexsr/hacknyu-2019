@@ -7,11 +7,21 @@ import { loginWithGoogle, logout } from "../coreActions";
 import { User } from "firebase";
 import { Theme } from "../../types";
 
-const styles = (theme: Theme): Styles => ({
+interface HeaderStyles<T> extends Styles {
+  Header: T;
+  masthead: T;
+  headerText: T;
+  link: T;
+  links: T;
+  locations: T;
+  dot: T;
+  "@media (max-width: 800px)": T;
+  bullet: T;
+}
+const styles = (theme: Theme): HeaderStyles => ({
   Header: {
     minHeight: "300px",
-    width: "100%",
-    height: "100%",
+    width: "100vw",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -38,14 +48,10 @@ const styles = (theme: Theme): Styles => ({
     color: theme.fontColor
   },
   links: {
-    width: "100%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     paddingTop: "20px"
-  },
-  error: {
-    color: "red"
   },
   locations: {
     paddingTop: "40px",
@@ -65,7 +71,7 @@ const styles = (theme: Theme): Styles => ({
       minHeight: "200px"
     },
     headerText: {
-      maxWidth: "80%",
+      maxWidth: "80vw",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",

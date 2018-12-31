@@ -66,7 +66,6 @@ const styles = (theme: Theme): TrackInfoStyles<JssRules> => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    height: "100%",
     minWidth: "50px",
     paddingRight: "20px"
   },

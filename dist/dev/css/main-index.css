@@ -5,8 +5,8 @@ html {
 html, body
 {
     padding    : 0;
-    width      : 100%;
-n    height     : 100%;
+    width      : 100vw;
+    height     : 100vh;
     background-color: #e3f2fd;
     min-width  : 360px !important;
     margin     : 0 auto;

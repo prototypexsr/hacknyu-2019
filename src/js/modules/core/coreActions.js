@@ -92,23 +92,21 @@ export const uploadResume = (uid, file) => dispatch => {
   return resumeRef
     .put(file)
     .then(() => {
-        const resumeTimestamp = new Date().toLocaleString();
-        return db
-          .collection("users")
-          .doc(uid)
-          .update({ resumeTimestamp })
-          .then(() => resumeTimestamp)
-      }
-    )
-    .then((timestamp) => {
-        dispatch({
-          type: UPLOAD_RESUME_FULFILLED,
-          payload: "Resume successfully uploaded"
-        })
+      const resumeTimestamp = new Date().toLocaleString();
+      return db
+        .collection("users")
+        .doc(uid)
+        .update({ resumeTimestamp })
+        .then(() => resumeTimestamp);
+    })
+    .then(timestamp => {
+      dispatch({
+        type: UPLOAD_RESUME_FULFILLED,
+        payload: "Resume successfully uploaded"
+      });
 
-        return timestamp;
-      }
-    )
+      return timestamp;
+    })
     .catch(err => dispatch({ type: UPLOAD_RESUME_REJECTED, payload: err }));
 };
 

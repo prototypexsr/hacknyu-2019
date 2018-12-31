@@ -38,8 +38,7 @@ const styles = (theme: Theme): MainAppStyles<object> => ({
     width: "100vw",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
-    padding: "0"
+    alignItems: "center"
   },
   loadingScreen: {
     fontFamily: theme.fontFamily,

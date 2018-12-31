@@ -21,7 +21,7 @@ const styles: TimelineDescriptionStyles<JssRules> = {
     display: "flex",
     flexDirection: "column",
     top: props => props.top,
-    maxWidth: "50px",
+    maxWidth: "150px",
     fontSize: "1.2em",
     left: props => props.left
   },

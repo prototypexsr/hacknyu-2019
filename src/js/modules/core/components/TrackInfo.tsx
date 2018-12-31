@@ -40,10 +40,11 @@ interface Props {
 
 const styles = (theme: Theme): TrackInfoStyles<JssRules> => ({
   TrackInfo: {
-    margin: "0 5% 0 5%"
+    backgroundColor: theme.secondBackground,
+    margin: "0 8% 5% 11%"
   },
   header: {
-    fontSize: "2.5em"
+    fontSize: "2em"
   },
   tracks: {
     display: "grid",
@@ -52,7 +53,7 @@ const styles = (theme: Theme): TrackInfoStyles<JssRules> => ({
     minHeight: "750px"
   },
   description: {
-    maxWidth: "800px",
+    maxWidth: "800px"
   },
   bullet: {
     fontSize: "1.4rem",
@@ -76,9 +77,6 @@ const styles = (theme: Theme): TrackInfoStyles<JssRules> => ({
     },
     header: {
       paddingLeft: "20px"
-    },
-    TrackInfo: {
-      margin: "0 3% 15% 3%"
     }
   }
 });
@@ -86,7 +84,7 @@ const styles = (theme: Theme): TrackInfoStyles<JssRules> => ({
 const TrackInfo: React.SFC<Props> = ({ classes }) => {
   return (
     <div className={classes.TrackInfo}>
-      <h1 className={classes.header}> Tracks </h1>
+      <h1 className={classes.header}> TRACKS </h1>
       <div className={classes.tracks}>
         <Track
           id={0}

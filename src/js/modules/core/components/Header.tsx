@@ -20,38 +20,36 @@ interface HeaderStyles<T> extends Styles {
 }
 const styles = (theme: Theme): HeaderStyles => ({
   Header: {
-    minHeight: "300px",
-    width: "100vw",
+    height: "100%",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "flex-start"
-  },
-  masthead: {
-    margin: "0px",
-    padding: "0px",
-    fontSize: "3rem",
-    transition: "font-size 1s"
-  },
-  headerText: {
-    padding: "20px",
-    margin: "0px",
-    backgroundColor: theme.highlightColor,
-    color: theme.secondFont,
-    "a:hover": {
-      textDecoration: "none"
-    }
+    justifyContent: "flex-start",
+    width: "100%",
+    maxWidth: theme.containerWidth,
   },
   link: {
     display: "flex",
     flexDirection: "row",
-    color: theme.fontColor
+    fontSize: "1.4em",
+    fontWeight: "bold",
+    marginRight: "1em",
+    color: theme.fontColor,
+    "&:hover": {
+      textDecoration: "underline",
+    },
+    "&:active": {
+      textDecoration: "underline",
+    },
   },
   links: {
+    width: "100%",
+    height: "6.5em",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
-    paddingTop: "20px"
+  },
+  error: {
+    color: "red"
   },
   locations: {
     paddingTop: "40px",
@@ -78,12 +76,8 @@ const styles = (theme: Theme): HeaderStyles => ({
       fontSize: "1em"
     },
     link: {
-      fontSize: "0.75em",
-      padding: "8px"
+      fontSize: "1em",
     }
-  },
-  bullet: {
-    display: "flex"
   }
 });
 
@@ -98,58 +92,32 @@ interface Props {
 const Header: React.SFC<Props> = ({ classes, user, logout, viewportWidth }) => {
   return (
     <div className={classes.Header}>
-      <div className={classes.locations}>
-        New York &mdash; Shanghai &mdash; Abu Dhabi
-      </div>
-      <div className={classes.masthead}>
-        <Link to="/">
-          <h1 className={classes.headerText}> HackNYU </h1>
-        </Link>
-      </div>
       <div className={classes.links}>
-        <h1>
-          <span className={classes.bullet}>
-            <Link to="/about">
-              <div className={classes.link}>About Us</div>
+            <Link to="/">
+                <div className={classes.link}>HOME</div>
             </Link>
-            {viewportWidth > 800 && <div className={classes.dot}>&bull;</div>}
-          </span>
-        </h1>
-        {user
-          ? [
-              <h1 key={0}>
-                <span className={classes.bullet}>
-                  <a href="#" className={classes.link} onClick={logout}>
-                    Log Out
-                  </a>
-                  {viewportWidth > 800 && (
-                    <div className={classes.dot}>&bull;</div>
-                  )}
-                </span>
-              </h1>,
-              <h1 key={1}>
-                <Link to="/my_profile" className={classes.link}>
-                  My Profile
-                </Link>
-              </h1>
-            ]
-          : [
-              <h1 key={0}>
-                <span className={classes.bullet}>
-                  <Link to="/login" className={classes.link}>
-                    Login
-                  </Link>
-                  {viewportWidth > 800 && (
-                    <div className={classes.dot}>&bull;</div>
-                  )}
-                </span>
-              </h1>,
-              <h1 key={1}>
-                <Link to="/register" className={classes.link}>
-                  Register
-                </Link>
-              </h1>
-            ]}
+            <Link to="/about">
+                <div className={classes.link}>ABOUT</div>
+            </Link>
+        {user ? (
+          [
+            <Link to="/my_profile" className={classes.link} key={1}>
+              PROFILE
+            </Link>,
+            <a key={0} href="#" className={classes.link} onClick={logout}>
+              LOGOUT
+            </a>
+          ]
+          ) : (
+          [
+            <Link to="/login" className={classes.link}>
+              LOGIN
+            </Link>,
+            <Link to="/register" className={classes.link}>
+              REGISTER
+            </Link>
+          ]
+        )}
       </div>
     </div>
   );

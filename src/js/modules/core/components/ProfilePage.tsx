@@ -26,13 +26,16 @@ interface State {
 
 const styles = (theme: Theme): ProfilePageStyles<JssRules> => ({
   ProfilePage: {
-    width: "80vw",
+    width: "100%",
+    maxWidth: theme.containerWidth,
     height: "100vh",
-    padding: "20px",
+    paddingTop: "3em",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    backgroundColor: theme.formBackground
+    backgroundColor: theme.formBackground,
+    borderRadius: "5px",
+    color: theme.secondFont
   },
   name: {
     paddingBottom: "5%"
@@ -64,11 +67,8 @@ class ProfilePage extends React.Component<Props, State> {
         <h1 className={classes.name}>
           {user.displayName || defaults.displayName}
         </h1>
-        <ProfilePic
-          photoURL={user.photoURL || defaults.photoURL}
-          uid={user.uid}
-        />
-        <Button onClick={this.togglePasswordForm}>Change Password</Button>
+        <ProfilePic photoURL={user.photoURL || defaults.photoURL} uid={user.uid}/>
+        <Button onClick={this.togglePasswordForm}>CHANGE PASSWORD</Button>
         {this.state.isPasswordFormVisible && <PasswordForm />}
       </div>
     );

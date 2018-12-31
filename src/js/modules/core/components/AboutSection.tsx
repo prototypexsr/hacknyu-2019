@@ -35,10 +35,9 @@ const styles = (theme: Theme): AboutSectionStyles<JssRules> => ({
     justifyContent: "center",
     boxShadow: "4px 7px 21px -2px rgba(0,0,0,0.75)"
   },
-  fancyRectangle: {
-    height: "4px",
-    width: "45px",
-    backgroundColor: theme.secondFont
+  underline: {
+    border: "2px solid #6fb1f5",
+    width: "2em"
   },
   intro: {
     fontSize: "1.4rem",
@@ -47,7 +46,7 @@ const styles = (theme: Theme): AboutSectionStyles<JssRules> => ({
     lineHeight: "1.1em"
   },
   title: {
-    fontSize: "2.5em"
+    fontSize: "2em"
   },
 });
 
@@ -55,8 +54,8 @@ const AboutSection: React.SFC<Props> = ({ classes }) => {
   return (
     <div className={classes.AboutSection}>
       <div className={classes.content}>
-        <h1 className={classes.title}> About </h1>
-        <div className={classes.fancyRectangle} />
+        <h1 className={classes.title}> ABOUT </h1>
+        <hr className={classes.underline} />
         <p className={classes.intro}>
           HackNYU is NYU's annual hackathon. It takes place simultaneously in
           New York, Abu Dhabi and Shanghai over 48 hours. HackNYU is free, and

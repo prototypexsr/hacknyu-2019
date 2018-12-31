@@ -11,33 +11,53 @@ interface Props {
   user: User;
 }
 const styles = (theme: Theme): Styles => ({
-  apply: {
-    marginTop: "45px",
-    padding: "10px 20px 10px 20px",
-    fontSize: "2.25em",
-    fontVariant: "small-caps",
+  hero: {
+    maxWidth: theme.containerWidth,
+    width: "100%",
+    paddingTop: "4em",
+    paddingBottom: "4em",
+    textAlign: "center",
+  },
+  title: {
+    margin: "0.15em 0em",
+    fontSize: "3.6em",
+  },
+  subtitle: {
+    fontWeight: "400",
+    fontSize: "1.8em",
+    marginBottom: "1em",
+  },
+  register: {
+    marginTop: "0.8em",
+    margin: "0 auto",
+    padding: "15px 35px 15px 35px",
+    borderRadius: "5px",
+    fontSize: "1.2em",
     backgroundColor: theme.highlightColor,
-    color: theme.secondFont,
+    color: theme.backgroundColor,
+    fontWeight: "bold",
     transition: "color 1s, background-color 1s",
+    width: "fit-content",
     "&:hover": {
       backgroundColor: theme.highlightColorHover,
-      textDecoration: "none"
+    }
+  },
+  button: {
+    "&:hover": {
+      textDecoration: "none",
     }
   }
 });
 const ApplyButton: React.SFC<Props> = ({ user, classes }) => {
-  if (user) {
-    return (
-      <Link to="/apply">
-        <div className={classes.apply}> Apply</div>
-      </Link>
-    );
-  }
   return (
-    <Link to="/login">
-      <div className={classes.apply}>Apply</div>
-    </Link>
-  );
+    <div className={classes.hero}>
+      <h1 className={classes.title}>HackNYU</h1>
+      <h3 className={classes.subtitle}>Feb 15—17, 2019</h3>
+      <Link to={user ? "/apply" : "/register"} className={classes.button}>
+        <div className={classes.register}>{user ? "APPLY" : "REGISTER"}</div>
+      </Link>
+    </div>
+  )
 };
 
 const mapStateToProps = (state: ReduxState) => ({

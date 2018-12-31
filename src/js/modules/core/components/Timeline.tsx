@@ -22,7 +22,10 @@ const styles = (theme: Theme): TimelineStyles<JssRules> => ({
   Timeline: {
     display: "flex",
     flexDirection: "column",
-    color: "white"
+    color: theme.secondFont
+  },
+  title: {
+    marginBottom: "3em"
   },
   descriptions: {
     height: "40px",
@@ -44,6 +47,7 @@ const styles = (theme: Theme): TimelineStyles<JssRules> => ({
 const Timeline: React.SFC<Props> = ({ classes }) => {
   return (
     <div className={classes.Timeline}>
+      <h1 className={classes.title}>TIMELINE</h1>
       <div className={classes.descriptions}>
         <TimelineDescription left="0vw" top="60px">
           <b>Jan 18:</b> Registration

@@ -19,10 +19,11 @@ const styles: TimelineStopStyles<JssRules> = {
     position: "absolute",
     left: props => props.left,
     top: props => props.top,
-    height: "22px",
-    width: "22px",
+    height: "19px",
+    width: "19px",
     borderRadius: "50%",
-    backgroundColor: props => props.color
+    backgroundColor: props => props.color,
+    border: "3px solid black"
   }
 }
 

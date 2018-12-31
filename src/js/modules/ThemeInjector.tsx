@@ -10,25 +10,24 @@ interface Props {
 }
 
 export const trackColors = {
-  red: "#ff1616",
-  orange: "#ffaf1a",
-  green: "#4ba343",
-  blue: "#007fcc"
+  red: "#d14d4d",
+  orange: "#f7c15d",
+  green: "#619b5b",
+  blue: "#63a0c6"
 };
 
 const theme: Theme = {
-  backgroundColor: "#e3f2fd",
-  secondBackgroundHighlight: "#46769b",
-  secondBackground: "#416788",
-  thirdBackground: "#2b4570",
-  fontColor: "#363731",
-  secondFont: "#fafafa",
-  secondFontHover: "#f0f0f0",
-  highlightColor: "#db5461",
-  highlightColorHover: "#b4505a",
+  backgroundColor: "#57068c",
+  secondBackground: "#fefefe",
+  thirdBackground: "#57068c",
+  fontColor: "#fefefe",
+  secondFont: "#1b1b1b",
+  secondFontHover: "#f0f0f0", 
+  highlightColor: "#fefefe",
+  highlightColorHover: "#eeeeee",
   formBackground: "#fafafa",
-  submitButton: "#46a9b7",
-  submitButtonHover: "#4497a5",
+  submitButton: "#9d77b5",
+  submitButtonHover: "#bc9bd1",
   fontFamily: "mr-eaves-xl-modern, sans-serif",
   inputPadding: "7px 10px",
   errorText: "#444444",
@@ -36,6 +35,8 @@ const theme: Theme = {
   errorBorder: "red",
   notificationBackground: "#fefefe",
   notificationBorder: "#000000",
+  containerWidth: "62.5em",
+  containerSmallWidth: "28em",
   overlayColor: "#696969",
   ...trackColors
 };

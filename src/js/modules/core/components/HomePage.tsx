@@ -45,7 +45,7 @@ const styles = (theme: Theme): HomePageStyles<JssRules> => ({
   },
   timelineSection: {
     background: `linear-gradient(${theme.secondBackground}, ${
-      theme.thirdBackground
+      theme.secondBackground
     })`,
     display: "flex",
     alignItems: "center",
@@ -53,7 +53,7 @@ const styles = (theme: Theme): HomePageStyles<JssRules> => ({
     minHeight: "400px"
   },
   tracksSection: {
-    backgroundColor: theme.thirdBackground,
+    backgroundColor: theme.secondBackground,
     color: theme.secondFont
   },
   lines: {
@@ -63,13 +63,11 @@ const styles = (theme: Theme): HomePageStyles<JssRules> => ({
     alignItems: "flex-start",
     justifyContent: "center",
     padding: "20px 0 0 0",
-    width: "100vw"
+    width: "100%"
   },
   info: {
     display: "flex",
-    flexDirection: "column",
-    // Small hack for Chrome. Not sure why.
-    backgroundColor: theme.thirdBackground
+    flexDirection: "column"
   },
   timeline: {
     width: "20vw"

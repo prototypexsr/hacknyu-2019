@@ -10,12 +10,12 @@ import { User } from "firebase";
 import { schools } from "../schools";
 import SchoolInput from "./SchoolInput";
 import Condition from "./Condition";
+import Button from './Button';
 import Checkbox from "./Checkbox";
 import Input from "./Input";
 import Select from "./Select";
 import UploadResumeButton from "./UploadResumeButton";
 import { db } from "../../../firebase";
-
 
 interface Props {
   classes: ApplyPageStyles<string>;
@@ -104,15 +104,18 @@ const requiredFields = [
 const styles = (theme: Theme): ApplyPageStyles<JssRules> => ({
   ApplyPage: {
     display: "flex",
-    width: "80vw",
-    maxWidth: "1050px",
+    width: "100%",
+    maxWidth: theme.containerWidth,
     flexDirection: "column",
-    padding: "20px",
     alignItems: "center",
-    backgroundColor: theme.formBackground
+    backgroundColor: theme.formBackground,
+    color: theme.secondFont,
+    borderRadius: "0.5em",
+    paddingTop: "3em",
+    paddingBottom: "2em"
   },
   header: {
-    padding: "10px"
+    padding: "10px",
   },
   form: {
     display: "flex",
@@ -120,7 +123,7 @@ const styles = (theme: Theme): ApplyPageStyles<JssRules> => ({
     flexDirection: "column",
     alignItems: "flex-start",
     lineHeight: "1.3em",
-    fontSize: "1.3rem"
+    fontSize: "1.5em",
   },
   inputs: {
     display: "flex",
@@ -132,13 +135,12 @@ const styles = (theme: Theme): ApplyPageStyles<JssRules> => ({
     lineHeight: "1.8rem"
   },
   submit: {
-    width: "150px",
+    width: "fit-content",
     padding: "5px",
     backgroundColor: theme.highlightColor,
     fontSize: "1em",
     border: "none",
-    color: theme.secondFont,
-    margin: "20px",
+    color: theme.fontColor,
     "&:disabled": {
       backgroundColor: theme.highlightColorHover
     }
@@ -165,7 +167,17 @@ const styles = (theme: Theme): ApplyPageStyles<JssRules> => ({
     maxWidth: "500px",
     lineHeight: "1.8rem"
   },
-  multipleCheckbox: {
+  underline: {
+    border: "2px solid #6fb1f5",
+    width: "2em"
+  },
+  genderOptions: {
+    padding: "40px"
+  },
+  termsAndConditions: {
+    padding: "15px"
+  },
+  genderOptions: {
     padding: "40px"
   },
   termsAndConditions: {
@@ -265,7 +277,8 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
 
     return (
       <div className={classes.ApplyPage}>
-        <h1 className={classes.header}> Apply </h1>
+        <h1 className={classes.header}>APPLY</h1>
+        <hr className={classes.underline}></hr>
         {isLoading ? (
           <div className={classes.loadingText}> Loading form... </div>
         ) : (
@@ -566,14 +579,13 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                         </button>
                       )}
                     />
-
-                    <button
+                    <Button
                       className={classes.submit}
                       type="submit"
                       disabled={pristine || invalid || isSubmitting}
                     >
-                      Submit
-                    </button>
+                      SUBMIT
+                    </Button>
                   </div>
                 </form>
               </div>

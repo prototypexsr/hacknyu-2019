@@ -379,7 +379,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                           Graduate School of Arts and Science
                         </option>
                         <option value="stern">
-                          Leonard M. Stern School of Business
+                          Leonard N. Stern School of Business
                         </option>
                         <option value="nursing">
                           Rory Meyers College of Nursing

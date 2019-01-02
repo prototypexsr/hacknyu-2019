@@ -41,7 +41,9 @@ interface InputStyles<T> extends Styles {
 const styles = (theme: Theme): InputStyles<JssRules> => ({
   label: {
     padding: "5px",
-    width: "150px"
+    width: "150px",
+    display: "flex",
+    alignItems: "center"
   },
   error: {
     color: "red",
@@ -59,6 +61,7 @@ const styles = (theme: Theme): InputStyles<JssRules> => ({
   Input: {
     display: "flex",
     flexDirection: "column",
+    justifyContent: "center",
     fontSize: "1.3rem",
     padding: "15px"
   },

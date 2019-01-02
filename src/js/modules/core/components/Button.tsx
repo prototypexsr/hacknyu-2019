@@ -28,7 +28,7 @@ const styles = (theme: Theme): ButtonStyles<JssRules> => ({
       backgroundColor: theme.submitButtonHover
     },
     '&:disabled': {
-      backgroundColor: theme.submitButtonHover
+      backgroundColor: theme.submitButtonDeactivated
     }
   }
 });
@@ -44,7 +44,7 @@ interface Props {
 const Button: React.SFC<Props & React.HTMLAttributes> = props => {
   const { classes, children } = props;
   return (
-    <button {...props} className={classes.button}>
+    <button {...props} className={`${classes.button} ${props.className}`}>
       {children}
     </button>
   );

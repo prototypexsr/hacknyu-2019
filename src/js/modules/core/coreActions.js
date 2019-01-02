@@ -37,8 +37,15 @@ export const UPLOAD_RESUME_PENDING = "core/UPLOAD_RESUME_PENDING";
 export const UPLOAD_RESUME_FULFILLED = "core/UPLOAD_RESUME_FULFILLED";
 export const UPLOAD_RESUME_REJECTED = "core/UPLOAD_RESUME_REJECTED";
 
+export const GET_FORM_DATA_FULFILLED = "core/GET_FORM_DATA_FULFILLED";
+export const GET_FORM_DATA_REJECTED = "core/GET_FORM_DATA_REJECTED";
+
 export const ADD_USER = "core/ADD_USER";
 export const DELETE_USER = "core/DELETE_USER";
+
+export const LOADING_FULFILLED = "core/LOADING_FULFILLED";
+export const LOADING_REJECTED = "core/LOADING_REJECTED";
+
 export const UPLOAD_PROFILE_PICTURE_PENDING =
   "core/UPLOAD_PROFILE_PICTURE_PENDING";
 
@@ -53,6 +60,30 @@ export const refreshWindowDimensions = () => ({
   payload: {}
 });
 
+const getUserData = user => dispatch => {
+  db.collection("users")
+    .doc(user.uid)
+    .get()
+    .then(doc => {
+      dispatch({
+        type: GET_FORM_DATA_FULFILLED,
+        payload: doc.data()
+      });
+      dispatch({
+        type: LOADING_FULFILLED
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_FORM_DATA_REJECTED,
+        payload: err
+      });
+      dispatch({
+        type: LOADING_REJECTED
+      });
+    });
+};
+
 export const loadInitialState = location => dispatch => {
   auth.onAuthStateChanged(user => {
     if (user) {
@@ -60,6 +91,7 @@ export const loadInitialState = location => dispatch => {
         type: ADD_USER,
         payload: user
       });
+      dispatch(getUserData(user));
     } else {
       // If not in the routes that are unrestricted,
       // redirect to login. I'm filtering by unrestricted
@@ -70,6 +102,9 @@ export const loadInitialState = location => dispatch => {
       }
       dispatch({
         type: DELETE_USER
+      });
+      dispatch({
+        type: LOADING_FULFILLED
       });
     }
   });
@@ -110,10 +145,7 @@ export const uploadResume = (uid, file) => dispatch => {
     .catch(err => dispatch({ type: UPLOAD_RESUME_REJECTED, payload: err }));
 };
 
-// incomplete is a list of all incompleted form items
-export const submitApp = (appValues, incomplete) => dispatch => {
-  let isComplete = incomplete.length === 0;
-
+export const submitApp = (appValues, incompleteFields) => dispatch => {
   if (!auth.currentUser) {
     dispatch({
       type: SUBMIT_APP_REJECTED,
@@ -122,38 +154,39 @@ export const submitApp = (appValues, incomplete) => dispatch => {
     dispatch(push("/login"));
     return;
   }
-  let msg;
+
+  const uid = auth.currentUser.uid;
   const currentTime = new Date();
-  if (isComplete) {
-    appValues.submittedDate = currentTime.toISOString();
-    msg = `Application submitted at ${currentTime.toLocaleString()}. Feel free to resubmit at any time.`;
-  } else {
+  let message, data;
+  // If form is complete
+  if (incompleteFields.length !== 0) {
     // this a bit of a hack, but it works great! splits the incomplete field names (which are camel case) to human friendly strs
     const readify = list =>
       list
-        .map(val =>
-          val
-            .split(/(?=[A-Z])/)
-            .join(" ")
-            .toLowerCase()
-        )
-        .join(", ");
-
-    msg = "Application saved but NOT complete. Missing: " + readify(incomplete);
+      .map(val => val.name)
+      .join(", ");
+    data = appValues;
+    message = "Application saved but NOT complete. Missing: " + readify(incompleteFields);
+  } else {
+    data = {
+      submitTimestamp:  currentTime,
+      ...appValues
+    };
+    message = `Application submitted at ${currentTime.toLocaleString()}. \
+  Feel free to resubmit at any time.`;
   }
 
-  const uid = auth.currentUser.uid;
   dispatch({
     type: SUBMIT_APP_PENDING
   });
   return db
     .collection("users")
     .doc(uid)
-    .set(appValues)
+    .set(data)
     .then(() =>
       dispatch({
         type: SUBMIT_APP_FULFILLED,
-        payload: msg
+        payload: { message, ...data }
       })
     )
     .catch(err =>
@@ -202,6 +235,9 @@ export const loginWithPassword = ({ password, email }) => dispatch => {
         type: LOGIN_FULFILLED,
         payload: user
       });
+      return dispatch(getUserData(user));
+    })
+    .then(() => {
       dispatch(push("/apply"));
     })
     .catch(err => {

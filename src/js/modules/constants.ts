@@ -7,6 +7,9 @@ export const ALERT_TIME_INTERVALS = {
   ANIMATION_TIME: 2000
 };
 
-export const UNRESTRICTED_ROUTES
-  = new Set(["/", "/about", "/login", "/register"]);
-
+export const UNRESTRICTED_ROUTES = new Set([
+  "/",
+  "/about",
+  "/login",
+  "/register"
+]);

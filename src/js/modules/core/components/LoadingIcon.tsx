@@ -13,6 +13,7 @@ interface Props {
   padding: number | string;
   classes: { [s: string]: string };
 }
+
 const styles = (theme: Theme): LoadingIconStyles<JssRules> => ({
   LoadingIcon: {
     display: "inline-block",
@@ -25,8 +26,8 @@ const styles = (theme: Theme): LoadingIconStyles<JssRules> => ({
       display: "block",
       margin: "1px",
       borderRadius: "50%",
-      border: `5px solid ${theme.formBackground}`,
-      borderColor: `${theme.formBackground} transparent ${theme.formBackground} transparent`,
+      border: `5px solid ${theme.secondBackground}`,
+      borderColor: `${theme.secondBackground} transparent ${theme.secondBackground} transparent`,
       animation: "lds-dual-ring 1.2s linear infinite"
     },
     padding: (props: Props) => props.padding,

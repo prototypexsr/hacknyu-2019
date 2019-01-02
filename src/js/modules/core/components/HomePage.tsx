@@ -1,19 +1,17 @@
 import * as React from "react";
 import injectSheet, { Styles } from "react-jss";
 import { JssRules, Theme } from "../../types";
-import AnimatedSubwayLine from "./AnimatedSubwayLine";
 import ApplyButton from "./ApplyButton";
 import TrackInfo from "./TrackInfo";
 import AboutSection from "./AboutSection";
-import { trackColors } from "../../ThemeInjector";
 import Timeline from "./Timeline";
+import AnimatedSubwayLines from "./AnimatedSubwayLines";
 
 interface HomePageStyles<T> extends Styles {
   HomePage: T;
   aboutSection: T;
   timelineSection: T;
   tracksSection: T;
-  lines: T;
   info: T;
   timeline: T;
 }
@@ -56,15 +54,6 @@ const styles = (theme: Theme): HomePageStyles<JssRules> => ({
     backgroundColor: theme.secondBackground,
     color: theme.secondFont
   },
-  lines: {
-    display: "flex",
-    minHeight: "300px",
-    flexDirection: "column",
-    alignItems: "flex-start",
-    justifyContent: "center",
-    padding: "20px 0 0 0",
-    width: "100%"
-  },
   info: {
     display: "flex",
     flexDirection: "column"
@@ -84,12 +73,7 @@ class HomePage extends React.Component<Props, State> {
     return (
       <div className={classes.HomePage}>
         <ApplyButton />
-        <div className={classes.lines}>
-          <AnimatedSubwayLine color={trackColors.green} />
-          <AnimatedSubwayLine color={trackColors.red} />
-          <AnimatedSubwayLine color={trackColors.blue} />
-          <AnimatedSubwayLine color={trackColors.orange} />
-        </div>
+        <AnimatedSubwayLines/>
         <div className={classes.info}>
           <div className={classes.aboutSection}>
             <AboutSection />

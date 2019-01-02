@@ -26,8 +26,13 @@ import {
   SUBMIT_APP_REJECTED,
   UPLOAD_RESUME_PENDING,
   UPLOAD_RESUME_FULFILLED,
-  UPLOAD_RESUME_REJECTED
+  UPLOAD_RESUME_REJECTED,
+  GET_FORM_DATA_FULFILLED,
+  GET_FORM_DATA_REJECTED,
+  LOADING_FULFILLED,
+  LOADING_REJECTED
 } from "./coreActions";
+import { LoadingStates } from "../types";
 
 // getWindowWidth & getWindowHeight was
 // adapted from http://stackoverflow.com/a/8876069/1291659
@@ -60,7 +65,7 @@ const initialState = {
   resetPasswordForm: { isSubmitting: false },
   updatePasswordForm: { isSubmitting: false },
   passwordEmailSent: false,
-  isLoading: true
+  loadingState: LoadingStates.Loading
 };
 
 const reducer = (state = { ...initialState }, action) => {
@@ -98,12 +103,32 @@ const reducer = (state = { ...initialState }, action) => {
         applyForm: { isSubmitting: true }
       };
     case SUBMIT_APP_FULFILLED:
+      const { message, submitTimestamp, ...formData } = action.payload;
+      if (submitTimestamp) {
+        return {
+          ...state,
+          applyForm: {
+            ...state.applyForm,
+            isSubmitting: false,
+            formData,
+            submitTimestamp,
+          },
+          notifications: {
+            ...state.notifications,
+            apply: message
+          }
+        };
+      }
       return {
         ...state,
-        applyForm: { isSubmitting: false },
+        applyForm: {
+          ...state.applyForm,
+          isSubmitting: false,
+          formData,
+        },
         notifications: {
           ...state.notifications,
-          apply: action.payload
+          apply: message
         }
       };
     case SUBMIT_APP_REJECTED:
@@ -208,16 +233,50 @@ const reducer = (state = { ...initialState }, action) => {
         errors: { ...state.errors, updatePassword: action.payload.message },
         updatePasswordForm: { isSubmitting: false }
       };
+    case GET_FORM_DATA_FULFILLED:
+      if (action.payload) {
+        const {
+          resumeTimestamp,
+          submitTimestamp,
+          ...formData
+        } = action.payload;
+        return {
+          ...state,
+          applyForm: {
+            ...state.applyForm,
+            formData,
+            resumeTimestamp,
+            submitTimestamp
+          }
+        };
+      }
+      return state;
+    case GET_FORM_DATA_REJECTED:
+      return {
+        ...state,
+        error: {
+          ...state.errors,
+          apply: action.payload.message
+        }
+      };
+    case LOADING_FULFILLED:
+      return {
+        ...state,
+        loadingState: LoadingStates.Loaded
+      };
+    case LOADING_REJECTED:
+      return {
+        ...state,
+        loadingState: LoadingStates.Failed
+      };
     case ADD_USER:
       return {
         ...state,
-        user: action.payload,
-        isLoading: false
+        user: action.payload
       };
     case DELETE_USER:
       return {
-        ...state,
-        isLoading: false
+        ...state
       };
     case CLEAR_EMAIL_STATE:
       return { ...state, passwordEmailSent: false };

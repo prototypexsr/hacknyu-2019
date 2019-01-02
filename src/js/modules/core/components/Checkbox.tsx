@@ -17,11 +17,13 @@ interface Props {
 const styles: CheckboxStyles<JssRules> = {
   Checkbox: {
     display: "flex",
+    alignItems: "center",
     padding: "20px"
   },
   input: {
     width: "20px",
-    height: "20px"
+    height: "20px",
+    margin: "8px"
   }
 }
 

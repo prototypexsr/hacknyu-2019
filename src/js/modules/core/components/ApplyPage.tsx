@@ -102,7 +102,8 @@ const requiredFields = [
   "privacyPolicy",
   "nyuCodeOfConduct",
   "nyuPrivacyPolicy",
-  "minorsLiability"
+  "minorsLiability",
+  "nyuDataAccess"
 ];
 
 const styles = (theme: Theme): ApplyPageStyles<JssRules> => ({
@@ -608,6 +609,20 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       <Field
                         className={classes.checkbox}
                         name="minorsLiability"
+                        component="input"
+                        type="checkbox"
+                      />
+                    </label>
+                    <label className={classes.termsAndConditions}>
+                      <div className={classes.nyuPolicy}>
+                      By checking this box, I hereby acknowledge that I have read and agree to comply with{" "}
+                        <a href="https://docs.google.com/document/d/1ZmD17u_xXLqtKnitUNL9Nmg5SrwPDgHa5BndVfRXJ-c/edit?usp=sharing">
+                         New York University’s Data Privacy Policy.
+                        </a>
+                      </div>
+                      <Field
+                        className={classes.checkbox}
+                        name="nyuDataAccess"
                         component="input"
                         type="checkbox"
                       />

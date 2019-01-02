@@ -100,7 +100,9 @@ const requiredFields = [
   // "dietaryRestrictions",
   "codeOfConduct",
   "privacyPolicy",
-  "nyuCodeOfConduct"
+  "nyuCodeOfConduct",
+  "nyuPrivacyPolicy",
+  "minorsLiability"
 ];
 
 const styles = (theme: Theme): ApplyPageStyles<JssRules> => ({
@@ -580,6 +582,32 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       <Field
                         className={classes.checkbox}
                         name="nyuCodeOfConduct"
+                        component="input"
+                        type="checkbox"
+                      />
+                    </label>
+                    <label className={classes.termsAndConditions}>
+                      <div className={classes.nyuPolicy}>
+                      By checking this box, I hereby give permission to New York University and HackNYU 
+                      to use the photograph or video in which my picture or image appears for all purposes and in all media, 
+                      including — without limitation — brochures, advertisements, and social media platforms.
+                      </div>
+                      <Field
+                        className={classes.checkbox}
+                        name="nyuPrivacyPolicy"
+                        component="input"
+                        type="checkbox"
+                      />
+                    </label>
+                    <label className={classes.termsAndConditions}>
+                      <div className={classes.nyuPolicy}>
+                      By checking this box, I hereby understand that if I am under the age of 18 years old, 
+                      I, along with my parent or legal guardian, must sign and return the a minors liability, 
+                      which will be emailed to me upon submitting my application, for me to be considered as an applicant.
+                      </div>
+                      <Field
+                        className={classes.checkbox}
+                        name="minorsLiability"
                         component="input"
                         type="checkbox"
                       />

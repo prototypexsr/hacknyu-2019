@@ -616,7 +616,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                     <label className={classes.termsAndConditions}>
                       <div className={classes.nyuPolicy}>
                       By checking this box, I hereby acknowledge that I have read and agree to comply with{" "}
-                        <a href="https://docs.google.com/document/d/1ZmD17u_xXLqtKnitUNL9Nmg5SrwPDgHa5BndVfRXJ-c/edit?usp=sharing">
+                        <a href="../../../../../dist/dev/img/nyu_dataprivacy.pdf" target="_blank">
                          New York University’s Data Privacy Policy.
                         </a>
                       </div>

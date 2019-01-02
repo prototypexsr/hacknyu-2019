@@ -38,6 +38,7 @@ interface ApplyPageStyles<T> extends Styles {
   mlhPolicy: T;
   multipleCheckbox: T;
   termsAndConditions: T;
+  nyuPolicy: T;
 }
 
 interface FormData {
@@ -98,7 +99,8 @@ const requiredFields = [
   // "resumeUpload",
   // "dietaryRestrictions",
   "codeOfConduct",
-  "privacyPolicy"
+  "privacyPolicy",
+  "nyuCodeOfConduct"
 ];
 
 const styles = (theme: Theme): ApplyPageStyles<JssRules> => ({
@@ -540,7 +542,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
 
                     <label className={classes.termsAndConditions}>
                       <div className={classes.inputLabel}>
-                        I have read and agree to the{" "}
+                      By checking this box, I hereby acknowledge that I have read and agree to the{" "}
                         <a href="https://mlh.io/code-of-conduct">
                           MLH Code of Conduct.
                         </a>
@@ -564,6 +566,20 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       <Field
                         className={classes.checkbox}
                         name="privacyPolicy"
+                        component="input"
+                        type="checkbox"
+                      />
+                    </label>
+                    <label className={classes.termsAndConditions}>
+                      <div className={classes.nyuPolicy}>
+                      By checking this box, I hereby acknowledge that I have read and agree to comply with{" "}
+                        <a href="https://www.nyu.edu/students/student-information-and-resources/student-community-standards/university-student-conduct-policies.html">
+                         New York University’s Code of Conduct.
+                        </a>
+                      </div>
+                      <Field
+                        className={classes.checkbox}
+                        name="nyuCodeOfConduct"
                         component="input"
                         type="checkbox"
                       />

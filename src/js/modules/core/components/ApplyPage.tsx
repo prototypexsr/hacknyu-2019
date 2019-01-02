@@ -103,7 +103,8 @@ const requiredFields = [
   "nyuCodeOfConduct",
   "nyuPrivacyPolicy",
   "minorsLiability",
-  "nyuDataAccess"
+  "nyuDataAccess",
+  "sponsorConsent"
 ];
 
 const styles = (theme: Theme): ApplyPageStyles<JssRules> => ({
@@ -623,6 +624,18 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       <Field
                         className={classes.checkbox}
                         name="nyuDataAccess"
+                        component="input"
+                        type="checkbox"
+                      />
+                    </label>
+                    <label className={classes.termsAndConditions}>
+                      <div className={classes.nyuPolicy}>
+                      By checking this box, I understand and consent to the sharing of all of the information I have provided in this application with New York University
+                       and all of HackNYU’s present and future sponsors and partners.
+                      </div>
+                      <Field
+                        className={classes.checkbox}
+                        name="sponsorConsent"
                         component="input"
                         type="checkbox"
                       />

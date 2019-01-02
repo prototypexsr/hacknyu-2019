@@ -96,7 +96,7 @@ export const uploadResume = (uid, file) => dispatch => {
       return db
         .collection("users")
         .doc(uid)
-        .update({ resumeTimestamp })
+        .set({ resumeTimestamp }, { merge: true })
         .then(() => resumeTimestamp);
     })
     .then(timestamp => {

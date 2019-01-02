@@ -24,6 +24,11 @@ interface State {
   isPasswordFormVisible: boolean;
 }
 
+const defaults = {
+  displayName: "Add your name to the application!",
+  photoURL: "/img/blank-profile.png"
+};
+
 const styles = (theme: Theme): ProfilePageStyles<JssRules> => ({
   ProfilePage: {
     width: "100%",
@@ -57,17 +62,22 @@ class ProfilePage extends React.Component<Props, State> {
   };
 
   render() {
-    let { user, classes } = this.props;
-    const defaults = {
-      displayName: "Add your name to the application!",
-      photoURL: "/img/blank-profile.png"
+    let { user, classes, application } = this.props;
+    const { firstName, lastName } = application;
+    let userInfo = {
+      ...defaults,
+      ...user,
     };
+
+    if (firstName && lastName) {
+      userInfo.displayName = `${firstName} ${lastName}`;
+    }
     return (
       <div className={classes.ProfilePage}>
         <h1 className={classes.name}>
-          {user.displayName || defaults.displayName}
+          { userInfo.displayName}
         </h1>
-        <ProfilePic photoURL={user.photoURL || defaults.photoURL} uid={user.uid}/>
+        <ProfilePic photoURL={userInfo.photoURL} uid={user.uid}/>
         <Button onClick={this.togglePasswordForm}>CHANGE PASSWORD</Button>
         {this.state.isPasswordFormVisible && <PasswordForm />}
       </div>
@@ -76,7 +86,8 @@ class ProfilePage extends React.Component<Props, State> {
 }
 
 const mapStateToProps = state => ({
-  user: state.core.user
+  user: state.core.user,
+  application: state.core.applyForm.formData
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({ push }, dispatch);

@@ -27,6 +27,7 @@ const styles = (theme: Theme): UserInfoStyles<JssRules> => ({
     alignItems: "center",
     padding: "10px 10px 10px 20px",
     position: "fixed",
+    borderRadius: "0 0 0 5%",
     zIndex: "100",
     top: "0",
     right: "0",

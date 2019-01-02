@@ -7,19 +7,14 @@ import { loginWithGoogle, logout } from "../coreActions";
 import { User } from "firebase";
 import { Theme } from "../../types";
 
-interface HeaderStyles<T> extends Styles {
-  Header: T;
-  masthead: T;
-  headerText: T;
+interface NavbarStyles<T> extends Styles {
+  Navbar: T;
   link: T;
   links: T;
-  locations: T;
-  dot: T;
   "@media (max-width: 800px)": T;
-  bullet: T;
 }
-const styles = (theme: Theme): HeaderStyles => ({
-  Header: {
+const styles = (theme: Theme): NavbarStyles => ({
+  Navbar: {
     height: "100%",
     display: "flex",
     flexDirection: "column",
@@ -48,32 +43,10 @@ const styles = (theme: Theme): HeaderStyles => ({
     display: "flex",
     alignItems: "center",
   },
-  error: {
-    color: "red"
-  },
-  locations: {
-    paddingTop: "40px",
-    paddingBottom: "5px",
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "flex-end",
-    fontSize: "1.4em",
-    fontVariant: "small-caps"
-  },
-  dot: {
-    padding: "0px 8px 0px 8px"
-  },
   "@media (max-width: 800px)": {
-    Header: {
+    Navbar: {
       flexDirection: "column",
       minHeight: "200px"
-    },
-    headerText: {
-      maxWidth: "80vw",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      fontSize: "1em"
     },
     link: {
       fontSize: "1em",
@@ -89,9 +62,9 @@ interface Props {
   logout: () => any;
 }
 
-const Header: React.SFC<Props> = ({ classes, user, logout, viewportWidth }) => {
+const Navbar: React.SFC<Props> = ({ classes, user, logout }) => {
   return (
-    <div className={classes.Header}>
+    <div className={classes.Navbar}>
       <div className={classes.links}>
             <Link to="/">
                 <div className={classes.link}>HOME</div>
@@ -139,5 +112,5 @@ export default injectSheet(styles)(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(Header)
+  )(Navbar)
 );

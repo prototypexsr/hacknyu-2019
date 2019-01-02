@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { LoadingStates, ReduxState, Theme } from "../../types";
 // @ts-ignore
 import { loadInitialState, refreshWindowDimensions } from "../coreActions";
-import Header from "./Header";
+import Header from "./Navbar";
 import { User } from "firebase";
 import UserInfo from "./UserInfo";
 import Alerts from "./Alerts";

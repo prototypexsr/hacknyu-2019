@@ -52,6 +52,7 @@ const styles = (theme: Theme): SelectStyles<JssRules> => ({
   },
   textField: {
     marginLeft: "5px",
+    maxWidth: "400px",
     fontFamily: theme.fontFamily,
     backgroundColor: "white",
     padding: "10px",

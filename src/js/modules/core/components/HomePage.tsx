@@ -1,7 +1,7 @@
 import * as React from "react";
 import injectSheet, { Styles } from "react-jss";
 import { JssRules, Theme } from "../../types";
-import ApplyButton from "./ApplyButton";
+import Hero from "./Hero";
 import TrackInfo from "./TrackInfo";
 import AboutSection from "./AboutSection";
 import Timeline from "./Timeline";
@@ -72,7 +72,7 @@ class HomePage extends React.Component<Props, State> {
     let { classes } = this.props;
     return (
       <div className={classes.HomePage}>
-        <ApplyButton />
+        <Hero />
         <AnimatedSubwayLines/>
         <div className={classes.info}>
           <div className={classes.aboutSection}>

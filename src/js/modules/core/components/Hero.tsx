@@ -11,7 +11,7 @@ interface Props {
   user: User;
 }
 const styles = (theme: Theme): Styles => ({
-  hero: {
+  Hero: {
     maxWidth: theme.containerWidth,
     width: "100%",
     paddingTop: "4em",
@@ -48,11 +48,13 @@ const styles = (theme: Theme): Styles => ({
     }
   }
 });
-const ApplyButton: React.SFC<Props> = ({ user, classes }) => {
+
+// Murai
+const Hero: React.SFC<Props> = ({ user, classes }) => {
   return (
-    <div className={classes.hero}>
+    <div className={classes.Hero}>
       <h1 className={classes.title}>HackNYU</h1>
-      <h3 className={classes.subtitle}>Feb 15—17, 2019</h3>
+      <h3 className={classes.subtitle}>Feb 15&ndash;17, 2019</h3>
       <Link to={user ? "/apply" : "/register"} className={classes.button}>
         <div className={classes.register}>{user ? "APPLY" : "REGISTER"}</div>
       </Link>
@@ -67,4 +69,4 @@ const mapStateToProps = (state: ReduxState) => ({
 export default compose(
   injectSheet(styles),
   connect(mapStateToProps)
-)(ApplyButton);
+)(Hero);

@@ -160,7 +160,6 @@ export const submitApp = (appValues, incompleteFields) => dispatch => {
   let message, data;
   // If form is complete
   if (incompleteFields.length !== 0) {
-    // this a bit of a hack, but it works great! splits the incomplete field names (which are camel case) to human friendly strs
     const readify = list =>
       list
       .map(val => val.name)

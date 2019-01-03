@@ -76,6 +76,10 @@ interface FormData {
   codeOfConduct: boolean;
   privacyPolicy: boolean;
   resumeTimestamp: string; // timestamp
+
+  emergencyContactNumber: string;
+  emergencyContactName: string;
+  emergencyContactRelation: string;
 }
 
 interface ApplyPageState {
@@ -98,7 +102,10 @@ const requiredFields = {
   tshirtSize: "T-shirt size",
   gender: "Gender",
   codeOfConduct: "Code of Conduct",
-  privacyPolicy: "Private Policy"
+  privacyPolicy: "Private Policy",
+  emergencyContactName: "Emergency contact name",
+  emergencyContactNumber: "Emergency contact number",
+  emergencyContactRelation: "Relation to emergency contact"
 };
 
 const styles = (theme: Theme): ApplyPageStyles<JssRules> => ({
@@ -292,23 +299,6 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                     resumeTimestamp={formData && formData.resumeTimestamp}
                   />
 
-                  <fieldset className={classes.multipleCheckboxes}>
-                    <legend className={classes.inputLabel}>
-                      Any dietary restrictions? Check all that apply.
-                    </legend>
-                    <Checkbox name="isVeggie">Vegetarian</Checkbox>
-                    <Checkbox name="isVegan">Vegan</Checkbox>
-                    <Checkbox name="isKosher">Kosher</Checkbox>
-                    <Checkbox name="isHalal">Halal</Checkbox>
-                    <Checkbox name="isGlutenFree">Gluten Free</Checkbox>
-                  </fieldset>
-
-                  <Field
-                    className={classes.input}
-                    label="(Optional) Any other dietary restrictions or allergies?"
-                    name="allergies"
-                    component={Input}
-                  />
                   <Field
                     name="school"
                     label="School:"
@@ -466,6 +456,23 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                     <option value="xx-large"> XXL </option>
                   </Field>
 
+                  <fieldset className={classes.multipleCheckboxes}>
+                    <legend className={classes.inputLabel}>
+                      Any dietary restrictions? Check all that apply.
+                    </legend>
+                    <Checkbox name="isVeggie">Vegetarian</Checkbox>
+                    <Checkbox name="isVegan">Vegan</Checkbox>
+                    <Checkbox name="isKosher">Kosher</Checkbox>
+                    <Checkbox name="isHalal">Halal</Checkbox>
+                    <Checkbox name="isGlutenFree">Gluten Free</Checkbox>
+                  </fieldset>
+
+                  <Field
+                    className={classes.input}
+                    label="(Optional) Any other dietary restrictions or allergies?"
+                    name="allergies"
+                    component={Input}
+                  />
 
                   <Field
                     className={classes.input}
@@ -473,6 +480,37 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                     name="allergies"
                     component={Input}
                   />
+
+                  <fieldset className={classes.multipleCheckboxes}>
+                    <legend className={classes.inputLabel}>
+                      Emergency contact information
+                    </legend>
+
+                  <Field
+                    className={classes.input}
+                    label="Emergency contact number"
+                    name="emergencyContactNumber"
+                    type="tel"
+                    component={Input}
+                    placeholder="1-800-867-5309"
+                  />
+
+                  <Field
+                    className={classes.input}
+                    label="Emergency contact full name"
+                    name="emergencyContactName"
+                    component={Input}
+                    placeholder="Andrew Davis"
+                  />
+
+                  <Field
+                    className={classes.input}
+                    label="Relation to emergency contact"
+                    name="emergencyContactRelation"
+                    component={Input}
+                    placeholder="mother, father, friend, etc..."
+                  />
+                  </fieldset>
 
                   <label className={classes.termsAndConditions}>
                     <div className={classes.inputLabel}>

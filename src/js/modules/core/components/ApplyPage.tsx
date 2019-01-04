@@ -431,13 +431,20 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                     name="track"
                     component={Select}
                   >
-                    <option value=""> Select an option </option>
-                    <option value="assistive-tech"> Assistive Tech </option>
-                    <option value="ed-tech">Educational Technology</option>
-                    <option value="fin-tech"> Financial Technology </option>
-                    <option value="healthcare"> Healthcare </option>
-                    <option value="sustain-social-impact">
-                      Sustainability and Social Impact
+                    <option value=""> 
+                    Select an option 
+                    </option>
+                    <option value="education">
+                    Education
+                    </option>
+                    <option value="financial-empowerment"> 
+                    Financial Empowerment 
+                    </option>
+                    <option value="health-well-being">
+                     Health and Well-Being
+                     </option>
+                    <option value="sustainability">
+                      Sustainability
                     </option>
                   </Field>
 

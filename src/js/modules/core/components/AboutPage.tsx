@@ -2,10 +2,18 @@ import * as React from "react";
 import injectSheet, { Styles } from "react-jss/lib/injectSheet";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReact } from "@fortawesome/free-brands-svg-icons/faReact";
-import { Theme } from "../../types";
+import { JssRules, Theme } from "../../types";
 import { faAws } from "@fortawesome/free-brands-svg-icons/faAws";
+import Underline from "./Underline";
 
-const styles = (theme: Theme): Styles => ({
+interface AboutPageStyles<T> extends Styles {
+  AboutPage: T;
+  icons: T;
+  text: T;
+  title: T;
+}
+
+const styles = (theme: Theme): AboutPageStyles<JssRules> => ({
   AboutPage: {
     backgroundColor: theme.secondBackground,
     color: theme.secondFont,
@@ -34,10 +42,6 @@ const styles = (theme: Theme): Styles => ({
     paddingBottom: "0.2em",
     textTransform: "uppercase"
   },
-  underline: {
-    border: "2px solid #6fb1f5",
-    width: "2em"
-  }
 });
 
 interface Props {
@@ -48,7 +52,7 @@ const AboutPage: React.SFC<Props> = ({ classes }) => {
   return (
     <div className={classes.AboutPage}>
       <h1 className={classes.title}> About Us </h1>
-      <hr className={classes.underline}></hr>
+      <Underline/>
       <p className={classes.text}>
         HackNYU has been entirely student run from the beginning. We rely on the
         generosity of volunteers and sponsors to host HackNYU every year. If you
@@ -57,7 +61,7 @@ const AboutPage: React.SFC<Props> = ({ classes }) => {
       </p>
 
       <h1 className={classes.title}> Tech Details </h1>
-      <hr className={classes.underline}></hr>
+      <Underline/>
       <p className={classes.text}>
         This site is written in React with TypeScript, Firebase, JSS and Redux.
         It is hosted on AWS. If you have any complaints/bugs/compliments, please

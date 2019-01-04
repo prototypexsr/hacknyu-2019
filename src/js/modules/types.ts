@@ -30,6 +30,7 @@ export interface CoreState {
 export interface Theme {
   backgroundColor: string;
   secondBackground: string;
+  secondBackgroundHighlight: string;
   thirdBackground: string;
   fontColor: string;
   secondFont: string;

@@ -6,12 +6,15 @@ import TrackInfo from "./TrackInfo";
 import AboutSection from "./AboutSection";
 import Timeline from "./Timeline";
 import AnimatedSubwayLines from "./AnimatedSubwayLines";
+import FAQ from "./FAQ";
 
 interface HomePageStyles<T> extends Styles {
   HomePage: T;
   aboutSection: T;
   timelineSection: T;
   tracksSection: T;
+  faqSection: T;
+  curvedTop: T;
   info: T;
   timeline: T;
 }
@@ -54,6 +57,14 @@ const styles = (theme: Theme): HomePageStyles<JssRules> => ({
     backgroundColor: theme.secondBackground,
     color: theme.secondFont
   },
+  faqSection: {
+    backgroundColor: theme.secondBackground,
+    color: theme.fontColor
+  },
+  curvedTop: {
+    width: "100vw",
+    transform: "translateY(0.75vh)"
+  },
   info: {
     display: "flex",
     flexDirection: "column"
@@ -83,6 +94,10 @@ class HomePage extends React.Component<Props, State> {
           </div>
           <div className={classes.tracksSection}>
             <TrackInfo />
+          </div>
+          <div className={classes.faqSection}>
+            <img className={classes.curvedTop} src="/img/semicircle.svg" />
+            <FAQ />
           </div>
         </div>
       </div>

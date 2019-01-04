@@ -36,7 +36,6 @@ interface ApplyPageStyles<T> extends Styles {
   loadingText: T;
   autocompleteItem: T;
   mlhPolicy: T;
-  underline: T;
   multipleCheckboxes: T;
   genderOptions: T;
   termsAndConditions: T;
@@ -164,10 +163,6 @@ const styles = (theme: Theme): ApplyPageStyles<JssRules> => ({
   mlhPolicy: {
     maxWidth: "500px",
     lineHeight: "1.8rem"
-  },
-  underline: {
-    border: "2px solid #6fb1f5",
-    width: "2em"
   },
   genderOptions: {
     padding: "40px"

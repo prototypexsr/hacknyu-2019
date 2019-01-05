@@ -26,12 +26,6 @@ interface State {
   activeBlocks: number;
 }
 
-interface StepData {
-  element: HTMLElement;
-  data: number;
-  direction: string;
-}
-
 const styles = (theme: Theme): HomePageStyles<JssRules> => ({
   HomePage: {
     display: "flex",
@@ -54,6 +48,9 @@ const styles = (theme: Theme): HomePageStyles<JssRules> => ({
     minHeight: "400px"
   },
   tracksSection: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: theme.secondBackground,
     color: theme.secondFont
   },

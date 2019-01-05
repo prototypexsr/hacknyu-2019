@@ -61,7 +61,8 @@ const FAQ = ({ classes }) => {
           <p>
             Nope! HackNYU welcomes people of all skill levels. In fact, part of
             the fun of HackNYU is seeing beginners learn from hackathon
-            veterans&mdash;and hopefully vice versa!
+            veterans&mdash;and hopefully vice versa! We will also provide a
+            a mentoring service to help guide new hackers.
           </p>
         </div>
         <div className={classes.question}>

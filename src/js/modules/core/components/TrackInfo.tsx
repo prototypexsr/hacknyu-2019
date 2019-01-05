@@ -20,18 +20,20 @@ import {
   faDollarSign,
   faPiggyBank,
   faHeart,
-  faHandshake
+  faHandshake,
 } from "@fortawesome/free-solid-svg-icons";
-import { faEthereum } from "@fortawesome/free-brands-svg-icons";
+import {
+  faEthereum
+} from "@fortawesome/free-brands-svg-icons";
 
 interface TrackInfoStyles<T> extends Styles {
   TrackInfo: T;
+  header: T;
   tracks: T;
   description: T;
   bullet: T;
-  header: T;
   icon: T;
-  [`@media(max-width: ${theme.mediumBreakpoint})`]: T;
+  [s: string]: T;
 }
 
 interface Props {
@@ -40,8 +42,9 @@ interface Props {
 
 const styles = (theme: Theme): TrackInfoStyles<JssRules> => ({
   TrackInfo: {
+    width: "80vw",
+    marginBottom: "5%",
     backgroundColor: theme.secondBackground,
-    margin: "0 8% 5% 11%"
   },
   header: {
     fontSize: "2em"
@@ -54,6 +57,12 @@ const styles = (theme: Theme): TrackInfoStyles<JssRules> => ({
   },
   description: {
     maxWidth: "800px"
+  },
+  info: {
+    fontSize: "1.4rem",
+    lineHeight: "1.4rem",
+    maxWidth: "750px",
+    paddingLeft: "20px"
   },
   bullet: {
     fontSize: "1.4rem",
@@ -85,6 +94,15 @@ const TrackInfo: React.SFC<Props> = ({ classes }) => {
   return (
     <div className={classes.TrackInfo}>
       <h1 className={classes.header}> TRACKS </h1>
+      <p className={classes.info}>
+        Every year, HackNYU provides several tracks centered around social good.
+        Each team submits their project to exactly one track. We are proud to
+        present our four tracks for 2019: Health &amp; Well Being,
+        Sustainability, Education, and Financial Development. Note that these
+        descriptions are only to help you brainstorm! You can create whatever
+        you want, as long as it falls into one of these tracks. Ask an organizer
+        if you aren't sure!
+      </p>
       <div className={classes.tracks}>
         <Track
           id={0}
@@ -128,6 +146,7 @@ const TrackInfo: React.SFC<Props> = ({ classes }) => {
             mentally.
           </div>
         </Track>
+
         <Track
           id={1}
           key={1}
@@ -169,6 +188,7 @@ const TrackInfo: React.SFC<Props> = ({ classes }) => {
             Raise awareness about important environmental issues.
           </div>
         </Track>
+
         <Track
           id={2}
           key={2}
@@ -213,6 +233,7 @@ const TrackInfo: React.SFC<Props> = ({ classes }) => {
             </div>
           </div>
         </Track>
+
         <Track
           id={3}
           key={3}
@@ -251,6 +272,7 @@ const TrackInfo: React.SFC<Props> = ({ classes }) => {
               </div>
               Combine finance and engineering to build new products.
             </div>
+
             <div className={classes.bullet}>
               <div className={classes.icon}>
                 <FontAwesomeIcon icon={faHandshake} />

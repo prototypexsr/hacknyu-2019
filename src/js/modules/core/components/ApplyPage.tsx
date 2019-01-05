@@ -62,6 +62,7 @@ interface FormData {
   major: string;
   gradYear: string;
   isFirstTime: string;
+  hearAbout: string;
   timesParticipated: string;
   track: string;
   tshirtSize: string;
@@ -99,6 +100,7 @@ const requiredFields = {
   major: "Major",
   gradYear: "Graduation Year",
   isFirstTime: "First time participating",
+  hearAbout: "Heard about HackNYU",
   track: "Preferred Track",
   tshirtSize: "T-shirt size",
   gender: "Gender",
@@ -431,6 +433,19 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       </Field>
                     </label>
                   </Condition>
+                  <Field
+                    label="How did you hear about HackNYU?"
+                    name="hearAbout"
+                    component={Select}
+                  >
+                    <option value=""> Select an option </option>
+                    <option value="social-media"> Social media (Facebook, Twitter, Instagram) </option>
+                    <option value="mlh"> Major League Hacking </option>
+                    <option value="sponsor"> One of our sponsors or partners </option>
+                    <option value="word-of-mouth"> Friends, professors, or co-workers </option>
+                    <option value="email"> Email </option>
+                    <option value="previous-participant"> I have attended HackNYU in the past </option>
+                  </Field>
                   <Field
                     label="Which track are you currently most interested in hacking in? (You can change your track at the hackathon)"
                     name="track"

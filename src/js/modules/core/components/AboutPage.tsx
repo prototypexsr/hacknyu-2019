@@ -5,6 +5,10 @@ import { faReact } from "@fortawesome/free-brands-svg-icons/faReact";
 import { JssRules, Theme } from "../../types";
 import { faAws } from "@fortawesome/free-brands-svg-icons/faAws";
 import Underline from "./Underline";
+import { Link } from "react-router-dom";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { User } from "firebase";
 
 interface AboutPageStyles<T> extends Styles {
   AboutPage: T;
@@ -32,7 +36,7 @@ const styles = (theme: Theme): AboutPageStyles<JssRules> => ({
     padding: "1em"
   },
   text: {
-    maxWidth: "70vw",
+    maxWidth: "50vw",
     fontSize: "1.3em",
     paddingLeft: "2em",
     paddingRight: "2em"
@@ -62,21 +66,32 @@ const styles = (theme: Theme): AboutPageStyles<JssRules> => ({
 
 interface Props {
   classes: { [s: string]: string };
+  user: User;
 }
 
-const AboutPage: React.SFC<Props> = ({ classes }) => {
+const AboutPage: React.SFC<Props> = ({ classes, user }) => {
   return (
     <div className={classes.AboutPage}>
-      <h1 className={classes.title}> About Us </h1>
-      <Underline />
+      <h1 className={classes.title}> About HackNYU </h1>
+      <Underline/>
       <p className={classes.text}>
-        HackNYU has been entirely student run from the beginning. We rely on the
-        generosity of volunteers and sponsors to host HackNYU every year. If you
-        are interested in sponsoring HackNYU, please contact us at
-        sponsorship.hack@nyu.edu. If you are interested in volunteering, we will
-        release a sign up form in the near future.
+        HackNYU is New York University's largest hackathon, managed entirely by
+        students and spanning all three of its global campuses. Every year,
+        HackNYU welcomes hundreds of hackers from all over the world for two
+        exciting days of creativity and adventure. This year, HackNYU will be
+        held February 15th-17th, 2019 at the NYU Tandon School of Engineering.
+        You can apply <Link to={user ? "/apply" : "/register"}>here</Link>!
       </p>
-
+      <h1 className={classes.title}> Support Us </h1>
+      <Underline/>
+      <p className={classes.text}>
+        HackNYU has been entirely student-run from its inception. We rely on the
+        generosity of volunteers and sponsors to host HackNYU every year, and we
+        are extremely thankful to all of the sponsors and staff involved in making
+        this event a success! If you are interested in sponsoring HackNYU,
+        please contact us at sponsorship.hack@nyu.edu. If you are interested
+        in volunteering, sign up here.
+      </p>
       <h1 className={classes.title}> Tech Details </h1>
       <Underline />
       <p className={classes.text}>
@@ -92,4 +107,11 @@ const AboutPage: React.SFC<Props> = ({ classes }) => {
   );
 };
 
-export default injectSheet(styles)(AboutPage);
+const mapStateToProps = state => ({
+  user: state.core.user
+})
+
+export default compose(
+  injectSheet(styles),
+  connect(mapStateToProps)
+)(AboutPage);

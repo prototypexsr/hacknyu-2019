@@ -16,9 +16,10 @@ interface NavbarStyles<T> extends Styles {
 const styles = (theme: Theme): NavbarStyles => ({
   Navbar: {
     height: "100%",
+    width: "100vw",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "flex-start",
     maxWidth: theme.containerMaxWidth,
   },
@@ -37,7 +38,6 @@ const styles = (theme: Theme): NavbarStyles => ({
     },
   },
   links: {
-    width: "100%",
     height: "6.5em",
     display: "flex",
     alignItems: "center",

@@ -8,6 +8,7 @@ interface FAQStyles<T> extends Styles {
   FAQ: T;
   questions: T;
   question: T;
+  additionalQuestions: T;
   [p: string]: T;
 }
 
@@ -31,6 +32,9 @@ const styles = (theme: Theme): FAQStyles<JssRules> => ({
     fontSize: "1.1em",
     lineHeight: "1.2em"
   },
+  additionalQuestions: {
+    fontSize: "1.1em"
+  },
   [`@media(max-width: ${theme.mediumBreakpoint})`]: {
     questions: {
       gridTemplateColumns: "50% 50%"
@@ -49,7 +53,7 @@ const FAQ = ({ classes }) => {
     <div className={classes.FAQ}>
       <h1> Questions </h1>
       <Underline />
-      <p>
+      <p className={classes.additionalQuestions}>
         {/*I considered adding a mailto link, but do people actually like those?
           they just open my system mail client for me, which sucks.
          */}

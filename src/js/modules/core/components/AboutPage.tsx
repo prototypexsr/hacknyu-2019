@@ -33,7 +33,7 @@ const styles = (theme: Theme): AboutPageStyles<JssRules> => ({
   },
   text: {
     maxWidth: "70vw",
-    fontSize: "1.6em",
+    fontSize: "1.3em",
     paddingLeft: "2em",
     paddingRight: "2em"
   },
@@ -72,8 +72,9 @@ const AboutPage: React.SFC<Props> = ({ classes }) => {
       <p className={classes.text}>
         HackNYU has been entirely student run from the beginning. We rely on the
         generosity of volunteers and sponsors to host HackNYU every year. If you
-        are interested in sponsoring HackNYU, please contact us. If you are
-        interested in volunteering, sign up here.
+        are interested in sponsoring HackNYU, please contact us at
+        sponsorship.hack@nyu.edu. If you are interested in volunteering, we will
+        release a sign up form in the near future.
       </p>
 
       <h1 className={classes.title}> Tech Details </h1>
@@ -81,7 +82,7 @@ const AboutPage: React.SFC<Props> = ({ classes }) => {
       <p className={classes.text}>
         This site is written in React with TypeScript, Firebase, JSS and Redux.
         It is hosted on AWS. If you have any complaints, bugs, or compliments,
-        please email nick at nicholasyang.com.
+        please email support.hack@nyu.edu.
       </p>
       <div className={classes.icons}>
         <FontAwesomeIcon icon={faReact} />

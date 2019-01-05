@@ -50,7 +50,7 @@ const Timeline: React.SFC<Props> = ({ classes }) => {
       <h1 className={classes.title}>TIMELINE</h1>
       <div className={classes.descriptions}>
         <TimelineDescription left="0vw" top="60px">
-          <b>Jan 18:</b> Registration
+          <b>Jan 28:</b> Registration closes
         </TimelineDescription>
         <TimelineDescription left="25vw" top="-45px">
           <b>Feb 2:</b> Get admissions results

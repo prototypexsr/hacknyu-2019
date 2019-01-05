@@ -47,11 +47,11 @@ const styles = (theme: Theme): HeroStyles<JssRules> => ({
     color: theme.backgroundColor,
     fontWeight: "bold",
     transition: "color 1s, background-color 1s",
-    width: "fit-content",
+    width: "fit-content"
   },
   button: {
     "&:hover": {
-      textDecoration: "none",
+      textDecoration: "none"
     }
   }
 });
@@ -62,7 +62,7 @@ const Hero: React.SFC<Props> = ({ user, classes }) => {
     <div className={classes.Hero}>
       <h1 className={classes.title}>HackNYU</h1>
       <h3 className={classes.subtitle}>Feb 15&ndash;17, 2019</h3>
-      <Link to={user ? "/apply" : "/register"}>
+      <Link to={user ? "/apply" : "/register"} className={classes.button}>
         <div className={classes.register}>{user ? "APPLY" : "REGISTER"}</div>
       </Link>
     </div>

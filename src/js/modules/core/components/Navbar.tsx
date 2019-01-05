@@ -20,7 +20,6 @@ const styles = (theme: Theme): NavbarStyles => ({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "flex-start",
-    width: "100%",
     maxWidth: theme.containerMaxWidth,
   },
   link: {

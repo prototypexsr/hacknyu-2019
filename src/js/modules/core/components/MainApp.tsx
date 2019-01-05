@@ -78,6 +78,11 @@ const styles = (theme: Theme): MainAppStyles<object> => ({
   },
   bannerImg: {
       width: "100%"
+  },
+  [`@media(max-width: ${theme.smallBreakpoint})`]: {
+    banner: {
+      right: "10px"
+    }
   }
 });
 

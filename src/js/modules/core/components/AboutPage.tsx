@@ -32,9 +32,10 @@ const styles = (theme: Theme): AboutPageStyles<JssRules> => ({
     padding: "1em"
   },
   text: {
+    maxWidth: "70vw",
     fontSize: "1.6em",
     paddingLeft: "2em",
-    paddingRight: "2em",
+    paddingRight: "2em"
   },
   title: {
     fontSize: "2em",
@@ -52,6 +53,11 @@ const styles = (theme: Theme): AboutPageStyles<JssRules> => ({
       width: theme.containerMediumWidth
     }
   },
+  [`@media(max-width: ${theme.smallBreakpoint})`]: {
+    AboutPage: {
+      width: theme.containerMobileWidth
+    }
+  }
 });
 
 interface Props {
@@ -62,7 +68,7 @@ const AboutPage: React.SFC<Props> = ({ classes }) => {
   return (
     <div className={classes.AboutPage}>
       <h1 className={classes.title}> About Us </h1>
-      <Underline/>
+      <Underline />
       <p className={classes.text}>
         HackNYU has been entirely student run from the beginning. We rely on the
         generosity of volunteers and sponsors to host HackNYU every year. If you
@@ -71,11 +77,11 @@ const AboutPage: React.SFC<Props> = ({ classes }) => {
       </p>
 
       <h1 className={classes.title}> Tech Details </h1>
-      <Underline/>
+      <Underline />
       <p className={classes.text}>
         This site is written in React with TypeScript, Firebase, JSS and Redux.
-        It is hosted on AWS. If you have any complaints/bugs/compliments, please
-        email nick at nicholasyang.com.
+        It is hosted on AWS. If you have any complaints, bugs, or compliments,
+        please email nick at nicholasyang.com.
       </p>
       <div className={classes.icons}>
         <FontAwesomeIcon icon={faReact} />

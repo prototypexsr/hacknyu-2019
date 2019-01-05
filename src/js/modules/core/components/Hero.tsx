@@ -10,7 +10,6 @@ interface HeroStyles<T> extends Styles {
   Hero: T;
   title: T;
   subtitle: T;
-  register: T;
   button: T;
 }
 
@@ -34,10 +33,9 @@ const styles = (theme: Theme): HeroStyles<JssRules> => ({
   subtitle: {
     fontWeight: "400",
     fontSize: "1.8em",
-    marginBottom: "1em",
+    marginBottom: "1.6em",
   },
-  register: {
-    marginTop: "0.8em",
+  button: {
     maxWidth: "80px",
     margin: "0 auto",
     padding: "15px 35px 15px 35px",
@@ -47,9 +45,7 @@ const styles = (theme: Theme): HeroStyles<JssRules> => ({
     color: theme.backgroundColor,
     fontWeight: "bold",
     transition: "color 1s, background-color 1s",
-    width: "fit-content"
-  },
-  button: {
+    width: "fit-content",
     "&:hover": {
       textDecoration: "none"
     }
@@ -63,7 +59,7 @@ const Hero: React.SFC<Props> = ({ user, classes }) => {
       <h1 className={classes.title}>HackNYU</h1>
       <h3 className={classes.subtitle}>Feb 15&ndash;17, 2019</h3>
       <Link to={user ? "/apply" : "/register"} className={classes.button}>
-        <div className={classes.register}>{user ? "APPLY" : "REGISTER"}</div>
+        {user ? "APPLY" : "REGISTER"}
       </Link>
     </div>
   )

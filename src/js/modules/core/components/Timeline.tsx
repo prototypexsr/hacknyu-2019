@@ -11,7 +11,7 @@ interface TimelineStyles<T> extends Styles {
   Timeline: T;
   descriptions: T;
   trackContainer: T;
-  "@media (max-width: 800px)"
+  [s: string]: T;
 }
 
 interface Props {
@@ -37,7 +37,7 @@ const styles = (theme: Theme): TimelineStyles<JssRules> => ({
     height: "30px",
     width: "80vw"
   },
-  '@media (max-width: 800px)': {
+  [`@media (max-width: ${theme.mediumBreakpoint})`]: {
     trackContainer: {
       width: "85vw"
     },

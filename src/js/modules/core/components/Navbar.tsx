@@ -11,7 +11,7 @@ interface NavbarStyles<T> extends Styles {
   Navbar: T;
   link: T;
   links: T;
-  "@media (max-width: 800px)": T;
+  [p:string]: T;
 }
 const styles = (theme: Theme): NavbarStyles => ({
   Navbar: {
@@ -21,7 +21,7 @@ const styles = (theme: Theme): NavbarStyles => ({
     alignItems: "center",
     justifyContent: "flex-start",
     width: "100%",
-    maxWidth: theme.containerWidth,
+    maxWidth: theme.containerMaxWidth,
   },
   link: {
     display: "flex",
@@ -43,13 +43,16 @@ const styles = (theme: Theme): NavbarStyles => ({
     display: "flex",
     alignItems: "center",
   },
-  "@media (max-width: 800px)": {
+  [`@media(max-width: ${theme.mediumBreakpoint})`]: {
     Navbar: {
       flexDirection: "column",
       minHeight: "200px"
     },
+    links: {
+      paddingLeft: "40px"
+    },
     link: {
-      fontSize: "1em",
+      fontSize: "1.1em",
     }
   }
 });

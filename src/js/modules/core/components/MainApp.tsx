@@ -38,7 +38,6 @@ const styles = (theme: Theme): MainAppStyles<object> => ({
   MainApp: {
     backgroundColor: theme.backgroundColor,
     color: theme.fontColor,
-    transition: "background-color 2s, font-color 2s",
     fontFamily: theme.fontFamily,
     width: "100vw",
     display: "flex",

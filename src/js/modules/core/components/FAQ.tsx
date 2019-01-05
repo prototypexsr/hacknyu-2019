@@ -8,7 +8,7 @@ interface FAQStyles<T> extends Styles {
   FAQ: T;
   questions: T;
   question: T;
-  "@media (max-width: 800px)": T;
+  [p: string]: T;
 }
 
 const styles = (theme: Theme): FAQStyles<JssRules> => ({
@@ -17,7 +17,8 @@ const styles = (theme: Theme): FAQStyles<JssRules> => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "5%"
+    padding: "5%",
+    fontSize: "1.1em"
   },
   questions: {
     display: "grid",
@@ -30,7 +31,12 @@ const styles = (theme: Theme): FAQStyles<JssRules> => ({
     fontSize: "1.1em",
     lineHeight: "1.2em"
   },
-  "@media (max-width: 800px)": {
+  [`@media(max-width: ${theme.mediumBreakpoint})`]: {
+    questions: {
+      gridTemplateColumns: "50% 50%"
+    }
+  },
+  [`@media(max-width: ${theme.smallBreakpoint})`]: {
     questions: {
       display: "flex",
       flexDirection: "column"

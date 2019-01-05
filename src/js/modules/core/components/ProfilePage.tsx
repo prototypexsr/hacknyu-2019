@@ -32,7 +32,7 @@ const defaults = {
 const styles = (theme: Theme): ProfilePageStyles<JssRules> => ({
   ProfilePage: {
     width: "100%",
-    maxWidth: theme.containerWidth,
+    maxWidth: theme.containerMaxWidth,
     height: "100vh",
     paddingTop: "3em",
     display: "flex",

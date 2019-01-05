@@ -39,6 +39,7 @@ interface ApplyPageStyles<T> extends Styles {
   multipleCheckboxes: T;
   genderOptions: T;
   termsAndConditions: T;
+  [`@media(max-width: ${theme.mediumBreakpoint})`]: T;
 }
 
 interface FormData {
@@ -111,7 +112,7 @@ const styles = (theme: Theme): ApplyPageStyles<JssRules> => ({
   ApplyPage: {
     display: "flex",
     width: "100%",
-    maxWidth: theme.containerWidth,
+    maxWidth: theme.containerMaxWidth,
     flexDirection: "column",
     alignItems: "center",
     backgroundColor: theme.formBackground,
@@ -130,9 +131,9 @@ const styles = (theme: Theme): ApplyPageStyles<JssRules> => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    lineHeight: "1.3em",
+    lineHeight: "1.2em",
     fontSize: "1.5em",
-    padding: "40px"
+    padding: "40px 0 40px 0"
   },
   inputs: {
     display: "flex",
@@ -169,6 +170,27 @@ const styles = (theme: Theme): ApplyPageStyles<JssRules> => ({
   },
   termsAndConditions: {
     padding: "15px"
+  },
+  [`@media(max-width: ${theme.largeBreakpoint})`]: {
+    ApplyPage: {
+      width: theme.containerLargeWidth
+    }
+  },
+  [`@media(max-width: ${theme.mediumBreakpoint})`]: {
+    ApplyPage: {
+      width: theme.containerMediumWidth
+    }
+  },
+  [`@media(max-width: ${theme.smallBreakpoint})`]: {
+    ApplyPage: {
+      width: theme.containerMobileWidth
+    },
+    multipleCheckboxes: {
+      width: "10em"
+    },
+    inputs: {
+      alignItems: "center"
+    }
   },
 });
 
@@ -227,14 +249,12 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
               <form onSubmit={handleSubmit}>
                 <div className={classes.inputs}>
                   <Field
-                    className={classes.input}
                     name="firstName"
                     label="First Name:"
                     component={Input}
                     placeholder="Rose"
                   />
                   <Field
-                    className={classes.input}
                     name="lastName"
                     label="Last Name:"
                     component={Input}
@@ -248,7 +268,6 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                     component={Input}
                   />
                   <Field
-                    className={classes.input}
                     name="gender"
                     label="Gender:"
                     component={Select}
@@ -304,7 +323,6 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                   <Condition when="school" is="New York University">
                     <Field
                       label="NYU School:"
-                      className={classes.input}
                       name="nyuSchool"
                       component={Select}
                     >
@@ -349,7 +367,6 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                   <Condition when="nyuSchool" is="other">
                     <label>
                       <Field
-                        className={classes.input}
                         name="nyuSchoolOther"
                         component="input"
                       />
@@ -357,7 +374,6 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                   </Condition>
                   <Field
                     label="Current year of study:"
-                    className={classes.input}
                     name="yearOfStudy"
                     component={Select}
                   >
@@ -374,13 +390,11 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                   </Field>
                   <Field
                     label="Major:"
-                    className={classes.input}
                     name="major"
                     component={Input}
                   />
 
                   <Field
-                    className={classes.input}
                     label="Anticipated graduation year:"
                     name="gradYear"
                     component={Select}
@@ -396,7 +410,6 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
 
                   <Field
                     label="Is this your first time at HackNYU?"
-                    className={classes.input}
                     name="isFirstTime"
                     component={Select}
                   >
@@ -407,7 +420,6 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                   <Condition when="isFirstTime" is="no">
                     <label>
                       <Field
-                        className={classes.input}
                         name="timesParticipated"
                         label="How many times have you participated at HackNYU so far?"
                         component={Select}
@@ -421,7 +433,6 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                     </label>
                   </Condition>
                   <Field
-                    className={classes.input}
                     label="Which track are you currently most interested in hacking in? (You can change your track at the hackathon)"
                     name="track"
                     component={Select}
@@ -444,7 +455,6 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                   </Field>
 
                   <Field
-                    className={classes.input}
                     label="Unisex t-shirt size:"
                     name="tshirtSize"
                     component={Select}
@@ -470,14 +480,12 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                   </fieldset>
 
                   <Field
-                    className={classes.input}
                     label="(Optional) Any other dietary restrictions or allergies?"
                     name="allergies"
                     component={Input}
                   />
 
                   <Field
-                    className={classes.input}
                     label="(Optional) Any allergies?"
                     name="allergies"
                     component={Input}
@@ -488,30 +496,27 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                       Emergency contact information
                     </legend>
 
-                  <Field
-                    className={classes.input}
-                    label="Emergency contact number"
-                    name="emergencyContactNumber"
-                    type="tel"
-                    component={Input}
-                    placeholder="1-800-867-5309"
-                  />
+                    <Field
+                      label="Emergency contact number"
+                      name="emergencyContactNumber"
+                      type="tel"
+                      component={Input}
+                      placeholder="1-800-867-5309"
+                    />
 
-                  <Field
-                    className={classes.input}
-                    label="Emergency contact full name"
-                    name="emergencyContactName"
-                    component={Input}
-                    placeholder="Andrew Davis"
-                  />
+                    <Field
+                      label="Emergency contact full name"
+                      name="emergencyContactName"
+                      component={Input}
+                      placeholder="Andrew Davis"
+                    />
 
-                  <Field
-                    className={classes.input}
-                    label="Relation to emergency contact"
-                    name="emergencyContactRelation"
-                    component={Input}
-                    placeholder="mother, father, friend, etc..."
-                  />
+                    <Field
+                      label="Relation to emergency contact"
+                      name="emergencyContactRelation"
+                      component={Input}
+                      placeholder="mother, father, friend, etc..."
+                    />
                   </fieldset>
 
                   <label className={classes.termsAndConditions}>

@@ -12,7 +12,7 @@ interface Props {
 }
 const styles = (theme: Theme): Styles => ({
   Hero: {
-    maxWidth: theme.containerWidth,
+    maxWidth: theme.containerMaxWidth,
     width: "100%",
     paddingTop: "4em",
     paddingBottom: "4em",

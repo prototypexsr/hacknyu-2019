@@ -16,7 +16,6 @@ interface HomePageStyles<T> extends Styles {
   faqSection: T;
   curvedTop: T;
   info: T;
-  timeline: T;
 }
 
 interface Props {
@@ -38,7 +37,8 @@ const styles = (theme: Theme): HomePageStyles<JssRules> => ({
     display: "flex",
     flexDirection: "column",
     backgroundColor: theme.backgroundColor,
-    alignItems: "center"
+    alignItems: "center",
+    width: "100vw"
   },
   aboutSection: {
     backgroundColor: theme.secondBackground,
@@ -67,10 +67,8 @@ const styles = (theme: Theme): HomePageStyles<JssRules> => ({
   },
   info: {
     display: "flex",
+    width: "100vw",
     flexDirection: "column"
-  },
-  timeline: {
-    width: "20vw"
   },
 });
 

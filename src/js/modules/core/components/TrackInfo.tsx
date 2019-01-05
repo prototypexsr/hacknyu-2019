@@ -31,7 +31,7 @@ interface TrackInfoStyles<T> extends Styles {
   bullet: T;
   header: T;
   icon: T;
-  "@media (max-width: 800px)": T;
+  [`@media(max-width: ${theme.mediumBreakpoint})`]: T;
 }
 
 interface Props {
@@ -70,7 +70,7 @@ const styles = (theme: Theme): TrackInfoStyles<JssRules> => ({
     minWidth: "50px",
     paddingRight: "20px"
   },
-  "@media (max-width: 800px)": {
+  [`@media(max-width: ${theme.mediumBreakpoint})`]: {
     tracks: {
       display: "flex",
       flexDirection: "column"

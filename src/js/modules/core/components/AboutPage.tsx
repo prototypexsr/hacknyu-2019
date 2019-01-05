@@ -21,7 +21,7 @@ const styles = (theme: Theme): AboutPageStyles<JssRules> => ({
     flexDirection: "column",
     alignItems: "center",
     height: "100%",
-    maxWidth: theme.containerWidth,
+    maxWidth: theme.containerMaxWidth,
     borderRadius: "0.5em"
   },
   icons: {
@@ -41,6 +41,16 @@ const styles = (theme: Theme): AboutPageStyles<JssRules> => ({
     paddingTop: "1.5em",
     paddingBottom: "0.2em",
     textTransform: "uppercase"
+  },
+  [`@media(max-width: ${theme.largeBreakpoint})`]: {
+    AboutPage: {
+      width: theme.containerLargeWidth
+    }
+  },
+  [`@media(max-width: ${theme.mediumBreakpoint})`]: {
+    AboutPage: {
+      width: theme.containerMediumWidth
+    }
   },
 });
 

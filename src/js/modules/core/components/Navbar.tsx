@@ -18,6 +18,7 @@ const styles = (theme: Theme): NavbarStyles => ({
     height: "100%",
     width: "100vw",
     display: "flex",
+    paddingLeft: "30px",
     flexDirection: "column",
     alignItems: "flex-start",
     justifyContent: "flex-start",
@@ -45,7 +46,8 @@ const styles = (theme: Theme): NavbarStyles => ({
   [`@media(max-width: ${theme.mediumBreakpoint})`]: {
     Navbar: {
       flexDirection: "column",
-      minHeight: "200px"
+      minHeight: "200px",
+      paddingLeft: "0px",
     },
     links: {
       paddingLeft: "40px"

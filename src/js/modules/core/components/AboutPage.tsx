@@ -90,7 +90,7 @@ const AboutPage: React.SFC<Props> = ({ classes, user }) => {
         are extremely thankful to all of the sponsors and staff involved in making
         this event a success! If you are interested in sponsoring HackNYU,
         please contact us at sponsorship.hack@nyu.edu. If you are interested
-        in volunteering, sign up here.
+        in volunteering, we will release a sign up form in the near future.
       </p>
       <h1 className={classes.title}> Tech Details </h1>
       <Underline />

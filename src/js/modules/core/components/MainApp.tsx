@@ -74,7 +74,7 @@ const styles = (theme: Theme): MainAppStyles<object> => ({
     right: "50px",
     top: "0", 
     width: "10%",
-    zIndex: "10000"
+    zIndex: "10000",
   },
   bannerImg: {
       width: "100%"

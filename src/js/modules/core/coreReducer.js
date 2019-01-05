@@ -86,10 +86,11 @@ const reducer = (state = { ...initialState }, action) => {
     case UPLOAD_RESUME_FULFILLED:
       return {
         ...state,
+        applyForm: { ...state.applyForm, resumeTimestamp: action.payload.resumeTimestamp },
         resumeForm: { isSubmitting: true },
         notifications: {
           ...state.notifications,
-          resume: action.payload
+          resume: action.payload.message
         }
       };
     case UPLOAD_RESUME_REJECTED:

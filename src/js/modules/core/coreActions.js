@@ -122,12 +122,12 @@ export const uploadResume = (uid, file) => dispatch => {
     return;
   }
 
+  const resumeTimestamp = new Date().toLocaleString();
   const storageRef = storage.ref();
   const resumeRef = storageRef.child(`users/${uid}/resume.pdf`);
   return resumeRef
     .put(file)
     .then(() => {
-      const resumeTimestamp = new Date().toLocaleString();
       return db
         .collection("users")
         .doc(uid)
@@ -137,7 +137,7 @@ export const uploadResume = (uid, file) => dispatch => {
     .then(timestamp => {
       dispatch({
         type: UPLOAD_RESUME_FULFILLED,
-        payload: "Resume successfully uploaded"
+        payload: { message: "Resume successfully uploaded", resumeTimestamp }
       });
 
       return timestamp;

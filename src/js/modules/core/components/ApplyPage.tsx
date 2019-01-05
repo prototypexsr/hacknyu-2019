@@ -72,6 +72,7 @@ interface FormData {
   isHalal: boolean;
   isGlutenFree: boolean;
 
+  otherDietaryRestrictions: string;
   allergies: string;
   codeOfConduct: boolean;
   privacyPolicy: boolean;
@@ -308,10 +309,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                     placeholder="1-800-867-5309"
                   />
 
-                  <UploadResumeButton
-                    uid={user.uid}
-                    resumeTimestamp={formData && formData.resumeTimestamp}
-                  />
+                  <UploadResumeButton uid={user.uid} />
 
                   <Field
                     name="school"
@@ -320,6 +318,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                     schools={schools}
                     classes={classes}
                   />
+
                   <Condition when="school" is="New York University">
                     <Field
                       label="NYU School:"
@@ -481,7 +480,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
 
                   <Field
                     label="(Optional) Any other dietary restrictions or allergies?"
-                    name="allergies"
+                    name="otherDietaryRestrictions"
                     component={Input}
                   />
 

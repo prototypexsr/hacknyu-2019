@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMedkit,
   faHeartbeat,
-  faPrescription,
   faRunning,
   faSolarPanel,
   faTree,
@@ -18,11 +17,12 @@ import {
   faLaptop,
   faChalkboardTeacher,
   faCode,
-  faUniversalAccess,
-  faHandPointer,
-  faComment
+  faDollarSign,
+  faPiggyBank,
+  faHeart,
+  faHandshake
 } from "@fortawesome/free-solid-svg-icons";
-import { faAccessibleIcon } from "@fortawesome/free-brands-svg-icons";
+import { faEthereum } from "@fortawesome/free-brands-svg-icons";
 
 interface TrackInfoStyles<T> extends Styles {
   TrackInfo: T;
@@ -89,7 +89,7 @@ const TrackInfo: React.SFC<Props> = ({ classes }) => {
         <Track
           id={0}
           key={0}
-          name="Heathcare"
+          name="Heath & Well-Being"
           icons={[
             <SubwayIcon key={1} color="red" radius={15}>
               1
@@ -106,31 +106,32 @@ const TrackInfo: React.SFC<Props> = ({ classes }) => {
             <div className={classes.icon}>
               <FontAwesomeIcon icon={faMedkit} />
             </div>
-            Find new and innovative healthcare solutions.
+            Find new and innovative solutions to personal health.
           </div>
           <div className={classes.bullet}>
             <div className={classes.icon}>
               <FontAwesomeIcon icon={faHeartbeat} />
             </div>
-            Disrupt the way we distribute and pratice medicine.
+            Disrupt the way we practice self care.
           </div>
           <div className={classes.bullet}>
             <div className={classes.icon}>
-              <FontAwesomeIcon icon={faPrescription} />
+              <FontAwesomeIcon icon={faHeart} />
             </div>
-            Ensure millions get the healthcare and service they deserve.
+            Ensure millions get the nutrition and care they deserve.
           </div>
           <div className={classes.bullet}>
             <div className={classes.icon}>
               <FontAwesomeIcon icon={faRunning} />
             </div>
-            Educate people on staying active and healthy.
+            Educate people on staying active and healthy, both physically and
+            mentally.
           </div>
         </Track>
         <Track
           id={1}
           key={1}
-          name="Sustainability & Social Impact"
+          name="Sustainability"
           icons={[
             <SubwayIcon key={1} color="#6dc066" radius={15}>
               4
@@ -165,7 +166,7 @@ const TrackInfo: React.SFC<Props> = ({ classes }) => {
             <div className={classes.icon}>
               <FontAwesomeIcon icon={faBullhorn} />
             </div>
-            Raise awareness about important social issues.
+            Raise awareness about important environmental issues.
           </div>
         </Track>
         <Track
@@ -215,7 +216,7 @@ const TrackInfo: React.SFC<Props> = ({ classes }) => {
         <Track
           id={3}
           key={3}
-          name={"Accessibility & Assistive Technology"}
+          name="Financial Empowerment"
           icons={[
             <SubwayIcon key={1} color="orange" radius={15}>
               B
@@ -234,29 +235,27 @@ const TrackInfo: React.SFC<Props> = ({ classes }) => {
           <div className={classes.description}>
             <div className={classes.bullet}>
               <div className={classes.icon}>
-                <FontAwesomeIcon icon={faComment} />
+                <FontAwesomeIcon icon={faDollarSign} />
               </div>
-              Collaborate with different fields to help people in their day to
-              day lives.
+              Educate people on being financially responsible.
             </div>
             <div className={classes.bullet}>
               <div className={classes.icon}>
-                <FontAwesomeIcon icon={faHandPointer} />
+                <FontAwesomeIcon icon={faPiggyBank} />
               </div>
-              Design intuitive and innovative ways to interact with technology.
+              Invent innovative ways to save money.
             </div>
             <div className={classes.bullet}>
               <div className={classes.icon}>
-                <FontAwesomeIcon icon={faAccessibleIcon} />
+                <FontAwesomeIcon icon={faEthereum} />
               </div>
-              Combine medicine, occupational therapy and engineering to build
-              new products.
+              Combine finance and engineering to build new products.
             </div>
             <div className={classes.bullet}>
               <div className={classes.icon}>
-                <FontAwesomeIcon icon={faUniversalAccess} />
+                <FontAwesomeIcon icon={faHandshake} />
               </div>
-              Change people's lives and tackle a diverse set of challenges.
+              Change people's perception of finance with technology.
             </div>
           </div>
         </Track>

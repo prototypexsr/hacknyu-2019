@@ -1,16 +1,25 @@
 import * as React from "react";
 import injectSheet, { Styles } from "react-jss/lib/injectSheet";
-import { ReduxState, Theme } from "../../types";
+import { JssRules, ReduxState, Theme } from "../../types";
 import { Link } from "react-router-dom";
 import { User } from "firebase";
 import { compose } from "redux";
 import { connect } from "react-redux";
 
+interface HeroStyles<T> extends Styles {
+  Hero: T;
+  title: T;
+  subtitle: T;
+  register: T;
+  button: T;
+}
+
 interface Props {
   classes: { [s: string]: string };
   user: User;
 }
-const styles = (theme: Theme): Styles => ({
+
+const styles = (theme: Theme): HeroStyles<JssRules> => ({
   Hero: {
     maxWidth: theme.containerMaxWidth,
     width: "100%",
@@ -29,6 +38,7 @@ const styles = (theme: Theme): Styles => ({
   },
   register: {
     marginTop: "0.8em",
+    maxWidth: "80px",
     margin: "0 auto",
     padding: "15px 35px 15px 35px",
     borderRadius: "5px",
@@ -38,9 +48,6 @@ const styles = (theme: Theme): Styles => ({
     fontWeight: "bold",
     transition: "color 1s, background-color 1s",
     width: "fit-content",
-    "&:hover": {
-      backgroundColor: theme.highlightColorHover,
-    }
   },
   button: {
     "&:hover": {
@@ -55,7 +62,7 @@ const Hero: React.SFC<Props> = ({ user, classes }) => {
     <div className={classes.Hero}>
       <h1 className={classes.title}>HackNYU</h1>
       <h3 className={classes.subtitle}>Feb 15&ndash;17, 2019</h3>
-      <Link to={user ? "/apply" : "/register"} className={classes.button}>
+      <Link to={user ? "/apply" : "/register"}>
         <div className={classes.register}>{user ? "APPLY" : "REGISTER"}</div>
       </Link>
     </div>

@@ -100,7 +100,6 @@ const requiredFields = {
   major: "Major",
   gradYear: "Graduation Year",
   isFirstTime: "First time participating",
-  hearAbout: "Heard about HackNYU",
   track: "Preferred Track",
   tshirtSize: "T-shirt size",
   gender: "Gender",
@@ -434,7 +433,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                     </label>
                   </Condition>
                   <Field
-                    label="How did you hear about HackNYU?"
+                    label="(Optional) How did you hear about HackNYU?"
                     name="hearAbout"
                     component={Select}
                   >

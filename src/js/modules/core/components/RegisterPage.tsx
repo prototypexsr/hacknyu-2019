@@ -1,26 +1,37 @@
 import * as React from "react";
 import injectSheet, { Styles } from "react-jss/lib/injectSheet";
-import { Theme } from "../../types";
+import { JssRules, Theme } from "../../types";
 import { Field, Form } from "react-final-form";
 import Button from "./Button";
 import { connect } from "react-redux";
-import { compose } from "redux";
+import { bindActionCreators, compose } from "redux";
 import { emailRegex } from "../../constants";
 // @ts-ignore
 import { register } from "../coreActions";
 import Input from "./Input";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import Underline from "./Underline";
 
-const styles = (theme: Theme): Styles => ({
+interface RegisterPageStyles<T> extends Styles {
+  RegisterPage: T;
+  loginLink: T;
+  form: T;
+  [s: string]: T;
+};
+
+const styles = (theme: Theme): RegisterPageStyles<JssRules> => ({
   RegisterPage: {
-    padding: "30px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     height: "100%",
-    width: "75%",
-    color: theme.fontColor,
-    backgroundColor: theme.formBackground
+    width: "100%",
+    maxWidth: theme.containerSmallWidth,
+    color: theme.secondFont,
+    backgroundColor: theme.formBackground,
+    paddingTop: "3em",
+    paddingBottom: "1em",
+    borderRadius: "0.5em"
   },
   loginLink: {
     fontSize: "1.2em",
@@ -30,14 +41,19 @@ const styles = (theme: Theme): Styles => ({
     display: "flex",
     flexDirection: "column",
     padding: "20px",
-    alignItems: "flex-end"
+    alignItems: "center"
   },
+  [`@media(max-width: ${theme.smallBreakpoint})`]: {
+    RegisterPage: {
+      maxWidth: theme.containerMobileWidth
+    }
+  }
 });
-
 
 interface Props {
   classes: { [s: string]: string };
   register: ({ email, password }: FormValues) => any;
+  isSubmitting: boolean;
 }
 
 interface FormValues {
@@ -46,14 +62,18 @@ interface FormValues {
   passwordConfirmation?: string;
 }
 
-const RegisterPage: React.SFC<Props> = ({ classes, register }) => {
+const RegisterPage: React.SFC<Props> = ({
+  classes,
+  register,
+  isSubmitting
+}) => {
   const handleSubmit = (values: FormValues) => {
     register(values);
   };
-
   return (
     <div className={classes.RegisterPage}>
-      <h1> Register </h1>
+      <h1> REGISTER </h1>
+      <Underline/>
       <Form
         onSubmit={handleSubmit}
         validate={values => {
@@ -72,7 +92,7 @@ const RegisterPage: React.SFC<Props> = ({ classes, register }) => {
 
           //@ts-ignore
           if (!values.passwordConfirmation) {
-            errors.password = "Password confirmation is required";
+            errors.passwordConfirmation = "Password confirmation is required";
           }
 
           //@ts-ignore
@@ -129,8 +149,12 @@ const RegisterPage: React.SFC<Props> = ({ classes, register }) => {
                 />
               )}
             </Field>
-            <Button disabled={invalid} width="100px" type="submit">
-              Submit
+            <Button
+              disabled={invalid || isSubmitting}
+              width="100px"
+              type="submit"
+            >
+              SUBMIT
             </Button>
             <Link to="/login" className={classes.loginLink}>
               Already have an account? Login
@@ -142,12 +166,18 @@ const RegisterPage: React.SFC<Props> = ({ classes, register }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch: any) => ({
-  register: ({ email, password }: FormValues) => {
-    dispatch(register({ email, password }));
-  }
+const mapStateToProps = state => ({
+  isSubmitting: state.core.registerForm.isSubmitting
 });
 
-export default compose(injectSheet(styles), connect(null, mapDispatchToProps))(
-  RegisterPage
-);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ register }, dispatch);
+
+
+export default compose(
+  injectSheet(styles),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(RegisterPage);

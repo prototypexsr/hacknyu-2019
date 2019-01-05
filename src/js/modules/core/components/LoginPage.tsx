@@ -1,7 +1,6 @@
 import * as React from "react";
-import { Theme } from "../../types";
-import { Styles } from "react-jss";
-import injectSheet from "react-jss/lib/injectSheet";
+import { JssRules, Theme } from "../../types";
+import injectSheet, { Styles } from "react-jss/lib/injectSheet";
 import { Field, Form } from "react-final-form";
 import Button from "./Button";
 import { compose } from "redux";
@@ -12,31 +11,18 @@ import { emailRegex } from "../../constants";
 import Input from "./Input";
 import { Link } from "react-router-dom";
 
-const styles = (theme: Theme): Styles => ({
-  LoginPage: {
-    padding: "30px",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    height: "100%",
-    width: "75%",
-    color: theme.fontColor,
-    backgroundColor: theme.formBackground
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    padding: "20px",
-    alignItems: "flex-end"
-  },
-  registerLink: {
-    padding: "20px",
-    fontSize: "1.2em"
-  }
-});
+interface LoginPageStyles<T> extends Styles {
+  LoginPage: T;
+  form: T;
+  registerLink: T;
+  resetPasswordLink: T;
+  underline: T;
+  [s: string]: T;
+}
 
 interface Props {
-  classes: { [s: string]: string };
+  classes: LoginPageStyles<string>;
+  isSubmitting: boolean;
   loginWithGoogle: () => any;
   loginWithPassword: (
     { email, password }: { email: string; password: string }
@@ -48,33 +34,80 @@ interface FormValues {
   password: string;
 }
 
+const styles = (theme: Theme): LoginPageStyles<JssRules> => ({
+  LoginPage: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    height: "100%",
+    width: "100%",
+    maxWidth: theme.containerSmallWidth,
+    minWidth: "500px",
+    color: theme.secondFont,
+    backgroundColor: theme.formBackground,
+    paddingTop: "3em",
+    paddingBottom: "1em",
+    borderRadius: "0.5em"
+  },
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    padding: "20px",
+    alignItems: "center"
+  },
+  registerLink: {
+    padding: "20px 20px 0px 20px",
+    fontSize: "1.2em"
+  },
+  resetPasswordLink: {
+    padding: "5px 20px 20px 20px",
+    fontSize: "1.2em"
+  },
+  underline: {
+    border: "2px solid #6fb1f5",
+    width: "2em"
+  },
+  [`@media(max-width: ${theme.mediumBreakpoint})`]: {
+    LoginPage: {
+      minWidth: "0px"
+    }
+  }
+});
+
+const validateLogin = values => {
+  let errors: { email?: string; password?: string } = {};
+  if (values.email && values.email.length === 0) {
+    errors.email = "Email is required";
+  }
+  if (values.password && values.password.length === 0) {
+    errors.password = "Password is required";
+  }
+  if (values.email && !emailRegex.test(values.email)) {
+    errors.email = "Invalid email";
+  }
+  return errors;
+};
+
 const LoginPage: React.SFC<Props> = ({
   classes,
+  isSubmitting,
   loginWithGoogle,
   loginWithPassword
 }) => {
   const handleSubmit = (values: FormValues) => {
     loginWithPassword(values);
   };
-
   const handleGoogleLogin = (event: Event) => {
     event.preventDefault();
     loginWithGoogle();
   };
-
   return (
     <div className={classes.LoginPage}>
-      <h1> Login </h1>
+      <h1> LOGIN </h1>
+      <hr className={classes.underline}></hr>
       <Form
         onSubmit={handleSubmit}
-        validate={values => {
-          let errors: { email?: string; password?: string } = {};
-          //@ts-ignore
-          if (values.email && !emailRegex.test(values.email)) {
-            errors.email = "Invalid email";
-          }
-          return errors;
-        }}
+        validate={validateLogin}
         render={({ handleSubmit, invalid }) => (
           <form className={classes.form} onSubmit={handleSubmit}>
             <Field name="email">
@@ -99,14 +132,23 @@ const LoginPage: React.SFC<Props> = ({
                 />
               )}
             </Field>
-            <Button disabled={invalid} width="100px" type="submit">
-              Login
+            <Button
+              disabled={invalid || isSubmitting}
+              type="submit"
+            >
+              LOGIN
             </Button>
-            <Button width="200px" onClick={handleGoogleLogin}>
-              Login w/ Google
+            <Button
+              disabled={isSubmitting}
+              onClick={handleGoogleLogin}
+            >
+              LOGIN W/ GOOGLE
             </Button>
             <Link to="/register" className={classes.registerLink}>
-            Don't have an account? Register
+              Don't have an account? Register
+            </Link>
+            <Link to="/reset_password" className={classes.resetPasswordLink}>
+              Forgot your password? Reset it
             </Link>
           </form>
         )}
@@ -114,6 +156,10 @@ const LoginPage: React.SFC<Props> = ({
     </div>
   );
 };
+
+const mapStateToProps = state => ({
+  isSubmitting: state.core.loginForm.isSubmitting
+});
 
 const mapDispatchToProps = (dispatch: any) => ({
   loginWithGoogle: () => {
@@ -124,6 +170,10 @@ const mapDispatchToProps = (dispatch: any) => ({
   }
 });
 
-export default compose(injectSheet(styles), connect(null, mapDispatchToProps))(
-  LoginPage
-);
+export default compose(
+  injectSheet(styles),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(LoginPage);

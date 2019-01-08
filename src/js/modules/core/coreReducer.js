@@ -58,7 +58,7 @@ const initialState = {
   user: undefined,
   errors: {},
   notifications: {},
-  applyForm: { isSubmitting: false },
+  applyForm: { isSubmitting: false, formData: {} },
   loginForm: { isSubmitting: false },
   registerForm: { isSubmitting: false },
   resumeForm: { isSubmitting: false },

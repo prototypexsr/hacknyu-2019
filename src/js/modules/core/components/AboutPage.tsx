@@ -90,7 +90,10 @@ const AboutPage: React.SFC<Props> = ({ classes, user }) => {
         are extremely thankful to all of the sponsors and staff involved in making
         this event a success! If you are interested in sponsoring HackNYU,
         please contact us at sponsorship.hack@nyu.edu. If you are interested
-        in volunteering, we will release a sign up form in the near future.
+        in volunteering, you can sign up {" "}
+        <a href="https://docs.google.com/a/nyu.edu/forms/d/1txTkJucca4E81HdX9zho1ug6BjiZ1drzoikR-2nU8ro/edit?usp=drivesdk" target="_blank">
+        here
+        </a>! Volunteer applications will close on February 3rd, 2019 at 11:59PM EST. 
       </p>
       <h1 className={classes.title}> Tech Details </h1>
       <Underline />

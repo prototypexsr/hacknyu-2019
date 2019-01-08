@@ -76,10 +76,10 @@ const styles = (theme: Theme): LoginPageStyles<JssRules> => ({
 
 const validateLogin = values => {
   let errors: { email?: string; password?: string } = {};
-  if (values.email && values.email.length === 0) {
+  if (!values.email) {
     errors.email = "Email is required";
   }
-  if (values.password && values.password.length === 0) {
+  if (!values.password) {
     errors.password = "Password is required";
   }
   if (values.email && !emailRegex.test(values.email)) {

@@ -127,8 +127,8 @@ const reducer = (state = { ...initialState }, action) => {
           isSubmitting: false,
           formData,
         },
-        notifications: {
-          ...state.notifications,
+        errors: {
+          ...state.errors,
           apply: message
         }
       };

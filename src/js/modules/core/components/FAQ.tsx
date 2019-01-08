@@ -65,8 +65,8 @@ const FAQ = ({ classes }) => {
           <p>
             Nope! HackNYU welcomes people of all skill levels. In fact, part of
             the fun of HackNYU is seeing beginners learn from hackathon
-            veterans&mdash;and hopefully vice versa! We will also provide a
-            a mentoring service to help guide new hackers.
+            veterans&mdash;and hopefully vice versa! We will also provide a a
+            mentoring service to help guide new hackers.
           </p>
         </div>
         <div className={classes.question}>
@@ -83,13 +83,14 @@ const FAQ = ({ classes }) => {
         <div className={classes.question}>
           <h2> Who can attend?</h2>
           <p>
-            For our event in New York, anyone can attend! You don't have to be a
-            part of the NYU community, and you don't have to be a student to
-            participate. However, priority will be given to members of the NYU
-            community and to students. If you are under 18, you will be required
-            to bring a liability waiver signed by your parent or guardian during
-            check-in. This form will be made available upon acceptance to our
-            event. Attendees in Shanghai and Abu Dhabi must be enrolled at NYU.
+            For our event in New York, any student can attend! You don't have to
+            be a part of the NYU community. However, priority will be given to
+            members of the NYU community. In addition, students who have
+            graduated within the last year may participate. If you are under 18,
+            you will be required to bring a liability waiver signed by your
+            parent or guardian during check-in. This form will be made available
+            upon acceptance to our event. Attendees in Shanghai and Abu Dhabi
+            must be enrolled at NYU.
           </p>
         </div>
         <div className={classes.question}>

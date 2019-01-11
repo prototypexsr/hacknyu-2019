@@ -199,7 +199,7 @@ class ConfirmationPage extends React.Component<Props, ConfirmationPageState> {
 
           <li>
             Any student who is or has been enrolled in the last 12 months at a
-            high school or university can participate <strong>at</strong> our
+            high school or university can participate at our
             Brooklyn, NY location.
           </li>
           <li>

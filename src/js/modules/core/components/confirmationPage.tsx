@@ -2,7 +2,7 @@ import * as React from "react";
 import { JssRules, ReduxState, Theme } from "../../types";
 import injectSheet, { Styles } from "react-jss/lib/injectSheet";
 import { push } from "connected-react-router";
-import { submitApp } from "../coreActions";
+//import { submitConfirmation } from "../coreActions";
 import { Form, Field, FormSpy } from "react-final-form";
 import { bindActionCreators, compose } from "redux";
 import { connect } from "react-redux";
@@ -16,8 +16,9 @@ interface Props {
   user: User;
   push: (route: string) => any;
   formData: FormData;
-  submitTimestamp: string;
-  submitApp: (values: FormData, incompleteFields: string[]) => any;
+  confirmTimestamp: string;
+  resumeTimestamp: string;
+  // submitConfirmation: (values: FormData, incompleteFields: string[]) => any;
 }
 
 interface ConfirmationPageStyles<T> extends Styles {
@@ -72,9 +73,6 @@ const styles = (theme: Theme): ConfirmationPageStyles<JssRules> => ({
   header: {
     padding: "10px"
   },
-  multipleCheckboxes: {
-    margin: "40px 0 40px 0"
-  },
   form: {
     display: "flex",
     flexDirection: "column",
@@ -116,9 +114,6 @@ const styles = (theme: Theme): ConfirmationPageStyles<JssRules> => ({
   nyuPolicy: {
     maxWidth: "500px",
     lineHeight: "1.8rem"
-  },
-  genderOptions: {
-    padding: "40px"
   },
   termsAndConditions: {
     padding: "15px"
@@ -168,12 +163,8 @@ class ConfirmationPage extends React.Component<Props, ConfirmationPageState> {
     return incompleteFields;
   };
 
-  handleSave = (values, incompleteFields) => {
-    this.props.submitApp(values, incompleteFields);
-  };
-
   handleSubmit = values => {
-    this.props.submitApp(values, []);
+    //this.props.submitConfirmation(values, []);
   };
 
   validateForm = (values: FormData): object => {
@@ -186,25 +177,30 @@ class ConfirmationPage extends React.Component<Props, ConfirmationPageState> {
   };
 
   render() {
-    let { classes, isSubmitting, user, formData, submitTimestamp } = this.props;
+    let {
+      classes,
+      isSubmitting,
+      user,
+      formData,
+      confirmTimestamp,
+      resumeTimestamp
+    } = this.props;
     return (
       <div className={classes.ConfirmationPage}>
         <h1 className={classes.header}>YAY YOU'RE IN!</h1>
+        Before you accept your offer, there are a few things we need to share
+        with you.
         <ul>
-          <li>
-            Before you accept your offer, there are some few thing we need to
-            share with you.
-          </li>
-
           <li>
             At this time, participation at either the Abu Dhabi or Shanghai
             location is only available for NYU students who are currently
-            enrolled.
+            enrolled at those campuses.
           </li>
 
           <li>
-            Any student currently enrolled at a university or a high school can
-            participate in our Brooklyn, NY location.
+            Any student who is or has been enrolled in the last 12 months at a
+            high school or university can participate <strong>at</strong> our
+            Brooklyn, NY location.
           </li>
           <li>
             If you are under 18 years of age at the time of the event, you must
@@ -259,9 +255,9 @@ class ConfirmationPage extends React.Component<Props, ConfirmationPageState> {
                     />
                   </label>
                   <div className={classes.inputs}>
-                    Please upload your latest resume as a PDF, as this will be
-                    sent to our sponsors! (This will give you a chance to secure
-                    a job!)
+                    Please upload your latest resume as a PDF, so we can share
+                    it with our awesome sponsors who are interested in hiring
+                    you!
                     <UploadResumeButton uid={user.uid} />
                   </div>
 
@@ -284,7 +280,11 @@ class ConfirmationPage extends React.Component<Props, ConfirmationPageState> {
                     render={({ form }) => {
                       const fields = form.getState().values;
                       const incompleteFields = this.getIncompleteFields(fields);
-                      if (!submitTimestamp && incompleteFields.length !== 0) {
+                      if (
+                        !confirmTimestamp &&
+                        incompleteFields.length !== 0 &&
+                        !resumeTimestamp
+                      ) {
                         return (
                           <Button
                             className={classes.submit}
@@ -319,12 +319,12 @@ class ConfirmationPage extends React.Component<Props, ConfirmationPageState> {
 const mapStateToProps = (state: ReduxState) => ({
   user: state.core.user,
   formData: state.core.applyForm.formData,
-  submitTimestamp: state.core.applyForm.submitTimestamp,
+  confirmTimestamp: state.core.applyForm.confirmTimestamp,
   isSubmitting: state.core.applyForm.isSubmitting
 });
 
 const mapDispatchToProps = (dispatch: any) =>
-  bindActionCreators({ push, submitApp }, dispatch);
+  bindActionCreators({ push }, dispatch);
 
 export default compose(
   injectSheet(styles),

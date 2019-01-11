@@ -15,6 +15,7 @@ import Checkbox from "./Checkbox";
 import Input from "./Input";
 import Select from "./Select";
 import UploadResumeButton from "./UploadResumeButton";
+import Confirm from "./confirmationPage";
 
 interface Props {
   classes: ApplyPageStyles<string>;
@@ -309,7 +310,11 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                     placeholder="1-800-867-5309"
                   />
 
+                  
+                  <div className={classes.inputs}>
+                  (Optional) Attach your resume as a PDF
                   <UploadResumeButton uid={user.uid} />
+                  </div>
 
                   <Field
                     name="school"

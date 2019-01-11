@@ -69,7 +69,7 @@ class UploadResumeButton extends React.Component<Props> {
 
     return <div className={classes.UploadResumeButton}>
       <div className={classes.label}>
-      (Optional) Resume:
+      Select File to Upload:
       </div>
       <input
         key={0}

@@ -16,6 +16,7 @@ import Input from "./Input";
 import Select from "./Select";
 import UploadResumeButton from "./UploadResumeButton";
 import Confirm from "./confirmationPage";
+import { getIncompleteFields } from "../../utils";
 
 interface Props {
   classes: ApplyPageStyles<string>;
@@ -36,6 +37,7 @@ interface ApplyPageStyles<T> extends Styles {
   checkbox: T;
   loadingText: T;
   autocompleteItem: T;
+  resumeUpload: T;
   mlhPolicy: T;
   multipleCheckboxes: T;
   genderOptions: T;
@@ -146,6 +148,11 @@ const styles = (theme: Theme): ApplyPageStyles<JssRules> => ({
     maxWidth: "300px",
     lineHeight: "1.8rem"
   },
+  resumeUpload: {
+    maxWidth: "500px",
+    padding: "20px",
+    lineHeight: "1.8rem"
+  },
   submit: {
     width: "fit-content",
     padding: "13px",
@@ -196,30 +203,7 @@ const styles = (theme: Theme): ApplyPageStyles<JssRules> => ({
   },
 });
 
-interface IncompleteField {
-  field: string;
-  name: string;
-}
-
 class ApplyPage extends React.Component<Props, ApplyPageState> {
-  // Checks if values are all filled and puts an empty string if they aren't
-  // (so firebase doesn't complain)
-  getIncompleteFields = (values: any): IncompleteField[] => {
-    let incompleteFields = [];
-    Object.entries(requiredFields).forEach(([field, name]) => {
-      if (
-        !(field in values) ||
-        values[field] === undefined ||
-        values[field] === "" ||
-        values[field] === false
-      ) {
-        values[field] = "";
-        incompleteFields.push({ field, name });
-      }
-    });
-    return incompleteFields;
-  };
-
   handleSave = (values, incompleteFields) => {
     this.props.submitApp(values, incompleteFields);
   };
@@ -229,7 +213,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
   };
 
   validateForm = (values: FormData): object => {
-    const incomplete = this.getIncompleteFields(values);
+    const incomplete = getIncompleteFields(values, requiredFields);
     let errors = {};
     incomplete.map(({ field }) => {
       errors[field] = `Field cannot be empty`;
@@ -311,7 +295,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                   />
 
                   
-                  <div className={classes.inputs}>
+                  <div className={classes.resumeUpload}>
                   (Optional) Attach your resume as a PDF
                   <UploadResumeButton uid={user.uid} />
                   </div>
@@ -556,7 +540,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                   <FormSpy
                     render={({ form }) => {
                       const fields = form.getState().values;
-                      const incompleteFields = this.getIncompleteFields(fields);
+                      const incompleteFields = getIncompleteFields(fields, requiredFields);
                       if (!submitTimestamp && incompleteFields.length !== 0) {
                         return (
                           <Button

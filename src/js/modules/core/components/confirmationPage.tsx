@@ -10,6 +10,7 @@ import { User } from "firebase";
 import Button from "./Button";
 import UploadResumeButton from "./UploadResumeButton";
 import Radio from "./Radio";
+import { getIncompleteFields } from "../../utils";
 
 interface Props {
   classes: ConfirmationPageStyles<string>;
@@ -30,6 +31,7 @@ interface ConfirmationPageStyles<T> extends Styles {
   submit: T;
   checkbox: T;
   radio: T;
+  resumeUpload: T;
   loadingText: T;
   autocompleteItem: T;
   nyuPolicy: T;
@@ -46,10 +48,6 @@ interface FormData {
   nyuPrivacyPolicy: boolean;
 }
 
-interface ConfirmationPageState {
-  formData: FormData | null;
-  isLoading: boolean;
-}
 
 const requiredFields = {
   nyuCodeOfConduct: "NYU Code of Conduct",
@@ -88,6 +86,11 @@ const styles = (theme: Theme): ConfirmationPageStyles<JssRules> => ({
   },
   inputLabel: {
     maxWidth: "300px",
+    lineHeight: "1.8rem"
+  },
+  resumeUpload: {
+    maxWidth: "500px",
+    padding: "20px",
     lineHeight: "1.8rem"
   },
   submit: {
@@ -141,34 +144,16 @@ const styles = (theme: Theme): ConfirmationPageStyles<JssRules> => ({
   }
 });
 
-interface IncompleteField {
-  field: string;
-  name: string;
-}
 
-class ConfirmationPage extends React.Component<Props, ConfirmationPageState> {
-  getIncompleteFields = (values: any): IncompleteField[] => {
-    let incompleteFields = [];
-    Object.entries(requiredFields).forEach(([field, name]) => {
-      if (
-        !(field in values) ||
-        values[field] === undefined ||
-        values[field] === "" ||
-        values[field] === false
-      ) {
-        values[field] = "";
-        incompleteFields.push({ field, name });
-      }
-    });
-    return incompleteFields;
-  };
 
+class ConfirmationPage extends React.Component<Props> {
+  
   handleSubmit = values => {
     //this.props.submitConfirmation(values, []);
   };
 
   validateForm = (values: FormData): object => {
-    const incomplete = this.getIncompleteFields(values);
+    const incomplete = getIncompleteFields(values, requiredFields);
     let errors = {};
     incomplete.map(({ field }) => {
       errors[field] = `Field cannot be empty`;
@@ -179,7 +164,7 @@ class ConfirmationPage extends React.Component<Props, ConfirmationPageState> {
   render() {
     let {
       classes,
-      isSubmitting,
+      isConfirming,
       user,
       formData,
       confirmTimestamp,
@@ -254,7 +239,7 @@ class ConfirmationPage extends React.Component<Props, ConfirmationPageState> {
                       type="checkbox"
                     />
                   </label>
-                  <div className={classes.inputs}>
+                  <div className={classes.resumeUpload}>
                     Please upload your latest resume as a PDF, so we can share
                     it with our awesome sponsors who are interested in hiring
                     you!
@@ -266,10 +251,10 @@ class ConfirmationPage extends React.Component<Props, ConfirmationPageState> {
                       Finally, please select the location where you will be
                       participating. You may only choose once, so choose wisely!
                     </div>
-                    <Radio name="location" value="abuDhabi">
+                    <Radio name="location" value="abu-dhabi">
                       Abu Dhabi
                     </Radio>
-                    <Radio name="location" value="newYork">
+                    <Radio name="location" value="new-york">
                       New York
                     </Radio>
                     <Radio name="location" value="shanghai">
@@ -279,7 +264,7 @@ class ConfirmationPage extends React.Component<Props, ConfirmationPageState> {
                   <FormSpy
                     render={({ form }) => {
                       const fields = form.getState().values;
-                      const incompleteFields = this.getIncompleteFields(fields);
+                      const incompleteFields = getIncompleteFields(fields, requiredFields);
                       if (
                         !confirmTimestamp &&
                         incompleteFields.length !== 0 &&
@@ -289,7 +274,7 @@ class ConfirmationPage extends React.Component<Props, ConfirmationPageState> {
                           <Button
                             className={classes.submit}
                             type="submit"
-                            disabled={pristine || isSubmitting}
+                            disabled={pristine || isConfirming}
                           >
                             ???
                           </Button>
@@ -299,7 +284,7 @@ class ConfirmationPage extends React.Component<Props, ConfirmationPageState> {
                           <Button
                             className={classes.submit}
                             type="submit"
-                            disabled={pristine || invalid || isSubmitting}
+                            disabled={pristine || invalid || isConfirming}
                           >
                             ACCEPT
                           </Button>
@@ -318,9 +303,9 @@ class ConfirmationPage extends React.Component<Props, ConfirmationPageState> {
 }
 const mapStateToProps = (state: ReduxState) => ({
   user: state.core.user,
-  formData: state.core.applyForm.formData,
-  confirmTimestamp: state.core.applyForm.confirmTimestamp,
-  isSubmitting: state.core.applyForm.isSubmitting
+  //formData: state.core.confirmForm.formData,
+  //confirmTimestamp: state.core.confirmForm.confirmTimestamp,
+  //isConfirming: state.core.confirmForm.isConfirming
 });
 
 const mapDispatchToProps = (dispatch: any) =>

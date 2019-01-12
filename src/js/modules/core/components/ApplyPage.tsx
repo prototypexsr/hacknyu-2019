@@ -15,7 +15,6 @@ import Checkbox from "./Checkbox";
 import Input from "./Input";
 import Select from "./Select";
 import UploadResumeButton from "./UploadResumeButton";
-import Confirm from "./confirmationPage";
 import { getIncompleteFields } from "../../utils";
 
 interface Props {
@@ -84,11 +83,6 @@ interface FormData {
   emergencyContactNumber: string;
   emergencyContactName: string;
   emergencyContactRelation: string;
-}
-
-interface ApplyPageState {
-  formData: FormData | null;
-  isLoading: boolean;
 }
 
 const requiredFields = {
@@ -203,7 +197,7 @@ const styles = (theme: Theme): ApplyPageStyles<JssRules> => ({
   },
 });
 
-class ApplyPage extends React.Component<Props, ApplyPageState> {
+class ApplyPage extends React.Component<Props> {
   handleSave = (values, incompleteFields) => {
     this.props.submitApp(values, incompleteFields);
   };

@@ -145,7 +145,7 @@ class ConfirmationPage extends React.Component<Props> {
       confirmTimestamp,
       resumeTimestamp
     } = this.props;
-    if (confirmTimestamp !== undefined) {
+    if (confirmTimestamp) {
       return <SubmittedPage />;
     } else {
       return (
@@ -249,6 +249,11 @@ class ConfirmationPage extends React.Component<Props> {
                           fields,
                           requiredFields
                         );
+                        const isFormSubmitted = !(
+                          !confirmTimestamp &&
+                          incompleteFields.length === 0 &&
+                          !resumeTimestamp
+                        )
 
                         return (
                           <Button
@@ -257,11 +262,7 @@ class ConfirmationPage extends React.Component<Props> {
                             disabled={
                               pristine ||
                               isConfirming ||
-                              !(
-                                !confirmTimestamp &&
-                                incompleteFields.length === 0 &&
-                                !resumeTimestamp
-                              )
+                              isFormSubmitted
                             }
                           >
                             SUBMIT

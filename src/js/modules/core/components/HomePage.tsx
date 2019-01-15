@@ -7,6 +7,7 @@ import AboutSection from "./AboutSection";
 import Timeline from "./Timeline";
 import AnimatedSubwayLines from "./AnimatedSubwayLines";
 import FAQ from "./FAQ";
+import SponsorshipSection from "./SponsorshipSection";
 
 interface HomePageStyles<T> extends Styles {
   HomePage: T;
@@ -16,6 +17,7 @@ interface HomePageStyles<T> extends Styles {
   faqSection: T;
   curvedTop: T;
   info: T;
+  sponsorshipSection: T;
 }
 
 interface Props {
@@ -58,6 +60,10 @@ const styles = (theme: Theme): HomePageStyles<JssRules> => ({
     backgroundColor: theme.secondBackground,
     color: theme.fontColor
   },
+  sponsorshipSection: {
+    backgroundColor: theme.backgroundColor,
+    color: theme.fontColor
+  },
   curvedTop: {
     width: "100vw",
     transform: "translateY(0.75vh)"
@@ -93,6 +99,10 @@ class HomePage extends React.Component<Props, State> {
           <div className={classes.faqSection}>
             <img className={classes.curvedTop} src="/img/semicircle.svg" />
             <FAQ />
+          </div>
+          <div className={classes.sponsorshipSection}>
+          <img className={classes.curvedTop} src="/img/semicircle.svg" />
+          <SponsorshipSection/>
           </div>
         </div>
       </div>

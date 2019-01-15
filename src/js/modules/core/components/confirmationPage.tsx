@@ -46,6 +46,7 @@ interface FormData {
 const requiredFields = {
   nyuCodeOfConduct: "NYU Code of Conduct",
   nyuPrivacyPolicy: "NYU Privacy Policy",
+  nyuMediaRights: "NYU Media Waiver",
   location: "Participation Location"
 };
 
@@ -189,6 +190,22 @@ class ConfirmationPage extends React.Component<Props> {
                   <div className={classes.inputs}>
                     <label className={classes.termsAndConditions}>
                       <div className={classes.nyuPolicy}>
+                        By checking this box, I hereby give permission to New
+                        York University and HackNYU to use the photograph or
+                        video in which my picture or image appears for all
+                        purposes and in all media, including — without
+                        limitation — brochures, advertisements, and social media
+                        platforms.
+                      </div>
+                      <Field
+                        className={classes.checkbox}
+                        name="nyuMediaRights"
+                        component="input"
+                        type="checkbox"
+                      />
+                    </label>
+                    <label className={classes.termsAndConditions}>
+                      <div className={classes.nyuPolicy}>
                         By checking this box, I hereby acknowledge that I have
                         read and agree to comply with New York University’s Code
                         of Conduct, which can be found{" "}
@@ -253,16 +270,14 @@ class ConfirmationPage extends React.Component<Props> {
                           !confirmTimestamp &&
                           incompleteFields.length === 0 &&
                           !resumeTimestamp
-                        )
+                        );
 
                         return (
                           <Button
                             className={classes.submit}
                             type="submit"
                             disabled={
-                              pristine ||
-                              isConfirming ||
-                              isFormSubmitted
+                              pristine || isConfirming || isFormSubmitted
                             }
                           >
                             SUBMIT

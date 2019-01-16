@@ -107,7 +107,7 @@ const TrackInfo: React.SFC<Props> = ({ classes }) => {
         <Track
           id={0}
           key={0}
-          name="Heath & Well-Being"
+          name="Health & Well-Being"
           icons={[
             <SubwayIcon key={1} color="red" radius={15}>
               1

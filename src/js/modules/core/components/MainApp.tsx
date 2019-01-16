@@ -8,6 +8,7 @@ import { LoadingStates, ReduxState, Theme } from "../../types";
 // @ts-ignore
 import { loadInitialState, refreshWindowDimensions } from "../coreActions";
 import Header from "./Navbar";
+import Footer from "./Footer";
 import { User } from "firebase";
 import UserInfo from "./UserInfo";
 import Alerts from "./Alerts";
@@ -129,6 +130,7 @@ class MainApp extends React.Component<Props> {
           <Header />
           <UserInfo user={user}/>
           {children}
+          <Footer />
         </div>
       );
     }
@@ -145,6 +147,7 @@ class MainApp extends React.Component<Props> {
             className={classes.bannerImg}/>
         </a>
         {children}
+        <Footer />
       </div>
     );
   }

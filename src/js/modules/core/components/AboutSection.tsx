@@ -33,7 +33,7 @@ const styles = (theme: Theme): AboutSectionStyles<JssRules> => ({
     color: theme.secondFont,
     alignItems: "center",
     justifyContent: "center",
-    boxShadow: "4px 7px 21px -2px rgba(0,0,0,0.4)"
+    boxShadow: "4px 7px 21px -2px rgba(0,0,0,0.25)"
   },
   intro: {
     fontSize: "1.4rem",

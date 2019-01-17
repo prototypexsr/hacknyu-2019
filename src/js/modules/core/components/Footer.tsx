@@ -10,7 +10,7 @@ import {
 const styles = (theme: Theme): object => ({
   Footer: {
     padding: "2em",
-    marginTop: "25px",
+    marginTop: "100px",
     backgroundColor: "#333",
     width: "100%"
   },

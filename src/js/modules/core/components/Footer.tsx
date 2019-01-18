@@ -1,25 +1,25 @@
 import * as React from "react";
-import injectSheet, { Styles } from "react-jss/lib/injectSheet";
+import injectSheet  from "react-jss/lib/injectSheet";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
   faTwitter
 } from "@fortawesome/free-brands-svg-icons";
+import { Theme } from "../../types";
 
-const styles = (theme: Theme): object => ({
+const styles = (theme: Theme) => ({
   Footer: {
-    padding: "2em",
-    marginTop: "100px",
-    backgroundColor: "#333",
-    width: "100%"
+    marginTop: "50px",
+    // Added this cause in mobile user tools blocks the copy
+    marginBottom: "100px",
+    backgroundColor: theme.backgroundColor,
+    width: "100vw"
   },
   footerLogo: {
-    width: "200px",
-    padding: "50px",
+    maxWidth: "100px",
     display: "block",
     margin: "25px auto",
-    border: "3px solid white"
   },
   a: {
     color: theme.fontColor,
@@ -32,24 +32,24 @@ const styles = (theme: Theme): object => ({
       textDecoration: "none"
     }
   },
-  p: {
+  copyText: {
     margin: "0.25em",
     textAlign: "center"
   }
 });
 
-const Footer: React.SFC<Props> = ({ classes }) => {
+const Footer: React.SFC = ({ classes }) => {
   return (
     <div className={classes.Footer}>
-      <p class={classes.p}>Copyright © 2018 HackNYU. </p>
-      <p class={classes.p}>Contact us at: support.hack@nyu.edu</p>
-      <p class={classes.p}>Find us on social media: 
-        <a class={classes.socialMediaLink} href="https://www.facebook.com/hacknyu"> <FontAwesomeIcon icon={faFacebook} /> </a>
-        <a class={classes.socialMediaLink} href="https://twitter.com/hacknyu"> <FontAwesomeIcon icon={faTwitter} /> </a>
+      <p className={classes.copyText}>Copyright © 2018 HackNYU. </p>
+      <p className={classes.copyText}>Contact us at: support.hack@nyu.edu</p>
+      <p className={classes.copyText}>Find us on social media:
+        <a className={classes.socialMediaLink} href="https://www.facebook.com/hacknyu"> <FontAwesomeIcon icon={faFacebook} /> </a>
+        <a className={classes.socialMediaLink} href="https://twitter.com/hacknyu"> <FontAwesomeIcon icon={faTwitter} /> </a>
       </p>
-      <img class={classes.footerLogo} src="/img/hacknyu-logo-full.svg"/>
-      <p class={classes.p}>Website proudly built from scratch by HackNYU tech team!</p>
-      <p class={classes.p}>Open sourced <a href="https://github.com/hacknyu/hacknyu-2019" class={classes.a}>here</a>.</p>
+      <img className={classes.footerLogo} src="/img/hacknyu-logo-full.svg"/>
+      <p className={classes.copyText}>Website proudly built from scratch by HackNYU tech team!</p>
+      <p className={classes.copyText}>Open sourced <a href="https://github.com/hacknyu/hacknyu-2019" class={classes.a}>here</a>.</p>
       
     </div>
   );

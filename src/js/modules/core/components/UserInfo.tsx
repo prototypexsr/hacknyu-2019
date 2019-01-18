@@ -39,7 +39,8 @@ const styles = (theme: Theme): UserInfoStyles<JssRules> => ({
   [`@media(max-width: ${theme.mediumBreakpoint})`]: {
     UserInfo: {
       bottom: "0",
-      top: "auto"
+      top: "auto",
+      borderRadius: "7% 0 0 0",
     }
   }
 });

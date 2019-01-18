@@ -292,6 +292,7 @@ export const resetPassword = email => dispatch => {
   auth
     .sendPasswordResetEmail(email)
     .then(result => {
+      dispatch(push("/"));
       dispatch({
         type: RESET_PASSWORD_FULFILLED,
         payload: result

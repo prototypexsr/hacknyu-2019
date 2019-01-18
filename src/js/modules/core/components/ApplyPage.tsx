@@ -385,7 +385,7 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                     <option value="graduate">
                       Graduate Student (Masters or Doctorate)
                     </option>
-                    <option value="post-grad"> Post Graduate </option>
+                    <option value="post-grad"> Post Graduate (must be within 12 months of graduation to be eligible)</option>
                   </Field>
                   <Field
                     label="Major:"
@@ -394,11 +394,13 @@ class ApplyPage extends React.Component<Props, ApplyPageState> {
                   />
 
                   <Field
-                    label="Anticipated graduation year:"
+                    label="Graduation year:"
                     name="gradYear"
                     component={Select}
                   >
                     <option value=""> Select an option </option>
+                    <option value="2017-or-earlier"> 2017 or earlier </option>
+                    <option value="2018"> 2018 </option>
                     <option value="2019"> 2019 </option>
                     <option value="2020"> 2020 </option>
                     <option value="2021"> 2021 </option>

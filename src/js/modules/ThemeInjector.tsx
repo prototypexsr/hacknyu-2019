@@ -1,11 +1,9 @@
 import * as React from "react";
 import { ThemeProvider } from "theming";
-import { RouteComponentProps, withRouter } from "react-router";
-import { Location } from "history";
+import { ReactNodeLike } from "prop-types";
 
 interface Props {
-  location: Location;
-  children: any;
+  children: ReactNodeLike;
 }
 
 export const trackColors = {

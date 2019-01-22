@@ -2,7 +2,6 @@ import * as React from "react";
 import { connect } from "react-redux";
 import injectSheet, { WithStyles } from "react-jss";
 import { Link } from "react-router-dom";
-// @ts-ignore
 import { logout } from "../coreActions";
 import { User } from "firebase";
 import { Theme } from "../../ThemeInjector";

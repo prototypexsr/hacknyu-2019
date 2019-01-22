@@ -42,3 +42,8 @@ export interface ApplyFormData {
 export interface Form {
   isSubmitting: boolean;
 }
+
+export interface IncompleteField {
+  field: string;
+  name: string;
+}

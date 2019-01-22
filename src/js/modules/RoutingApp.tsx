@@ -1,7 +1,6 @@
 import { Provider } from "react-redux";
 import * as React from "react";
 import { Route } from "react-router-dom";
-import appHistory from "../tools/appHistory";
 import MainApp from "./core/components/MainApp";
 import HomePage from "./core/components/HomePage";
 import { ConnectedRouter } from "connected-react-router";
@@ -13,12 +12,13 @@ import AboutPage from './core/components/AboutPage'
 import RegisterPage from './core/components/RegisterPage'
 import ResetPasswordPage from "./core/components/ResetPasswordPage";
 import ProfilePage from "./core/components/ProfilePage";
+import createBrowserHistory from "history/createBrowserHistory";
 
 class RoutingApp extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <ConnectedRouter history={appHistory}>
+        <ConnectedRouter history={createBrowserHistory()}>
           <ThemeInjector>
             <MainApp>
               <Route exact path="/" component={HomePage} />

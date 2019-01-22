@@ -2,7 +2,7 @@ import * as React from "react";
 import injectSheet, { WithStyles } from "react-jss";
 import { Field, Form } from "react-final-form";
 import Button from "./Button";
-import { compose, Dispatch } from "redux";
+import { AnyAction, compose, Dispatch } from "redux";
 import { connect } from "react-redux";
 import { loginWithGoogle, loginWithPassword } from "../coreActions";
 import { emailRegex } from "../../constants";
@@ -155,10 +155,10 @@ const mapStateToProps = (state: ReduxState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   loginWithGoogle: () => {
-    dispatch(loginWithGoogle());
+    dispatch<any>(loginWithGoogle());
   },
   loginWithPassword: ({ email, password }: FormValues) => {
-    dispatch(loginWithPassword({ email, password }));
+    dispatch<any>(loginWithPassword({ email, password }));
   }
 });
 

@@ -8,9 +8,7 @@ module.exports = {
       {
         test: /\.(jsx?$)|(tsx?$)/,
         exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: "babel-loader"
-        }
+        loader: "ts-loader",
       }
     ]
   },

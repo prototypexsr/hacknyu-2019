@@ -1,20 +1,15 @@
-import injectSheet, { Styles } from "react-jss/lib/injectSheet";
+import injectSheet, { WithStyles } from "react-jss";
 import * as React from "react";
-import { JssRules, Theme } from "../../types";
+import { Theme } from "../../ThemeInjector";
 
-interface LoadingIconStyles<T> extends Styles {
-  LoadingIcon: T,
-  "@keyframes lds-dual-ring": T
-}
 
-interface Props {
+interface Props extends WithStyles<typeof styles> {
   width: number | string;
   height: number | string;
   padding: number | string;
-  classes: { [s: string]: string };
 }
 
-const styles = (theme: Theme): LoadingIconStyles<JssRules> => ({
+const styles = (theme: Theme) => ({
   LoadingIcon: {
     display: "inline-block",
     width: (props: Props) => props.width,

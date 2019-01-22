@@ -1,18 +1,9 @@
 import * as React from "react";
-import { Styles } from "react-jss";
-import injectSheet from "react-jss/lib/injectSheet";
-import { JssRules, Theme } from "../../types";
+import injectSheet, {WithStyles} from "react-jss";
 import Underline from "./Underline";
+import { Theme } from "../../ThemeInjector";
 
-interface FAQStyles<T> extends Styles {
-  FAQ: T;
-  questions: T;
-  question: T;
-  additionalQuestions: T;
-  [p: string]: T;
-}
-
-const styles = (theme: Theme): FAQStyles<JssRules> => ({
+const styles = (theme: Theme) => ({
   FAQ: {
     backgroundColor: theme.backgroundColor,
     display: "flex",
@@ -48,7 +39,9 @@ const styles = (theme: Theme): FAQStyles<JssRules> => ({
   }
 });
 
-const FAQ = ({ classes }) => {
+type Props = WithStyles<typeof styles>;
+
+const FAQ: React.SFC<Props> = ({ classes }) => {
   return (
     <div className={classes.FAQ}>
       <h1> Questions </h1>

@@ -1,24 +1,18 @@
 import * as React from "react";
-import injectSheet, { Styles } from "react-jss/lib/injectSheet";
-import { JssRules, ReduxState, Theme } from "../../types";
+import injectSheet, { WithStyles } from "react-jss";
+import { ReduxState } from "../../types";
 import { Link } from "react-router-dom";
 import { User } from "firebase";
 import { compose } from "redux";
 import { connect } from "react-redux";
+import { Theme } from "../../ThemeInjector";
 
-interface HeroStyles<T> extends Styles {
-  Hero: T;
-  title: T;
-  subtitle: T;
-  button: T;
-}
 
-interface Props {
-  classes: { [s: string]: string };
+interface Props extends WithStyles<typeof styles> {
   user: User;
 }
 
-const styles = (theme: Theme): HeroStyles<JssRules> => ({
+const styles = (theme: Theme) => ({
   Hero: {
     maxWidth: theme.containerMaxWidth,
     width: "100%",

@@ -1,7 +1,6 @@
 import * as React from "react";
 import { ThemeProvider } from "theming";
-import { Theme } from "./types";
-import { withRouter } from "react-router";
+import { RouteComponentProps, withRouter } from "react-router";
 import { Location } from "history";
 
 interface Props {
@@ -15,6 +14,42 @@ export const trackColors = {
   green: "#619b5b",
   blue: "#63a0c6"
 };
+
+export interface Theme {
+  backgroundColor: string;
+  secondBackground: string;
+  secondBackgroundHighlight: string;
+  thirdBackground: string;
+  fontColor: string;
+  secondFont: string;
+  secondFontHover: string;
+  highlightColor: string;
+  highlightColorHover: string;
+  formBackground: string;
+  submitButton: string;
+  submitButtonHover: string;
+  submitButtonDeactivated: string;
+  errorBorder: string;
+  errorText: string;
+  errorBackground: string;
+  notificationBackground: string;
+  notificationBorder: string;
+  overlayColor: string;
+  fontFamily: string;
+  inputPadding: string;
+  red: string;
+  green: string;
+  blue: string;
+  orange: string;
+  containerMaxWidth: string;
+  containerMobileWidth: string;
+  containerSmallWidth: string;
+  containerMediumWidth: string;
+  containerLargeWidth: string;
+  largeBreakpoint: string;
+  mediumBreakpoint: string;
+  smallBreakpoint: string;
+}
 
 const theme: Theme = {
   backgroundColor: "#57068c",
@@ -56,5 +91,4 @@ class ThemeInjector extends React.Component<Props> {
   }
 }
 
-// @ts-ignore
-export default withRouter(ThemeInjector);
+export default ThemeInjector;

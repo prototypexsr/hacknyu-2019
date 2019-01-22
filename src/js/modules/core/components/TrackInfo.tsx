@@ -1,8 +1,6 @@
 import * as React from "react";
 import SubwayIcon from "./SubwayIcon";
-import { Styles } from "react-jss";
-import injectSheet from "react-jss/lib/injectSheet";
-import { JssRules, Theme } from "../../types";
+import injectSheet, {  WithStyles } from "react-jss";
 import Track from "./Track";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -25,22 +23,11 @@ import {
 import {
   faEthereum
 } from "@fortawesome/free-brands-svg-icons";
+import { Theme } from "../../ThemeInjector";
 
-interface TrackInfoStyles<T> extends Styles {
-  TrackInfo: T;
-  header: T;
-  tracks: T;
-  description: T;
-  bullet: T;
-  icon: T;
-  [s: string]: T;
-}
+type Props = WithStyles<typeof styles>
 
-interface Props {
-  classes: TrackInfoStyles<string>;
-}
-
-const styles = (theme: Theme): TrackInfoStyles<JssRules> => ({
+const styles = (theme: Theme) => ({
   TrackInfo: {
     width: "80vw",
     marginBottom: "5%",

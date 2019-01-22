@@ -1,10 +1,10 @@
 import * as React from "react";
 import { ReactNode } from "react";
-import injectSheet, { Styles } from "react-jss";
+import injectSheet, { WithStyles } from "react-jss";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { LoadingStates, ReduxState, Theme } from "../../types";
+import { LoadingStates, ReduxState } from "../../types";
 // @ts-ignore
 import { loadInitialState, refreshWindowDimensions } from "../coreActions";
 import Header from "./Navbar";
@@ -14,28 +14,21 @@ import UserInfo from "./UserInfo";
 import Alerts from "./Alerts";
 import LoadingIcon from "./LoadingIcon";
 import ErrorPage from "./ErrorPage";
+import { Theme } from "../../ThemeInjector";
 
-interface MainAppStyles<T> extends Styles {
-  MainApp: T;
-  loadingScreen: T;
-  loadingIcon: T;
-  loadingText: T;
-  banner: T;
-  bannerImg: T;
-}
 
-interface Props {
-  classes: MainAppStyles<string>;
+interface Props extends WithStyles<typeof styles> {
   children: ReactNode;
   location: Location;
   user: User;
   addUser: (u: User) => any;
   deleteUser: () => any;
   onResizeWindow: () => any;
+  loadInitialState: (location: Location) => any;
   loadingState: LoadingStates
 }
 
-const styles = (theme: Theme): MainAppStyles<object> => ({
+const styles = (theme: Theme) => ({
   MainApp: {
     backgroundColor: theme.backgroundColor,
     color: theme.fontColor,

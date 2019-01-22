@@ -1,8 +1,7 @@
-import "@babel/polyfill"; 
-import React from "react";
-import ReactDOM from "react-dom";
+import "@babel/polyfill";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 import RoutingApp from "./modules/RoutingApp";
-import { AppContainer } from "react-hot-loader";
 import injectTapEventPlugin from "react-tap-event-plugin";
 
 // for onClick events with MUI/React
@@ -12,9 +11,4 @@ try {
   /* hot reloading, no issue  */
 }
 
-ReactDOM.render(
-  <AppContainer>
-    <RoutingApp />
-  </AppContainer>,
-  document.getElementById("app")
-);
+ReactDOM.render(<RoutingApp />, document.getElementById("app"));

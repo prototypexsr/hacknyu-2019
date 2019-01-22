@@ -1,4 +1,5 @@
 import { User } from "firebase";
+import UpdatePasswordForm from "./core/components/UpdatePasswordForm";
 // Misc types
 
 export interface ReduxState {
@@ -13,10 +14,71 @@ export interface Errors {
   updatePasswordError: string;
 }
 
+export interface Notifications {}
+
 export enum LoadingStates {
   Loading,
   Loaded,
   Failed
+}
+
+interface ApplyForm extends Form {
+  resumeTimestamp?: string;
+  submitTimestamp?: string;
+  formData: ApplyFormData;
+}
+
+interface UpdatePasswordForm extends Form {}
+
+interface ResetPasswordForm extends Form {}
+
+interface RegisterForm extends Form {}
+
+interface LoginForm extends Form {}
+
+export interface ApplyFormData {
+  firstName: string;
+  lastName: string;
+  birthDate: string;
+  gender: string;
+  // race / ethnicity
+  isAmericanNative: boolean;
+  isAsianPacificIslander: boolean;
+  isBlackAfricanAmerican: boolean;
+  isHispanic: boolean;
+  isWhiteCaucasian: boolean;
+  isOther: boolean;
+  phoneNumber: string;
+  school: string;
+  nyuSchool?: string;
+  nyuSchoolOther?: string;
+  yearOfStudy: string;
+  major: string;
+  gradYear: string;
+  isFirstTime: string;
+  timesParticipated: string;
+  track: string;
+  tshirtSize: string;
+
+  isVeggie: boolean;
+  isVegan: boolean;
+  isKosher: boolean;
+  isHalal: boolean;
+  isGlutenFree: boolean;
+
+  otherDietaryRestrictions: string;
+  allergies: string;
+  codeOfConduct: boolean;
+  privacyPolicy: boolean;
+  resumeTimestamp: string; // timestamp
+
+  emergencyContactNumber: string;
+  emergencyContactName: string;
+  emergencyContactRelation: string;
+}
+
+interface Form {
+  isSubmitting: boolean;
 }
 
 export interface CoreState {
@@ -24,53 +86,12 @@ export interface CoreState {
   viewportHeight: number;
   user: User;
   errors: Errors;
+  notifications: Notifications;
   loadingState: LoadingStates;
+  applyForm: ApplyForm;
+  updatePasswordForm: UpdatePasswordForm;
+  resetPasswordForm: ResetPasswordForm;
+  registerForm: RegisterForm;
+  loginForm: LoginForm;
+  passwordEmailSent: boolean;
 }
-
-export interface Theme {
-  backgroundColor: string;
-  secondBackground: string;
-  secondBackgroundHighlight: string;
-  thirdBackground: string;
-  fontColor: string;
-  secondFont: string;
-  secondFontHover: string;
-  highlightColor: string;
-  highlightColorHover: string;
-  formBackground: string;
-  submitButton: string;
-  submitButtonHover: string;
-  submitButtonDeactivated: string;
-  errorBorder: string;
-  errorText: string;
-  errorBackground: string;
-  notificationBackground: string;
-  notificationBorder: string;
-  overlayColor: string;
-  fontFamily: string;
-  inputPadding: string;
-  red: string;
-  green: string;
-  blue: string;
-  orange: string;
-  containerMaxWidth: string;
-  containerMobileWidth: string;
-  containerSmallWidth: string;
-  containerMediumWidth: string;
-  containerLargeWidth: string;
-  smallBreakpoint: string;
-  mediumBreakpoint: string;
-  largeBreakpoint: string;
-}
-export type JssValue =
-  | string
-  | number
-  | Array<string | number | Array<string | number> | "!important">
-  | null
-  | false;
-
-// Basically calculated props. Returns a JssValue (which I stole from the
-// JSS typings, idk why JSS doesn't export it)
-export type JssFunction<Props> = (props: Props) => JssValue;
-
-export type JssRules = { [s: string]: JssValue | JssFunction | JssRules };

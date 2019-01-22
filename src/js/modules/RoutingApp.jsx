@@ -1,5 +1,5 @@
 import { Provider } from "react-redux";
-import React, { Component } from "react";
+import * as React from "react";
 import { Route } from "react-router-dom";
 import appHistory from "../tools/appHistory";
 import MainApp from "./core/components/MainApp";
@@ -14,7 +14,7 @@ import RegisterPage from './core/components/RegisterPage'
 import ResetPasswordPage from "./core/components/ResetPasswordPage";
 import ProfilePage from "./core/components/ProfilePage";
 
-class RoutingApp extends Component {
+class RoutingApp extends React.Component {
   render() {
     return (
       <Provider store={store}>

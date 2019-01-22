@@ -1,20 +1,12 @@
 import * as React from "react";
-import { Styles } from "react-jss";
-import { JssRules, Theme } from "../../types";
-import injectSheet from "react-jss/lib/injectSheet";
+import injectSheet, { WithStyles } from "react-jss";
 import AnimatedSubwayLines from "./AnimatedSubwayLines";
+import { Theme } from "../../ThemeInjector";
 
-interface ErrorPageStyles<T> extends Styles {
-  ErrorPage: T;
-  message: T;
-  link: T;
-}
 
-interface Props {
-  classes: ErrorPageStyles<string>;
-}
+type Props = WithStyles<typeof styles>
 
-const styles = (theme: Theme): ErrorPageStyles<JssRules> => ({
+const styles = (theme: Theme) => ({
   ErrorPage: {
     display: "flex",
     flexDirection: "column",

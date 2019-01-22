@@ -1,19 +1,13 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import injectSheet, { Styles } from "react-jss";
+import injectSheet, { WithStyles } from "react-jss";
 import { Link } from "react-router-dom";
 // @ts-ignore
-import { loginWithGoogle, logout } from "../coreActions";
+import { logout } from "../coreActions";
 import { User } from "firebase";
-import { Theme } from "../../types";
+import { Theme } from "../../ThemeInjector";
 
-interface NavbarStyles<T> extends Styles {
-  Navbar: T;
-  link: T;
-  links: T;
-  [p:string]: T;
-}
-const styles = (theme: Theme): NavbarStyles => ({
+const styles = (theme: Theme) => ({
   Navbar: {
     height: "100%",
     width: "100vw",
@@ -58,8 +52,7 @@ const styles = (theme: Theme): NavbarStyles => ({
   }
 });
 
-interface Props {
-  classes: { [s: string]: string };
+interface Props extends WithStyles<typeof styles> {
   user: User;
   error: string;
   viewportWidth: number;

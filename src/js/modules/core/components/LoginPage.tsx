@@ -1,32 +1,23 @@
 import * as React from "react";
-import { JssRules, Theme } from "../../types";
-import injectSheet, { Styles } from "react-jss/lib/injectSheet";
+import injectSheet, { WithStyles } from "react-jss";
 import { Field, Form } from "react-final-form";
 import Button from "./Button";
-import { compose } from "redux";
+import { compose, Dispatch } from "redux";
 import { connect } from "react-redux";
-//@ts-ignore
 import { loginWithGoogle, loginWithPassword } from "../coreActions";
 import { emailRegex } from "../../constants";
 import Input from "./Input";
 import { Link } from "react-router-dom";
+import Underline from "./Underline";
+import { ReduxState } from "../../types";
+import { Theme } from "../../ThemeInjector";
 
-interface LoginPageStyles<T> extends Styles {
-  LoginPage: T;
-  form: T;
-  registerLink: T;
-  resetPasswordLink: T;
-  underline: T;
-  [s: string]: T;
-}
-
-interface Props {
-  classes: LoginPageStyles<string>;
+interface Props extends WithStyles<typeof styles> {
   isSubmitting: boolean;
-  loginWithGoogle: () => any;
+  loginWithGoogle: () => void;
   loginWithPassword: (
     { email, password }: { email: string; password: string }
-  ) => any;
+  ) => void;
 }
 
 interface FormValues {
@@ -34,7 +25,7 @@ interface FormValues {
   password: string;
 }
 
-const styles = (theme: Theme): LoginPageStyles<JssRules> => ({
+const styles = (theme: Theme) => ({
   LoginPage: {
     display: "flex",
     flexDirection: "column",
@@ -74,7 +65,7 @@ const styles = (theme: Theme): LoginPageStyles<JssRules> => ({
   }
 });
 
-const validateLogin = values => {
+const validateLogin = (values: any) => {
   let errors: { email?: string; password?: string } = {};
   if (!values.email) {
     errors.email = "Email is required";
@@ -97,14 +88,14 @@ const LoginPage: React.SFC<Props> = ({
   const handleSubmit = (values: FormValues) => {
     loginWithPassword(values);
   };
-  const handleGoogleLogin = (event: Event) => {
+  const handleGoogleLogin = (event: React.MouseEvent<HTMLInputElement>) => {
     event.preventDefault();
     loginWithGoogle();
   };
   return (
     <div className={classes.LoginPage}>
       <h1> LOGIN </h1>
-      <hr className={classes.underline}></hr>
+      <Underline/>
       <Form
         onSubmit={handleSubmit}
         validate={validateLogin}
@@ -157,11 +148,12 @@ const LoginPage: React.SFC<Props> = ({
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: ReduxState) => ({
   isSubmitting: state.core.loginForm.isSubmitting
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   loginWithGoogle: () => {
     dispatch(loginWithGoogle());
   },

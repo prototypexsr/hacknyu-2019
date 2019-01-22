@@ -1,21 +1,14 @@
 import * as React from "react";
 import { Field } from "react-final-form";
-import { JssRules, Theme } from "../../types";
-import injectSheet, { Styles } from "react-jss/lib/injectSheet";
+import injectSheet, { WithStyles } from "react-jss";
+import { Theme } from "../../ThemeInjector";
 
 
-interface CheckboxStyles<T> extends Styles {
-  Checkbox: T;
-  input: T;
-  [s: string]: T;
-}
-
-interface Props {
+interface Props extends WithStyles<typeof styles> {
   name: string,
-  classes: CheckboxStyles<string>
 }
 
-const styles = (theme: Theme): CheckboxStyles<JssRules> => ({
+const styles = (theme: Theme) => ({
   Checkbox: {
     display: "flex",
     alignItems: "center",
@@ -26,6 +19,7 @@ const styles = (theme: Theme): CheckboxStyles<JssRules> => ({
     height: "20px",
     margin: "8px"
   },
+  description: {},
   [`@media(max-width: ${theme.mediumBreakpoint})`]: {
     description: {
       width: "200px"

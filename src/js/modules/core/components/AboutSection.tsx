@@ -1,19 +1,11 @@
 import * as React from "react";
-import injectSheet, { Styles } from "react-jss/lib/injectSheet";
-import { JssRules, Theme } from "../../types";
+import injectSheet, { WithStyles } from "react-jss";
 import Underline from "./Underline";
+import { Theme } from "../../ThemeInjector";
 
-interface AboutSectionStyles<T> extends Styles {
-  AboutSection: T;
-  content: T;
-  intro: T;
-  title: T;
-}
+interface Props extends WithStyles<typeof styles> {}
 
-interface Props {
-  classes: { [s: string]: string };
-}
-const styles = (theme: Theme): AboutSectionStyles<JssRules> => ({
+const styles = (theme: Theme) => ({
   AboutSection: {
     display: "flex",
     alignItems: "center",
@@ -54,11 +46,11 @@ const AboutSection: React.SFC<Props> = ({ classes }) => {
         <Underline />
         <p className={classes.intro}>
           HackNYU is NYU's annual student-run hackathon, where people of all
-          disciplines come together to create a project that addresses one
-          of several social initiatives, or &ldquo;tracks&rdquo;. It takes place
+          disciplines come together to create a project that addresses one of
+          several social initiatives, or &ldquo;tracks&rdquo;. It takes place
           simultaneously in New York, Abu Dhabi and Shanghai over 48 hours. This
-          year, HackNYU takes place from February 15th to 17th. HackNYU is free, and
-          made possible thanks to our wonderful sponsors and volunteers.
+          year, HackNYU takes place from February 15th to 17th. HackNYU is free,
+          and made possible thanks to our wonderful sponsors and volunteers.
         </p>
         <p className={classes.intro}>Come join us at HackNYU 2019!</p>
       </div>

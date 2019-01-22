@@ -40,7 +40,7 @@ type Props = WithStyles<typeof styles>;
 const Footer: React.FunctionComponent<Props> = ({ classes }) => {
   return (
     <div className={classes.Footer}>
-      <p className={classes.copyText}>Copyright © 2018 HackNYU. </p>
+      <p className={classes.copyText}>Copyright © 2019 HackNYU. </p>
       <p className={classes.copyText}>Contact us at: support.hack@nyu.edu</p>
       <p className={classes.copyText}>
         Find us on social media:

@@ -1,37 +1,33 @@
 import * as React from "react";
 import SubwayIcon from "./SubwayIcon";
-import injectSheet, {  WithStyles } from "react-jss";
+import injectSheet, { WithStyles } from "react-jss";
 import Track from "./Track";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMedkit,
-  faHeartbeat,
-  faRunning,
-  faSolarPanel,
-  faTree,
-  faGlobeAmericas,
-  faBullhorn,
-  faGraduationCap,
-  faLaptop,
-  faChalkboardTeacher,
-  faCode,
-  faDollarSign,
-  faPiggyBank,
-  faHeart,
-  faHandshake,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  faEthereum
-} from "@fortawesome/free-brands-svg-icons";
+import { faMedkit } from "@fortawesome/free-solid-svg-icons/faMedkit";
+import { faHeartbeat } from "@fortawesome/free-solid-svg-icons/faHeartbeat";
+import { faRunning } from "@fortawesome/free-solid-svg-icons/faRunning";
+import { faSolarPanel } from "@fortawesome/free-solid-svg-icons/faSolarPanel";
+import { faTree } from "@fortawesome/free-solid-svg-icons/faTree";
+import { faGlobeAmericas } from "@fortawesome/free-solid-svg-icons/faGlobeAmericas";
+import { faBullhorn } from "@fortawesome/free-solid-svg-icons/faBullhorn";
+import { faGraduationCap } from "@fortawesome/free-solid-svg-icons/faGraduationCap";
+import { faLaptop } from "@fortawesome/free-solid-svg-icons/faLaptop";
+import { faChalkboardTeacher } from "@fortawesome/free-solid-svg-icons/faChalkboardTeacher";
+import { faCode } from "@fortawesome/free-solid-svg-icons/faCode";
+import { faDollarSign } from "@fortawesome/free-solid-svg-icons/faDollarSign";
+import { faPiggyBank } from "@fortawesome/free-solid-svg-icons/faPiggyBank";
+import { faHeart } from "@fortawesome/free-solid-svg-icons/faHeart";
+import { faHandshake } from "@fortawesome/free-solid-svg-icons/faHandshake";
+import { faEthereum } from "@fortawesome/free-brands-svg-icons/faEthereum";
 import { Theme } from "../../ThemeInjector";
 
-type Props = WithStyles<typeof styles>
+type Props = WithStyles<typeof styles>;
 
 const styles = (theme: Theme) => ({
   TrackInfo: {
     width: "80vw",
     marginBottom: "5%",
-    backgroundColor: theme.secondBackground,
+    backgroundColor: theme.secondBackground
   },
   header: {
     fontSize: "2em"

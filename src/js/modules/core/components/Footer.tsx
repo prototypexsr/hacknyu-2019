@@ -2,7 +2,8 @@ import * as React from "react";
 import injectSheet, { WithStyles } from "react-jss";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faFacebook } from "@fortawesome/free-brands-svg-icons/faFacebook"
+import { faTwitter } from "@fortawesome/free-brands-svg-icons/faTwitter";
 import { Theme } from "../../ThemeInjector";
 
 const styles = (theme: Theme) => ({

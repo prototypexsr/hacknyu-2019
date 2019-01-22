@@ -5,13 +5,12 @@ import Button from "./Button";
 import { connect } from "react-redux";
 import { bindActionCreators, compose, Dispatch } from "redux";
 import { emailRegex } from "../../constants";
-// @ts-ignore
 import { register } from "../coreActions";
 import Input from "./Input";
 import { Link } from "react-router-dom";
 import Underline from "./Underline";
 import { Theme } from "../../ThemeInjector";
-import { ReduxState } from "../../types";
+import { ReduxState } from "../../../reducers";
 
 const styles = (theme: Theme) => ({
   RegisterPage: {

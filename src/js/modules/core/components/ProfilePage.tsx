@@ -8,7 +8,8 @@ import Button from "./Button";
 import PasswordForm from "./UpdatePasswordForm";
 import ProfilePic from "./ProfilePic";
 import { Theme } from "../../ThemeInjector";
-import { ApplyFormData, ReduxState } from "../../types";
+import { ApplyFormData } from "../../types";
+import { ReduxState } from "../../../reducers";
 
 interface Props extends WithStyles<typeof styles> {
   user: User;

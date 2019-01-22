@@ -9,8 +9,8 @@ import { emailRegex } from "../../constants";
 import Input from "./Input";
 import { Link } from "react-router-dom";
 import Underline from "./Underline";
-import { ReduxState } from "../../types";
 import { Theme } from "../../ThemeInjector";
+import { ReduxState } from "../../../reducers";
 
 interface Props extends WithStyles<typeof styles> {
   isSubmitting: boolean;

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ApplyFormData, ReduxState } from "../../types";
+import { ApplyFormData } from "../../types";
 import injectSheet, { WithStyles } from "react-jss";
 import { push } from "connected-react-router";
 import { submitApp } from "../coreActions";
@@ -15,15 +15,6 @@ import Checkbox from "./Checkbox";
 import Input from "./Input";
 import Select from "./Select";
 import UploadResumeButton from "./UploadResumeButton";
-
-interface Props {
-  classes: ApplyPageStyles<string>;
-  user: User;
-  push: (route: string) => any;
-  formData: FormData;
-  submitTimestamp: string;
-  submitApp: (values: FormData, incompleteFields: string[]) => any;
-}
 
 interface FormData {
   firstName: string;
@@ -68,6 +59,7 @@ interface FormData {
 }
 
 import { Theme } from "../../ThemeInjector";
+import { ReduxState } from "../../../reducers";
 
 const requiredFields = {
   firstName: "First Name",

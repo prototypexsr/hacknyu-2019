@@ -5,7 +5,7 @@ import { bindActionCreators, compose, Dispatch } from "redux";
 import { connect } from "react-redux";
 import { uploadResume } from "../coreActions";
 import { Theme } from "../../ThemeInjector";
-import { ReduxState } from "../../types";
+import { ReduxState } from "../../../reducers";
 
 interface Props extends WithStyles<typeof styles> {
   resumeTimestamp: string;

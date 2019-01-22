@@ -2,11 +2,11 @@ import * as React from "react";
 import { Field, Form } from "react-final-form";
 import Input from "./Input";
 import Button from "./Button";
-import { bindActionCreators, compose, Dispatch } from "redux";
+import { bindActionCreators, Dispatch } from "redux";
 import { updatePassword } from "../coreActions";
 import { connect } from "react-redux";
 import injectSheet, { WithStyles } from "react-jss";
-import { ReduxState } from "../../types";
+import { ReduxState } from "../../../reducers";
 
 interface Props extends WithStyles<typeof styles> {
   updatePassword: (password: string) => any;
@@ -21,7 +21,7 @@ const styles = {
   }
 };
 
-const UpdatePasswordForm: React.SFC<Props> = ({
+const UpdatePasswordForm: React.FunctionComponent<Props> = ({
   classes,
   updatePassword,
   isSubmitting

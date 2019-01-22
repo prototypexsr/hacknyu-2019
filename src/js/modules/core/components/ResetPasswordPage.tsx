@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import Button from "./Button";
 import Underline from "./Underline";
 import { Theme } from "../../ThemeInjector";
-import { ReduxState } from "../../types";
+import { ReduxState } from "../../../reducers";
 
 const styles = (theme: Theme) => ({
   ResetPasswordPage: {

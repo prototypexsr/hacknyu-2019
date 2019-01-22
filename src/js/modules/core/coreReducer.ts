@@ -32,7 +32,51 @@ import {
   LOADING_FULFILLED,
   LOADING_REJECTED
 } from "./coreActions";
-import { LoadingStates } from "../types";
+import { User } from "firebase";
+import { ApplyFormData, Form } from "../types";
+import { Reducer } from "redux";
+
+export enum LoadingStates {
+  Loading,
+  Loaded,
+  Failed
+}
+
+export type Errors = { [s: string]: string };
+
+export type Notifications = { [s: string]: string };
+
+export interface CoreState {
+  viewportWidth: number;
+  viewportHeight: number;
+  user: User;
+  errors: Errors;
+  notifications: Notifications;
+  loadingState: LoadingStates;
+  applyForm: ApplyForm;
+  updatePasswordForm: UpdatePasswordForm;
+  resetPasswordForm: ResetPasswordForm;
+  registerForm: RegisterForm;
+  resumeForm: ResumeForm;
+  loginForm: LoginForm;
+  passwordEmailSent: boolean;
+}
+
+interface ResumeForm extends Form {}
+
+interface ApplyForm extends Form {
+  resumeTimestamp?: string;
+  submitTimestamp?: string;
+  formData: ApplyFormData | {};
+}
+
+interface UpdatePasswordForm extends Form {}
+
+interface ResetPasswordForm extends Form {}
+
+interface RegisterForm extends Form {}
+
+interface LoginForm extends Form {}
 
 // getWindowWidth & getWindowHeight was
 // adapted from http://stackoverflow.com/a/8876069/1291659
@@ -55,8 +99,8 @@ const getViewportHeight = () => {
 const initialState = {
   viewportWidth: getViewportWidth(),
   viewportHeight: getViewportHeight(),
-  user: undefined,
   errors: {},
+  user: undefined as User,
   notifications: {},
   applyForm: { isSubmitting: false, formData: {} },
   loginForm: { isSubmitting: false },
@@ -68,7 +112,7 @@ const initialState = {
   loadingState: LoadingStates.Loading
 };
 
-const reducer = (state = { ...initialState }, action) => {
+const reducer: Reducer<CoreState> = (state = { ...initialState }, action) => {
   switch (action.type) {
     case REFRESH_WINDOW_DIMENSIONS:
       let viewportWidth = getViewportWidth(),
@@ -104,7 +148,7 @@ const reducer = (state = { ...initialState }, action) => {
     case SUBMIT_APP_PENDING:
       return {
         ...state,
-        applyForm: { isSubmitting: true }
+        applyForm: { ...state.applyForm, isSubmitting: true }
       };
     case SUBMIT_APP_FULFILLED:
       const { message, submitTimestamp, ...formData } = action.payload;
@@ -138,7 +182,7 @@ const reducer = (state = { ...initialState }, action) => {
     case SUBMIT_APP_REJECTED:
       return {
         ...state,
-        applyForm: { isSubmitting: false },
+        applyForm: { ...state.applyForm, isSubmitting: false },
         errors: { ...state.errors, apply: action.payload.message }
       };
     case LOGIN_PENDING:
@@ -214,12 +258,8 @@ const reducer = (state = { ...initialState }, action) => {
     case RESET_PASSWORD_REJECTED:
       return {
         ...state,
-        errors: {
-          ...state.errors,
-          passwordEmail: action.payload.message,
-          resetPasswordForm: { isSubmitting: false },
-          errors: { ...state.errors, resetPassword: action.payload.message }
-        }
+        resetPasswordForm: { isSubmitting: false },
+        errors: { ...state.errors, resetPassword: action.payload.message }
       };
     case UPDATE_PASSWORD_PENDING:
       return {
@@ -289,7 +329,7 @@ const reducer = (state = { ...initialState }, action) => {
     case CLEAR_EMAIL_STATE:
       return { ...state, passwordEmailSent: false };
     case CLEAR_ERROR:
-      const newErrors = { ...state.errors };
+      const newErrors: Errors = { ...state.errors };
       delete newErrors[action.payload];
       return {
         ...state,
@@ -305,7 +345,7 @@ const reducer = (state = { ...initialState }, action) => {
     case UPLOAD_PROFILE_PICTURE_REJECTED:
       return {
         ...state,
-        errors: { ...state.errors, fileError: action.payload }
+        errors: { ...state.errors, file: action.payload }
       };
     case UPLOAD_PROFILE_PICTURE_FULFILLED:
       return {

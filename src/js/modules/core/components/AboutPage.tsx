@@ -1,7 +1,6 @@
 import * as React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReact } from "@fortawesome/free-brands-svg-icons/faReact";
-import {  ReduxState } from "../../types";
 import { faAws } from "@fortawesome/free-brands-svg-icons/faAws";
 import Underline from "./Underline";
 import { Link } from "react-router-dom";
@@ -10,6 +9,7 @@ import { connect } from "react-redux";
 import { User } from "firebase";
 import injectSheet, { WithStyles } from "react-jss";
 import { Theme } from "../../ThemeInjector";
+import { ReduxState } from "../../../reducers";
 
 const styles = (theme: Theme) => ({
   AboutPage: {

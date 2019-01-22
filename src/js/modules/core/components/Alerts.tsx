@@ -1,10 +1,11 @@
 import * as React from "react";
 import injectSheet, { WithStyles } from "react-jss";
-import { Errors, Notifications, ReduxState } from "../../types";
 import { bindActionCreators, compose, Dispatch } from "redux";
 import { connect } from "react-redux";
 import AnimatedAlert from "./AnimatedAlert";
 import { clearError, clearNotification } from "../coreActions"
+import { Errors, Notifications } from "../coreReducer";
+import { ReduxState } from "../../../reducers";
 
 
 interface Props extends WithStyles<typeof styles> {
@@ -23,7 +24,7 @@ const styles = {
   }
 };
 
-const Alerts: React.SFC<Props> = ({ clearError, clearNotification, notifications, errors, classes }) => {
+const Alerts: React.FunctionComponent<Props> = ({ clearError, clearNotification, notifications, errors, classes }) => {
   return (
     <div className={classes.Alerts}>
       {Object.entries(errors).map(([type, message]: string[], index: number) => (

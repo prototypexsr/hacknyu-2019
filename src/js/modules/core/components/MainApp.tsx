@@ -4,7 +4,6 @@ import injectSheet, { WithStyles } from "react-jss";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { LoadingStates, ReduxState } from "../../types";
 // @ts-ignore
 import { loadInitialState, refreshWindowDimensions } from "../coreActions";
 import Header from "./Navbar";
@@ -15,6 +14,8 @@ import Alerts from "./Alerts";
 import LoadingIcon from "./LoadingIcon";
 import ErrorPage from "./ErrorPage";
 import { Theme } from "../../ThemeInjector";
+import { ReduxState } from "../../../reducers";
+import { LoadingStates } from "../coreReducer";
 
 
 interface Props extends WithStyles<typeof styles> {

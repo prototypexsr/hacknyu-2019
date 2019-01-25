@@ -7,6 +7,7 @@ import Timeline from "./Timeline";
 import AnimatedSubwayLines from "./AnimatedSubwayLines";
 import FAQ from "./FAQ";
 import { Theme } from "../../ThemeInjector";
+import SponsorshipSection from "./SponsorshipSection";
 
 type Props = WithStyles<typeof styles>;
 
@@ -42,6 +43,10 @@ const styles = (theme: Theme) => ({
     backgroundColor: theme.secondBackground,
     color: theme.fontColor
   },
+  sponsorshipSection: {
+    backgroundColor: theme.secondBackground,
+    color: theme.secondFont
+  },
   curvedTop: {
     width: "100vw",
     transform: "translateY(0.75vh)"
@@ -71,6 +76,9 @@ const HomePage: React.SFC<Props> = ({ classes }) => {
         <div className={classes.faqSection}>
           <img className={classes.curvedTop} src="/img/semicircle.svg" />
           <FAQ />
+        </div>
+        <div className={classes.sponsorshipSection}>
+        <SponsorshipSection />
         </div>
       </div>
     </div>

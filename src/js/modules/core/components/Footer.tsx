@@ -1,6 +1,5 @@
 import * as React from "react";
 import injectSheet, { WithStyles } from "react-jss";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons/faFacebook"
 import { faTwitter } from "@fortawesome/free-brands-svg-icons/faTwitter";
@@ -8,11 +7,21 @@ import { Theme } from "../../ThemeInjector";
 
 const styles = (theme: Theme) => ({
   Footer: {
+    padding: "2em",
+    paddingBottom: "125px",
+    marginTop: "25px",
+    backgroundColor: theme.backgroundColor,
+    width: "100%",
+  },
+  logo: {
+    width: "175px",
+    padding: "20px",
+    display: "block",
+    margin: "0 auto",
     marginTop: "50px",
     // Added this cause in mobile user tools blocks the copy
     marginBottom: "100px",
     backgroundColor: theme.backgroundColor,
-    width: "100vw"
   },
   footerLogo: {
     maxWidth: "100px",
@@ -25,6 +34,7 @@ const styles = (theme: Theme) => ({
   },
   socialMediaLink: {
     color: theme.fontColor,
+    margin: "0.1em",
     textDecoration: "none",
     "&:hover": {
       textDecoration: "none"

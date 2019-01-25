@@ -371,7 +371,7 @@ const ApplyPage: React.FunctionComponent<Props> = ({
                 <Field
                   label="Major:"
                   name="major"
-                  render={props => <Select {...props} />}
+                  render={props => <Input {...props} />}
                 />
 
                 <Field

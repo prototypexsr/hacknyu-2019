@@ -27,14 +27,6 @@ const styles = (theme: Theme) => ({
     },
     padding: (props: Props) => props.padding,
   },
-  "@keyframes lds-dual-ring": {
-    "0%": {
-      transform: "rotate(0deg)"
-    },
-    "100%": {
-      transform: "rotate(360deg)"
-    }
-  }
 });
 
 

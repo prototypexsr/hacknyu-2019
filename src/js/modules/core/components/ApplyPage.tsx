@@ -189,7 +189,8 @@ const ApplyPage: React.FunctionComponent<Props> = ({
   isSubmitting,
   user,
   formData,
-  submitTimestamp
+  submitTimestamp,
+  submitApp
 }) => {
   // Checks if values are all filled and puts an empty string if they aren't
   // (so firebase doesn't complain)

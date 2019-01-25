@@ -17,11 +17,12 @@ const styles = (theme: Theme) => ({
     padding: "12px 25px",
     border: "none",
     fontSize: "0.9em",
-    transition: "background-color 0.4s",
+    transition: "background-color 0.4s, transform 200ms",
     borderRadius: "5px",
     cursor: "pointer",
     "&:hover": {
-      backgroundColor: theme.submitButtonHover
+      backgroundColor: theme.submitButtonHover,
+      transform: "scale(1.1)"
     },
     '&:disabled': {
       backgroundColor: theme.submitButtonDeactivated

@@ -11,19 +11,21 @@ interface Props extends WithStyles<typeof styles> {
   resumeTimestamp: string;
   uploadResume: (uid: string, file: File) => any;
   uid?: string;
+  label: string;
 }
 
 const styles = (theme: Theme) => ({
   UploadResumeButton: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     fontSize: "1.3rem",
     padding: "15px",
     alignItems: "center"
   },
   label: {
-    width: "175px",
-    padding: "5px"
+    maxWidth: "500px",
+    padding: "10px",
+    paddingBottom :"20px"
   },
   hiddenInput: {
     display: "none"
@@ -55,11 +57,11 @@ class UploadResumeButton extends React.Component<Props> {
   };
 
   render() {
-    let { classes, resumeTimestamp } = this.props;
+    let { classes, label, resumeTimestamp } = this.props;
 
     return (
       <div className={classes.UploadResumeButton}>
-        <div className={classes.label}>(Optional) Resume:</div>
+        <div className={classes.label}>{label}</div>
         <input
           key={0}
           type="file"
@@ -67,6 +69,7 @@ class UploadResumeButton extends React.Component<Props> {
           ref={this.fileUploader}
           onChange={this.handleUpload}
         />
+        <div>
         <Button key={1} type="button" onClick={this.handleClick}>
           Upload
         </Button>
@@ -76,6 +79,7 @@ class UploadResumeButton extends React.Component<Props> {
             Uploaded at {resumeTimestamp}{" "}
           </div>
         )}
+        </div>
       </div>
     );
   }

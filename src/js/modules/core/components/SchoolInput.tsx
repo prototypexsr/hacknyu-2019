@@ -3,7 +3,7 @@ import * as Autocomplete from "react-autocomplete";
 import injectSheet, { WithStyles } from "react-jss";
 import { Theme } from "../../ThemeInjector";
 import { ChangeEvent, CSSProperties } from "react";
-import { FieldRenderProps } from "react-final-form";
+import { FieldRenderProps } from "react-final-form"
 
 interface Props extends WithStyles<typeof styles> {
   schools: string[];

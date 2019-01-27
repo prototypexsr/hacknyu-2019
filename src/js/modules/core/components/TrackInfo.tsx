@@ -1,7 +1,6 @@
 import * as React from "react";
 import SubwayIcon from "./SubwayIcon";
 import injectSheet, { WithStyles } from "react-jss";
-import Track from "./Track";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMedkit } from "@fortawesome/free-solid-svg-icons/faMedkit";
 import { faHeartbeat } from "@fortawesome/free-solid-svg-icons/faHeartbeat";
@@ -20,6 +19,8 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons/faHeart";
 import { faHandshake } from "@fortawesome/free-solid-svg-icons/faHandshake";
 import { faEthereum } from "@fortawesome/free-brands-svg-icons/faEthereum";
 import { Theme } from "../../ThemeInjector";
+import Track from "./Track";
+
 
 type Props = WithStyles<typeof styles>;
 

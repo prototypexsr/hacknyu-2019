@@ -23,101 +23,101 @@ interface SponsorFields {
   square: boolean;
 }
 
-export const NYU_SPONSOR =  {
+export const NYU_SPONSOR = {
   name: "New York University",
-  src:  "/new-york-university/nyu-long.png",
+  src: "/new-york-university/nyu-long.png",
   url: "https://nyu.edu/",
-  square: false  
+  square: false
 };
 
 export const SPONSORS_INFO: Array<SponsorFields> = [
   {
     name: "Google",
-    src:  "/google/google.png",
+    src: "/google/google.png",
     url: "https://google.com",
-    square: false  
+    square: false
   },
   {
     name: "Contrary Capital",
-    src:  "/contrary-capital/contrary.png",
+    src: "/contrary-capital/contrary.png",
     url: "https://contrarycap.com/",
-    square: false  
+    square: false
   },
   {
     name: "Soylent",
-    src:  "/soylent/soylent.svg",
+    src: "/soylent/soylent.svg",
     url: "https://soylent.com",
-    square: false  
+    square: false
   },
   {
     name: "Facebook",
-    src:  "/facebook/facebook.svg",
+    src: "/facebook/facebook.svg",
     url: "https://facebook.com",
-    square: false  
+    square: false
   },
   {
     name: "Major League Hacking",
-    src:  "/major-league-hacking/mlh.png",
+    src: "/major-league-hacking/mlh.png",
     url: "https://mlh.io/",
-    square: false  
+    square: false
   },
   {
     name: "KIND Snacks",
-    src:  "/kind/kind.png",
+    src: "/kind/kind.png",
     url: "https://www.kindsnacks.com/",
-    square: false  
+    square: false
   },
   {
     name: "New York Life",
-    src:  "/new-york-life/nyl.png",
+    src: "/new-york-life/nyl.png",
     url: "https://www.newyorklife.com/",
-    square: true  
+    square: true
   },
   {
     name: "JP Morgan Chase & Co",
-    src:  "/jp-morgan-chase/jpmc.png",
+    src: "/jp-morgan-chase/jpmc.png",
     url: "https://www.jpmorganchase.com/",
-    square: false  
+    square: false
   },
   {
     name: "Dell",
-    src:  "/dell/dell.png",
+    src: "/dell/dell.png",
     url: "https://www.dell.com",
-    square: true  
+    square: true
   },
   {
     name: "VentureOut NYC",
-    src:  "/ventureout-nyc/venture.png",
+    src: "/ventureout-nyc/venture.png",
     url: "https://www.ventureoutny.com",
-    square: false  
+    square: false
   },
   {
     name: "Avitae",
-    src:  "/avitae/avitae.png",
+    src: "/avitae/avitae.png",
     url: "https://www.goavitae.com",
-    square: false  
+    square: false
   },
   {
     name: "Barnana",
-    src:  "/barnana/barnana.png",
+    src: "/barnana/barnana.png",
     url: "https://www.barnana.com",
-    square: false  
+    square: false
   },
   {
     name: "Siggis",
-    src:  "/siggis/siggis.png",
+    src: "/siggis/siggis.png",
     url: "https://www.siggis.com",
-    square: false  
+    square: false
   },
   {
     name: "Thats It",
-    src:  "/thats-it/thats-it.png",
+    src: "/thats-it/thats-it.png",
     url: "https://www.thatsitfruit.com",
-    square: false  
+    square: false
   },
   {
     name: "Hasura",
-    src:  "/hasura/hasura.png",
+    src: "/hasura/hasura.png",
     url: "https://www.hasura.io",
     square: true
   },
@@ -138,5 +138,5 @@ export const SPONSORS_INFO: Array<SponsorFields> = [
     src: "/ibm/ibm.png",
     url: "https://www.ibm.com/",
     square: false
-  },
+  }
 ];

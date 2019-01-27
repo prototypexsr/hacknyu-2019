@@ -47,6 +47,11 @@ export interface Theme {
   largeBreakpoint: string;
   mediumBreakpoint: string;
   smallBreakpoint: string;
+  mobileBreakpoint: string;
+  bodyLineHeight: string;
+  bodyFontSize: string;
+  titleFontSize: string;
+  formElementMaxWidth: string;
 }
 
 const theme: Theme = {
@@ -62,7 +67,7 @@ const theme: Theme = {
   formBackground: "#fafafa",
   submitButton: "#9c68b1",
   submitButtonHover: "#b773cd",
-  submitButtonDeactivated: "#c193cd",
+  submitButtonDeactivated: "#D2AFDB",
   fontFamily: "mr-eaves-xl-modern, sans-serif",
   inputPadding: "7px 10px",
   errorText: "#444444",
@@ -70,15 +75,20 @@ const theme: Theme = {
   errorBorder: "red",
   notificationBackground: "#fefefe",
   notificationBorder: "#000000",
-  containerMobileWidth: "21em",
-  containerSmallWidth: "28em",
+  containerMobileWidth: "18em",
+  containerSmallWidth: "21em",
   containerMediumWidth: "40em",
   containerLargeWidth: "45em",
-  containerMaxWidth: "62.5em",
+  containerMaxWidth: "62.5rem",
   overlayColor: "#696969",
   largeBreakpoint: "1100px",
   mediumBreakpoint: "800px",
   smallBreakpoint: "600px",
+  mobileBreakpoint: "500px",
+  bodyFontSize: "1.3rem",
+  titleFontSize: "2em",
+  bodyLineHeight: "1.2",
+  formElementMaxWidth: "500px",
   ...trackColors
 };
 

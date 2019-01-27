@@ -6,11 +6,16 @@ import { ReduxState } from "../../reducers";
 import { ThunkAction, ThunkDispatch } from "redux-thunk";
 import { Action } from "redux";
 import { User } from "firebase";
-import { ApplyFormData, IncompleteField } from "../types";
+import { ApplyFormData, ConfirmationFormData, IncompleteField } from "../types";
+import DocumentData = firebase.firestore.DocumentData;
 
 type ThunkResult<R> = ThunkAction<R, ReduxState, undefined, Action>;
 
 export const REFRESH_WINDOW_DIMENSIONS = "core/REFRESH_WINDOW_DIMENSIONS";
+
+export const SUBMIT_CONFIRM_PENDING = "core/SUBMIT_CONFIRM_PENDING";
+export const SUBMIT_CONFIRM_FULFILLED = "core/SUBMIT_CONFIRM_FULFILLED";
+export const SUBMIT_CONFIRM_REJECTED = "core/SUBMIT_CONFIRM_REJECTED";
 
 export const SUBMIT_APP_PENDING = "core/SUBMIT_APP_PENDING";
 export const SUBMIT_APP_FULFILLED = "core/SUBMIT_APP_FULFILLED";
@@ -70,11 +75,22 @@ export const refreshWindowDimensions = () => ({
 const getUserData = (user: User): ThunkResult<void> => (
   dispatch: ThunkDispatch<ReduxState, undefined, any>
 ) => {
+  let data: any;
   db.collection("users")
     .doc(user.uid)
     .get()
     .then(doc => {
-      dispatch({ type: GET_FORM_DATA_FULFILLED, payload: doc.data() });
+      // If the user is new, there won't be any data,
+      // so we need a default of empty object
+      data = doc.data() || {};
+      return db
+        .collection("admitted")
+        .doc(user.uid)
+        .get();
+    })
+    .then(doc => {
+      data.isAdmitted = doc.exists;
+      dispatch({ type: GET_FORM_DATA_FULFILLED, payload: data });
       dispatch({ type: LOADING_FULFILLED });
     })
     .catch(err => {
@@ -199,6 +215,46 @@ export const submitApp = (
     .catch(err =>
       dispatch({
         type: SUBMIT_APP_REJECTED,
+        payload: err
+      })
+    );
+};
+
+export const submitConfirmation = (formValues: ConfirmationFormData) => (
+  dispatch: ThunkDispatch<ReduxState, undefined, any>
+) => {
+  if (!auth.currentUser) {
+    dispatch({
+      type: SUBMIT_CONFIRM_REJECTED,
+      payload: "Not logged in, please log in to confirm"
+    });
+    dispatch(push("/login"));
+    return;
+  }
+
+  const uid = auth.currentUser.uid;
+  const confirmTimestamp = new Date();
+
+  dispatch({
+    type: SUBMIT_CONFIRM_PENDING
+  });
+  return db
+    .collection("users")
+    .doc(uid)
+    .set({ confirmData: formValues, confirmTimestamp }, { merge: true })
+    .then(() => {
+      dispatch({
+        type: SUBMIT_CONFIRM_FULFILLED,
+        payload: {
+          message: "Confirmation submitted. See you at the hackathon!",
+          data: { formData: formValues, confirmTimestamp }
+        }
+      });
+      window.scroll({ top: 0, left: 0, behavior: "smooth" });
+    })
+    .catch(err =>
+      dispatch({
+        type: SUBMIT_CONFIRM_REJECTED,
         payload: err
       })
     );

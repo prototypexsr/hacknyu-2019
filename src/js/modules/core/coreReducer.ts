@@ -29,11 +29,14 @@ import {
   UPLOAD_RESUME_REJECTED,
   GET_FORM_DATA_FULFILLED,
   GET_FORM_DATA_REJECTED,
+  SUBMIT_CONFIRM_PENDING,
+  SUBMIT_CONFIRM_FULFILLED,
+  SUBMIT_CONFIRM_REJECTED,
   LOADING_FULFILLED,
   LOADING_REJECTED
 } from "./coreActions";
 import { User } from "firebase";
-import { ApplyFormData, Form } from "../types";
+import { ApplyFormData, ConfirmationFormData, Form } from "../types";
 import { Reducer } from "redux";
 
 export enum LoadingStates {
@@ -49,11 +52,13 @@ export type Notifications = { [s: string]: string };
 export interface CoreState {
   viewportWidth: number;
   viewportHeight: number;
+  isAdmitted: boolean;
   user: User;
   errors: Errors;
   notifications: Notifications;
   loadingState: LoadingStates;
   applyForm: ApplyForm;
+  confirmForm: ConfirmForm;
   updatePasswordForm: UpdatePasswordForm;
   resetPasswordForm: ResetPasswordForm;
   registerForm: RegisterForm;
@@ -68,6 +73,11 @@ interface ApplyForm extends Form {
   resumeTimestamp?: string;
   submitTimestamp?: string;
   formData: ApplyFormData | {};
+}
+
+export interface ConfirmForm extends Form {
+  confirmTimestamp?: string;
+  formData: ConfirmationFormData | {};
 }
 
 interface UpdatePasswordForm extends Form {}
@@ -103,13 +113,15 @@ const initialState = {
   user: undefined as User,
   notifications: {},
   applyForm: { isSubmitting: false, formData: {} },
+  confirmForm: { isSubmitting: false, formData: {}, isAccepted: false },
   loginForm: { isSubmitting: false },
   registerForm: { isSubmitting: false },
   resumeForm: { isSubmitting: false },
   resetPasswordForm: { isSubmitting: false },
   updatePasswordForm: { isSubmitting: false },
   passwordEmailSent: false,
-  loadingState: LoadingStates.Loading
+  loadingState: LoadingStates.Loading,
+  isAdmitted: false
 };
 
 const reducer: Reducer<CoreState> = (state = { ...initialState }, action) => {
@@ -145,12 +157,38 @@ const reducer: Reducer<CoreState> = (state = { ...initialState }, action) => {
         ...state,
         errors: { ...state.errors, resume: action.payload.message }
       };
+    case SUBMIT_CONFIRM_PENDING:
+      return {
+        ...state,
+        confirmForm: { ...state.confirmForm, isSubmitting: true }
+      };
+    case SUBMIT_CONFIRM_FULFILLED: {
+      const { message, data } = action.payload;
+
+      return {
+        ...state,
+        confirmForm: {
+          ...state.confirmForm,
+          ...data
+        },
+        notifications: {
+          ...state.notifications,
+          confirm: message
+        }
+      };
+    }
+    case SUBMIT_CONFIRM_REJECTED:
+      return {
+        ...state,
+        confirmForm: { ...state.confirmForm, isSubmitting: false },
+        errors: { ...state.errors, confirm: action.payload.message }
+      };
     case SUBMIT_APP_PENDING:
       return {
         ...state,
         applyForm: { ...state.applyForm, isSubmitting: true }
       };
-    case SUBMIT_APP_FULFILLED:
+    case SUBMIT_APP_FULFILLED: {
       const { message, submitTimestamp, ...formData } = action.payload;
       if (submitTimestamp) {
         return {
@@ -179,6 +217,7 @@ const reducer: Reducer<CoreState> = (state = { ...initialState }, action) => {
           apply: message
         }
       };
+    }
     case SUBMIT_APP_REJECTED:
       return {
         ...state,
@@ -286,10 +325,26 @@ const reducer: Reducer<CoreState> = (state = { ...initialState }, action) => {
         const {
           resumeTimestamp,
           submitTimestamp,
+          isAdmitted,
           ...formData
         } = action.payload;
+        let confirmForm;
+        if (
+          "confirmTimestamp" in action.payload &&
+          "confirmData" in action.payload
+        ) {
+          confirmForm = {
+            ...state.confirmForm,
+            formData: action.payload.confirmData,
+            confirmTimestamp: action.payload.confirmTimestamp
+          };
+        } else {
+          confirmForm = { ...state.confirmForm };
+        }
         return {
           ...state,
+          isAdmitted,
+          confirmForm,
           applyForm: {
             ...state.applyForm,
             formData,

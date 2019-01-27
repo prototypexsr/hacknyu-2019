@@ -59,11 +59,6 @@ const styles = (theme: Theme) => ({
   inputArea: {
     display: "flex"
   },
-  [`@media(max-width: ${theme.largeBreakpoint})`]: {
-    Input: {
-      width: "12em"
-    }
-  },
   [`@media(max-width: ${theme.mediumBreakpoint})`]: {
     Input: {
       width: "10em"

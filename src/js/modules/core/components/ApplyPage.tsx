@@ -1,11 +1,9 @@
 import * as React from "react";
-import { ApplyFormData } from "../../types";
+import { ApplyFormData, IncompleteField } from "../../types";
 import injectSheet, { WithStyles } from "react-jss";
 import { push } from "connected-react-router";
 import { submitApp } from "../coreActions";
 import { Form, Field, FormSpy } from "react-final-form";
-import { bindActionCreators, compose } from "redux";
-import { connect } from "react-redux";
 import { User } from "firebase";
 import { schools } from "../schools";
 import SchoolInput from "./SchoolInput";
@@ -15,51 +13,11 @@ import Checkbox from "./Checkbox";
 import Input from "./Input";
 import Select from "./Select";
 import UploadResumeButton from "./UploadResumeButton";
-
-interface FormData {
-  firstName: string;
-  lastName: string;
-  birthDate: string;
-  gender: string;
-  // race / ethnicity
-  isAmericanNative: boolean;
-  isAsianPacificIslander: boolean;
-  isBlackAfricanAmerican: boolean;
-  isHispanic: boolean;
-  isWhiteCaucasian: boolean;
-  isOther: boolean;
-  phoneNumber: string;
-  school: string;
-  nyuSchool?: string;
-  nyuSchoolOther?: string;
-  yearOfStudy: string;
-  major: string;
-  gradYear: string;
-  isFirstTime: string;
-  hearAbout: string;
-  timesParticipated: string;
-  track: string;
-  tshirtSize: string;
-
-  isVeggie: boolean;
-  isVegan: boolean;
-  isKosher: boolean;
-  isHalal: boolean;
-  isGlutenFree: boolean;
-
-  otherDietaryRestrictions: string;
-  allergies: string;
-  codeOfConduct: boolean;
-  privacyPolicy: boolean;
-  resumeTimestamp: string; // timestamp
-
-  emergencyContactNumber: string;
-  emergencyContactName: string;
-  emergencyContactRelation: string;
-}
-
 import { Theme } from "../../ThemeInjector";
 import { ReduxState } from "../../../reducers";
+import { connect } from "react-redux";
+import { bindActionCreators, compose } from "redux";
+import { Link } from "react-router-dom";
 
 const requiredFields = {
   firstName: "First Name",
@@ -82,11 +40,22 @@ const requiredFields = {
 };
 
 const styles = (theme: Theme) => ({
+  admittedAlert: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    maxWidth: "90vw",
+    color: theme.secondFont,
+    backgroundColor: theme.formBackground,
+    borderRadius: "0.5em",
+    fontSize: "1.2rem",
+    padding: "2em"
+  },
   ApplyPage: {
     display: "flex",
-    width: "100%",
+    width: "90vw",
     maxWidth: theme.containerMaxWidth,
-    flexDirection: "column" as "column",
+    flexDirection: "column",
     alignItems: "center",
     backgroundColor: theme.formBackground,
     color: theme.secondFont,
@@ -115,6 +84,11 @@ const styles = (theme: Theme) => ({
   },
   inputLabel: {
     maxWidth: "300px",
+    lineHeight: "1.8rem"
+  },
+  resumeUpload: {
+    maxWidth: "500px",
+    padding: "20px",
     lineHeight: "1.8rem"
   },
   submit: {
@@ -146,20 +120,18 @@ const styles = (theme: Theme) => ({
   },
   [`@media(max-width: ${theme.largeBreakpoint})`]: {
     ApplyPage: {
-      width: theme.containerLargeWidth
+      maxWidth: theme.containerLargeWidth
     }
   },
   [`@media(max-width: ${theme.mediumBreakpoint})`]: {
     ApplyPage: {
-      width: theme.containerMediumWidth
+      maxWidth: theme.containerMediumWidth
     }
   },
   [`@media(max-width: ${theme.smallBreakpoint})`]: {
-    ApplyPage: {
-      width: theme.containerMobileWidth
-    },
     multipleCheckboxes: {
-      width: "10em"
+      minInlineSize: "unset",
+      width: "50vw"
     },
     inputs: {
       alignItems: "center"
@@ -168,6 +140,7 @@ const styles = (theme: Theme) => ({
 });
 
 interface Props extends WithStyles<typeof styles> {
+  isAdmitted: boolean;
   user: User;
   push: (route: string) => any;
   isSubmitting: boolean;
@@ -179,18 +152,22 @@ interface Props extends WithStyles<typeof styles> {
   ) => any;
 }
 
-interface IncompleteField {
-  field: string;
-  name: string;
-}
-
 const ApplyPage: React.FunctionComponent<Props> = ({
   classes,
+  isAdmitted,
   isSubmitting,
   user,
   formData,
   submitTimestamp
 }) => {
+  if (isAdmitted) {
+    return (
+      <div className={classes.admittedAlert}>
+        You've already been accepted! Please{" "}
+        <Link to="/status"> confirm your attendance! </Link>
+      </div>
+    );
+  }
   // Checks if values are all filled and puts an empty string if they aren't
   // (so firebase doesn't complain)
   const getIncompleteFields = (values: any): IncompleteField[] => {
@@ -210,17 +187,17 @@ const ApplyPage: React.FunctionComponent<Props> = ({
   };
 
   const handleSave = (
-    values: FormData,
+    values: ApplyFormData,
     incompleteFields: IncompleteField[]
   ) => {
     submitApp(values, incompleteFields);
   };
 
-  const handleSubmit = (values: FormData) => {
+  const handleSubmit = (values: ApplyFormData) => {
     submitApp(values, []);
   };
 
-  const validateForm = (values: FormData): object => {
+  const validateForm = (values: ApplyFormData): object => {
     const incomplete = getIncompleteFields(values);
     let errors: { [s: string]: string } = {};
     incomplete.map(({ field }: { field: string }) => {
@@ -296,7 +273,10 @@ const ApplyPage: React.FunctionComponent<Props> = ({
                   type="tel"
                   placeholder="1-800-867-5309"
                 />
-                <UploadResumeButton uid={user.uid} />
+                <UploadResumeButton
+                  uid={user.uid}
+                  label="Upload Resume as PDF:"
+                />
                 <Field
                   name="school"
                   render={props => (
@@ -526,7 +506,7 @@ const ApplyPage: React.FunctionComponent<Props> = ({
                 </label>
                 <FormSpy
                   render={({ form }) => {
-                    const fields = form.getState().values as FormData;
+                    const fields = form.getState().values as ApplyFormData;
                     const incompleteFields = getIncompleteFields(fields);
                     if (!submitTimestamp && incompleteFields.length !== 0) {
                       return (
@@ -564,6 +544,7 @@ const mapStateToProps = (state: ReduxState) => ({
   user: state.core.user,
   formData: state.core.applyForm.formData,
   submitTimestamp: state.core.applyForm.submitTimestamp,
+  isAdmitted: state.core.isAdmitted,
   isSubmitting: state.core.applyForm.isSubmitting
 });
 
@@ -577,5 +558,3 @@ export default compose(
     mapDispatchToProps
   )
 )(ApplyPage);
-
-

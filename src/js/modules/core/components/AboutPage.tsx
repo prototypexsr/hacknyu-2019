@@ -8,8 +8,8 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { User } from "firebase";
 import injectSheet, { WithStyles } from "react-jss";
-import { Theme } from "../../ThemeInjector";
 import { ReduxState } from "../../../reducers";
+import { Theme } from "../../ThemeInjector";
 
 const styles = (theme: Theme) => ({
   AboutPage: {

@@ -1,5 +1,5 @@
 import * as React from "react";
-import withStyles, { WithStyles } from "react-jss";
+import injectSheet, { WithStyles } from "react-jss";
 import HoverOverlay from "./HoverOverlay";
 import { delay } from "../../utils";
 import { bindActionCreators, Dispatch } from "redux";
@@ -107,7 +107,7 @@ class ProfilePic extends React.Component<Props, State> {
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators({ uploadProfilePic }, dispatch);
 
-export default withStyles(styles)(
+export default injectSheet(styles)(
   connect(
     undefined,
     mapDispatchToProps

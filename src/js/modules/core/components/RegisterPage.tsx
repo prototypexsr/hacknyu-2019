@@ -17,9 +17,6 @@ const styles = (theme: Theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    height: "100%",
-    width: "100%",
-    maxWidth: theme.containerSmallWidth,
     color: theme.secondFont,
     backgroundColor: theme.formBackground,
     paddingTop: "3em",
@@ -35,11 +32,6 @@ const styles = (theme: Theme) => ({
     flexDirection: "column",
     padding: "20px",
     alignItems: "center"
-  },
-  [`@media(max-width: ${theme.smallBreakpoint})`]: {
-    RegisterPage: {
-      maxWidth: theme.containerMobileWidth
-    }
   }
 });
 

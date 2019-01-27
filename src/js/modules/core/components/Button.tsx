@@ -5,7 +5,6 @@ import { Theme } from "../../ThemeInjector";
 
 const styles = (theme: Theme) => ({
   button: {
-    //@ts-ignore
     width: (props: Props) => props.width,
     display: "flex",
     alignItems: "center",
@@ -25,7 +24,8 @@ const styles = (theme: Theme) => ({
       transform: "scale(1.1)"
     },
     '&:disabled': {
-      backgroundColor: theme.submitButtonDeactivated
+      backgroundColor: theme.submitButtonDeactivated,
+      cursor: "not-allowed"
     }
   }
 });

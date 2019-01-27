@@ -30,19 +30,25 @@ const styles = (theme: Theme) => ({
     marginBottom: "1.6em",
   },
   button: {
-    maxWidth: "80px",
-    margin: "0 auto",
+    margin: "1em auto",
     padding: "15px 35px 15px 35px",
     borderRadius: "5px",
     fontSize: "1.2em",
     backgroundColor: theme.highlightColor,
     color: theme.backgroundColor,
     fontWeight: "bold",
-    transition: "color 1s, background-color 1s",
+    transition: "color 1s, background-color 1s, transform 200ms",
     width: "fit-content",
+    display: "block",
     "&:hover": {
-      textDecoration: "none"
+      textDecoration: "none",
+      transform: "scale(1.1)"
     }
+  },
+  buttonSecondary: {
+    backgroundColor: theme.backgroundColor,
+    color: theme.highlightColor,
+    border: theme.highlightColor + " 2px solid"
   }
 });
 
@@ -55,6 +61,7 @@ const Hero: React.SFC<Props> = ({ user, classes }) => {
       <Link to={user ? "/apply" : "/register"} className={classes.button}>
         {user ? "APPLY" : "REGISTER"}
       </Link>
+      {user && <Link to="/status" className={`${classes.button} ${classes.buttonSecondary}`}>ADMISSION STATUS</Link>}
     </div>
   )
 };

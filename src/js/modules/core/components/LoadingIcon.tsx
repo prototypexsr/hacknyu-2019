@@ -38,7 +38,7 @@ const styles = (theme: Theme) => ({
 });
 
 
-const LoadingIcon: React.SFC<Props> = ({ classes }) => {
+const LoadingIcon: React.FunctionComponent<Props> = ({ classes }) => {
   return <div className={classes.LoadingIcon} />;
 };
 

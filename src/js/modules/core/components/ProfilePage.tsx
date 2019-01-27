@@ -10,6 +10,7 @@ import ProfilePic from "./ProfilePic";
 import { Theme } from "../../ThemeInjector";
 import { ApplyFormData } from "../../types";
 import { ReduxState } from "../../../reducers";
+import { Link } from "react-router-dom";
 
 interface Props extends WithStyles<typeof styles> {
   user: User;
@@ -86,6 +87,7 @@ class ProfilePage extends React.Component<Props, State> {
         <ProfilePic photoURL={userInfo.photoURL} uid={user.uid}/>
         <Button onClick={this.togglePasswordForm}>CHANGE PASSWORD</Button>
         {this.state.isPasswordFormVisible && <PasswordForm />}
+        <Link to="/status"><Button> ADMISSION STATUS </Button></Link>
       </div>
     );
   }

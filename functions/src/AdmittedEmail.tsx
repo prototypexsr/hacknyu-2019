@@ -9,9 +9,7 @@ const render = (name: string) => {
         maxWidth: "800px"
       }}
     >
-      <style>
-        @import url("https://use.typekit.net/hjh3sxe.css");
-      </style>
+      <style>@import url("https://use.typekit.net/hjh3sxe.css");</style>
       <table>
         <tbody>
           <tr>
@@ -35,10 +33,10 @@ const render = (name: string) => {
                   position: "absolute",
                   left: "50%",
                   top: "50%",
-                  transform: "translate(-50%, -50%)",
+                  transform: "translate(-50%, -50%)"
                 }}
               >
-                <h1 style={{ paddingLeft: "15px" }}> You're In! 🎉🎉🎉  </h1>
+                <h1 style={{ paddingLeft: "15px" }}> You're In! 🎉🎉🎉 </h1>
               </div>
             </div>
           </tr>
@@ -47,18 +45,18 @@ const render = (name: string) => {
               <p>
                 Congrats{name ? ` ${name}` : ""}! You've been accepted to
                 HackNYU 2019. Please{" "}
-                <a href="https://hacknyu.org/status"> confirm your acceptance</a>{" "}
+                <a href="https://hacknyu.org/status">
+                  confirm your acceptance
+                </a>{" "}
                 by January 30th.
               </p>
               <p>
-                If you've forgotten, HackNYU 2019 is from February 15th to the
-                17th. It takes place simultaneously in New York, Shanghai and
-                Abu Dhabi over 48 hours. It is completely free, thanks to our
-                wonderful sponsors and volunteers.
+                HackNYU 2019 is from February 15th to the 17th. It takes place
+                simultaneously in New York, Shanghai and Abu Dhabi over 48
+                hours. It is completely free, thanks to our wonderful sponsors
+                and volunteers.
               </p>
-              <p>
-                We hope to see you there!
-              </p>
+              <p>We hope to see you there!</p>
             </div>
           </tr>
           <tr>

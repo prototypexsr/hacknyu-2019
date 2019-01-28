@@ -169,7 +169,8 @@ const reducer: Reducer<CoreState> = (state = { ...initialState }, action) => {
         ...state,
         confirmForm: {
           ...state.confirmForm,
-          ...data
+          ...data,
+          isSubmitting: false
         },
         notifications: {
           ...state.notifications,

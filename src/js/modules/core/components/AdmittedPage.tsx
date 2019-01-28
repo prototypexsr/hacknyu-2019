@@ -134,7 +134,7 @@ const AdmittedPage: React.FunctionComponent<Props> = ({
           attending HackNYU 2019.
         </p>
       </div>
-      <ConfirmationForm />
+        <ConfirmationForm />
     </div>
     </div>
   );

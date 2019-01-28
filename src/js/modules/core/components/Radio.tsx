@@ -19,6 +19,7 @@ const styles = (theme: Theme) => ({
     height: "20px",
     margin: "8px"
   },
+  description: {},
   [`@media(max-width: ${theme.mediumBreakpoint})`]: {
     description: {
       width: "200px"
@@ -36,7 +37,7 @@ const Radio: React.FunctionComponent<Props> = props => {
         className={classes.input}
         component="input"
         type="radio"
-        value = {value}
+        value={value}
       />
       <div className={classes.description}> {children} </div>
     </label>

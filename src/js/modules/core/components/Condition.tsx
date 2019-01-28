@@ -4,14 +4,15 @@ import { ReactNodeLike } from "prop-types";
 
 interface Props {
   when: string;
-  is: string;
+  is?: string;
+  isNot?: string;
   children: ReactNodeLike
 }
 
-const Condition: React.SFC<Props> = ({ when, is, children }) => (
+const Condition: React.FunctionComponent<Props> = ({ when, is, isNot, children }) => (
     <Field name={when} subscription={{ value: true }}>
-      {({ input: { value } }) => (value === is ? children : null)}
+      {({ input: { value } }) => (value === is || (isNot && value !== isNot) ? children : null)}
     </Field>
-  );
+);
 
 export default Condition;

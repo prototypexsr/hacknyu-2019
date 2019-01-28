@@ -47,7 +47,7 @@ const render = (name: string) => {
               <p>
                 Congrats{name ? ` ${name}` : ""}! You've been accepted to
                 HackNYU 2019. Please{" "}
-                <a href="https://hacknyu.org/rsvp"> confirm your acceptance</a>{" "}
+                <a href="https://hacknyu.org/status"> confirm your acceptance</a>{" "}
                 by January 30th.
               </p>
               <p>

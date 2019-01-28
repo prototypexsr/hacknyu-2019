@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { submitConfirmation } from "../coreActions";
 import { Theme } from "../../ThemeInjector";
+import Condition from "./Condition";
 
 const requiredFields = {
   nyuCodeOfConduct: "NYU Code of Conduct",
@@ -126,6 +127,7 @@ const ConfirmationForm: React.FunctionComponent<Props> = ({
                     I won't be able to attend HackNYU 2019.
                   </Radio>
                 </label>
+                <Condition when="location" isNot="cannot-attend">
                 <div className={classes.resumeUpload}>
                   <UploadResumeButton
                     uid={user.uid}
@@ -175,6 +177,7 @@ const ConfirmationForm: React.FunctionComponent<Props> = ({
                     </a>
                   </Checkbox>
                 </div>
+                </Condition>
                 <Button
                   className={classes.submit}
                   type="submit"

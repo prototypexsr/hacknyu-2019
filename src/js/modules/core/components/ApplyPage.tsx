@@ -158,8 +158,8 @@ const ApplyPage: React.FunctionComponent<Props> = ({
   isSubmitting,
   user,
   formData,
-  submitTimestamp,
-  submitApp
+  submitApp,
+  submitTimestamp
 }) => {
   if (isAdmitted) {
     return (

@@ -138,5 +138,11 @@ export const SPONSORS_INFO: Array<SponsorFields> = [
     src: "/ibm/ibm.png",
     url: "https://www.ibm.com/",
     square: false
+  },
+  {
+    name: "Stickermule",
+    src: "/stickermule/stickermule.png",
+    url: "https://www.stickermule.com/",
+    square: false
   }
 ];

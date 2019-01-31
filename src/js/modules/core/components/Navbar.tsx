@@ -25,28 +25,29 @@ const styles = (theme: Theme) => ({
     marginRight: "1em",
     color: theme.fontColor,
     "&:hover": {
-      textDecoration: "underline",
+      textDecoration: "underline"
     },
     "&:active": {
-      textDecoration: "underline",
+      textDecoration: "underline"
     },
   },
   links: {
     height: "6.5em",
     display: "flex",
     alignItems: "center",
+    flexFlow: "row wrap"
   },
   [`@media(max-width: ${theme.mediumBreakpoint})`]: {
     Navbar: {
       flexDirection: "column",
       minHeight: "200px",
-      paddingLeft: "0px",
+      paddingLeft: "0px"
     },
     links: {
       paddingLeft: "40px"
     },
     link: {
-      fontSize: "1.1em",
+      fontSize: "1.1em"
     }
   }
 });

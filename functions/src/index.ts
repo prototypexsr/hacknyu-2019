@@ -70,6 +70,9 @@ export const getApplicationStats = functions.https.onCall(() => {
   let submittedCount = 0;
   let postGradCount = 0;
   let under18Count = 0;
+  let confirmedCount = 0;
+  let goingCount = 0;
+  let nyuGoingCount = 0;
   let nyuSchoolsCount = {};
   return db
     .collection("users")
@@ -93,6 +96,18 @@ export const getApplicationStats = functions.https.onCall(() => {
         if (age < 18) {
           under18Count = under18Count + 1;
         }
+        if (data.confirmTimestamp) {
+          confirmedCount = confirmedCount + 1;
+          if (
+            data.confirmData &&
+            data.confirmData.location !== "cannot-attend"
+          ) {
+            goingCount = goingCount + 1;
+            if (data.school === "New York University") {
+              nyuGoingCount = nyuGoingCount + 1;
+            }
+          }
+        }
         if (data.yearOfStudy === "post-grad") {
           postGradCount = postGradCount + 1;
         }
@@ -102,12 +117,15 @@ export const getApplicationStats = functions.https.onCall(() => {
         }
       });
       return {
+        nyuGoingCount,
+        goingCount,
         nyuCount,
         totalCount,
         submittedCount,
         nyuSchoolsCount,
         postGradCount,
-        under18Count
+        under18Count,
+        confirmedCount
       };
     });
 });

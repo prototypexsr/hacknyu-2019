@@ -206,12 +206,13 @@ export const submitApp = (
     .collection("users")
     .doc(uid)
     .set(data)
-    .then(() =>
+    .then(() => {
       dispatch({
         type: SUBMIT_APP_FULFILLED,
         payload: { message, ...data }
-      })
-    )
+      });
+      window.scroll({ top: 0, left: 0, behavior: "smooth" });
+    })
     .catch(err =>
       dispatch({
         type: SUBMIT_APP_REJECTED,

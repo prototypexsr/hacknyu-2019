@@ -204,6 +204,10 @@ const ApplyPage: React.FunctionComponent<Props> = ({
     incomplete.map(({ field }: { field: string }) => {
       errors[field] = `Field cannot be empty`;
     });
+    if (values.phoneNumber === values.emergencyContactNumber) {
+      errors.emergencyContactNumber = "Emergency contact number cannot be your " +
+      "phone number!";
+    }
     return errors;
   };
 

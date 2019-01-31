@@ -10,15 +10,14 @@ const styles = (theme: Theme) => ({
     display: "flex",
     alignItems: "center",
     padding: "40px",
-    flexDirection: "column",
-    margin: "0 5% 0 5%"
+    flexDirection: "column"
   },
   content: {
     display: "flex",
     flexDirection: "column",
     borderRadius: "25px",
     padding: "5% 0 5% 0",
-    margin: "5%",
+    marginTop: "50px",
     width: "80vw",
     maxWidth: "750px",
     backgroundColor: theme.secondBackgroundHighlight,

@@ -26,6 +26,10 @@ const styles = (theme: Theme) => ({
   additionalQuestions: {
     fontSize: "1.1em"
   },
+  link: {
+    color: theme.fontColor,
+    textDecoration: "underline"
+  },
   [`@media(max-width: ${theme.mediumBreakpoint})`]: {
     questions: {
       gridTemplateColumns: "50% 50%"
@@ -63,14 +67,19 @@ const FAQ: React.SFC<Props> = ({ classes }) => {
           </p>
         </div>
         <div className={classes.question}>
-          <h2> Where is it?</h2>
+          <h2> Where and when is it?</h2>
           <p>
             HackNYU takes place on NYU campuses in New York, Abu Dhabi, and
-            Shanghai. The New York event is hosted at the NYU Tandon School of
-            Engineering, 6 MetroTech Center, Brooklyn, NY 11201, which is easily
+            Shanghai. The New York event is hosted at the <a className={classes.link} href="https://goo.gl/maps/BnPFgbb9irv">NYU Tandon School of
+            Engineering, 6 MetroTech Center, Brooklyn, NY 11201</a>, which is easily
             accessible via NYC's public transportation. Students enrolled in NYU
             Shanghai and NYU Abu Dhabi can participate in the event on their
             respective campuses.
+          </p>
+          <p>
+            For the New York event, check-in will take place from 5:00–7:00 PM (EST) on Friday, February 15th. Early check will be available from 2:00–5:00 PM. 
+            Closing ceremonies are planned for 5:00–6:00 PM on Sunday, February 17th. We recommend booking any
+            transportation for 7:00 PM or after. A more detailed schedule will be released soon, so stay tuned!
           </p>
         </div>
         <div className={classes.question}>

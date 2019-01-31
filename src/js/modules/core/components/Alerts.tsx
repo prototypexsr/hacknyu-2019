@@ -19,7 +19,7 @@ const styles = {
   Alerts: {
     zIndex: "100",
     position: "fixed",
-    top: "2vh",
+    top: "6vh",
     left: "2vw"
   }
 };

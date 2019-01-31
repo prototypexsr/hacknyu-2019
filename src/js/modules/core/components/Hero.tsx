@@ -35,7 +35,7 @@ const styles = (theme: Theme) => ({
   buttons: {
     display: "flex",
     justifyContent: "center",
-    flexFlow: "row",
+    flexFlow: "column",
     alignItems: "center"
   },
   button: {

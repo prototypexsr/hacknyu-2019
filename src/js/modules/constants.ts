@@ -44,12 +44,6 @@ export const SPONSORS_INFO: Array<SponsorFields> = [
     square: false
   },
   {
-    name: "New York Life",
-    src: "/new-york-life/nyl.png",
-    url: "https://www.newyorklife.com/",
-    square: true
-  },
-  {
     name: "Facebook",
     src: "/facebook/facebook.svg",
     url: "https://facebook.com",
@@ -101,12 +95,6 @@ export const SPONSORS_INFO: Array<SponsorFields> = [
     name: "Stickermule",
     src: "/stickermule/stickermule.png",
     url: "https://www.stickermule.com/",
-    square: false
-  },
-  {
-    name: "Soylent",
-    src: "/soylent/soylent.svg",
-    url: "https://soylent.com",
     square: false
   },
   {

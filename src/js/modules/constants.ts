@@ -32,39 +32,15 @@ export const NYU_SPONSOR = {
 
 export const SPONSORS_INFO: Array<SponsorFields> = [
   {
-    name: "Google",
-    src: "/google/google.png",
-    url: "https://google.com",
+    name: "IBM",
+    src: "/ibm/ibm.png",
+    url: "https://www.ibm.com/",
     square: false
   },
   {
-    name: "Contrary Capital",
-    src: "/contrary-capital/contrary.png",
-    url: "https://contrarycap.com/",
-    square: false
-  },
-  {
-    name: "Soylent",
-    src: "/soylent/soylent.svg",
-    url: "https://soylent.com",
-    square: false
-  },
-  {
-    name: "Facebook",
-    src: "/facebook/facebook.svg",
-    url: "https://facebook.com",
-    square: false
-  },
-  {
-    name: "Major League Hacking",
-    src: "/major-league-hacking/mlh.png",
-    url: "https://mlh.io/",
-    square: false
-  },
-  {
-    name: "KIND Snacks",
-    src: "/kind/kind.png",
-    url: "https://www.kindsnacks.com/",
+    name: "JP Morgan Chase & Co",
+    src: "/jp-morgan-chase/jpmc.png",
+    url: "https://www.jpmorganchase.com/",
     square: false
   },
   {
@@ -74,9 +50,9 @@ export const SPONSORS_INFO: Array<SponsorFields> = [
     square: true
   },
   {
-    name: "JP Morgan Chase & Co",
-    src: "/jp-morgan-chase/jpmc.png",
-    url: "https://www.jpmorganchase.com/",
+    name: "Facebook",
+    src: "/facebook/facebook.svg",
+    url: "https://facebook.com",
     square: false
   },
   {
@@ -86,9 +62,63 @@ export const SPONSORS_INFO: Array<SponsorFields> = [
     square: true
   },
   {
+    name: "Google",
+    src: "/google/google.png",
+    url: "https://google.com",
+    square: false
+  },
+  {
+    name: "Major League Hacking",
+    src: "/major-league-hacking/mlh.png",
+    url: "https://mlh.io/",
+    square: false
+  },
+  {
+    name: "Contrary Capital",
+    src: "/contrary-capital/contrary.png",
+    url: "https://contrarycap.com/",
+    square: false
+  },
+  {
     name: "VentureOut NYC",
     src: "/ventureout-nyc/venture.png",
     url: "https://www.ventureoutny.com",
+    square: false
+  },
+  {
+    name: "Taskade",
+    src: "/taskade/taskade.png",
+    url: "https://www.taskade.com/",
+    square: true
+  },
+  {
+    name: "Hasura",
+    src: "/hasura/hasura.png",
+    url: "https://www.hasura.io",
+    square: true
+  },
+  {
+    name: "Stickermule",
+    src: "/stickermule/stickermule.png",
+    url: "https://www.stickermule.com/",
+    square: false
+  },
+  {
+    name: "Soylent",
+    src: "/soylent/soylent.svg",
+    url: "https://soylent.com",
+    square: false
+  },
+  {
+    name: "Siggis",
+    src: "/siggis/siggis.png",
+    url: "https://www.siggis.com",
+    square: false
+  },
+  {
+    name: "KIND Snacks",
+    src: "/kind/kind.png",
+    url: "https://www.kindsnacks.com/",
     square: false
   },
   {
@@ -104,22 +134,10 @@ export const SPONSORS_INFO: Array<SponsorFields> = [
     square: false
   },
   {
-    name: "Siggis",
-    src: "/siggis/siggis.png",
-    url: "https://www.siggis.com",
-    square: false
-  },
-  {
     name: "Thats It",
     src: "/thats-it/thats-it.png",
     url: "https://www.thatsitfruit.com",
     square: false
-  },
-  {
-    name: "Hasura",
-    src: "/hasura/hasura.png",
-    url: "https://www.hasura.io",
-    square: true
   },
   {
     name: "Monster Energy",
@@ -128,21 +146,27 @@ export const SPONSORS_INFO: Array<SponsorFields> = [
     square: false
   },
   {
-    name: "Taskade",
-    src: "/taskade/taskade.png",
-    url: "https://www.taskade.com/",
-    square: true
-  },
-  {
-    name: "IBM",
-    src: "/ibm/ibm.png",
-    url: "https://www.ibm.com/",
+    name: "RISE Brewing",
+    src: "/rise/rise.png",
+    url: "https://risebrewingco.com/",
     square: false
   },
   {
-    name: "Stickermule",
-    src: "/stickermule/stickermule.png",
-    url: "https://www.stickermule.com/",
+    name: "La Colombe Coffee Roasters",
+    src: "/la-colombe/la-colombe.png",
+    url: "https://www.lacolombe.com/",
+    square: false 
+  },
+  {
+    name: "Hotshot Coffee",
+    src: "/hotshot/hotshot.png",
+    url: "https://drinkhotshot.com/",
+    square: true
+  },
+  {
+    name: "Essentia Water",
+    src: "/essentia/essentia.png",
+    url: "https://essentiawater.com/",
     square: false
   }
 ];

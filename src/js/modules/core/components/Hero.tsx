@@ -66,6 +66,7 @@ const styles = (theme: Theme) => ({
   }
 });
 
+
 // Murai
 const Hero: React.SFC<Props> = ({ user, classes }) => {
   return (

@@ -163,7 +163,7 @@ const TrackInfo: React.SFC<Props> = ({ classes }) => {
             <div className={classes.icon}>
               <FontAwesomeIcon icon={faGlobeAmericas} />
             </div>
-            Have your hack change the world for the better.
+            Have your hack change the face of environmental sustainability.
           </div>
           <div className={classes.bullet}>
             <div className={classes.icon}>

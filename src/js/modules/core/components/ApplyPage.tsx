@@ -115,6 +115,10 @@ const styles = (theme: Theme) => ({
   genderOptions: {
     padding: "40px"
   },
+  warning: {
+    maxWidth: "400px",
+    color: "red"
+  },
   termsAndConditions: {
     padding: "15px"
   },
@@ -205,14 +209,18 @@ const ApplyPage: React.FunctionComponent<Props> = ({
       errors[field] = `Field cannot be empty`;
     });
     if (values.phoneNumber === values.emergencyContactNumber) {
-      errors.emergencyContactNumber = "Emergency contact number cannot be your " +
-      "phone number!";
+      errors.emergencyContactNumber =
+        "Emergency contact number cannot be your phone number!";
     }
     return errors;
   };
 
   return (
     <div className={classes.ApplyPage}>
+      <div className={classes.warning}>
+        We're running out of space, so we cannot guarantee any acceptances.
+        However, feel free to still apply!
+      </div>
       <h1 className={classes.header}> Apply </h1>
       <Form
         onSubmit={handleSubmit}

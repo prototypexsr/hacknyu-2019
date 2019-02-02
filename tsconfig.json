@@ -4,6 +4,7 @@
     "sourceMap": true,
     "allowJs": true,
     "target": "es5",
+    "importHelpers": true,
     "lib": [
       "esnext.asynciterable",
       "es2015",

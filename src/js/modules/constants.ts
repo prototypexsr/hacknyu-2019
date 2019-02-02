@@ -143,7 +143,7 @@ export const SPONSORS_INFO: Array<SponsorFields> = [
     name: "La Colombe Coffee Roasters",
     src: "/la-colombe/la-colombe.png",
     url: "https://www.lacolombe.com/",
-    square: false 
+    square: false
   },
   {
     name: "Hotshot Coffee",

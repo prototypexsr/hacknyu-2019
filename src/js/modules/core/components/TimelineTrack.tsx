@@ -16,7 +16,7 @@ interface Props extends WithStyles<typeof styles> {
 }
 
 
-const TimelineTrack: React.SFC<Props> = ({ classes }) => {
+const TimelineTrack: React.FunctionComponent<Props> = ({ classes }) => {
   return (
     <div className={classes.TimelineTrack} />
   )

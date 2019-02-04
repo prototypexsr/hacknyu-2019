@@ -74,7 +74,7 @@ const styles = (theme: Theme) => ({
   }
 });
 
-const TrackInfo: React.SFC<Props> = ({ classes }) => {
+const TrackInfo: React.FunctionComponent<Props> = ({ classes }) => {
   return (
     <div className={classes.TrackInfo}>
       <h1 className={classes.header}> TRACKS </h1>

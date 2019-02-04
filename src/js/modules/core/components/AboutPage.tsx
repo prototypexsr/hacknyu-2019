@@ -63,7 +63,7 @@ interface Props extends WithStyles<typeof styles> {
   user: User;
 }
 
-const AboutPage: React.SFC<Props> = ({ classes, user }) => {
+const AboutPage: React.FunctionComponent<Props> = ({ classes, user }) => {
   return (
     <div className={classes.AboutPage}>
       <h1 className={classes.title}> About HackNYU </h1>

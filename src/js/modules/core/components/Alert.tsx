@@ -35,7 +35,7 @@ const styles = (theme: Theme) => ({
   }
 });
 
-const Alert: React.SFC<Props> = ({ classes, message }) => {
+const Alert: React.FunctionComponent<Props> = ({ classes, message }) => {
   return (
     <div className={classes.Alert}>
       <div className={classes.text}> {message} </div>

@@ -37,7 +37,7 @@ const styles = (theme: Theme) => ({
   }
 });
 
-const UserInfo: React.SFC<Props> = ({ classes, user }) => {
+const UserInfo: React.FunctionComponent<Props> = ({ classes, user }) => {
   const greeting = user.displayName
     ? `Welcome ${user.displayName}!`
     : "Welcome!";

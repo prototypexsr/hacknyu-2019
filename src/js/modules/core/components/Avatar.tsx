@@ -18,7 +18,7 @@ interface Props extends WithStyles<typeof styles> {
 }
 
 // Earth Water Fire Air
-const Avatar: React.SFC<Props> = ({ classes, user }) => {
+const Avatar: React.FunctionComponent<Props> = ({ classes, user }) => {
   const url = user.photoURL || "/img/blank-profile.png";
   return <img className={classes.Avatar} src={url} />;
 };

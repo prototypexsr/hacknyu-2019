@@ -45,7 +45,7 @@ const styles = (theme: Theme) => ({
 
 type Props = WithStyles<typeof styles>;
 
-const FAQ: React.SFC<Props> = ({ classes }) => {
+const FAQ: React.FunctionComponent<Props> = ({ classes }) => {
   return (
     <div className={classes.FAQ}>
       <h1> Questions </h1>

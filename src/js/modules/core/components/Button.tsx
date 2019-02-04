@@ -38,7 +38,7 @@ interface Props extends WithStyles<typeof styles> {
   disabled?: boolean;
 }
 
-const Button: React.SFC<Props & React.HTMLAttributes<HTMLButtonElement>> = props => {
+const Button: React.FunctionComponent<Props & React.HTMLAttributes<HTMLButtonElement>> = props => {
   const { classes, children, className } = props;
   return (
     <div className={className}>

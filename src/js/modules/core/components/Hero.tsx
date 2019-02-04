@@ -73,7 +73,7 @@ const styles = (theme: Theme) => ({
 
 
 // Murai
-const Hero: React.SFC<Props> = ({ user, classes }) => {
+const Hero: React.FunctionComponent<Props> = ({ user, classes }) => {
   return (
     <div className={classes.Hero}>
       <img className={classes.icon} src="img/logo-icon.svg" />

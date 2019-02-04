@@ -33,7 +33,7 @@ const styles = {
   }
 };
 
-const SubwayIcon: React.SFC<Props> = ({ classes, children }) => {
+const SubwayIcon: React.FunctionComponent<Props> = ({ classes, children }) => {
   return <div className={classes.SubwayIcon}>{children}</div>;
 };
 

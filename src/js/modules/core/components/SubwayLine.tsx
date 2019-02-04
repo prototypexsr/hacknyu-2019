@@ -24,7 +24,7 @@ const styles = {
   }
 };
 
-const SubwayLine: React.SFC<Props> = ({
+const SubwayLine: React.FunctionComponent<Props> = ({
   classes,
   currentStop,
   stopOffsets

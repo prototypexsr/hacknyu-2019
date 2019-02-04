@@ -17,7 +17,7 @@ const styles = {
   }
 };
 
-const AnimatedSubwayLines: React.SFC<Props> = ({ classes }) => {
+const AnimatedSubwayLines: React.FunctionComponent<Props> = ({ classes }) => {
   return (
     <div className={classes.AnimatedSubwayLines}>
       <AnimatedSubwayLine color={trackColors.green} />

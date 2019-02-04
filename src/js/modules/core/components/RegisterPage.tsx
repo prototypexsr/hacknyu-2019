@@ -48,7 +48,7 @@ interface FormValues {
 }
 
 
-const RegisterPage: React.SFC<Props> = ({
+const RegisterPage: React.FunctionComponent<Props> = ({
   classes,
   register,
   isSubmitting

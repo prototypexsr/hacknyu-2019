@@ -1,7 +1,8 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import * as sgMail from "@sendgrid/mail";
-import render from "./AdmittedEmail";
+import renderAcceptanceEmail from "./AdmittedEmail";
+import renderReminderEmail from "./ReminderEmail";
 
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
@@ -49,7 +50,7 @@ export const sendAcceptanceEmail = functions.firestore
       .then(user => {
         const apiKey = functions.config().sendgrid.key;
         sgMail.setApiKey(apiKey);
-        const html = render(user.displayName);
+        const html = renderAcceptanceEmail(user.displayName);
         const msg = {
           to: user.email,
           from: "confirm@hacknyu.org",
@@ -62,6 +63,39 @@ export const sendAcceptanceEmail = functions.firestore
       .then(() => console.log("SENT!"))
       .catch(err => console.error(err));
   });
+
+export const sendReminderEmail = functions.https.onRequest(() => {
+  const db = admin.firestore();
+  const auth = admin.auth();
+  const admittedUsers = [];
+  return db
+    .collection("admitted")
+    .get()
+    .then(snapshot => {
+      snapshot.forEach(doc => {
+        admittedUsers.push(doc.id);
+      });
+      return Promise.all(admittedUsers.map(id => auth.getUser(id)));
+    })
+    .then(users => {
+      /*users.forEach(user => {
+        console.log(user.email);*/
+      const apiKey = functions.config().sendgrid.key;
+      sgMail.setApiKey(apiKey);
+      const html = renderReminderEmail();
+      const msg = {
+        to: "nick@nicholasyang.com",
+        from: "confirm@hacknyu.org",
+        subject: "Confirmation Closing Soon!",
+        text: "Please confirm your spot at HackNYU 2019",
+        html
+      };
+      return sgMail.send(msg);
+      //});
+    })
+    .catch(err => console.error(err))
+    .then(() => console.log("SENT"));
+});
 
 export const getApplicationStats = functions.https.onCall(() => {
   const db = admin.firestore();

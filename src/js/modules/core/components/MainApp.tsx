@@ -17,7 +17,6 @@ import { Theme } from "../../ThemeInjector";
 import { ReduxState } from "../../../reducers";
 import { LoadingStates } from "../coreReducer";
 
-
 interface Props extends WithStyles<typeof styles> {
   children: ReactNode;
   location: Location;

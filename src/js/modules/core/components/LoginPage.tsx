@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import Underline from "./Underline";
 import { Theme } from "../../ThemeInjector";
 import { ReduxState } from "../../../reducers";
+import { IS_REGISTRATION_OPEN } from "../../constants";
 
 interface Props extends WithStyles<typeof styles> {
   isSubmitting: boolean;
@@ -135,9 +136,11 @@ const LoginPage: React.SFC<Props> = ({
             >
               LOGIN W/ GOOGLE
             </Button>
-            <Link to="/register" className={classes.registerLink}>
-              Don't have an account? Register
-            </Link>
+            {IS_REGISTRATION_OPEN && 
+              <Link to="/register" className={classes.registerLink}>
+               Don't have an account? Register
+              </Link>
+            }
             <Link to="/reset_password" className={classes.resetPasswordLink}>
               Forgot your password? Reset it
             </Link>

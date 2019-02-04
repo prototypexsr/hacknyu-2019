@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { logout } from "../coreActions";
 import { User } from "firebase";
 import { Theme } from "../../ThemeInjector";
+import { IS_REGISTRATION_OPEN } from "../../constants";
 
 const styles = (theme: Theme) => ({
   Navbar: {
@@ -78,16 +79,13 @@ const Navbar: React.SFC<Props> = ({ classes, user, logout }) => {
               LOGOUT
             </a>
           ]
-          ) : (
-          [
+          ) : ([
             <Link to="/login" className={classes.link}>
               LOGIN
             </Link>,
-            <Link to="/register" className={classes.link}>
-              REGISTER
-            </Link>
-          ]
-        )}
+            (IS_REGISTRATION_OPEN && <Link to="/register" className={classes.link}> REGISTER </Link>)
+          ])
+        }
       </div>
     </div>
   );

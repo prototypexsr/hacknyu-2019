@@ -15,6 +15,7 @@ import ProfilePage from "./core/components/ProfilePage";
 import appHistory from "../appHistory";
 import AdmissionResultPage from "./core/components/AdmissionResultPage";
 import NotFoundPage from "./NotFoundPage";
+import { IS_REGISTRATION_OPEN } from "./constants.ts";
 
 class RoutingApp extends React.Component {
   render() {
@@ -27,7 +28,7 @@ class RoutingApp extends React.Component {
                 <Route exact path="/" component={HomePage} />
                 <Route exact path="/about" component={AboutPage} />
                 <Route exact path="/login" component={LoginPage} />
-                <Route exact path="/register" component={RegisterPage} />
+                {IS_REGISTRATION_OPEN && <Route exact path="/register" component={RegisterPage} />}
                 <Route exact path="/status" component={AdmissionResultPage} />
                 <Route
                   exact

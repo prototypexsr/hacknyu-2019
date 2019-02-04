@@ -6,6 +6,7 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { Theme } from "../../ThemeInjector";
 import { ReduxState } from "../../../reducers";
+import { IS_REGISTRATION_OPEN } from "../../constants";
 
 
 interface Props extends WithStyles<typeof styles> {
@@ -30,13 +31,14 @@ const styles = (theme: Theme) => ({
   subtitle: {
     fontWeight: "400",
     fontSize: "1.8em",
-    marginBottom: "1.3em"
+    marginBottom: "1em"
   },
   buttons: {
     display: "flex",
     justifyContent: "center",
     flexFlow: "column",
-    alignItems: "center"
+    alignItems: "center",
+    margin: "15px"
   },
   button: {
     margin: "0.5em 1em",
@@ -59,6 +61,9 @@ const styles = (theme: Theme) => ({
     color: theme.highlightColor,
     border: theme.highlightColor + " 2px solid"
   },
+  info: {
+    margin: "0.5em"
+  },
   [`@media(max-width: ${theme.mediumBreakpoint})`]: {
     buttons: {
       flexFlow: "column"
@@ -74,11 +79,22 @@ const Hero: React.SFC<Props> = ({ user, classes }) => {
       <img className={classes.icon} src="img/logo-icon.svg" />
       <h1 className={classes.title}>HackNYU</h1>
       <h3 className={classes.subtitle}>Feb 15&ndash;17, 2019</h3>
+      {!IS_REGISTRATION_OPEN ? 
+        [<p className={classes.info}>Registration for HackNYU 2019 is now closed.</p>,
+        <p className={classes.info}>Log in to check your admission status.</p>]
+      : null}
       <div className={classes.buttons}>
-      <Link to={user ? "/apply" : "/register"} className={classes.button}>
-        {user ? "APPLY" : "REGISTER"}
-      </Link>
-      {user && <Link to="/status" className={`${classes.button} ${classes.buttonSecondary}`}>ADMISSION STATUS</Link>}
+        {
+          IS_REGISTRATION_OPEN ? 
+            <Link to={user ? "/apply" : "/register"} className={classes.button}>
+              {user ? "EDIT APPLICATION" : "REGISTER"}
+            </Link>
+          :
+            <Link to={user ? "/apply" : "/login"} className={classes.button}>
+              {user ? "EDIT APPLICATION" : "LOGIN"}
+            </Link>
+        }
+        {user && <Link to="/status" className={`${classes.button} ${classes.buttonSecondary}`}>ADMISSION STATUS</Link>}
       </div>
     </div>
   )

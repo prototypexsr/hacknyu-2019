@@ -40,15 +40,20 @@ const render = () => {
               <p>
                 Wow! We're stunned by the sheer volume of applications that
                 we've received. Over 2000 people applied, setting a new record
-                for HackNYU. However, we are running out of capacity for the
-                event. Therefore, we need your help in order to get accurate
-                numbers for attendance.
+                for HackNYU.
               </p>
               <p>
-                If you haven't already, please confirm your spot at HackNYU. We
-                will be closing the form in 24 hours. If you can no longer make
-                the event, please update your status on the form. By informing
-                us that you cannot make the event, we can accept more people.
+                If you haven't already, please confirm your spot at HackNYU! We
+                will be closing the form in 24 hours, and you will be unable to
+                confirm that you are coming after that time. If you can no
+                longer make the event, please update your status on the
+                confirmation form.
+              </p>
+              <p>
+                By informing us that you cannot attend HackNYU, you help us out
+                so we can make room for more people who want to come. We are
+                reaching our capacity for the event, and we want to make sure
+                everyone who wants to come has a chance!
               </p>
               <p>
                 HackNYU 2019 is from February 15th to the 17th. It takes place

@@ -26,7 +26,7 @@ const styles = (theme: Theme) => ({
   }
 });
 
-const TimelineDescription: React.SFC<Props> = ({ classes, children }) => {
+const TimelineDescription: React.FunctionComponent<Props> = ({ classes, children }) => {
   return <div className={classes.TimelineDescription}>{children}</div>;
 };
 

@@ -33,7 +33,7 @@ const styles = (theme: Theme) => ({
   }
 });
 
-const Timeline: React.SFC<Props> = ({ classes }) => {
+const Timeline: React.FunctionComponent<Props> = ({ classes }) => {
   return (
     <div className={classes.Timeline}>
       <h1 className={classes.title}>TIMELINE</h1>

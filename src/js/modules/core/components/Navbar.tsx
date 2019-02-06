@@ -60,7 +60,7 @@ interface Props extends WithStyles<typeof styles> {
   logout: () => any;
 }
 
-const Navbar: React.SFC<Props> = ({ classes, user, logout }) => {
+const Navbar: React.FunctionComponent<Props> = ({ classes, user, logout }) => {
   return (
     <div className={classes.Navbar}>
       <div className={classes.links}>

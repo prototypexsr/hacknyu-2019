@@ -36,7 +36,7 @@ const styles = (theme: Theme) => ({
   }
 });
 
-const Track: React.SFC<Props> = ({ id, classes, icons, children, name }) => {
+const Track: React.FunctionComponent<Props> = ({ id, classes, icons, children, name }) => {
   return (
     <div className={classes.Track}>
       <div className={classes.subwayIcons}>{icons}</div>

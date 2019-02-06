@@ -37,7 +37,7 @@ const styles = (theme: Theme) => ({
   }
 });
 
-const AboutSection: React.SFC<Props> = ({ classes }) => {
+const AboutSection: React.FunctionComponent<Props> = ({ classes }) => {
   return (
     <div className={classes.AboutSection}>
       <div className={classes.content}>

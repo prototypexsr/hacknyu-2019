@@ -40,7 +40,7 @@ interface Props extends WithStyles<typeof styles> {
   isSubmitting: boolean;
 }
 
-const ResetPasswordPage: React.SFC<Props> = ({
+const ResetPasswordPage: React.FunctionComponent<Props> = ({
   classes,
   resetPassword,
   passwordEmailSent,

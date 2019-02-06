@@ -80,7 +80,7 @@ const validateLogin = (values: any) => {
   return errors;
 };
 
-const LoginPage: React.SFC<Props> = ({
+const LoginPage: React.FunctionComponent<Props> = ({
   classes,
   isSubmitting,
   loginWithGoogle,

@@ -31,7 +31,7 @@ const styles = (theme: Theme) => ({
   }
 });
 
-const HoverOverlay: React.SFC<Props> = ({ classes, onClick }) => {
+const HoverOverlay: React.FunctionComponent<Props> = ({ classes, onClick }) => {
   return (
     <div className={classes.HoverOverlay} onClick={onClick}>
       <div className={classes.text}>Upload a new photo!</div>

@@ -28,7 +28,7 @@ const styles = {
   }
 };
 
-const SubwayStop: React.SFC<Props> = ({ classes }) => {
+const SubwayStop: React.FunctionComponent<Props> = ({ classes }) => {
   return <div className={classes.SubwayStop} />;
 };
 

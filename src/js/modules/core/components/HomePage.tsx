@@ -58,7 +58,7 @@ const styles = (theme: Theme) => ({
   }
 });
 
-const HomePage: React.SFC<Props> = ({ classes }) => {
+const HomePage: React.FunctionComponent<Props> = ({ classes }) => {
   return (
     <div className={classes.HomePage}>
       <Hero />

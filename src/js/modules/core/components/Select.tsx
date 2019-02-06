@@ -89,7 +89,7 @@ const styles = (theme: Theme) => ({
   }
 });
 
-const Select: React.SFC<Props & FieldRenderProps> = ({
+const Select: React.FunctionComponent<Props & FieldRenderProps> = ({
   children,
   classes,
   meta,

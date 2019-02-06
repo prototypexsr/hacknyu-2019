@@ -69,7 +69,7 @@ const styles = (theme: Theme) => ({
   },
 });
 
-const Input: React.SFC<Props> = ({ component, classes, meta, input, label, ...props }) => {
+const Input: React.FunctionComponent<Props> = ({ component, classes, meta, input, label, ...props }) => {
   return (
     <div className={classes.Input}>
       <div className={classes.inputArea}>

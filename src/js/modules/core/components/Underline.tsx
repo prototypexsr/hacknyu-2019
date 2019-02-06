@@ -10,7 +10,7 @@ const styles = {
 
 type Props = WithStyles<typeof styles>;
 
-const Underline: React.SFC<Props> = ({ classes }) => {
+const Underline: React.FunctionComponent<Props> = ({ classes }) => {
   return <hr className={classes.Underline} />;
 };
 

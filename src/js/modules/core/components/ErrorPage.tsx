@@ -28,7 +28,7 @@ const styles = (theme: Theme) => ({
   }
 });
 
-const ErrorPage: React.SFC<Props> = ({ classes }) => {
+const ErrorPage: React.FunctionComponent<Props> = ({ classes }) => {
   return (
     <div className={classes.ErrorPage}>
       <div className={classes.message}>

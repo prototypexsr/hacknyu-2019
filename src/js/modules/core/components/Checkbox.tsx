@@ -33,7 +33,7 @@ const styles = (theme: Theme) => ({
   },
 })
 
-const Checkbox: React.SFC<Props> = props => {
+const Checkbox: React.FunctionComponent<Props> = props => {
   const { name, classes, children } = props;
 
   return (

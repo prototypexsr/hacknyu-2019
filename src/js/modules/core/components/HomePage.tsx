@@ -8,6 +8,7 @@ import AnimatedSubwayLines from "./AnimatedSubwayLines";
 import FAQ from "./FAQ";
 import { Theme } from "../../ThemeInjector";
 import SponsorshipSection from "./SponsorshipSection";
+import Schedule from "./Schedule";
 
 type Props = WithStyles<typeof styles>;
 
@@ -43,6 +44,10 @@ const styles = (theme: Theme) => ({
     backgroundColor: theme.secondBackground,
     color: theme.fontColor
   },
+  scheduleSection: {
+    backgroundColor: theme.secondBackground,
+    color: theme.secondFont
+  },
   sponsorshipSection: {
     backgroundColor: theme.secondBackground,
     color: theme.secondFont
@@ -77,8 +82,11 @@ const HomePage: React.FunctionComponent<Props> = ({ classes }) => {
           <img className={classes.curvedTop} src="/img/semicircle.svg" />
           <FAQ />
         </div>
+        <div className={classes.scheduleSection}>
+          <Schedule />
+        </div>
         <div className={classes.sponsorshipSection}>
-        <SponsorshipSection />
+          <SponsorshipSection />
         </div>
       </div>
     </div>

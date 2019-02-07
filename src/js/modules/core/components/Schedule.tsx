@@ -40,7 +40,10 @@ const styles = (theme: Theme) => ({
     width: "450px"
   },
   time: {
-    width: "200px"
+    display: "flex",
+    justifyContent: "flex-end",
+    width: "200px",
+    paddingRight: "20px"
   },
   [`@media(max-width: ${theme.smallBreakpoint})`]: {
     eventTimeline: {
@@ -86,7 +89,7 @@ const Schedule: React.FunctionComponent<Props> = ({ classes }) => {
           <ul className={classes.dailyEvents}>
             <p className={classes.day}>Saturday, February 16</p>
             <li className={classes.event}>
-              <span className={classes.time}>8:30a.m.</span> Breakfast
+              <span className={classes.time}>8:30am</span> Breakfast
             </li>
             <li className={classes.event}>
               <span className={classes.time}>10:00am-1:00pm</span> Workshop Block

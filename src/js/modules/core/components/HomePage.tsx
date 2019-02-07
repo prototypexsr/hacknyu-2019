@@ -8,6 +8,7 @@ import AnimatedSubwayLines from "./AnimatedSubwayLines";
 import FAQ from "./FAQ";
 import { Theme } from "../../ThemeInjector";
 import SponsorshipSection from "./SponsorshipSection";
+import TwitterFeed from "./TwitterFeed"
 
 type Props = WithStyles<typeof styles>;
 
@@ -18,6 +19,10 @@ const styles = (theme: Theme) => ({
     backgroundColor: theme.backgroundColor,
     alignItems: "center",
     width: "100vw"
+  },
+  twitterSection: {
+    backgroundColor: theme.secondBackground,
+    color: theme.secondFont
   },
   aboutSection: {
     backgroundColor: theme.secondBackground,
@@ -64,6 +69,9 @@ const HomePage: React.FunctionComponent<Props> = ({ classes }) => {
       <Hero />
       <AnimatedSubwayLines />
       <div className={classes.info}>
+        <div className={classes.twitterSection}>
+          <TwitterFeed />
+        </div>
         <div className={classes.aboutSection}>
           <AboutSection />
         </div>

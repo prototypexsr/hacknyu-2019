@@ -64,10 +64,19 @@ export const sendAcceptanceEmail = functions.firestore
       .catch(err => console.error(err));
   });
 
-export const sendReminderEmail = functions.https.onRequest(() => {
+const runtimeOpts = {
+  timeoutSeconds: 300,
+  memory: "1GB" as "1GB"
+};
+
+export const sendReminderEmail = () => {
+  const apiKey = functions.config().sendgrid.key;
+  sgMail.setApiKey(apiKey);
   const db = admin.firestore();
   const auth = admin.auth();
   const admittedUsers = [];
+  let emails;
+  let html = renderReminderEmail();
   return db
     .collection("admitted")
     .get()
@@ -78,24 +87,31 @@ export const sendReminderEmail = functions.https.onRequest(() => {
       return Promise.all(admittedUsers.map(id => auth.getUser(id)));
     })
     .then(users => {
-      /*users.forEach(user => {
-        console.log(user.email);*/
-      const apiKey = functions.config().sendgrid.key;
-      sgMail.setApiKey(apiKey);
-      const html = renderReminderEmail();
+      emails = users.map(user => user.email);
       const msg = {
-        to: "nick@nicholasyang.com",
+        to: emails.slice(0, 999),
         from: "confirm@hacknyu.org",
         subject: "Confirmation Closing Soon!",
         text: "Please confirm your spot at HackNYU 2019",
         html
       };
-      return sgMail.send(msg);
-      //});
+      return sgMail.send(msg, true);
     })
-    .catch(err => console.error(err))
-    .then(() => console.log("SENT"));
-});
+    .then(() => {
+      const msg = {
+        to: emails.slice(999),
+        from: "confirm@hacknyu.org",
+        subject: "Confirmation Closing Soon!",
+        text: "Please confirm your spot at HackNYU 2019",
+        html
+      };
+      return sgMail.send(msg, true);
+    })
+    .then(() => console.log("SENT"))
+    .catch(err => console.error(err.response.body));
+};
+
+sendReminderEmail();
 
 export const getApplicationStats = functions.https.onCall(() => {
   const db = admin.firestore();

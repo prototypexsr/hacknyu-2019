@@ -29,7 +29,15 @@ const render = () => {
               }}
             >
               <div>
-                <h1 style={{ paddingLeft: "15px" }}>
+                <h1
+                  style={{
+                    position: "absolute",
+                    left: "50%",
+                    top: "50%",
+                    transform: "translate(-50%, -50%)",
+                    paddingLeft: "15px"
+                  }}
+                >
                   Confirmation Closing Soon!
                 </h1>
               </div>

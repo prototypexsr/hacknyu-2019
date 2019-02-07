@@ -72,9 +72,6 @@ const HomePage: React.FunctionComponent<Props> = ({ classes }) => {
         <div className={classes.aboutSection}>
           <AboutSection />
         </div>
-        <div className={classes.timelineSection}>
-          <Timeline />
-        </div>
         <div className={classes.tracksSection}>
           <TrackInfo />
         </div>

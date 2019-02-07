@@ -29,11 +29,11 @@ const styles = (theme: Theme) => ({
     display: "flex",
     justifyContent: "center",
     flexDirection: "row",
-    flexWrap: "wrap",
+    flexWrap: "wrap"
   },
   dailyEvents: {
     listStyleType: "none",
-    lineHeight: "1.2em",
+    lineHeight: "1.2em"
   },
   event: {
     display: "flex",
@@ -59,7 +59,8 @@ const Schedule: React.FunctionComponent<Props> = ({ classes }) => {
       <h2 className={classes.header}>SCHEDULE</h2>
       <Underline />
       <p className={classes.statement}>
-        Note: All times listed below are in EST
+        Note: All times listed below are in EST. Events may be subject to
+        change.
       </p>
       <div className={classes.eventTimeline}>
         <div>
@@ -72,7 +73,8 @@ const Schedule: React.FunctionComponent<Props> = ({ classes }) => {
               <span className={classes.time}>5:00-7:00pm</span> Check-In
             </li>
             <li className={classes.event}>
-              <span className={classes.time}>7:00-8:00pm</span> Opening Ceremonies
+              <span className={classes.time}>7:00-8:00pm</span> Opening
+              Ceremonies
             </li>
             <li className={classes.event}>
               <span className={classes.time}>8:00-9:00pm</span> Dinner
@@ -92,7 +94,8 @@ const Schedule: React.FunctionComponent<Props> = ({ classes }) => {
               <span className={classes.time}>8:30am</span> Breakfast
             </li>
             <li className={classes.event}>
-              <span className={classes.time}>10:00am-1:00pm</span> Workshop Block
+              <span className={classes.time}>10:00am-1:00pm</span> Workshop
+              Block
             </li>
             <li className={classes.event}>
               <span className={classes.time}>1:00pm</span> Lunch

@@ -64,11 +64,6 @@ export const sendAcceptanceEmail = functions.firestore
       .catch(err => console.error(err));
   });
 
-const runtimeOpts = {
-  timeoutSeconds: 300,
-  memory: "1GB" as "1GB"
-};
-
 export const sendReminderEmail = () => {
   const apiKey = functions.config().sendgrid.key;
   sgMail.setApiKey(apiKey);
@@ -110,8 +105,6 @@ export const sendReminderEmail = () => {
     .then(() => console.log("SENT"))
     .catch(err => console.error(err.response.body));
 };
-
-sendReminderEmail();
 
 export const getApplicationStats = functions.https.onCall(() => {
   const db = admin.firestore();

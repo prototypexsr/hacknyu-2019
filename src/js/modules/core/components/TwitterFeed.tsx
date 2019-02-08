@@ -18,7 +18,8 @@ const styles = (theme: Theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    paddingTop: "80px"
+    paddingTop: "80px",
+    paddingBottom: "40px"
   },
   title: {
     fontSize: "2em",

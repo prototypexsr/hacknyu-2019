@@ -3,6 +3,7 @@ import * as React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import MainApp from "./core/components/MainApp";
 import HomePage from "./core/components/HomePage";
+import LivePage from "./core/components/LivePage";
 import { ConnectedRouter } from "connected-react-router";
 import store from "../store";
 import ThemeInjector from "./ThemeInjector";
@@ -15,7 +16,7 @@ import ProfilePage from "./core/components/ProfilePage";
 import appHistory from "../appHistory";
 import AdmissionResultPage from "./core/components/AdmissionResultPage";
 import NotFoundPage from "./NotFoundPage";
-import { IS_REGISTRATION_OPEN } from "./constants.ts";
+import { IS_REGISTRATION_OPEN } from "./constants";
 
 class RoutingApp extends React.Component {
   render() {
@@ -26,9 +27,12 @@ class RoutingApp extends React.Component {
             <MainApp>
               <Switch>
                 <Route exact path="/" component={HomePage} />
+                <Route exact path="/live" component={LivePage} />
                 <Route exact path="/about" component={AboutPage} />
                 <Route exact path="/login" component={LoginPage} />
-                {IS_REGISTRATION_OPEN && <Route exact path="/register" component={RegisterPage} />}
+                {IS_REGISTRATION_OPEN && (
+                  <Route exact path="/register" component={RegisterPage} />
+                )}
                 <Route exact path="/status" component={AdmissionResultPage} />
                 <Route
                   exact
@@ -38,7 +42,7 @@ class RoutingApp extends React.Component {
                 <Route exact path="/apply" component={ApplyPage} />
                 <Route exact path="/my_profile" component={ProfilePage} />
                 <Route exact path="/404" component={NotFoundPage} />
-                <Redirect to="/404"/>
+                <Redirect to="/404" />
               </Switch>
             </MainApp>
           </ThemeInjector>

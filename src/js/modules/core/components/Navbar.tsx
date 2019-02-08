@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { logout } from "../coreActions";
 import { User } from "firebase";
 import { Theme } from "../../ThemeInjector";
-import { IS_REGISTRATION_OPEN, SITE_STATE, SITE_STATES } from "../../constants";
+import { IS_REGISTRATION_OPEN, GLOBAL_SITE_STATE, SITE_STATES } from "../../constants";
 
 const styles = (theme: Theme) => ({
   Navbar: {
@@ -64,7 +64,7 @@ const Navbar: React.FunctionComponent<Props> = ({ classes, user, logout }) => {
   return (
     <div className={classes.Navbar}>
       <div className={classes.links}>
-        {SITE_STATE === SITE_STATES.DURING_EVENT && (
+        {GLOBAL_SITE_STATE === SITE_STATES.DURING_EVENT && (
           <Link to="/live">
             <div className={classes.link}>LIVE</div>
           </Link>

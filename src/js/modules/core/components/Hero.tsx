@@ -64,12 +64,6 @@ const styles = (theme: Theme) => ({
   info: {
     margin: "0.5em"
   },
-  //does this change anything?
-  [`@media(max-width: ${theme.mediumBreakpoint})`]: {
-    buttons: {
-      flexFlow: "column"
-    }
-  }
 });
 
 

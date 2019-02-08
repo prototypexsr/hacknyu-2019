@@ -80,7 +80,7 @@ const LiveHero: React.FunctionComponent<Props> = ({ user, classes }) => {
         <span className={classes.subtitle}>is live!</span>
       </div>
       <div className={classes.buttons}>
-        <Scrollchor to={"#tweets"} className={classes.button}>
+        <Scrollchor to="#tweets" className={classes.button}>
           TWEETS
         </Scrollchor>
         <Link

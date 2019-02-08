@@ -6,6 +6,8 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { Theme } from "../../ThemeInjector";
 import { ReduxState } from "../../../reducers";
+// @ts-ignore
+import Scrollchor from "react-scrollchor";
 
 interface Props extends WithStyles<typeof styles> {
   user: User;
@@ -29,7 +31,7 @@ const styles = (theme: Theme) => ({
   },
   subtitle: {
     fontWeight: "400",
-    fontSize: "2.5em",
+    fontSize: "2.5em"
   },
   buttons: {
     display: "flex",
@@ -78,9 +80,9 @@ const LiveHero: React.FunctionComponent<Props> = ({ user, classes }) => {
         <span className={classes.subtitle}>is live!</span>
       </div>
       <div className={classes.buttons}>
-        <Link to={"#tweets"} className={classes.button}>
+        <Scrollchor to={"#tweets"} className={classes.button}>
           TWEETS
-        </Link>
+        </Scrollchor>
         <Link
           to="/live#schedule"
           className={`${classes.button} ${classes.buttonSecondary}`}

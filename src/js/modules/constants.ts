@@ -3,6 +3,14 @@ export const IS_CONFIRMATION_OPEN = false;
 export const emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 export const STOPS_COUNT = 5;
 
+export const enum SITE_STATES {
+  BEFORE_EVENT,
+  DURING_EVENT,
+  AFTER_EVENT
+}
+
+export let SITE_STATE = SITE_STATES.DURING_EVENT;
+
 export const ALERT_TIME_INTERVALS = {
   ANIMATION_BUFFER: 100,
   DISPLAY_TIME: 4000,

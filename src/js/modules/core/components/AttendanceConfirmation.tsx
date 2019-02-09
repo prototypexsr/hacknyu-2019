@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { Theme } from "../../ThemeInjector";
 import { ReduxState } from "../../../reducers";
 
+
 interface Props extends WithStyles<typeof styles> {
   user: User;
   confirmFormData: ConfirmationFormData
@@ -78,7 +79,7 @@ const AttendanceConfirmation: React.FunctionComponent<Props> = ({
       <h1 className={classes.header}> Thanks for responding to us! </h1>
       <Underline />
       <p className={classes.locationMessage}>
-        {locationMessage} {locationToReadable(confirmFormData.location)}
+        {locationMessage} <strong>{locationToReadable(confirmFormData.location)}</strong>
       </p>
       <p>{postMessage}</p>
     </div>

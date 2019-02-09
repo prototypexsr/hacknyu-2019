@@ -90,11 +90,11 @@ const Hero: React.FunctionComponent<Props> = ({ user, classes }) => {
               {user ? "EDIT APPLICATION" : "REGISTER"}
             </Link>
           :
-            <Link to={user ? "/apply" : "/login"} className={classes.button}>
-              {user ? "EDIT APPLICATION" : "LOGIN"}
+            <Link to={user ? "/status" : "/login"} className={classes.button}>
+              {user ? "ADMISSION STATUS" : "LOGIN"}
             </Link>
         }
-        {user && <Link to="/status" className={`${classes.button} ${classes.buttonSecondary}`}>ADMISSION STATUS</Link>}
+        {user && <Link to="/apply" className={`${classes.button} ${classes.buttonSecondary}`}>EDIT APPLICATION</Link>}
       </div>
     </div>
   )

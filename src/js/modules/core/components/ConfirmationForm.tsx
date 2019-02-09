@@ -14,6 +14,8 @@ import { bindActionCreators } from "redux";
 import { submitConfirmation } from "../coreActions";
 import { Theme } from "../../ThemeInjector";
 import Condition from "./Condition";
+import { IS_CONFIRMATION_OPEN } from "../../constants";
+
 
 const requiredFields = {
   nyuCodeOfConduct: "NYU Code of Conduct",
@@ -99,8 +101,9 @@ const ConfirmationForm: React.FunctionComponent<Props> = ({
       return [];
     }
   };
-  return (
-    <div className={classes.ConfirmationForm}>
+  return (<div>
+    {IS_CONFIRMATION_OPEN ?
+      (<div className={classes.ConfirmationForm}>
       <h2 className={classes.header}>Confirm your spot for HackNYU 2019.</h2>
       <Form
         onSubmit={submitConfirmation}
@@ -196,6 +199,13 @@ const ConfirmationForm: React.FunctionComponent<Props> = ({
           </div>
         )}
       />
+    </div>)
+  : 
+    <div>
+      <h2>Attendance confirmation closed</h2>
+      <p>Unfortunately, attendance confirmation for HackNYU 2019 has closed at this time, as the event has reached capacity.</p>
+      <p>If you have already successfully confirmed your attendance by submitting the form, you will see an indication at the top of the page.</p>
+    </div>}
     </div>
   );
 };

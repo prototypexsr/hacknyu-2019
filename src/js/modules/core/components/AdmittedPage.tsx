@@ -6,6 +6,8 @@ import { Theme } from "../../ThemeInjector";
 import ConfirmationForm from "./ConfirmationForm";
 import { connect } from "react-redux";
 import { ReduxState } from "../../../reducers";
+import { IS_CONFIRMATION_OPEN } from "../../constants";
+
 
 interface Props extends WithStyles<typeof styles> {
   confirmTimestamp: string;
@@ -18,7 +20,8 @@ const styles = (theme: Theme) => ({
     alignItems: "center",
     backgroundColor: theme.backgroundColor,
     maxWidth: theme.containerLargeWidth,
-    width: "80vw"
+    width: "80vw",
+    fontSize: theme.bodyFontSize
   },
   confirmationInfo: {
     // fill container
@@ -33,8 +36,7 @@ const styles = (theme: Theme) => ({
     padding: "5vw",
     paddingTop: "2rem",
     paddingBottom: "2rem",
-    lineHeight: theme.bodyLineHeight,
-    fontSize: theme.bodyFontSize
+    lineHeight: theme.bodyLineHeight
   },
   statement: {
     marginBottom: theme.bodyFontSize
@@ -47,6 +49,15 @@ const styles = (theme: Theme) => ({
   },
   link: {
     textDecoration: "underline"
+  },
+  warning: {
+    color: theme.fontColor,
+    backgroundColor: theme.red,
+    width: "100%",
+    padding: "25px 75px",
+    boxSizing: "border-box",
+    borderRadius: "0.5em",
+    marginBottom: "25px"
   },
   [`@media(max-width: ${theme.largeBreakpoint})`]: {
     header: {
@@ -72,6 +83,20 @@ const AdmittedPage: React.FunctionComponent<Props> = ({
 }) => {
   return (
     <div className={classes.AdmittedPage}>
+      {/* if confirmation is closed and they have not yet confirmed... */}
+      {!IS_CONFIRMATION_OPEN && !confirmTimestamp &&
+        <div className={classes.warning}>
+          <p>
+            <em>
+              Unfortunately, attendance confirmations are now closed and your spot was not 
+              confirmed by the deadline. This means you will not be able to attend HackNYU 
+              2019, as the event has reached capacity.
+            </em>
+          </p>
+          <p><em>We hope you can come to next year's event!</em></p>
+        </div>
+      }
+
       {confirmTimestamp && <AttendanceConfirmation />}
       <div className={classes.confirmationInfo}>
       <h1 className={classes.header}>🎉 You're In! 🎉</h1>

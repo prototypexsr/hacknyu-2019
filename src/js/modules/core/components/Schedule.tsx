@@ -13,13 +13,19 @@ const styles = (theme: Theme) => ({
     backgroundColor: theme.secondBackground,
     fontSize: "1.4rem",
     textAlign: "center",
-    paddingTop: "75px"
+    paddingTop: "25px",
+    width: "90vw",
+    margin: "0 auto",
+    paddingBottom: "75px"
   },
   header: {
     margin: "0"
   },
   statement: {
-    lineHeight: "1.2em"
+    fontSize: "1.2rem",
+    lineHeight: "1.1em",
+    textAlign: "left",
+    maxWidth: "30rem"
   },
   day: {
     lineHeight: "1.2em",
@@ -42,13 +48,19 @@ const styles = (theme: Theme) => ({
   time: {
     display: "flex",
     justifyContent: "flex-end",
-    width: "200px",
+    width: "180px",
     paddingRight: "20px"
   },
   [`@media(max-width: ${theme.smallBreakpoint})`]: {
     eventTimeline: {
       flexDirection: "column",
       transform: "translateX(-5.5vw)"
+    },
+    statement: {
+      fontSize: "0.9rem"
+    },
+    Schedule: {
+      fontSize: "1rem"
     }
   }
 });
@@ -59,8 +71,7 @@ const Schedule: React.FunctionComponent<Props> = ({ classes }) => {
       <h2 className={classes.header}>SCHEDULE</h2>
       <Underline />
       <p className={classes.statement}>
-        Note: All times listed below are in EST. Events may be subject to
-        change.
+        The following is for the NYC event. Starred events (*) are shared between all events: NYC, Abu Dhabi, Shanghai. Listed times are in EST. Events and times may be subject to change.
       </p>
       <div className={classes.eventTimeline}>
         <div>
@@ -73,7 +84,7 @@ const Schedule: React.FunctionComponent<Props> = ({ classes }) => {
               <span className={classes.time}>5:00-7:00pm</span> Check-In
             </li>
             <li className={classes.event}>
-              <span className={classes.time}>7:00-8:00pm</span> Opening
+              <span className={classes.time}>7:00-8:00pm</span> *Opening
               Ceremonies
             </li>
             <li className={classes.event}>
@@ -94,20 +105,20 @@ const Schedule: React.FunctionComponent<Props> = ({ classes }) => {
               <span className={classes.time}>8:30am</span> Breakfast
             </li>
             <li className={classes.event}>
-              <span className={classes.time}>10:00am-1:00pm</span> Workshop
+              <span className={classes.time}>10:00am-1:00pm</span> *Workshop
               Block
             </li>
             <li className={classes.event}>
               <span className={classes.time}>1:00pm</span> Lunch
             </li>
             <li className={classes.event}>
-              <span className={classes.time}>2:00-6:00pm</span> Workshop Block
+              <span className={classes.time}>2:00-6:00pm</span> *Workshop Block
             </li>
             <li className={classes.event}>
               <span className={classes.time}>7:00pm</span> MLH Games!
             </li>
             <li className={classes.event}>
-              <span className={classes.time}>8:00pm</span> Dinner
+              <span className={classes.time}>8:00pm</span > Dinner
             </li>
             <li className={classes.event}>
               <span className={classes.time}>12:00am</span> (Sunday) Snacktime
@@ -121,7 +132,7 @@ const Schedule: React.FunctionComponent<Props> = ({ classes }) => {
               <span className={classes.time}>8:30am</span> Breakfast
             </li>
             <li className={classes.event}>
-              <span className={classes.time}>9:00-11:00am</span> Workshop Block
+              <span className={classes.time}>9:00-11:00am</span> *Workshop Block
             </li>
             <li className={classes.event}>
               <span className={classes.time}>12:00pm</span> Hacking Ends
@@ -130,7 +141,7 @@ const Schedule: React.FunctionComponent<Props> = ({ classes }) => {
               <span className={classes.time}>1:15pm</span> Hacker Expo
             </li>
             <li className={classes.event}>
-              <span className={classes.time}>5:00pm</span> Closing Ceremonies
+              <span className={classes.time}>5:00pm-6:00pm</span> *Closing Ceremonies
             </li>
           </ul>
         </div>

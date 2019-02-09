@@ -75,12 +75,12 @@ const HomePage: React.FunctionComponent<Props> = ({ classes }) => {
         <div className={classes.tracksSection}>
           <TrackInfo />
         </div>
+        <div className={classes.scheduleSection}>
+          <Schedule />
+        </div>
         <div className={classes.faqSection}>
           <img className={classes.curvedTop} src="/img/semicircle.svg" />
           <FAQ />
-        </div>
-        <div className={classes.scheduleSection}>
-          <Schedule />
         </div>
         <div className={classes.sponsorshipSection}>
           <SponsorshipSection />

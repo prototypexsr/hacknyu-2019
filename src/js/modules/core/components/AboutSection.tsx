@@ -10,6 +10,7 @@ const styles = (theme: Theme) => ({
     display: "flex",
     alignItems: "center",
     padding: "40px",
+    paddingBottom: "120px",
     flexDirection: "column"
   },
   content: {

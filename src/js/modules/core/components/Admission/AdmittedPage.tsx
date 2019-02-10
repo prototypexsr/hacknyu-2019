@@ -1,12 +1,12 @@
 import * as React from "react";
 import injectSheet, { WithStyles } from "react-jss";
-import Underline from "./Underline";
+import Underline from "../Underline";
 import AttendanceConfirmation from "./AttendanceConfirmation";
-import { Theme } from "../../ThemeInjector";
+import { Theme } from "../../../ThemeInjector";
 import ConfirmationForm from "./ConfirmationForm";
 import { connect } from "react-redux";
-import { ReduxState } from "../../../reducers";
-import { IS_CONFIRMATION_OPEN } from "../../constants";
+import { ReduxState } from "../../../../reducers";
+import { IS_CONFIRMATION_OPEN } from "../../../constants";
 
 
 interface Props extends WithStyles<typeof styles> {

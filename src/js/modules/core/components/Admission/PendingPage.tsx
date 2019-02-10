@@ -1,7 +1,7 @@
 import * as React from "react";
 import injectSheet, { WithStyles } from "react-jss";
-import { Theme } from "../../ThemeInjector";
-import Underline from "./Underline";
+import { Theme } from "../../../ThemeInjector";
+import Underline from "../Underline";
 
 type Props = WithStyles<typeof styles>;
 

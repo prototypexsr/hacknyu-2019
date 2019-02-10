@@ -13,7 +13,7 @@ import RegisterPage from "./core/components/RegisterPage";
 import ResetPasswordPage from "./core/components/ResetPasswordPage";
 import ProfilePage from "./core/components/ProfilePage";
 import appHistory from "../appHistory";
-import AdmissionResultPage from "./core/components/AdmissionResultPage";
+import AdmissionResultPage from "./core/components/Admission/AdmissionResultPage";
 import NotFoundPage from "./NotFoundPage";
 import { IS_REGISTRATION_OPEN } from "./constants.ts";
 

@@ -221,6 +221,15 @@ export const submitApp = (
     );
 };
 
+export const declineConfirmation = () => {
+  return submitConfirmation({
+    location: 'cannot-attend',
+    nyuCodeOfConduct: false,
+    nyuPrivacyPolicy: false,
+    nyuMediaRights: false
+  });
+}
+
 export const submitConfirmation = (formValues: ConfirmationFormData) => (
   dispatch: ThunkDispatch<ReduxState, undefined, any>
 ) => {
@@ -247,7 +256,7 @@ export const submitConfirmation = (formValues: ConfirmationFormData) => (
       dispatch({
         type: SUBMIT_CONFIRM_FULFILLED,
         payload: {
-          message: "Confirmation submitted. See you at the hackathon!",
+          message: "Confirmation submitted.",
           data: { formData: formValues, confirmTimestamp }
         }
       });

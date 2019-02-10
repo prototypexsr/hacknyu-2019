@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { logout } from "../coreActions";
 import { User } from "firebase";
 import { Theme } from "../../ThemeInjector";
-import { IS_REGISTRATION_OPEN, GLOBAL_SITE_STATE, SITE_STATES } from "../../constants";
+import { GLOBAL_SITE_STATE, SITE_STATES } from "../../constants";
 
 const styles = (theme: Theme) => ({
   Navbar: {

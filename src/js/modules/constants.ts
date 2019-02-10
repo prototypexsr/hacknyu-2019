@@ -4,12 +4,14 @@ export const emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)
 export const STOPS_COUNT = 5;
 
 export const enum SITE_STATES {
-  BEFORE_EVENT,
+  BEFORE_EVENT_REGISTRATION_OPEN,
+  BEFORE_EVENT_REGISTRATION_CLOSED,
   DURING_EVENT,
   AFTER_EVENT
 }
 
-export const GLOBAL_SITE_STATE: SITE_STATES = SITE_STATES.DURING_EVENT;
+export const GLOBAL_SITE_STATE: SITE_STATES =
+  SITE_STATES.BEFORE_EVENT_REGISTRATION_CLOSED;
 
 export const ALERT_TIME_INTERVALS = {
   ANIMATION_BUFFER: 100,

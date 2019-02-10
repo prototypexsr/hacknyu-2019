@@ -16,10 +16,9 @@ import ProfilePage from "./core/components/ProfilePage";
 import TicketPage from './checkin/components/TicketPage';
 import UserCheckInPage from './checkin/components/CheckInHackerPage';
 import appHistory from "../appHistory";
-import { IS_REGISTRATION_OPEN } from "./constants";
 import AdmissionResultPage from "./admission/components/AdmissionResultPage";
 import NotFoundPage from "./core/components/NotFoundPage";
-import { IS_REGISTRATION_OPEN } from "./constants";
+import { GLOBAL_SITE_STATE, SITE_STATES } from "./constants";
 
 class RoutingApp extends React.Component {
   render() {
@@ -33,7 +32,8 @@ class RoutingApp extends React.Component {
                 <Route exact path="/live" component={LivePage} />
                 <Route exact path="/about" component={AboutPage} />
                 <Route exact path="/login" component={LoginPage} />
-                {IS_REGISTRATION_OPEN && (
+                {GLOBAL_SITE_STATE ===
+                  SITE_STATES.BEFORE_EVENT_REGISTRATION_OPEN && (
                   <Route exact path="/register" component={RegisterPage} />
                 )}
                 <Route exact path="/status" component={AdmissionResultPage} />

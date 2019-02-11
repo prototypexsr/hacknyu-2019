@@ -14,7 +14,7 @@ import ResetPasswordPage from "./core/components/ResetPasswordPage";
 import ProfilePage from "./core/components/ProfilePage";
 import appHistory from "../appHistory";
 import AdmissionResultPage from "./core/components/Admission/AdmissionResultPage";
-import NotFoundPage from "./NotFoundPage";
+import NotFoundPage from "./core/components/NotFoundPage";
 import { IS_REGISTRATION_OPEN } from "./constants.ts";
 
 class RoutingApp extends React.Component {

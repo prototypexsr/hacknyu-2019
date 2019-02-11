@@ -2,11 +2,9 @@ import * as React from "react";
 import { ApplyFormData, IncompleteField } from "../../types";
 import injectSheet, { WithStyles } from "react-jss";
 import { push } from "connected-react-router";
-import { submitApp } from "../coreActions";
+import { submitApp } from "../../core/coreActions";
 import { Form, Field, FormSpy } from "react-final-form";
 import { User } from "firebase";
-import { schools } from "../schools";
-import SchoolInput from "./SchoolInput";
 import Condition from "./Condition";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
@@ -18,6 +16,11 @@ import { ReduxState } from "../../../reducers";
 import { connect } from "react-redux";
 import { bindActionCreators, compose } from "redux";
 import { Link } from "react-router-dom";
+import CheckboxesContainer from "./CheckboxesContainer";
+import InputLabel from "./InputLabel";
+import EmergencyContactInfo from "./EmergencyContactInfo";
+import TermsAndConditions from "./TermsAndConditions";
+import EducationInfo from "./EducationInfo";
 
 const requiredFields = {
   firstName: "First Name",
@@ -59,9 +62,6 @@ const styles = (theme: Theme) => ({
   header: {
     padding: "10px"
   },
-  multipleCheckboxes: {
-    margin: "40px 0 40px 0"
-  },
   form: {
     display: "flex",
     flexDirection: "column",
@@ -78,10 +78,6 @@ const styles = (theme: Theme) => ({
     lineHeight: "2rem",
     flexDirection: "column"
   },
-  inputLabel: {
-    maxWidth: "300px",
-    lineHeight: "1.8rem"
-  },
   resumeUpload: {
     maxWidth: "500px",
     padding: "20px",
@@ -94,19 +90,11 @@ const styles = (theme: Theme) => ({
     border: "none",
     maxWidth: "250px"
   },
-  checkbox: {
-    width: "20px",
-    height: "20px"
-  },
   loadingText: {
     fontSize: "1.3em"
   },
   autocompleteItem: {
     padding: theme.inputPadding
-  },
-  mlhPolicy: {
-    maxWidth: "500px",
-    lineHeight: "1.8rem"
   },
   genderOptions: {
     padding: "40px"
@@ -114,9 +102,6 @@ const styles = (theme: Theme) => ({
   warning: {
     maxWidth: "400px",
     color: "red"
-  },
-  termsAndConditions: {
-    padding: "15px"
   },
   [`@media(max-width: ${theme.largeBreakpoint})`]: {
     ApplyPage: {
@@ -129,10 +114,6 @@ const styles = (theme: Theme) => ({
     }
   },
   [`@media(max-width: ${theme.smallBreakpoint})`]: {
-    multipleCheckboxes: {
-      minInlineSize: "unset",
-      width: "50vw"
-    },
     inputs: {
       alignItems: "center"
     }
@@ -249,11 +230,11 @@ const ApplyPage: React.FunctionComponent<Props> = ({
                   <option value="prefer-not"> Prefer not to say </option>
                   <option value="other"> Other </option>
                 </Field>
-                <fieldset className={classes.multipleCheckboxes}>
-                  <legend className={classes.inputLabel}>
+                <CheckboxesContainer>
+                  <InputLabel>
                     (Optional) What races/ethnicities do you most closely
                     identify with? Check all that apply.
-                  </legend>
+                  </InputLabel>
                   <Checkbox name="isAmericanNative">
                     American Indian / Alaskan Native
                   </Checkbox>
@@ -266,7 +247,7 @@ const ApplyPage: React.FunctionComponent<Props> = ({
                   <Checkbox name="isHispanic">Hispanic</Checkbox>
                   <Checkbox name="isWhiteCaucasian">White / Caucasian</Checkbox>
                   <Checkbox name="isOther">Other</Checkbox>
-                </fieldset>
+                </CheckboxesContainer>
                 <Field
                   name="phoneNumber"
                   label="Phone Number:"
@@ -278,97 +259,7 @@ const ApplyPage: React.FunctionComponent<Props> = ({
                   uid={user.uid}
                   label="Upload Resume as PDF:"
                 />
-                <Field
-                  name="school"
-                  render={props => (
-                    <SchoolInput schools={schools} {...props} label="School:" />
-                  )}
-                  classes={classes}
-                />
-
-                <Condition when="school" is="New York University">
-                  <Field
-                    label="NYU School:"
-                    name="nyuSchool"
-                    render={props => <Select {...props} />}
-                  >
-                    <option value="">Select an option</option>
-                    <option value="tandon">Tandon School of Engineering</option>
-                    <option value="cas">College of Arts and Science</option>
-                    <option value="gsas">
-                      Graduate School of Arts and Science
-                    </option>
-                    <option value="stern">
-                      Leonard N. Stern School of Business
-                    </option>
-                    <option value="nursing">
-                      Rory Meyers College of Nursing
-                    </option>
-                    <option value="steinhardt">
-                      Steinhardt School of Culture, Education, and Human
-                      Development
-                    </option>
-                    <option value="tisch">Tisch School of the Arts</option>
-                    <option value="dentistry">College of Dentistry</option>
-                    <option value="sps">School of Professional Studies</option>
-                    <option value="silver">Silver School of Social Work</option>
-                    <option value="ls"> Liberal Studies </option>
-                    <option value="gallatin">
-                      Gallatin School of Individualized Study
-                    </option>
-                    <option value="global-health">
-                      College of Global Public Health
-                    </option>
-                    <option value="abu-dhabi"> Abu Dhabi </option>
-                    <option value="shanghai"> Shanghai </option>
-                    <option value="other">Other (please specify):</option>
-                  </Field>
-                </Condition>
-                <Condition when="nyuSchool" is="other">
-                  <label>
-                    <Field name="nyuSchoolOther" component="input" />
-                  </label>
-                </Condition>
-                <Field
-                  label="Current year of study:"
-                  name="yearOfStudy"
-                  render={props => <Select {...props} />}
-                >
-                  <option value=""> Select an option </option>
-                  <option value="high-school">High School </option>
-                  <option value="freshman">First-year (Freshman)</option>
-                  <option value="sophomore"> Sophomore </option>
-                  <option value="junior"> Junior </option>
-                  <option value="senior"> Senior </option>
-                  <option value="graduate">
-                    Graduate Student (Masters or Doctorate)
-                  </option>
-                  <option value="post-grad">
-                    {" "}
-                    Post Graduate (must be within 12 months of graduation to be
-                    eligible)
-                  </option>
-                </Field>
-                <Field
-                  label="Major:"
-                  name="major"
-                  render={props => <Input {...props} />}
-                />
-
-                <Field
-                  label="Anticipated graduation year:"
-                  name="gradYear"
-                  render={props => <Select {...props} />}
-                >
-                  <option value=""> Select an option </option>
-                  <option value="2019"> 2019 </option>
-                  <option value="2020"> 2020 </option>
-                  <option value="2021"> 2021 </option>
-                  <option value="2022"> 2022 </option>
-                  <option value="2023"> 2023 </option>
-
-                  <option value="2024-plus"> 2024 or later </option>
-                </Field>
+                <EducationInfo/>
 
                 <Field
                   label="Is this your first time at HackNYU?"
@@ -424,16 +315,16 @@ const ApplyPage: React.FunctionComponent<Props> = ({
                   <option value="xx-large"> XXL </option>
                 </Field>
 
-                <fieldset className={classes.multipleCheckboxes}>
-                  <legend className={classes.inputLabel}>
+                <CheckboxesContainer>
+                  <InputLabel>
                     Any dietary restrictions? Check all that apply.
-                  </legend>
+                  </InputLabel>
                   <Checkbox name="isVeggie">Vegetarian</Checkbox>
                   <Checkbox name="isVegan">Vegan</Checkbox>
                   <Checkbox name="isKosher">Kosher</Checkbox>
                   <Checkbox name="isHalal">Halal</Checkbox>
                   <Checkbox name="isGlutenFree">Gluten Free</Checkbox>
-                </fieldset>
+                </CheckboxesContainer>
 
                 <Field
                   label="(Optional) Any other dietary restrictions or allergies?"
@@ -447,64 +338,8 @@ const ApplyPage: React.FunctionComponent<Props> = ({
                   render={props => <Input {...props} />}
                 />
 
-                <fieldset className={classes.multipleCheckboxes}>
-                  <legend className={classes.inputLabel}>
-                    Emergency contact information
-                  </legend>
-
-                  <Field
-                    label="Emergency contact number"
-                    name="emergencyContactNumber"
-                    type="tel"
-                    render={props => <Input {...props} />}
-                    placeholder="1-800-867-5309"
-                  />
-
-                  <Field
-                    label="Emergency contact full name"
-                    name="emergencyContactName"
-                    render={props => <Input {...props} />}
-                    placeholder="Andrew Davis"
-                  />
-
-                  <Field
-                    label="Relation to emergency contact"
-                    name="emergencyContactRelation"
-                    render={props => <Input {...props} />}
-                    placeholder="mother, father, friend, etc..."
-                  />
-                </fieldset>
-
-                <label className={classes.termsAndConditions}>
-                  <div className={classes.inputLabel}>
-                    I have read and agree to the{" "}
-                    <a href="https://mlh.io/code-of-conduct">
-                      MLH Code of Conduct.
-                    </a>
-                  </div>
-                  <Field
-                    className={classes.checkbox}
-                    name="codeOfConduct"
-                    component="input"
-                    type="checkbox"
-                  />
-                </label>
-                <label className={classes.termsAndConditions}>
-                  <div className={classes.mlhPolicy}>
-                    I authorize HackNYU to share my application/registration
-                    information for event administration, pre- and post-event
-                    informational emails, and occasional messages about
-                    hackathons in-line with the MLH Privacy Policy. I further
-                    agree to the Contest Terms and Conditions and the MLH
-                    Privacy Policy.
-                  </div>
-                  <Field
-                    className={classes.checkbox}
-                    name="privacyPolicy"
-                    component="input"
-                    type="checkbox"
-                  />
-                </label>
+                <EmergencyContactInfo/>
+                <TermsAndConditions/>
                 <FormSpy
                   render={({ form }) => {
                     const fields = form.getState().values as ApplyFormData;

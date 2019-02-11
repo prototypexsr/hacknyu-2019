@@ -3,11 +3,11 @@ import injectSheet, { WithStyles } from "react-jss";
 import { emailRegex } from "../../constants";
 import { Field, Form } from "react-final-form";
 import { bindActionCreators, compose, Dispatch } from "redux";
-import { resetPassword, clearEmailState } from "../coreActions";
+import { resetPassword, clearEmailState } from "../../core/coreActions";
 import Input from "./Input";
 import { connect } from "react-redux";
 import Button from "./Button";
-import Underline from "./Underline";
+import Underline from "../../core/components/Underline";
 import { Theme } from "../../ThemeInjector";
 import { ReduxState } from "../../../reducers";
 

@@ -41,15 +41,8 @@ const requiredFields = {
 
 const styles = (theme: Theme) => ({
   admittedAlert: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    maxWidth: "90vw",
-    color: theme.secondFont,
-    backgroundColor: theme.formBackground,
-    borderRadius: "0.5em",
-    fontSize: "1.2rem",
-    padding: "2em"
+    fontSize: "1.3rem",
+    padding: "2rem"
   },
   ApplyPage: {
     display: "flex",
@@ -76,6 +69,9 @@ const styles = (theme: Theme) => ({
     lineHeight: "1.2em",
     fontSize: "1.5em",
     padding: "40px 0 40px 0"
+  },
+  link: {
+    textDecoration: "underline"
   },
   inputs: {
     display: "flex",
@@ -165,14 +161,6 @@ const ApplyPage: React.FunctionComponent<Props> = ({
   submitApp,
   submitTimestamp
 }) => {
-  if (isAdmitted) {
-    return (
-      <div className={classes.admittedAlert}>
-        You've already been accepted! Please{" "}
-        <Link to="/status"> confirm your attendance! </Link>
-      </div>
-    );
-  }
   // Checks if values are all filled and puts an empty string if they aren't
   // (so firebase doesn't complain)
   const getIncompleteFields = (values: any): IncompleteField[] => {
@@ -217,11 +205,11 @@ const ApplyPage: React.FunctionComponent<Props> = ({
 
   return (
     <div className={classes.ApplyPage}>
-      <div className={classes.warning}>
-        We're running out of space, so we cannot guarantee any acceptances.
-        However, feel free to still apply!
-      </div>
-      <h1 className={classes.header}> Apply </h1>
+      {isAdmitted && <div className={classes.admittedAlert}>
+        You've already been accepted! Please{" "}
+        <Link to="/status" className={classes.link}> confirm your attendance! </Link>
+      </div>}
+      {isAdmitted ? (<h1 className={classes.header}> Edit Application </h1>) : <h1 className={classes.header}> APPLY </h1>}
       <Form
         onSubmit={handleSubmit}
         validate={validateForm}

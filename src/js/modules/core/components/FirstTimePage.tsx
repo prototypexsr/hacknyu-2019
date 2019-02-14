@@ -27,6 +27,12 @@ const styles = (theme: Theme) => ({
   },
   tinyText: {
     fontSize: "0.8rem"
+  },
+  languageList: {
+    paddingTop: "5px"
+  },
+  languageGroup: {
+    fontSize: "1.05em"
   }
 });
 
@@ -86,13 +92,28 @@ const FirstTimePage: React.FunctionComponent<Props> = ({ classes }) => {
             which you have to fix later.
           </li>
           <li className={classes.adviceBullet}>
-            <b> Don't write PHP. </b> C'mon man. It's 2019. There's better
-            languages{" "}
-            <div className={classes.tinyText}>
-              Haskell, Elixir, TypeScript, Racket, Rust, Go, Ruby, OCaml,
-              Clojure, Crystal, Elm, Zig, Nim, Futhark, D, F#, literally
-              anything
-            </div>
+            <b> Learn a new language. </b> Learning a new language opens up
+            different usecases and a different philosophy of programming. Here's
+            some languages to check out:
+            <ul className={classes.languageList}>
+              <li>
+                <span className={classes.languageGroup}>
+                  Functional &amp; Fun:{" "}
+                </span>
+                Haskell, Elixir, OCaml, Racket, Elm, Carp, F#, 1ML, Agda, Coq,
+                Idris
+              </li>
+              <li>
+                <span className={classes.languageGroup}>
+                  Speedy &amp; Smart:{" "}
+                </span>
+                Rust, Go, Zig, Nim, D, Futhark
+              </li>
+              <li>
+                <span className={classes.languageGroup}>Old Made New: </span>
+                Ruby, Clojure, Crystal, Dart, Kotlin, TypeScript
+              </li>
+            </ul>
           </li>
         </ul>
       </div>

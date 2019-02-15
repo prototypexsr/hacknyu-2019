@@ -4,13 +4,14 @@ import { User } from "firebase";
 import { bindActionCreators, compose, Dispatch } from "redux";
 import { push } from "connected-react-router";
 import { connect } from "react-redux";
-import Button from "./Button";
-import PasswordForm from "./UpdatePasswordForm";
+import Button from "../../core/components/Button";
+import PasswordForm from "../../forms/components/UpdatePasswordForm";
 import ProfilePic from "./ProfilePic";
 import { Theme } from "../../ThemeInjector";
 import { ApplyFormData } from "../../types";
 import { ReduxState } from "../../../reducers";
 import { Link } from "react-router-dom";
+import CheckInCodePage from "../../checkin/components/TicketPage";
 
 interface Props extends WithStyles<typeof styles> {
   user: User;
@@ -25,8 +26,8 @@ const styles = (theme: Theme) => ({
   ProfilePage: {
     width: "100%",
     maxWidth: theme.containerMaxWidth,
-    height: "100vh",
     paddingTop: "3em",
+    paddingBottom: "2em",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -85,9 +86,10 @@ class ProfilePage extends React.Component<Props, State> {
           { userInfo.displayName}
         </h1>
         <ProfilePic photoURL={userInfo.photoURL} uid={user.uid}/>
+        <CheckInCodePage/>
+        <Link to="/status"><Button> ADMISSION STATUS </Button></Link>
         <Button onClick={this.togglePasswordForm}>CHANGE PASSWORD</Button>
         {this.state.isPasswordFormVisible && <PasswordForm />}
-        <Link to="/status"><Button> ADMISSION STATUS </Button></Link>
       </div>
     );
   }

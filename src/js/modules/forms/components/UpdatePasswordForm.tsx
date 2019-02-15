@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Field, Form } from "react-final-form";
 import Input from "./Input";
-import Button from "./Button";
+import Button from "../../core/components/Button";
 import { bindActionCreators, Dispatch } from "redux";
-import { updatePassword } from "../coreActions";
+import { updatePassword } from "../../core/coreActions";
 import { connect } from "react-redux";
 import injectSheet, { WithStyles } from "react-jss";
 import { ReduxState } from "../../../reducers";

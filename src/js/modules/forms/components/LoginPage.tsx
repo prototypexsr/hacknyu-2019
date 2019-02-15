@@ -1,14 +1,14 @@
 import * as React from "react";
 import injectSheet, { WithStyles } from "react-jss";
 import { Field, Form } from "react-final-form";
-import Button from "./Button";
+import Button from "../../core/components/Button";
 import { AnyAction, compose, Dispatch } from "redux";
 import { connect } from "react-redux";
-import { loginWithGoogle, loginWithPassword } from "../coreActions";
+import { loginWithGoogle, loginWithPassword } from "../../core/coreActions";
 import { emailRegex } from "../../constants";
 import Input from "./Input";
 import { Link } from "react-router-dom";
-import Underline from "./Underline";
+import Underline from "../../core/components/Underline";
 import { Theme } from "../../ThemeInjector";
 import { ReduxState } from "../../../reducers";
 import { IS_REGISTRATION_OPEN } from "../../constants";

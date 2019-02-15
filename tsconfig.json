@@ -11,6 +11,10 @@
       "es2017",
       "dom"
     ],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/js/@types"
+    ],
     "jsx": "react"
   },
   "exclude": [

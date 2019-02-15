@@ -7,17 +7,20 @@ import LivePage from "./core/components/LivePage";
 import { ConnectedRouter } from "connected-react-router";
 import store from "../store";
 import ThemeInjector from "./ThemeInjector";
-import ApplyPage from "./core/components/ApplyPage";
-import LoginPage from "./core/components/LoginPage";
+import ApplyPage from "./forms/components/ApplyPage";
+import LoginPage from "./forms/components/LoginPage";
 import AboutPage from "./core/components/AboutPage";
 import RegisterPage from "./core/components/RegisterPage";
-import ResetPasswordPage from "./core/components/ResetPasswordPage";
+import ResetPasswordPage from "./forms/components/ResetPasswordPage";
 import ProfilePage from "./core/components/ProfilePage";
+import TicketPage from './checkin/components/TicketPage';
+import Prizes from './core/components/Prizes';
+import UserCheckInPage from './checkin/components/CheckInHackerPage';
 import appHistory from "../appHistory";
-import AdmissionResultPage from "./core/components/Admission/AdmissionResultPage";
-import NotFoundPage from "./NotFoundPage";
 import { GLOBAL_SITE_STATE, SITE_STATES } from "./constants";
 import ResourcesPage from "./core/components/ResourcesPage";
+import AdmissionResultPage from "./admission/components/AdmissionResultPage";
+import NotFoundPage from "./core/components/NotFoundPage";
 
 class RoutingApp extends React.Component {
   render() {
@@ -33,6 +36,7 @@ class RoutingApp extends React.Component {
                   <Route exact path="/" component={HomePage} />
                 )}
                 <Route exact path="/about" component={AboutPage} />
+                <Route exact path="/prizes" component={Prizes} />
                 <Route exact path="/login" component={LoginPage} />
                 {GLOBAL_SITE_STATE === SITE_STATES.DURING_EVENT && (
                   <Route exact path="/resources" component={ResourcesPage} />
@@ -41,7 +45,7 @@ class RoutingApp extends React.Component {
                   SITE_STATES.BEFORE_EVENT_REGISTRATION_OPEN && (
                   <Route exact path="/register" component={RegisterPage} />
                 )}
-                <Route exact path="/status" component={AdmissionResultPage} />
+                <Route exact path="/register" component={RegisterPage} />
                 <Route
                   exact
                   path="/reset_password"
@@ -50,7 +54,9 @@ class RoutingApp extends React.Component {
                 <Route exact path="/apply" component={ApplyPage} />
                 <Route exact path="/my_profile" component={ProfilePage} />
                 <Route exact path="/404" component={NotFoundPage} />
-                <Redirect to="/404" />
+                <Route exact path="/user-check-in/:uid" component={UserCheckInPage} />
+                <Route exact path="/ticket" component={TicketPage} />
+                <Redirect to="/404"/>
               </Switch>
             </MainApp>
           </ThemeInjector>

@@ -181,8 +181,8 @@ const getAge = birthDate => {
   return Math.abs(ageDate.getUTCFullYear() - 1970);
 };
 
-const reflect = p => p.then(v => ({v, status: "resolved" }),
-                            e => ({e, status: "rejected" }));
+const reflect = p =>
+  p.then(v => ({ v, status: "resolved" }), e => ({ e, status: "rejected" }));
 
 export const getRejectedUsersData = () => {
   const db = admin.firestore();
@@ -192,39 +192,45 @@ export const getRejectedUsersData = () => {
   const admittedUsers = new Set();
 
   return db
-  .collection("admitted")
-  .get()
-  .then(snapshot => {
-    snapshot.forEach(doc => {
-      admittedUsers.add(doc.id);
-    });
-    console.log("Admitted:");
-    console.log(admittedUsers.size);
-    return db.collection("users").get();
-  })
-  .then(snapshot => {
-    snapshot.forEach(doc => {
-      const data = doc.data();
-      if (!admittedUsers.has(doc.id)) {
-        rejectedUsersData[doc.id] = data;
-      }
-    });
-    console.log("Rejected:");
-    console.log(Object.keys(rejectedUsersData).length);
-    return Promise.all(Object.keys(rejectedUsersData).map(id => auth.getUser(id)).map(reflect));
-  })
-  .then(results => {
-    const rejectedUsers = results.filter(x => x.status === "resolved").map(x => x.v);
-    
-    console.log("Rejected w/ users:");
-    console.log(rejectedUsers.length);
+    .collection("admitted")
+    .get()
+    .then(snapshot => {
+      snapshot.forEach(doc => {
+        admittedUsers.add(doc.id);
+      });
+      console.log("Admitted:");
+      console.log(admittedUsers.size);
+      return db.collection("users").get();
+    })
+    .then(snapshot => {
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        if (!admittedUsers.has(doc.id)) {
+          rejectedUsersData[doc.id] = data;
+        }
+      });
+      console.log("Rejected:");
+      console.log(Object.keys(rejectedUsersData).length);
+      return Promise.all(
+        Object.keys(rejectedUsersData)
+          .map(id => auth.getUser(id))
+          .map(reflect)
+      );
+    })
+    .then(results => {
+      const rejectedUsers = results
+        .filter(x => x.status === "resolved")
+        .map(x => x.v);
 
-    for (let user of rejectedUsers) {
-      rejectedUsersData[user.uid].email = user.email;
-    }
-    return rejectedUsersData;
-  })
-  .catch(function(error) {
-    console.log("Error with getting rejected users: ", error);
-  });
+      console.log("Rejected w/ users:");
+      console.log(rejectedUsers.length);
+
+      for (let user of rejectedUsers) {
+        rejectedUsersData[user.uid].email = user.email;
+      }
+      return rejectedUsersData;
+    })
+    .catch(function(error) {
+      console.log("Error with getting rejected users: ", error);
+    });
 };

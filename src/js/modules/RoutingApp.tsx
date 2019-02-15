@@ -13,6 +13,7 @@ import RegisterPage from "./core/components/RegisterPage";
 import ResetPasswordPage from "./forms/components/ResetPasswordPage";
 import ProfilePage from "./core/components/ProfilePage";
 import TicketPage from './checkin/components/TicketPage';
+import Prizes from './core/components/Prizes';
 import UserCheckInPage from './checkin/components/CheckInHackerPage';
 import appHistory from "../appHistory";
 import AdmissionResultPage from "./admission/components/AdmissionResultPage";
@@ -29,6 +30,7 @@ class RoutingApp extends React.Component {
               <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route exact path="/about" component={AboutPage} />
+                <Route exact path="/prizes" component={Prizes} />
                 <Route exact path="/login" component={LoginPage} />
                 <Route exact path="/register" component={RegisterPage} />
                 <Route exact path="/status" component={AdmissionResultPage} />

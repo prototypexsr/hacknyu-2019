@@ -6,7 +6,7 @@ import { bindActionCreators, compose, Dispatch } from "redux";
 import { resetPassword, clearEmailState } from "../../core/coreActions";
 import Input from "./Input";
 import { connect } from "react-redux";
-import Button from "./Button";
+import Button from "../../core/components/Button";
 import Underline from "../../core/components/Underline";
 import { Theme } from "../../ThemeInjector";
 import { ReduxState } from "../../../reducers";

@@ -12,10 +12,12 @@ import AboutPage from "./core/components/AboutPage";
 import RegisterPage from "./core/components/RegisterPage";
 import ResetPasswordPage from "./forms/components/ResetPasswordPage";
 import ProfilePage from "./core/components/ProfilePage";
+import TicketPage from './checkin/components/TicketPage';
+import UserCheckInPage from './checkin/components/CheckInHackerPage';
 import appHistory from "../appHistory";
-import AdmissionResultPage from "./core/components/Admission/AdmissionResultPage";
+import AdmissionResultPage from "./admission/components/AdmissionResultPage";
 import NotFoundPage from "./core/components/NotFoundPage";
-import { IS_REGISTRATION_OPEN } from "./constants.ts";
+import { IS_REGISTRATION_OPEN } from "./constants";
 
 class RoutingApp extends React.Component {
   render() {
@@ -38,6 +40,8 @@ class RoutingApp extends React.Component {
                 <Route exact path="/apply" component={ApplyPage} />
                 <Route exact path="/my_profile" component={ProfilePage} />
                 <Route exact path="/404" component={NotFoundPage} />
+                <Route exact path="/user-check-in/:uid" component={UserCheckInPage} />
+                <Route exact path="/ticket" component={TicketPage} />
                 <Redirect to="/404"/>
               </Switch>
             </MainApp>

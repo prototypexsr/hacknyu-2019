@@ -33,7 +33,8 @@ import {
   SUBMIT_CONFIRM_FULFILLED,
   SUBMIT_CONFIRM_REJECTED,
   LOADING_FULFILLED,
-  LOADING_REJECTED
+  LOADING_REJECTED,
+  CHECKIN_REJECTED
 } from "./coreActions";
 import { User } from "firebase";
 import { ApplyFormData, ConfirmationFormData, Form } from "../types";
@@ -135,7 +136,7 @@ const reducer: Reducer<CoreState> = (state = { ...initialState }, action) => {
         state.viewportHeight !== viewportHeight
       ) {
         // override width/height which will refresh app view
-        return Object.assign({ ...state }, { viewportWidth, viewportHeight });
+        return { ...state, viewportWidth, viewportHeight };
       } else return state; //otherwise do not mutate
     case UPLOAD_RESUME_PENDING:
       return { ...state, resumeForm: { isSubmitting: true } };
@@ -358,9 +359,17 @@ const reducer: Reducer<CoreState> = (state = { ...initialState }, action) => {
     case GET_FORM_DATA_REJECTED:
       return {
         ...state,
-        error: {
+        errors: {
           ...state.errors,
           apply: action.payload.message
+        }
+      };
+    case CHECKIN_REJECTED:
+      return {
+        ...state,
+        errors: {
+          ...state.errors,
+          checkin: action.payload
         }
       };
     case LOADING_FULFILLED:

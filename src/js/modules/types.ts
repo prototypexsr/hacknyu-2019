@@ -49,6 +49,15 @@ export interface ConfirmationFormData {
   nyuMediaRights: boolean;
 }
 
+interface ConfirmationData extends ConfirmationFormData {
+  checkinTimestamp: string;
+}
+
+export interface UserData extends ApplyFormData {
+  confirmTimestamp: string;
+  confirmData: ConfirmationData;
+}
+
 export interface IncompleteField {
   field: string;
   name: string;

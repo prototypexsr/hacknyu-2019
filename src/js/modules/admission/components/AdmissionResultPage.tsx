@@ -3,7 +3,7 @@ import AdmittedPage from "./AdmittedPage";
 import PendingPage from "./PendingPage";
 import { connect } from "react-redux";
 
-import { ReduxState } from "../../../../reducers";
+import { ReduxState } from "../../../reducers";
 
 interface Props {
   isAccepted: boolean;

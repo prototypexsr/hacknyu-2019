@@ -19,6 +19,7 @@ import appHistory from "../appHistory";
 import AdmissionResultPage from "./admission/components/AdmissionResultPage";
 import NotFoundPage from "./core/components/NotFoundPage";
 import { GLOBAL_SITE_STATE, SITE_STATES } from "./constants";
+import ResourcesPage from "./core/components/ResourcesPage";
 
 class RoutingApp extends React.Component {
   render() {
@@ -28,10 +29,16 @@ class RoutingApp extends React.Component {
           <ThemeInjector>
             <MainApp>
               <Switch>
-                <Route exact path="/" component={HomePage} />
-                <Route exact path="/live" component={LivePage} />
+                {GLOBAL_SITE_STATE === SITE_STATES.DURING_EVENT ? (
+                  <Route exact path="/" component={LivePage} />
+                ) : (
+                  <Route exact path="/" component={HomePage} />
+                )}
                 <Route exact path="/about" component={AboutPage} />
                 <Route exact path="/login" component={LoginPage} />
+                {GLOBAL_SITE_STATE === SITE_STATES.DURING_EVENT && (
+                  <Route exact path="/resources" component={ResourcesPage} />
+                )}
                 {GLOBAL_SITE_STATE ===
                   SITE_STATES.BEFORE_EVENT_REGISTRATION_OPEN && (
                   <Route exact path="/register" component={RegisterPage} />

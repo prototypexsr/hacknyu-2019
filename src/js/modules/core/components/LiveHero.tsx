@@ -1,11 +1,11 @@
 import * as React from "react";
 import injectSheet, { WithStyles } from "react-jss";
-import { Link } from "react-router-dom";
 import { User } from "firebase";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { Theme } from "../../ThemeInjector";
 import { ReduxState } from "../../../reducers";
+import { Link } from "react-router-dom";
 // @ts-ignore
 import Scrollchor from "react-scrollchor";
 
@@ -38,10 +38,12 @@ const styles = (theme: Theme) => ({
     justifyContent: "center",
     flexFlow: "row",
     alignItems: "center",
-    margin: "15px"
+    maxWidth: "500px",
+    flexWrap: "wrap",
+    margin: "15px auto"
   },
   button: {
-    margin: "0.5em 1em",
+    margin: "0.5em",
     padding: "15px 35px 15px 35px",
     borderRadius: "5px",
     fontSize: "1.2em",
@@ -80,8 +82,8 @@ const LiveHero: React.FunctionComponent<Props> = ({ user, classes }) => {
         <span className={classes.subtitle}>is live!</span>
       </div>
       <div className={classes.buttons}>
-        <Scrollchor to="#tweets" className={classes.button}>
-          TWEETS
+        <Scrollchor to="#tweets" className={`${classes.button} ${classes.buttonSecondary}`}>
+          ANNOUNCEMENTS
         </Scrollchor>
         <Scrollchor
           to="#schedule"
@@ -89,6 +91,18 @@ const LiveHero: React.FunctionComponent<Props> = ({ user, classes }) => {
         >
           SCHEDULE
         </Scrollchor>
+        <Link
+          to="/resources"
+          className={`${classes.button} ${classes.buttonSecondary}`}
+        >
+          RESOURCES
+        </Link>
+        <Link
+          to="/prizes"
+          className={`${classes.button} ${classes.buttonSecondary}`}
+        >
+          PRIZES
+        </Link>
       </div>
     </div>
   );

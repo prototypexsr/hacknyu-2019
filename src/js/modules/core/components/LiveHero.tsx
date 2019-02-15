@@ -83,12 +83,12 @@ const LiveHero: React.FunctionComponent<Props> = ({ user, classes }) => {
         <Scrollchor to="#tweets" className={classes.button}>
           TWEETS
         </Scrollchor>
-        <Link
-          to="/live#schedule"
+        <Scrollchor
+          to="#schedule"
           className={`${classes.button} ${classes.buttonSecondary}`}
         >
           SCHEDULE
-        </Link>
+        </Scrollchor>
       </div>
     </div>
   );

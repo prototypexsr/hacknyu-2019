@@ -82,6 +82,14 @@ const Hero: React.FunctionComponent<Props> = ({
 }) => {
   let mainButtons = [];
   // Some nasty logic here. TODO: Fix this shit
+  mainButtons.push(
+    <p className={classes.blurb}> 
+    Welcome to the event!
+    <br/> Login and have your ticket ready for check in. 
+    <br/> Make sure all your information is correct before you show your ticket.
+    </p>
+  );
+
   if (IS_REGISTRATION_OPEN) {
     if (user) {
       mainButtons.push(
@@ -97,12 +105,6 @@ const Hero: React.FunctionComponent<Props> = ({
       );
     }
   } else if (confirmTimestamp) {
-    mainButtons.push(
-      <p className={classes.blurb}> 
-      Welcome to the event!
-      <br/>Login and have your ticket ready for check in. 
-      <br/> Make sure all your information is correct before you show your ticket.
-    </p>);
     mainButtons.push(
       <Link className={classes.button} to="/ticket">
         CHECK IN TICKET

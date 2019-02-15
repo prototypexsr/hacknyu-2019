@@ -71,6 +71,11 @@ const Navbar: React.FunctionComponent<Props> = ({ classes, user, logout }) => {
         <Link to="/about">
           <div className={classes.link}>ABOUT</div>
         </Link>
+        {GLOBAL_SITE_STATE === SITE_STATES.DURING_EVENT && (
+          <Link to="/resources" className={classes.link}>
+            RESOURCES
+          </Link>
+        )}
         {user
           ? [
               <Link to="/my_profile" className={classes.link} key={1}>
@@ -84,7 +89,8 @@ const Navbar: React.FunctionComponent<Props> = ({ classes, user, logout }) => {
               <Link to="/login" className={classes.link}>
                 LOGIN
               </Link>,
-              GLOBAL_SITE_STATE === SITE_STATES.BEFORE_EVENT_REGISTRATION_OPEN && (
+              GLOBAL_SITE_STATE ===
+                SITE_STATES.BEFORE_EVENT_REGISTRATION_OPEN && (
                 <Link to="/register" className={classes.link}>
                   {" "}
                   REGISTER{" "}

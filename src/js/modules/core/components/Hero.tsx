@@ -31,7 +31,7 @@ const styles = (theme: Theme) => ({
   subtitle: {
     fontWeight: "400",
     fontSize: "1.8em",
-    marginBottom: "1em"
+    marginBottom: "0px"
   },
   buttons: {
     display: "flex",
@@ -106,6 +106,14 @@ const Hero: React.FunctionComponent<Props> = ({
     mainButtons.push(
       <Link className={classes.button} to="/ticket">
         CHECK IN TICKET
+      </Link>
+    );
+    mainButtons.push(
+      <Link
+        to="/apply"
+        className={`${classes.button} ${classes.buttonSecondary}`}
+      >
+        EDIT APPLICATION
       </Link>
     );
   } else {

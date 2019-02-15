@@ -251,6 +251,10 @@ const reducer: Reducer<CoreState> = (state = { ...initialState }, action) => {
       return {
         ...state,
         user: undefined,
+        confirmForm: {
+          isSubmitting: false,
+          formData: {}
+        },
         notifications: {
           ...state.notifications,
           logout: action.payload

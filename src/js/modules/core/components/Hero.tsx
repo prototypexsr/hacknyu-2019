@@ -115,7 +115,7 @@ const Hero: React.FunctionComponent<Props> = ({
         to="/apply"
         className={`${classes.button} ${classes.buttonSecondary}`}
       >
-        EDIT APPLICATION
+        EDIT INFORMATION
       </Link>
     );
   } else {

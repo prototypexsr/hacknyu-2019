@@ -6,6 +6,7 @@ import AnimatedSubwayLines from "./AnimatedSubwayLines";
 import { Theme } from "../../ThemeInjector";
 import SponsorshipSection from "./SponsorshipSection";
 import TwitterFeed from "./TwitterFeed";
+import Schedule from "./Schedule";
 
 type Props = WithStyles<typeof styles>;
 
@@ -40,6 +41,10 @@ const styles = (theme: Theme) => ({
     display: "flex",
     width: "100vw",
     flexDirection: "column"
+  },
+  scheduleSection: {
+    backgroundColor: theme.secondBackground,
+    color: theme.secondFont
   }
 });
 
@@ -54,6 +59,9 @@ const LivePage: React.FunctionComponent<Props> = ({ classes }) => {
         </div>
         <div className={classes.tracksSection}>
           <TrackInfo />
+        </div>
+        <div id="schedule" className={classes.scheduleSection}>
+          <Schedule />
         </div>
         <div className={classes.sponsorshipSection}>
           <SponsorshipSection />

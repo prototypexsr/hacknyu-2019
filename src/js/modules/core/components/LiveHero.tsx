@@ -36,7 +36,7 @@ const styles = (theme: Theme) => ({
   buttons: {
     display: "flex",
     justifyContent: "center",
-    flexFlow: "row",
+    flexFlow: "column",
     alignItems: "center",
     margin: "15px"
   },
@@ -61,6 +61,9 @@ const styles = (theme: Theme) => ({
     color: theme.highlightColor,
     border: theme.highlightColor + " 2px solid"
   },
+  firstRow: {
+    display: "flex"
+  },
   info: {
     margin: "0.5em"
   },
@@ -80,15 +83,19 @@ const LiveHero: React.FunctionComponent<Props> = ({ user, classes }) => {
         <span className={classes.subtitle}>is live!</span>
       </div>
       <div className={classes.buttons}>
-        <Scrollchor to="#tweets" className={classes.button}>
-          TWEETS
-        </Scrollchor>
-        <Scrollchor
-          to="#schedule"
-          className={`${classes.button} ${classes.buttonSecondary}`}
-        >
-          SCHEDULE
-        </Scrollchor>
+        <div className={classes.firstRow}>
+          <Scrollchor to="#tweets" className={classes.button}>
+            TWEETS
+          </Scrollchor>
+          <Scrollchor to="#schedule" className={classes.button}>
+            SCHEDULE
+          </Scrollchor>
+        </div>
+        <Link to="/resources">
+          <div className={`${classes.buttonSecondary} ${classes.button}`}>
+            RESOURCES
+          </div>
+        </Link>
       </div>
     </div>
   );

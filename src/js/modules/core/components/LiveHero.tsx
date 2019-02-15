@@ -6,15 +6,15 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { Theme } from "../../ThemeInjector";
 import { ReduxState } from "../../../reducers";
-import { IS_REGISTRATION_OPEN } from "../../constants";
-
+// @ts-ignore
+import Scrollchor from "react-scrollchor";
 
 interface Props extends WithStyles<typeof styles> {
   user: User;
 }
 
 const styles = (theme: Theme) => ({
-  Hero: {
+  LiveHero: {
     maxWidth: theme.containerMaxWidth,
     width: "100%",
     paddingTop: "50px",
@@ -25,18 +25,18 @@ const styles = (theme: Theme) => ({
     marginBottom: "15px"
   },
   title: {
-    margin: "0.15em 0em",
-    fontSize: "3.6em"
+    fontSize: "3.6em",
+    fontWeight: "bold",
+    paddingRight: "0.2em"
   },
   subtitle: {
     fontWeight: "400",
-    fontSize: "1.8em",
-    marginBottom: "1em"
+    fontSize: "2.5em"
   },
   buttons: {
     display: "flex",
     justifyContent: "center",
-    flexFlow: "column",
+    flexFlow: "row",
     alignItems: "center",
     margin: "15px"
   },
@@ -64,35 +64,34 @@ const styles = (theme: Theme) => ({
   info: {
     margin: "0.5em"
   },
+  [`@media(max-width: ${theme.mediumBreakpoint})`]: {
+    buttons: {
+      flexFlow: "column"
+    }
+  }
 });
 
-
-// Murai
-const Hero: React.FunctionComponent<Props> = ({ user, classes }) => {
+const LiveHero: React.FunctionComponent<Props> = ({ user, classes }) => {
   return (
-    <div className={classes.Hero}>
+    <div className={classes.LiveHero}>
       <img className={classes.icon} src="img/logo-icon.svg" />
-      <h1 className={classes.title}>HackNYU</h1>
-      <h3 className={classes.subtitle}>Feb 15&ndash;17, 2019</h3>
-      {!IS_REGISTRATION_OPEN ? 
-        [<p className={classes.info}>Registration for HackNYU 2019 is now closed.</p>,
-        <p className={classes.info}>Log in to check your admission status.</p>]
-      : null}
+      <div>
+        <span className={classes.title}>HackNYU</span>
+        <span className={classes.subtitle}>is live!</span>
+      </div>
       <div className={classes.buttons}>
-        {
-          IS_REGISTRATION_OPEN ? 
-            <Link to={user ? "/apply" : "/register"} className={classes.button}>
-              {user ? "EDIT APPLICATION" : "REGISTER"}
-            </Link>
-          :
-            <Link to={user ? "/status" : "/login"} className={classes.button}>
-              {user ? "ADMISSION STATUS" : "LOGIN"}
-            </Link>
-        }
-        {user && <Link to="/apply" className={`${classes.button} ${classes.buttonSecondary}`}>EDIT APPLICATION</Link>}
+        <Scrollchor to="#tweets" className={classes.button}>
+          TWEETS
+        </Scrollchor>
+        <Link
+          to="/live#schedule"
+          className={`${classes.button} ${classes.buttonSecondary}`}
+        >
+          SCHEDULE
+        </Link>
       </div>
     </div>
-  )
+  );
 };
 
 const mapStateToProps = (state: ReduxState) => ({
@@ -102,4 +101,4 @@ const mapStateToProps = (state: ReduxState) => ({
 export default compose(
   injectSheet(styles),
   connect(mapStateToProps)
-)(Hero);
+)(LiveHero);

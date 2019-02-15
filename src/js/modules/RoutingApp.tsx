@@ -30,7 +30,7 @@ class RoutingApp extends React.Component {
                 <Route exact path="/" component={HomePage} />
                 <Route exact path="/about" component={AboutPage} />
                 <Route exact path="/login" component={LoginPage} />
-                {IS_REGISTRATION_OPEN && <Route exact path="/register" component={RegisterPage} />}
+                <Route exact path="/register" component={RegisterPage} />
                 <Route exact path="/status" component={AdmissionResultPage} />
                 <Route
                   exact

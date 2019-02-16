@@ -114,7 +114,7 @@ const Prizes: React.FunctionComponent<Props> = ({ classes }) => {
         </div>
         <div className={classes.prizeItem}>
           <h2>Contrary Capital</h2> 
-          <p>Most Disruptive Technology. This will be based upon: Business Model, Market Opportunity, Uniqueness/Novelty, Technical Innovation as criteria.</p>
+          <p>Most Disruptive Technology. This will be based upon: Business Model, Market Opportunity, Uniqueness + Novelty, Technical Innovation as criteria.</p>
           <p>Prize: 1-1 pitch to Contrary Capital CEO</p>
         </div>
         <div className={classes.prizeItem}>

@@ -13,7 +13,8 @@ export const UNRESTRICTED_ROUTES = new Set([
   "/",
   "/about",
   "/login",
-  "/register"
+  "/register",
+  "/guide"
 ]);
 
 export const ASSET_DIR = "img/sponsorship-logos";

@@ -19,6 +19,8 @@ import appHistory from "../appHistory";
 import AdmissionResultPage from "./admission/components/AdmissionResultPage";
 import NotFoundPage from "./core/components/NotFoundPage";
 import { IS_REGISTRATION_OPEN } from "./constants";
+import FirstTimePage from "./core/components/FirstTimePage";
+
 
 class RoutingApp extends React.Component {
   render() {
@@ -42,6 +44,7 @@ class RoutingApp extends React.Component {
                 <Route exact path="/apply" component={ApplyPage} />
                 <Route exact path="/my_profile" component={ProfilePage} />
                 <Route exact path="/404" component={NotFoundPage} />
+                <Route exact path="/guide" component={FirstTimePage} />
                 <Route exact path="/user-check-in/:uid" component={UserCheckInPage} />
                 <Route exact path="/ticket" component={TicketPage} />
                 <Redirect to="/404"/>

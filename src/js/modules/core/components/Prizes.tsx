@@ -75,6 +75,7 @@ const Prizes: React.FunctionComponent<Props> = ({ classes }) => {
       <p>For HackNYU, your project must be related to one of our four tracks: Health & Well Being, Sustainability, Education, and Financial Development. You can create whatever you want, as long as it falls into one of these tracks. Ask an organizer if you aren't sure where your hack belongs!</p>
       <p>All tracks have a 1st, 2nd, and 3rd place prize. The winners of these prizes can choose from a selection of prizes from Amazon.</p>
       <p>1st place: prizes up to $200, 2nd place: up to $100, 3rd place: up to $50 (all per team member!)</p>
+      <p>Top teams will also get MLH Medals and Wolfram Pro subscriptions.</p>
       </div>
       <div className={classes.trackPrizes}>
         <div className={classes.trackPrizeItem}>
@@ -109,7 +110,7 @@ const Prizes: React.FunctionComponent<Props> = ({ classes }) => {
         <div className={classes.prizeItem}>
           <h2>Google</h2>
           <p>Best Use of <a href="https://cloud.google.com/" className={classes.link}>Google Cloud Platform.</a></p>
-          <p>Prize: Google Home Minis</p>
+          <p>Prize: Google Home Minis to top 2 teams</p>
         </div>
         <div className={classes.prizeItem}>
           <h2>NYU API / Mulesoft</h2>
@@ -124,12 +125,22 @@ const Prizes: React.FunctionComponent<Props> = ({ classes }) => {
         <div className={classes.prizeItem}>
           <h2>Facebook</h2>
           <p>Best hack that aligns with Facebook’s motto: “Give people the power to build community and bring the world closer together.</p>
-          <p>Prize: TBA</p>
+          <p>Prize: Occulus Go (max team size of 4)</p>
         </div>
         <div className={classes.prizeItem}>
-          <h2>Major League Hacking</h2>
-          <p>MLH has partnered with a number of sponsors for prizes, TBA!</p>
-          <p>Prize: TBA</p>
+          <h2>Domain.com (MLH)</h2>
+          <p>Best domain registered on Domain.com (must be registered during the hackathon).</p>
+          <p>Prize: Raspberry Pi and PiHut Essential Kits</p>
+        </div>
+        <div className={classes.prizeItem}>
+          <h2>Qualcomm (MLH)</h2> 
+          <p>Best IoT Hack using a Qualcomm Device.</p>
+          <p>Prize: DragonBoard 410C</p>
+        </div>
+        <div className={classes.prizeItem}>
+          <h2>Github</h2> 
+          <p>Best Octocat Drawing. Tweet your picture at @GithubEducation with both #HackNYU2019 and #MyOctocat.</p>
+          <p>Prize: Octocat Plushie</p>
         </div>
       </div>
     </div>

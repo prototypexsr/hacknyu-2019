@@ -112,8 +112,8 @@ const Prizes: React.FunctionComponent<Props> = ({ classes }) => {
           <p>Prize: Google Home Minis</p>
         </div>
         <div className={classes.prizeItem}>
-          <h2>Mulesoft</h2>
-          <p>Best <a href="https://www.mulesoft.com/platform/api-management" className={classes.link}>Mulesoft API</a> hack.</p>
+          <h2>NYU API / Mulesoft</h2>
+          <p>Best <a href="https://wp.nyu.edu/developers/2019/02/14/nyu-it-hackathon-apis/" className={classes.link}>NYU API (Mulesoft)</a> hack.</p>
           <p>Prize: iPads (max team size of 3)</p>
         </div>
         <div className={classes.prizeItem}>

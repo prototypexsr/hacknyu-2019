@@ -113,6 +113,11 @@ const Prizes: React.FunctionComponent<Props> = ({ classes }) => {
           <p>Prize: Google Home Minis to top 2 teams</p>
         </div>
         <div className={classes.prizeItem}>
+          <h2>Contrary Capital</h2> 
+          <p>Most Disruptive Technology. This will be based upon: Business Model, Market Opportunity, Uniqueness/Novelty, Technical Innovation as criteria.</p>
+          <p>Prize: 1-1 pitch to Contrary Capital CEO</p>
+        </div>
+        <div className={classes.prizeItem}>
           <h2>NYU API / Mulesoft</h2>
           <p>Best <a href="https://wp.nyu.edu/developers/2019/02/14/nyu-it-hackathon-apis/" className={classes.link}>NYU API (Mulesoft)</a> hack.</p>
           <p>Prize: iPads (max team size of 3)</p>
@@ -125,7 +130,7 @@ const Prizes: React.FunctionComponent<Props> = ({ classes }) => {
         <div className={classes.prizeItem}>
           <h2>Facebook</h2>
           <p>Best hack that aligns with Facebook’s motto: “Give people the power to build community and bring the world closer together.</p>
-          <p>Prize: Occulus Go (max team size of 4)</p>
+          <p>Prize: Oculus Go (max team size of 4)</p>
         </div>
         <div className={classes.prizeItem}>
           <h2>Domain.com (MLH)</h2>

@@ -129,7 +129,7 @@ const Prizes: React.FunctionComponent<Props> = ({ classes }) => {
         </div>
         <div className={classes.prizeItem}>
           <h2>Facebook</h2>
-          <p>Best hack that aligns with Facebook’s motto: “Give people the power to build community and bring the world closer together.</p>
+          <p>Best hack that aligns with Facebook’s motto: "Give people the power to build community and bring the world closer together."</p>
           <p>Prize: Oculus Go (max team size of 4)</p>
         </div>
         <div className={classes.prizeItem}>

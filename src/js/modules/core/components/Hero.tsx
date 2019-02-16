@@ -85,6 +85,12 @@ const Hero: React.FunctionComponent<Props> = ({
     </p>
   );
 
+  mainButtons.push(
+  <Link key={0} to="/live" className={`${classes.button}`}>
+    DAY OF INFO
+  </Link>
+  );
+
   if (IS_REGISTRATION_OPEN) {
     if (user) {
       mainButtons.push(
@@ -101,7 +107,7 @@ const Hero: React.FunctionComponent<Props> = ({
     }
   } else if (confirmTimestamp) {
     mainButtons.push(
-      <Link className={classes.button} to="/ticket">
+      <Link className={`${classes.button} ${classes.buttonSecondary}`} to="/ticket">
         CHECK IN TICKET
       </Link>
     );

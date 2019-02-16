@@ -30,11 +30,8 @@ class RoutingApp extends React.Component {
           <ThemeInjector>
             <MainApp>
               <Switch>
-                {GLOBAL_SITE_STATE === SITE_STATES.DURING_EVENT ? (
-                  <Route exact path="/" component={LivePage} />
-                ) : (
-                  <Route exact path="/" component={HomePage} />
-                )}
+                <Route exact path="/" component={HomePage} />
+                <Route exact path="/live" component={LivePage} />
                 <Route exact path="/about" component={AboutPage} />
                 <Route exact path="/prizes" component={Prizes} />
                 <Route exact path="/login" component={LoginPage} />

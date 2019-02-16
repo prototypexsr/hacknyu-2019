@@ -65,7 +65,7 @@ const styles = (theme: Theme) => ({
     margin: "0.5em"
   },
   blurb: {
-    width: "360px"
+    maxWidth: "360px"
   },
 });
 

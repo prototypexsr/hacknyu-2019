@@ -65,13 +65,8 @@ const styles = (theme: Theme) => ({
     margin: "0.5em"
   },
   blurb: {
-    width: "360px"
+    maxWidth: "360px"
   },
-  [`@media(max-width: ${theme.mediumBreakpoint})`]: {
-    buttons: {
-      flexFlow: "column"
-    }
-  }
 });
 
 // Murai
@@ -90,6 +85,12 @@ const Hero: React.FunctionComponent<Props> = ({
     </p>
   );
 
+  mainButtons.push(
+  <Link key={0} to="/live" className={`${classes.button}`}>
+    DAY OF INFO
+  </Link>
+  );
+
   if (IS_REGISTRATION_OPEN) {
     if (user) {
       mainButtons.push(
@@ -106,7 +107,7 @@ const Hero: React.FunctionComponent<Props> = ({
     }
   } else if (confirmTimestamp) {
     mainButtons.push(
-      <Link className={classes.button} to="/ticket">
+      <Link className={`${classes.button} ${classes.buttonSecondary}`} to="/ticket">
         CHECK IN TICKET
       </Link>
     );

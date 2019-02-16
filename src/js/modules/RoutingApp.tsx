@@ -3,6 +3,7 @@ import * as React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import MainApp from "./core/components/MainApp";
 import HomePage from "./core/components/HomePage";
+import LivePage from "./core/components/LivePage";
 import { ConnectedRouter } from "connected-react-router";
 import store from "../store";
 import ThemeInjector from "./ThemeInjector";
@@ -18,9 +19,9 @@ import UserCheckInPage from './checkin/components/CheckInHackerPage';
 import appHistory from "../appHistory";
 import AdmissionResultPage from "./admission/components/AdmissionResultPage";
 import NotFoundPage from "./core/components/NotFoundPage";
-import { IS_REGISTRATION_OPEN } from "./constants";
 import FirstTimePage from "./core/components/FirstTimePage";
-
+import { GLOBAL_SITE_STATE, SITE_STATES } from "./constants";
+import ResourcesPage from "./core/components/ResourcesPage";
 
 class RoutingApp extends React.Component {
   render() {
@@ -31,9 +32,17 @@ class RoutingApp extends React.Component {
             <MainApp>
               <Switch>
                 <Route exact path="/" component={HomePage} />
+                <Route exact path="/live" component={LivePage} />
                 <Route exact path="/about" component={AboutPage} />
                 <Route exact path="/prizes" component={Prizes} />
                 <Route exact path="/login" component={LoginPage} />
+                {GLOBAL_SITE_STATE === SITE_STATES.DURING_EVENT && (
+                  <Route exact path="/resources" component={ResourcesPage} />
+                )}
+                {GLOBAL_SITE_STATE ===
+                  SITE_STATES.BEFORE_EVENT_REGISTRATION_OPEN && (
+                  <Route exact path="/register" component={RegisterPage} />
+                )}
                 <Route exact path="/register" component={RegisterPage} />
                 <Route exact path="/status" component={AdmissionResultPage} />
                 <Route

@@ -1,51 +1,31 @@
 import * as React from "react";
 import injectSheet, { WithStyles } from "react-jss";
-import Hero from "./Hero";
+import LiveHero from "./LiveHero";
 import TrackInfo from "./TrackInfo";
-import AboutSection from "./AboutSection";
-import Timeline from "./Timeline";
 import AnimatedSubwayLines from "./AnimatedSubwayLines";
-import FAQ from "./FAQ";
 import { Theme } from "../../ThemeInjector";
 import SponsorshipSection from "./SponsorshipSection";
+import TwitterFeed from "./TwitterFeed";
 import Schedule from "./Schedule";
-import TwitterFeed from "./TwitterFeed"
 
 type Props = WithStyles<typeof styles>;
 
 const styles = (theme: Theme) => ({
-  HomePage: {
+  LivePage: {
     display: "flex",
     flexDirection: "column",
     backgroundColor: theme.backgroundColor,
     alignItems: "center",
     width: "100vw"
   },
-  aboutSection: {
+  twitterSection: {
     backgroundColor: theme.secondBackground,
     color: theme.secondFont
-  },
-  timelineSection: {
-    background: `linear-gradient(${theme.secondBackground}, ${
-      theme.secondBackground
-    })`,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    minHeight: "400px"
   },
   tracksSection: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: theme.secondBackground,
-    color: theme.secondFont
-  },
-  faqSection: {
-    backgroundColor: theme.secondBackground,
-    color: theme.fontColor
-  },
-  scheduleSection: {
     backgroundColor: theme.secondBackground,
     color: theme.secondFont
   },
@@ -61,27 +41,27 @@ const styles = (theme: Theme) => ({
     display: "flex",
     width: "100vw",
     flexDirection: "column"
+  },
+  scheduleSection: {
+    backgroundColor: theme.secondBackground,
+    color: theme.secondFont
   }
 });
 
-const HomePage: React.FunctionComponent<Props> = ({ classes }) => {
+const LivePage: React.FunctionComponent<Props> = ({ classes }) => {
   return (
-    <div className={classes.HomePage}>
-      <Hero />
+    <div className={classes.LivePage}>
+      <LiveHero />
       <AnimatedSubwayLines />
       <div className={classes.info}>
-        <div className={classes.aboutSection}>
-          <AboutSection />
+        <div id="tweets" className={classes.twitterSection}>
+          <TwitterFeed />
         </div>
         <div className={classes.tracksSection}>
           <TrackInfo />
         </div>
-        <div className={classes.scheduleSection}>
+        <div id="schedule" className={classes.scheduleSection}>
           <Schedule />
-        </div>
-        <div className={classes.faqSection}>
-          <img className={classes.curvedTop} src="/img/semicircle.svg" />
-          <FAQ />
         </div>
         <div className={classes.sponsorshipSection}>
           <SponsorshipSection />
@@ -91,4 +71,4 @@ const HomePage: React.FunctionComponent<Props> = ({ classes }) => {
   );
 };
 
-export default injectSheet(styles)(HomePage);
+export default injectSheet(styles)(LivePage);

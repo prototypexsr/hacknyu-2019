@@ -3,6 +3,15 @@ export const IS_CONFIRMATION_OPEN = false;
 export const emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 export const STOPS_COUNT = 5;
 
+export const enum SITE_STATES {
+  BEFORE_EVENT_REGISTRATION_OPEN,
+  BEFORE_EVENT_REGISTRATION_CLOSED,
+  DURING_EVENT,
+  AFTER_EVENT
+}
+
+export const GLOBAL_SITE_STATE: SITE_STATES = SITE_STATES.DURING_EVENT;
+
 export const ALERT_TIME_INTERVALS = {
   ANIMATION_BUFFER: 100,
   DISPLAY_TIME: 4000,
@@ -14,7 +23,8 @@ export const UNRESTRICTED_ROUTES = new Set([
   "/about",
   "/login",
   "/register",
-  "/guide"
+  "/guide",
+  "/resources"
 ]);
 
 export const ASSET_DIR = "img/sponsorship-logos";

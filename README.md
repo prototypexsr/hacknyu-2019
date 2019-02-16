@@ -57,3 +57,4 @@ Only deploy [hosting](https://firebase.google.com/docs/cli/#partial_deploys): `f
 | eisenhuang     | 2019 | Sushi            |
 | yitongw2       | 2020 | Hot pot          |
 | stefancherubin | 2019 | Wings            |
+

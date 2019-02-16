@@ -327,7 +327,7 @@ export const loginWithPassword = ({
       return dispatch(getUserData(user));
     })
     .then(() => {
-      dispatch(push("/apply"));
+      dispatch(push("/"));
     })
     .catch(err => {
       dispatch({

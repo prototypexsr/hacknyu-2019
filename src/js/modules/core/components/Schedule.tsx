@@ -16,7 +16,7 @@ const styles = (theme: Theme) => ({
     paddingTop: "25px",
     width: "90vw",
     margin: "0 auto",
-    paddingBottom: "75px"
+    paddingBottom: "20px"
   },
   header: {
     margin: "0"

@@ -111,6 +111,12 @@ export const SPONSORS_INFO: Array<SponsorFields> = [
     square: false
   },
   {
+    name: "Codecademy",
+    src: "/codecademy/codecademy.png",
+    url: "https://www.codecademy.com",
+    square: false
+  },
+  {
     name: "Siggis",
     src: "/siggis/siggis.png",
     url: "https://www.siggis.com",

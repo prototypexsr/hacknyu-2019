@@ -163,6 +163,13 @@ const ResourcesPage: React.FunctionComponent<Props> = ({ classes, user }) => {
         promo code TANDON for a one time only, $10 off for any Codecademy Pro
         plan expiring 3/11/2018 (in a month!)
       </p>
+      <h1>Wolfram Research</h1>
+      <p className={classes.text}>
+        You can use Wolfram|One to create instant web apps and APIs, or to deploy to mobile. The Wolfram Language is also bundled on the Raspberry Pi, where you can connect directly to hardware, including Arduino etc. 
+      </p>
+      <p className={classes.text}>
+        For complimentary access to the Wolfram development platform and the Wolfram API: <a className={classes.link} href="https://account.wolfram.com/redeem/HackNYU201">here</a>.
+      </p>
     </div>
   );
 };

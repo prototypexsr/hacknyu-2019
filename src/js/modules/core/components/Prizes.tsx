@@ -127,18 +127,8 @@ const Prizes: React.FunctionComponent<Props> = ({ classes }) => {
           <p>Prize: TBA</p>
         </div>
         <div className={classes.prizeItem}>
-          <h2>Wolfram</h2>
-          <p>TBA</p>
-          <p>Prize: TBA</p>
-        </div>
-        <div className={classes.prizeItem}>
           <h2>Major League Hacking</h2>
           <p>MLH has partnered with a number of sponsors for prizes, TBA!</p>
-          <p>Prize: TBA</p>
-        </div>
-        <div className={classes.prizeItem}>
-          <h2>VentureOutNY</h2>
-          <p>TBA</p>
           <p>Prize: TBA</p>
         </div>
       </div>

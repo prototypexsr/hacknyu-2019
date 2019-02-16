@@ -38,7 +38,7 @@ const styles = (theme: Theme) => ({
     justifyContent: "center",
     flexFlow: "row",
     alignItems: "center",
-    maxWidth: "600px",
+    maxWidth: "800px",
     flexWrap: "wrap",
     margin: "15px auto"
   },

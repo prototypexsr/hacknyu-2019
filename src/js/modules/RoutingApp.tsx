@@ -19,6 +19,7 @@ import UserCheckInPage from './checkin/components/CheckInHackerPage';
 import appHistory from "../appHistory";
 import AdmissionResultPage from "./admission/components/AdmissionResultPage";
 import NotFoundPage from "./core/components/NotFoundPage";
+import FirstTimePage from "./core/components/FirstTimePage";
 import { GLOBAL_SITE_STATE, SITE_STATES } from "./constants";
 import ResourcesPage from "./core/components/ResourcesPage";
 
@@ -52,6 +53,7 @@ class RoutingApp extends React.Component {
                 <Route exact path="/apply" component={ApplyPage} />
                 <Route exact path="/my_profile" component={ProfilePage} />
                 <Route exact path="/404" component={NotFoundPage} />
+                <Route exact path="/guide" component={FirstTimePage} />
                 <Route exact path="/user-check-in/:uid" component={UserCheckInPage} />
                 <Route exact path="/ticket" component={TicketPage} />
                 <Redirect to="/404"/>

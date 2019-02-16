@@ -87,8 +87,8 @@ export const theme: Theme = {
   smallBreakpoint: "600px",
   mobileBreakpoint: "500px",
   bodyFontSize: "1.3rem",
-  titleFontSize: "2em",
   bodyLineHeight: "1.2",
+  titleFontSize: "2em",
   formElementMaxWidth: "500px",
   pageBorderRadius: "8px",
   ...trackColors

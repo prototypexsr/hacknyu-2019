@@ -23,6 +23,7 @@ export const UNRESTRICTED_ROUTES = new Set([
   "/about",
   "/login",
   "/register",
+  "/guide",
   "/resources"
 ]);
 

@@ -80,6 +80,9 @@ const Navbar: React.FunctionComponent<Props> = ({ classes, user, logout }) => {
             RESOURCES
           </Link>
         )}
+        <Link to="/prizes">
+          <div className={classes.link}>PRIZES</div>
+        </Link>
         {user
           ? [
               <Link to="/my_profile" className={classes.link} key={1}>

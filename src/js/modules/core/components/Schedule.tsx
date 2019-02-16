@@ -34,7 +34,7 @@ const styles = (theme: Theme) => ({
   eventTimeline: {
     display: "flex",
     justifyContent: "center",
-    flexDirection: "row",
+    flexDirection: "column",
     flexWrap: "wrap"
   },
   dailyEvents: {

@@ -104,7 +104,6 @@ const ResourcesPage: React.FunctionComponent<Props> = ({ classes, user }) => {
       <Underline />
       <p className={classes.text}>
         For students who would like to use Google Cloud Platform, fill out{" "}
-        <a className={classes.link} href="https://bit.ly/2FXX2cQ">this link</a> to receive $100 in
         credit!
       </p>
       <h1 className={classes.title}>

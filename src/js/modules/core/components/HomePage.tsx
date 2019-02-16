@@ -9,6 +9,7 @@ import FAQ from "./FAQ";
 import { Theme } from "../../ThemeInjector";
 import SponsorshipSection from "./SponsorshipSection";
 import Schedule from "./Schedule";
+import TwitterFeed from "./TwitterFeed"
 
 type Props = WithStyles<typeof styles>;
 

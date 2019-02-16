@@ -67,11 +67,6 @@ const styles = (theme: Theme) => ({
   blurb: {
     width: "360px"
   },
-  [`@media(max-width: ${theme.mediumBreakpoint})`]: {
-    buttons: {
-      flexFlow: "column"
-    }
-  }
 });
 
 // Murai

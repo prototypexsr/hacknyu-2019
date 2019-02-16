@@ -38,7 +38,7 @@ const styles = (theme: Theme) => ({
     justifyContent: "center",
     flexFlow: "row",
     alignItems: "center",
-    maxWidth: "800px",
+    maxWidth: "400px",
     flexWrap: "wrap",
     margin: "15px auto"
   },
@@ -86,7 +86,7 @@ const LiveHero: React.FunctionComponent<Props> = ({ user, classes }) => {
       </div>
       <div className={classes.buttons}>
         <Scrollchor to="#tweets" className={`${classes.button} ${classes.buttonSecondary}`}>
-          ANNOUNCEMENTS
+          TWEETS
         </Scrollchor>
         <Scrollchor
           to="#schedule"
@@ -95,16 +95,15 @@ const LiveHero: React.FunctionComponent<Props> = ({ user, classes }) => {
           SCHEDULE
         </Scrollchor>
         <Link
-          to="/resources"
-          className={`${classes.button} ${classes.buttonSecondary}`}
-        >
-          RESOURCES
-        </Link>
-        <Link
           to="/prizes"
           className={`${classes.button} ${classes.buttonSecondary}`}
         >
           PRIZES
+        </Link>        
+        <Link to="/resources">
+          <div className={`${classes.buttonSecondary} ${classes.button}`}>
+            RESOURCES
+          </div>
         </Link>
       </div>
     </div>

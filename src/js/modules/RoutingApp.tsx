@@ -17,10 +17,10 @@ import TicketPage from './checkin/components/TicketPage';
 import Prizes from './core/components/Prizes';
 import UserCheckInPage from './checkin/components/CheckInHackerPage';
 import appHistory from "../appHistory";
-import { GLOBAL_SITE_STATE, SITE_STATES } from "./constants";
-import ResourcesPage from "./core/components/ResourcesPage";
 import AdmissionResultPage from "./admission/components/AdmissionResultPage";
 import NotFoundPage from "./core/components/NotFoundPage";
+import { GLOBAL_SITE_STATE, SITE_STATES } from "./constants";
+import ResourcesPage from "./core/components/ResourcesPage";
 
 class RoutingApp extends React.Component {
   render() {
@@ -46,6 +46,7 @@ class RoutingApp extends React.Component {
                   <Route exact path="/register" component={RegisterPage} />
                 )}
                 <Route exact path="/register" component={RegisterPage} />
+                <Route exact path="/status" component={AdmissionResultPage} />
                 <Route
                   exact
                   path="/reset_password"

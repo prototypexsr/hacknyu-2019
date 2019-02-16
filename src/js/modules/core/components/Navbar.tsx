@@ -64,6 +64,11 @@ const Navbar: React.FunctionComponent<Props> = ({ classes, user, logout }) => {
   return (
     <div className={classes.Navbar}>
       <div className={classes.links}>
+        {GLOBAL_SITE_STATE === SITE_STATES.DURING_EVENT && (
+          <Link to="/live">
+            <div className={classes.link}>LIVE</div>
+          </Link>
+        )}
         <Link to="/">
           <div className={classes.link}>HOME</div>
         </Link>

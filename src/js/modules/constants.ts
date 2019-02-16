@@ -10,11 +10,7 @@ export const enum SITE_STATES {
   AFTER_EVENT
 }
 
-// export const GLOBAL_SITE_STATE: SITE_STATES =
-//   SITE_STATES.BEFORE_EVENT_REGISTRATION_CLOSED;
-
-export const GLOBAL_SITE_STATE: SITE_STATES =
-  SITE_STATES.DURING_EVENT;
+export const GLOBAL_SITE_STATE: SITE_STATES = SITE_STATES.DURING_EVENT;
 
 export const ALERT_TIME_INTERVALS = {
   ANIMATION_BUFFER: 100,
@@ -26,7 +22,8 @@ export const UNRESTRICTED_ROUTES = new Set([
   "/",
   "/about",
   "/login",
-  "/register"
+  "/register",
+  "/resources"
 ]);
 
 export const ASSET_DIR = "img/sponsorship-logos";

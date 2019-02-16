@@ -36,7 +36,7 @@ const styles = (theme: Theme) => ({
   buttons: {
     display: "flex",
     justifyContent: "center",
-    flexFlow: "row",
+    flexFlow: "column",
     alignItems: "center",
     maxWidth: "500px",
     flexWrap: "wrap",
@@ -62,6 +62,9 @@ const styles = (theme: Theme) => ({
     backgroundColor: theme.backgroundColor,
     color: theme.highlightColor,
     border: theme.highlightColor + " 2px solid"
+  },
+  firstRow: {
+    display: "flex"
   },
   info: {
     margin: "0.5em"

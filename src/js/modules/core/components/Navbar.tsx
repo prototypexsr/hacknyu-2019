@@ -6,7 +6,6 @@ import { logout } from "../coreActions";
 import { User } from "firebase";
 import { Theme } from "../../ThemeInjector";
 import { GLOBAL_SITE_STATE, SITE_STATES } from "../../constants";
-// import { IS_REGISTRATION_OPEN } from "../../constants";
 
 const styles = (theme: Theme) => ({
   Navbar: {

@@ -30,6 +30,9 @@ const styles = (theme: Theme) => ({
   header: {
     width: "250px"
   },
+  link: {
+    textDecoration: "underline"
+  },
   text: {
     maxWidth: "50vw",
     fontSize: "1.3em",
@@ -75,7 +78,7 @@ const ResourcesPage: React.FunctionComponent<Props> = ({ classes, user }) => {
       <p className={classes.text}>
         Please join the HackNYU 2019 Slack to communicate with other hackers
         during the event! Click{" "}
-        <a href="https://join.slack.com/t/hacknyu2019/shared_invite/enQtNTM2NjU0NjM1MTg3LTUxNThiNjNlYmU4Y2E1OWEzZWFiZjBhYzhhNzQ5ODY1ZWRkNzA0MjFkNzM4ZTE0YmZiMWMxY2NkMjdmMGQ4MDA">
+        <a className={classes.link} href="https://join.slack.com/t/hacknyu2019/shared_invite/enQtNTM2NjU0NjM1MTg3LTUxNThiNjNlYmU4Y2E1OWEzZWFiZjBhYzhhNzQ5ODY1ZWRkNzA0MjFkNzM4ZTE0YmZiMWMxY2NkMjdmMGQ4MDA">
           this link
         </a>{" "}
         to create an account or open the slack at hacknyu2019.slack.com
@@ -88,10 +91,10 @@ const ResourcesPage: React.FunctionComponent<Props> = ({ classes, user }) => {
       <Underline />
       <p className={classes.text}>
         Make use of{" "}
-        <a href="https://wp.nyu.edu/developers/2019/02/14/nyu-it-hackathon-apis/">
+        <a className={classes.link} href="https://wp.nyu.edu/developers/2019/02/14/nyu-it-hackathon-apis/">
           NYU IT's APIs
         </a>{" "}
-        to create innovative hacks!
+        to create innovative hacks! Gain access to datasets and APIs that power NYU.
       </p>
       <h1 className={classes.title}>
         <a href="https://bit.ly/2FXX2cQ">
@@ -101,7 +104,7 @@ const ResourcesPage: React.FunctionComponent<Props> = ({ classes, user }) => {
       <Underline />
       <p className={classes.text}>
         For students who would like to use Google Cloud Platform, fill out{" "}
-        <a href="https://bit.ly/2FXX2cQ">this link</a> to receive $100 in
+        <a className={classes.link} href="https://bit.ly/2FXX2cQ">this link</a> to receive $100 in
         credit!
       </p>
       <h1 className={classes.title}>
@@ -124,7 +127,7 @@ const ResourcesPage: React.FunctionComponent<Props> = ({ classes, user }) => {
       <p className={classes.text}>
         Jumpstart is a university recruiting platform dedicated to democratizing
         the college tech recruiting process. Sign-up today using{" "}
-        <a href="https://jumpstart.me/r/hacknyu">this link</a> to start using
+        <a className={classes.link} href="https://jumpstart.me/r/hacknyu">this link</a> to start using
         the platform! As a bonus, every sign-up this weekend through the link at
         HackNYU will be entered into a raffle for a new (6th generation) iPad!
       </p>
@@ -137,7 +140,7 @@ const ResourcesPage: React.FunctionComponent<Props> = ({ classes, user }) => {
       <p className={classes.text}>
         If you want to get a head start on getting in touch with tons of awesome
         companies, including our sponsors, sign up for RippleMatch with our{" "}
-        <a href="https://ripplematch.com/index?r=cudqVH#register">
+        <a className={classes.link} href="https://ripplematch.com/index?r=cudqVH#register">
           HackNYU link
         </a>
         ! RippleMatch uses AI to help busy students increase their likelihood of
@@ -157,7 +160,7 @@ const ResourcesPage: React.FunctionComponent<Props> = ({ classes, user }) => {
       </h1>
       <Underline />
       <p className={classes.text}>
-        Sign up <a href="https://www.codecademy.com/">at Codecademy</a> with
+        Sign up <a className={classes.link} href="https://www.codecademy.com/">at Codecademy</a> with
         promo code TANDON for a one time only, $10 off for any Codecademy Pro
         plan expiring 3/11/2018 (in a month!)
       </p>

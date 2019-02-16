@@ -36,9 +36,9 @@ const styles = (theme: Theme) => ({
   buttons: {
     display: "flex",
     justifyContent: "center",
-    flexFlow: "column",
+    flexFlow: "row",
     alignItems: "center",
-    maxWidth: "500px",
+    maxWidth: "600px",
     flexWrap: "wrap",
     margin: "15px auto"
   },

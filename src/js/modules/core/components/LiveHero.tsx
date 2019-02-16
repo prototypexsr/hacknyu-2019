@@ -29,6 +29,10 @@ const styles = (theme: Theme) => ({
     fontWeight: "bold",
     paddingRight: "0.2em"
   },
+  link: {
+    color: theme.secondBackground,
+    textDecoration: "underline"
+  },
   subtitle: {
     fontWeight: "400",
     fontSize: "2.5em"
@@ -83,6 +87,9 @@ const LiveHero: React.FunctionComponent<Props> = ({ user, classes }) => {
       <div>
         <span className={classes.title}>HackNYU</span>
         <span className={classes.subtitle}>is live!</span>
+        <p><a href="https://docs.google.com/presentation/d/1DaBtPv-DaVncgF-Rg6qkTnZ04eiWVHCAQwmc3rHWX4g/edit?usp=sharing" className={classes.link}>
+           Opening ceremony slides
+        </a></p>
       </div>
       <div className={classes.buttons}>
         <Scrollchor to="#tweets" className={`${classes.button} ${classes.buttonSecondary}`}>
@@ -105,6 +112,9 @@ const LiveHero: React.FunctionComponent<Props> = ({ user, classes }) => {
             RESOURCES
           </div>
         </Link>
+        <a href="https://mentors.mlh.io/" className={`${classes.buttonSecondary} ${classes.button}`}>
+          FIND A MENTOR
+        </a>
       </div>
     </div>
   );

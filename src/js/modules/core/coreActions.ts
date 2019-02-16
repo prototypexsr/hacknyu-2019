@@ -52,6 +52,9 @@ export const UPLOAD_RESUME_REJECTED = "core/UPLOAD_RESUME_REJECTED";
 export const GET_FORM_DATA_FULFILLED = "core/GET_FORM_DATA_FULFILLED";
 export const GET_FORM_DATA_REJECTED = "core/GET_FORM_DATA_REJECTED";
 
+export const CHECKIN_REJECTED = "core/CHECKIN_REJECTED";
+export const CHECKIN_FULFILLED = "core/CHECKIN_FULFILLED";
+
 export const ADD_USER = "core/ADD_USER";
 export const DELETE_USER = "core/DELETE_USER";
 
@@ -70,6 +73,11 @@ export const UPLOAD_PROFILE_PICTURE_FULFILLED =
 export const refreshWindowDimensions = () => ({
   type: REFRESH_WINDOW_DIMENSIONS,
   payload: {}
+});
+
+export const reportCheckinError = (message: string) => ({
+  type: CHECKIN_REJECTED,
+  payload: message
 });
 
 const getUserData = (user: User): ThunkResult<void> => (

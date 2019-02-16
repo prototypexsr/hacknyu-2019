@@ -24,7 +24,7 @@ const styles = (theme: Theme) => ({
     backgroundColor: (props: Props) =>
       props.isError ? theme.errorBackground : theme.notificationBackground,
     transform: (props: Props) =>
-      props.componentState !== States.Mounted ? "translateX(-40vw)" : "none",
+      props.componentState !== States.Mounted ? "translateX(-50vw)" : "none",
     transition: `transform ${ALERT_TIME_INTERVALS.ANIMATION_TIME}ms`,
     display: "flex",
     alignItems: "center",

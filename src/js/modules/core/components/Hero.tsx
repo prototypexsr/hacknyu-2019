@@ -8,9 +8,9 @@ import { Theme } from "../../ThemeInjector";
 import { ReduxState } from "../../../reducers";
 import { IS_REGISTRATION_OPEN } from "../../constants";
 
-
 interface Props extends WithStyles<typeof styles> {
   user: User;
+  confirmTimestamp?: string;
 }
 
 const styles = (theme: Theme) => ({
@@ -31,7 +31,7 @@ const styles = (theme: Theme) => ({
   subtitle: {
     fontWeight: "400",
     fontSize: "1.8em",
-    marginBottom: "1em"
+    marginBottom: "0px"
   },
   buttons: {
     display: "flex",
@@ -64,6 +64,9 @@ const styles = (theme: Theme) => ({
   info: {
     margin: "0.5em"
   },
+  blurb: {
+    width: "360px"
+  },
   [`@media(max-width: ${theme.mediumBreakpoint})`]: {
     buttons: {
       flexFlow: "column"
@@ -71,37 +74,95 @@ const styles = (theme: Theme) => ({
   }
 });
 
-
 // Murai
-const Hero: React.FunctionComponent<Props> = ({ user, classes }) => {
+const Hero: React.FunctionComponent<Props> = ({
+  confirmTimestamp,
+  user,
+  classes
+}) => {
+  let mainButtons = [];
+  // Some nasty logic here. TODO: Fix this shit
+  mainButtons.push(
+    <p className={classes.blurb}> 
+    Welcome to the event!
+    <br/> Login and have your ticket ready for check in. 
+    <br/> Make sure all your information is correct before you show your ticket.
+    </p>
+  );
+
+  if (IS_REGISTRATION_OPEN) {
+    if (user) {
+      mainButtons.push(
+        <Link key={1} to="/apply" className={classes.button}>
+          EDIT APPLICATION
+        </Link>
+      );
+    } else {
+      mainButtons.push(
+        <Link key={2} to="/register" className={classes.button}>
+          REGISTER
+        </Link>
+      );
+    }
+  } else if (confirmTimestamp) {
+    mainButtons.push(
+      <Link className={classes.button} to="/ticket">
+        CHECK IN TICKET
+      </Link>
+    );
+    mainButtons.push(
+      <Link
+        to="/apply"
+        className={`${classes.button} ${classes.buttonSecondary}`}
+      >
+        EDIT INFORMATION
+      </Link>
+    );
+  } else {
+    if (user) {
+      mainButtons.push(
+        <Link key={3} to="/status" className={classes.button}>
+          ADMISSION STATUS
+        </Link>
+      );
+      mainButtons.push(
+        <Link
+          to="/apply"
+          className={`${classes.button} ${classes.buttonSecondary}`}
+        >
+          EDIT APPLICATION
+        </Link>
+      );
+    } else {
+      mainButtons.push(
+        <Link key={4} to="/login" className={classes.button}>
+          LOGIN
+        </Link>
+      );
+    }
+  }
+
   return (
     <div className={classes.Hero}>
       <img className={classes.icon} src="img/logo-icon.svg" />
       <h1 className={classes.title}>HackNYU</h1>
       <h3 className={classes.subtitle}>Feb 15&ndash;17, 2019</h3>
-      {!IS_REGISTRATION_OPEN ? 
-        [<p className={classes.info}>Registration for HackNYU 2019 is now closed.</p>,
-        <p className={classes.info}>Log in to check your admission status.</p>]
-      : null}
-      <div className={classes.buttons}>
-        {
-          IS_REGISTRATION_OPEN ? 
-            <Link to={user ? "/apply" : "/register"} className={classes.button}>
-              {user ? "EDIT APPLICATION" : "REGISTER"}
-            </Link>
-          :
-            <Link to={user ? "/status" : "/login"} className={classes.button}>
-              {user ? "ADMISSION STATUS" : "LOGIN"}
-            </Link>
-        }
-        {user && <Link to="/apply" className={`${classes.button} ${classes.buttonSecondary}`}>EDIT APPLICATION</Link>}
-      </div>
+      {IS_REGISTRATION_OPEN && [
+        <p key={0} className={classes.info}>
+          Registration for HackNYU 2019 is now closed.
+        </p>,
+        <p key={1} className={classes.info}>
+          Log in to check your admission status.
+        </p>
+      ]}
+      <div className={classes.buttons}>{mainButtons}</div>
     </div>
-  )
+  );
 };
 
 const mapStateToProps = (state: ReduxState) => ({
-  user: state.core.user
+  user: state.core.user,
+  confirmTimestamp: state.core.confirmForm.confirmTimestamp
 });
 
 export default compose(

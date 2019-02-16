@@ -10,6 +10,7 @@ const styles = (theme: Theme) => ({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: theme.submitButton,
+    fontFamily: theme.fontFamily,
     color: theme.fontColor,
     fontWeight: "350",
     margin: "5px",

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Form } from "react-final-form";
-import Button from "./Button";
+import Button from "../../core/components/Button";
 import UploadResumeButton from "./UploadResumeButton";
 import Checkbox from "./Checkbox";
 import Radio from "./Radio";

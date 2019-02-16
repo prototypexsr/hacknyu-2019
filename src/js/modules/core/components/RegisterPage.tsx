@@ -1,7 +1,7 @@
 import * as React from "react";
 import injectSheet, { WithStyles } from "react-jss";
 import { Field, Form } from "react-final-form";
-import Button from "../../forms/components/Button";
+import Button from "../../core/components/Button";
 import { connect } from "react-redux";
 import { bindActionCreators, compose, Dispatch } from "redux";
 import { emailRegex } from "../../constants";

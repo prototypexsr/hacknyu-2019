@@ -52,9 +52,10 @@ export interface Theme {
   bodyFontSize: string;
   titleFontSize: string;
   formElementMaxWidth: string;
+  pageBorderRadius: string;
 }
 
-const theme: Theme = {
+export const theme: Theme = {
   backgroundColor: "#57068c",
   secondBackground: "#f5f5f5",
   secondBackgroundHighlight: "#fcfcfc",
@@ -89,6 +90,7 @@ const theme: Theme = {
   bodyLineHeight: "1.2",
   titleFontSize: "2em",
   formElementMaxWidth: "500px",
+  pageBorderRadius: "8px",
   ...trackColors
 };
 

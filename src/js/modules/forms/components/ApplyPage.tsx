@@ -6,7 +6,7 @@ import { submitApp } from "../../core/coreActions";
 import { Form, Field, FormSpy } from "react-final-form";
 import { User } from "firebase";
 import Condition from "./Condition";
-import Button from "./Button";
+import Button from "../../core/components/Button";
 import Checkbox from "./Checkbox";
 import Input from "./Input";
 import Select from "./Select";

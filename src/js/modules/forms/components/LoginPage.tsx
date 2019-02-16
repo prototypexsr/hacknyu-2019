@@ -1,7 +1,7 @@
 import * as React from "react";
 import injectSheet, { WithStyles } from "react-jss";
 import { Field, Form } from "react-final-form";
-import Button from "./Button";
+import Button from "../../core/components/Button";
 import { AnyAction, compose, Dispatch } from "redux";
 import { connect } from "react-redux";
 import { loginWithGoogle, loginWithPassword } from "../../core/coreActions";

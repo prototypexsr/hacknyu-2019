@@ -1,15 +1,15 @@
 import * as React from "react";
 import injectSheet, { WithStyles } from "react-jss";
-import Underline from "../Underline";
-import Button from "../../../forms/components/Button";
-import { ConfirmationFormData } from "../../../types";
+import Underline from "../../core/components/Underline";
+import Button from "../../core/components/Button";
+import { ConfirmationFormData } from "../../types";
 import { User } from "firebase";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { Theme } from "../../../ThemeInjector";
-import { ReduxState } from "../../../../reducers";
+import { Theme } from "../../ThemeInjector";
+import { ReduxState } from "../../../reducers";
 import { bindActionCreators } from "redux";
-import { declineConfirmation } from "../../coreActions";
+import { declineConfirmation } from "../../core/coreActions";
 
 
 interface Props extends WithStyles<typeof styles> {
@@ -46,6 +46,9 @@ const styles = (theme: Theme) => ({
     lineHeight: "1.1em",
     maxWidth: theme.containerMaxWidth
   },
+  link: {
+    textDecoration: 'underline'
+  },
   [`@media(max-width: ${theme.mediumBreakpoint})`]: {
     header: {
       maxWidth: "7em"
@@ -80,10 +83,11 @@ const AttendanceConfirmation: React.FunctionComponent<Props> = ({
       locationMessage = "You are confirmed for: ";
       postMessage = (
         <div>
-          See you at the event! If you can no longer attend the event, let us know:
+          {/*See you at the event! If you can no longer attend the event, let us know:
           <Button className={classes.cantAttendButton} onClick={handleOnClick}>
             I can no longer attend HackNYU 2019
-          </Button>
+          </Button>*/}
+          Have your ticket ready at check in: <a href="/ticket" className={classes.link}>Check me in!</a> 
         </div>
       );
     } else {

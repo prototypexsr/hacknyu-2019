@@ -104,7 +104,7 @@ const Prizes: React.FunctionComponent<Props> = ({ classes }) => {
         <div className={classes.prizeItem}>
           <h2>IBM</h2>
           <p>Best use of <a href="https://www.ibm.com/cloud/ai" className={classes.link}>The IBM Cloud Watson</a> to complete their project.</p>
-          <p>1st place: Powerbanks <br/> 2nd place: IBM Backpacks</p>
+          <p>1st place: Powerbanks <br/> 2nd place: IBM Sling Backpacks</p>
         </div>
         <div className={classes.prizeItem}>
           <h2>Google</h2>

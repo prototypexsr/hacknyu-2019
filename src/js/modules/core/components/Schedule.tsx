@@ -43,12 +43,16 @@ const styles = (theme: Theme) => ({
   },
   event: {
     display: "flex",
-    width: "450px"
+    width: "600px"
+  },
+  eventName: {
+    textAlign: "left",
+    width: "400px"
   },
   time: {
     display: "flex",
     justifyContent: "flex-end",
-    width: "180px",
+    width: "200px",
     paddingRight: "20px"
   },
   [`@media(max-width: ${theme.smallBreakpoint})`]: {
@@ -78,7 +82,7 @@ const Schedule: React.FunctionComponent<Props> = ({ classes }) => {
           <ul className={classes.dailyEvents}>
             <p className={classes.day}>Friday, February 15</p>
             <li className={classes.event}>
-              <span className={classes.time}>2:00-5:00pm</span> Early Check In
+              <span className={classes.time}>2:00-5:00pm</span>Early Check In
             </li>
             <li className={classes.event}>
               <span className={classes.time}>5:00-7:00pm</span> Check-In
@@ -97,6 +101,9 @@ const Schedule: React.FunctionComponent<Props> = ({ classes }) => {
               <span className={classes.time}>9:00-10:00pm</span> Team Hunt
             </li>
             <li className={classes.event}>
+              <span className={classes.time}>11:30pm</span> Cupstacking!
+            </li>
+            <li className={classes.event}>
               <span className={classes.time}>12:00am</span> (Saturday) Snacktime
             </li>
           </ul>
@@ -105,7 +112,7 @@ const Schedule: React.FunctionComponent<Props> = ({ classes }) => {
           <ul className={classes.dailyEvents}>
             <p className={classes.day}>Saturday, February 16</p>
             <li className={classes.event}>
-              <span className={classes.time}>1:00am</span> Midnight Games (Pool and Ping Pong Tourney)
+              <span className={classes.time}>1:00am</span><span className={classes.eventName}>Midnight Games (Pool and Ping Pong Tourney)</span>
             </li>
             <li className={classes.event}>
               <span className={classes.time}>8:30am</span> Breakfast
@@ -114,13 +121,13 @@ const Schedule: React.FunctionComponent<Props> = ({ classes }) => {
               <span className={classes.time}>10:00am-11:00am</span> Workshop: Node Red and IBM Cloud
             </li>
             <li className={classes.event}>
-              <span className={classes.time}>11:15am-12:15pm</span> Workshop: Quick and Dirty Design Sprint for Hackers by NYU IT, STIT
+              <span className={classes.time}>11:15am-12:15pm</span><span className={classes.eventName}>Workshop: Quick and Dirty Design Sprint for Hackers by NYU IT, STIT</span>
             </li>
             <li className={classes.event}>
               <span className={classes.time}>1:00pm</span> Lunch
             </li>
             <li className={classes.event}>
-              <span className={classes.time}>2:00-3:00pm</span> Watson Conversations and Dialog iOS App, IBM
+              <span className={classes.time}>2:00-3:00pm</span><span className={classes.eventName}>Watson Conversations and Dialog iOS App, IBM</span>
             </li>
             <li className={classes.event}>
               <span className={classes.time}>7:00pm</span> MLH Slideshow Karaoke 
@@ -143,7 +150,7 @@ const Schedule: React.FunctionComponent<Props> = ({ classes }) => {
               <span className={classes.time}>8:30am</span> Breakfast
             </li>
             <li className={classes.event}>
-              <span className={classes.time}>10:00-10:30am</span> Lean Business Model Workshop (Contrary Capital)
+              <span className={classes.time}>10:00-10:30am</span><span className={classes.eventName}>Lean Business Model Workshop (Contrary Capital)</span>
             </li>
             <li className={classes.event}>
               <span className={classes.time}>12:00pm</span> Hacking Ends (Submissions are due)

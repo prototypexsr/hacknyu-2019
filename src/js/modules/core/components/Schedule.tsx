@@ -88,10 +88,13 @@ const Schedule: React.FunctionComponent<Props> = ({ classes }) => {
               Ceremonies
             </li>
             <li className={classes.event}>
+              <span className={classes.time}>8:00pm</span> Hacking begins!
+            </li>
+            <li className={classes.event}>
               <span className={classes.time}>8:00-9:00pm</span> Dinner
             </li>
             <li className={classes.event}>
-              <span className={classes.time}>8:00-10:00pm</span> Team Hunt
+              <span className={classes.time}>9:00-10:00pm</span> Team Hunt
             </li>
             <li className={classes.event}>
               <span className={classes.time}>12:00am</span> (Saturday) Snacktime
@@ -102,20 +105,25 @@ const Schedule: React.FunctionComponent<Props> = ({ classes }) => {
           <ul className={classes.dailyEvents}>
             <p className={classes.day}>Saturday, February 16</p>
             <li className={classes.event}>
+              <span className={classes.time}>1:00am</span> Midnight Games (Pool and Ping Pong Tourney)
+            </li>
+            <li className={classes.event}>
               <span className={classes.time}>8:30am</span> Breakfast
             </li>
             <li className={classes.event}>
-              <span className={classes.time}>10:00am-1:00pm</span> *Workshop
-              Block
+              <span className={classes.time}>10:00am-11:00am</span> Workshop: Node Red and IBM Cloud
+            </li>
+            <li className={classes.event}>
+              <span className={classes.time}>11:15am-12:15pm</span> Workshop: Quick and Dirty Design Sprint for Hackers by NYU IT, STIT
             </li>
             <li className={classes.event}>
               <span className={classes.time}>1:00pm</span> Lunch
             </li>
             <li className={classes.event}>
-              <span className={classes.time}>2:00-6:00pm</span> *Workshop Block
+              <span className={classes.time}>2:00-3:00pm</span> Watson Conversations and Dialog iOS App, IBM
             </li>
             <li className={classes.event}>
-              <span className={classes.time}>7:00pm</span> MLH Games!
+              <span className={classes.time}>7:00pm</span> MLH Slideshow Karaoke 
             </li>
             <li className={classes.event}>
               <span className={classes.time}>8:00pm</span > Dinner
@@ -129,19 +137,25 @@ const Schedule: React.FunctionComponent<Props> = ({ classes }) => {
           <ul className={classes.dailyEvents}>
             <p className={classes.day}>Sunday, February 17</p>
             <li className={classes.event}>
+              <span className={classes.time}>1:00am</span> Midnight Spa Session
+            </li>
+            <li className={classes.event}>
               <span className={classes.time}>8:30am</span> Breakfast
             </li>
             <li className={classes.event}>
-              <span className={classes.time}>9:00-11:00am</span> *Workshop Block
+              <span className={classes.time}>10:00-10:30am</span> Lean Business Model Workshop (Contrary Capital)
             </li>
             <li className={classes.event}>
-              <span className={classes.time}>12:00pm</span> Hacking Ends
+              <span className={classes.time}>12:00pm</span> Hacking Ends (Submissions are due)
             </li>
             <li className={classes.event}>
               <span className={classes.time}>1:15pm</span> Hacker Expo
             </li>
             <li className={classes.event}>
               <span className={classes.time}>5:00pm-6:00pm</span> *Closing Ceremonies
+            </li>
+            <li className={classes.event}>
+              <span className={classes.time}>6:00pm</span> Go home!
             </li>
           </ul>
         </div>

@@ -90,11 +90,8 @@ const LiveHero: React.FunctionComponent<Props> = ({ user, classes }) => {
         <span className={classes.title}>HackNYU</span>
         <span className={classes.subtitle}>is live!</span>
         <p className={classes.info}>
-        Judging will take place on Sunday from 1:15pm to 4pm. It will happen in a expo style, where hackers will present at an assigned table to a set of judging. More info soon.
+        Judging will take place on Sunday from 1:15pm to 4pm. Submit projects via the button below. If your project is not submitted, it will not be judged (please check with an organizer if you need help).
         {" "}
-        <a href="https://docs.google.com/presentation/d/1DaBtPv-DaVncgF-Rg6qkTnZ04eiWVHCAQwmc3rHWX4g/edit?usp=sharing" className={classes.link}>
-           Opening ceremony slides.
-        </a>
         </p>
       </div>
       <div className={classes.buttons}>

@@ -42,7 +42,7 @@ const styles = (theme: Theme) => ({
     justifyContent: "center",
     flexFlow: "row",
     alignItems: "center",
-    maxWidth: "400px",
+    maxWidth: "500px",
     flexWrap: "wrap",
     margin: "15px auto"
   },
@@ -98,6 +98,9 @@ const LiveHero: React.FunctionComponent<Props> = ({ user, classes }) => {
         </p>
       </div>
       <div className={classes.buttons}>
+        <a href="https://hacknyu2019.devpost.com/" className={`${classes.button}`}>
+          SUBMIT PROJECT
+        </a>
         <Scrollchor to="#tweets" className={`${classes.button} ${classes.buttonSecondary}`}>
           TWEETS
         </Scrollchor>
